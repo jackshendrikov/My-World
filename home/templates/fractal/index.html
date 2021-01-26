@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Fractal Zoom</title>
+    <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'fractal/style.css' %}">
+</head>
+
+<body>
+<div class="wrapper">
+  <canvas id="c"></canvas>
+</div>
+
+<div class="choices">
+  <button data-url="{% static 'fractal/img/1.png' %}">1</button>
+  <button data-url="{% static 'fractal/img/2.png' %}">2</button>
+  <button data-url="{% static 'fractal/img/3.png' %}">3</button>
+</div>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec2 a_coords;
+    varying vec2 v_c;
+
+    void main() {
+      gl_Position = vec4(a_coords * vec2(1, -1), 0, 1);
+      v_c = a_coords;
+    }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+    #ifdef GL_ES
+    precision highp float;
+    #endif
+
+    uniform sampler2D u_image;
+    uniform float u_scale;
+    uniform float u_zoom;
+    varying vec2 v_c;
+
+    void main() {
+      gl_FragColor = texture2D(u_image, vec2(
+        (0.5 + atan(v_c.y, v_c.x) / 6.2831853), -u_scale * log2(length(v_c) * u_zoom)
+      ));
+    }
+</script>
+
+<script>
+    function start() {
+        image = document.createElement('img');
+        canvas = document.getElementById('c');
+        gl = canvas.getContext('experimental-webgl');
+        tex = document.createElement('canvas');
+        ctx = tex.getContext('2d');
+
+        const buttons = document.getElementsByTagName('button');
+        for (let i = 0; i < buttons.length; i++) {
+            let url = buttons[i].getAttribute('data-url');
+            buttons[i].addEventListener('click', function() {
+            image.src = url;
+            m[0] = 0;
+            touched = false;
+            clearTimeout(timeout);
+            demo();
+            });
+        }
+
+        image.onload = function() {
+            resize();
+            ctx.drawImage(image, 0, 0, tex.width, tex.height);
+            main();
+        };
+        image.src = "{% static 'fractal/img/1.png' %}";
+        image.crossOrigin = 'anonymous';
+    }
+</script>
+
+<script  src="{% static 'fractal/script.js' %}"></script>
+</body>
+</html>

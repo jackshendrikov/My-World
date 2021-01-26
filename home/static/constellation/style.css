@@ -1,0 +1,13 @@
+body {
+    margin: 0;
+    overscroll-behavior: none;
+    overflow: hidden;
+    background-color: #000011;
+    color: #DDD;
+    font-family: Helvetica;
+}
+
+#title {
+    padding: 10px 0 10px 0;
+    text-align: center;
+}

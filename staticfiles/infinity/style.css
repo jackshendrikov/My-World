@@ -1,0 +1,81 @@
+div {
+  width: 450px;
+  height: 450px;
+  -webkit-animation: animate 600ms infinite linear;
+          animation: animate 600ms infinite linear;
+}
+@media (prefers-reduced-motion) {
+  div {
+    -webkit-animation: none;
+            animation: none;
+  }
+}
+
+body {
+  height: 100vh;
+  display: grid;
+  place-content: center;
+  background-color: #D7A9E3FF;
+}
+
+@-webkit-keyframes animate {
+  from {
+    box-shadow: inset 0 5px 10px 5px rgba(0,0,0,0.3), inset 0 0 0 0 #D7A9E3FF,
+                inset 0 5px 10px 5px rgba(0,0,0,0.3), inset 0 0 0 20px #D7A9E3FF,
+                inset 0 5px 10px 25px rgba(0,0,0,0.3), inset 0 0 0 40px #D7A9E3FF,
+                inset 0 5px 10px 45px rgba(0,0,0,0.3), inset 0 0 0 60px #D7A9E3FF,
+                inset 0 5px 10px 65px rgba(0,0,0,0.3), inset 0 0 0 80px #D7A9E3FF,
+                inset 0 5px 10px 85px rgba(0,0,0,0.3), inset 0 0 0 100px #D7A9E3FF,
+                inset 0 5px 10px 105px rgba(0,0,0,0.3), inset 0 0 0 120px #D7A9E3FF,
+                inset 0 5px 10px 125px rgba(0,0,0,0.3), inset 0 0 0 140px #D7A9E3FF,
+                inset 0 5px 10px 145px rgba(0,0,0,0.3), inset 0 0 0 160px #D7A9E3FF,
+                inset 0 5px 10px 165px rgba(0,0,0,0.3), inset 0 0 0 180px #D7A9E3FF,
+                inset 0 5px 10px 185px rgba(0,0,0,0.3), inset 0 0 0 200px #D7A9E3FF,
+                inset 0 5px 10px 205px rgba(0,0,0,0.3), inset 0 0 0 220px #D7A9E3FF;
+  }
+  to {
+    box-shadow: inset 0 5px 10px 5px rgba(0,0,0,0.3), inset 0 0 0 20px #D7A9E3FF,
+                inset 0 5px 10px 25px rgba(0,0,0,0.3), inset 0 0 0 40px #D7A9E3FF,
+                inset 0 5px 10px 45px rgba(0,0,0,0.3), inset 0 0 0 60px #D7A9E3FF,
+                inset 0 5px 10px 65px rgba(0,0,0,0.3), inset 0 0 0 80px #D7A9E3FF,
+                inset 0 5px 10px 85px rgba(0,0,0,0.3), inset 0 0 0 100px #D7A9E3FF,
+                inset 0 5px 10px 105px rgba(0,0,0,0.3), inset 0 0 0 120px #D7A9E3FF,
+                inset 0 5px 10px 125px rgba(0,0,0,0.3), inset 0 0 0 140px #D7A9E3FF,
+                inset 0 5px 10px 145px rgba(0,0,0,0.3), inset 0 0 0 160px #D7A9E3FF,
+                inset 0 5px 10px 165px rgba(0,0,0,0.3), inset 0 0 0 180px #D7A9E3FF,
+                inset 0 5px 10px 185px rgba(0,0,0,0.3), inset 0 0 0 200px #D7A9E3FF,
+                inset 0 5px 10px 205px rgba(0,0,0,0.3), inset 0 0 0 220px #D7A9E3FF,
+                inset 0 5px 10px 225px rgba(0,0,0,0.3), inset 0 0 0 240px #D7A9E3FF;
+  }
+}
+
+@keyframes animate {
+  from {
+    box-shadow: inset 0 5px 10px 5px rgba(0,0,0,0.3), inset 0 0 0 0 #D7A9E3FF,
+                inset 0 5px 10px 5px rgba(0,0,0,0.3), inset 0 0 0 20px #D7A9E3FF,
+                inset 0 5px 10px 25px rgba(0,0,0,0.3), inset 0 0 0 40px #D7A9E3FF,
+                inset 0 5px 10px 45px rgba(0,0,0,0.3), inset 0 0 0 60px #D7A9E3FF,
+                inset 0 5px 10px 65px rgba(0,0,0,0.3), inset 0 0 0 80px #D7A9E3FF,
+                inset 0 5px 10px 85px rgba(0,0,0,0.3), inset 0 0 0 100px #D7A9E3FF,
+                inset 0 5px 10px 105px rgba(0,0,0,0.3), inset 0 0 0 120px #D7A9E3FF,
+                inset 0 5px 10px 125px rgba(0,0,0,0.3), inset 0 0 0 140px #D7A9E3FF,
+                inset 0 5px 10px 145px rgba(0,0,0,0.3), inset 0 0 0 160px #D7A9E3FF,
+                inset 0 5px 10px 165px rgba(0,0,0,0.3), inset 0 0 0 180px #D7A9E3FF,
+                inset 0 5px 10px 185px rgba(0,0,0,0.3), inset 0 0 0 200px #D7A9E3FF,
+                inset 0 5px 10px 205px rgba(0,0,0,0.3), inset 0 0 0 220px #D7A9E3FF;
+  }
+  to {
+    box-shadow: inset 0 5px 10px 5px rgba(0,0,0,0.3), inset 0 0 0 20px #D7A9E3FF,
+                inset 0 5px 10px 25px rgba(0,0,0,0.3), inset 0 0 0 40px #D7A9E3FF,
+                inset 0 5px 10px 45px rgba(0,0,0,0.3), inset 0 0 0 60px #D7A9E3FF,
+                inset 0 5px 10px 65px rgba(0,0,0,0.3), inset 0 0 0 80px #D7A9E3FF,
+                inset 0 5px 10px 85px rgba(0,0,0,0.3), inset 0 0 0 100px #D7A9E3FF,
+                inset 0 5px 10px 105px rgba(0,0,0,0.3), inset 0 0 0 120px #D7A9E3FF,
+                inset 0 5px 10px 125px rgba(0,0,0,0.3), inset 0 0 0 140px #D7A9E3FF,
+                inset 0 5px 10px 145px rgba(0,0,0,0.3), inset 0 0 0 160px #D7A9E3FF,
+                inset 0 5px 10px 165px rgba(0,0,0,0.3), inset 0 0 0 180px #D7A9E3FF,
+                inset 0 5px 10px 185px rgba(0,0,0,0.3), inset 0 0 0 200px #D7A9E3FF,
+                inset 0 5px 10px 205px rgba(0,0,0,0.3), inset 0 0 0 220px #D7A9E3FF,
+                inset 0 5px 10px 225px rgba(0,0,0,0.3), inset 0 0 0 240px #D7A9E3FF;
+  }
+}
