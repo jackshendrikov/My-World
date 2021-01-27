@@ -8,7 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'libs/reset.min.css' %}">
-    <link rel="stylesheet" href="{% static 'xmas-intro.css' %}">
+    <link rel="stylesheet" href="{% static 'xmas-tree/xmas-intro.css' %}">
 </head>
 
 <body>
@@ -43,7 +43,7 @@
 </div>
 
 <script>
-onload = function () {setTimeout ("document.location = '{% url "xmas-tree:xmas-home" %}';",  70 * 100)}
+onload = function () {setTimeout ("document.location = '{% url "xmas-home" %}';",  70 * 100)}
 </script>
 
 </body>

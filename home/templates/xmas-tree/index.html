@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Merry Christmas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'xmas-tree/xmas-home.css' %}">
+</head>
+
+<body>
+<style>
+    @font-face {
+    font-family: 'Grinched';  src: local('Grinched'), url('{% static "home/font/GrinchedRegular.otf" %}') format('woff');
+    }
+
+    body {
+        background-image: url("{% static 'xmas-tree/snow1.png' %}"),
+        url("{% static 'xmas-tree/snow2.png' %}"),
+        url("{% static 'xmas-tree/snow3.png' %}");
+    }
+
+    h1 {
+        font-family: "Grinched", serif;
+        font-size: 6rem;
+        font-weight: 600;
+        width: 100%;
+        text-align: center;
+        top: 25%;
+        position: relative;
+        word-spacing: 5px;
+    }
+</style>
+
+<audio controls loop autoplay>
+  <source src="{% static 'audio/we.wish.you.2.ogg' %}" type="audio/ogg">
+</audio>
+
+<div id="tree">
+	<div class="star"></div>
+</div>
+
+{#<h1>Happy Xmas</h1>#}
+{#<div class="container">#}
+{#    <div class='items'>#}
+{#        <div class='item'>#}
+{#            <svg preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>#}
+{#                <a href="{% url "xmas-scene" %}" target="_self">#}
+{#                    <defs>#}
+{#                        <clipPath id='clip-0'>#}
+{#                            <circle cx='0' cy='0' fill='#000' r='150px'></circle>#}
+{#                        </clipPath>#}
+{#                    </defs>#}
+{#                    <text class='svg-text' dy='.3em' x='50%' y='50%'>#}
+{#                        Xmas Scene#}
+{#                    </text>#}
+{#                    <g clip-path='url(#clip-0)'>#}
+{#                        <image height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/jNHhZL5.png'></image>#}
+{#                        <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>#}
+{#                            Xmas Scene#}
+{#                        </text>#}
+{#                    </g>#}
+{#                </a>#}
+{#            </svg>#}
+{#        </div>#}
+{##}
+{#        <div class='item'>#}
+{#            <svg preserveAspectRatio='xMidYMid slice' viewBox='0 0 400 300'>#}
+{#                <a href="{% url "xmas-game" %}" target="_self">#}
+{#                    <defs>#}
+{#                        <clipPath id='clip-1'>#}
+{#                            <circle cx='0' cy='0' fill='#000' r='150px'></circle>#}
+{#                        </clipPath>#}
+{#                    </defs>#}
+{#                    <text class='svg-text' dy='.3em' x='50%' y='50%'>#}
+{#                        Firework#}
+{#                    </text>#}
+{#                    <g clip-path='url(#clip-1)'>#}
+{#                        <image height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/J0eTSGj.png'></image>#}
+{#                        <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>#}
+{#                            Firework#}
+{#                        </text>#}
+{#                    </g>#}
+{#                </a>#}
+{#            </svg>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+
+<script type="text/javascript">
+    const links = ['{% url "xmas-game" %}', '{% url "xmas-scene" %}'];
+</script>
+<script src="{% static 'xmas-tree/xmas-home.js' %}"></script>
+
+</body>
+</html>

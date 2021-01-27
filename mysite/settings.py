@@ -35,15 +35,14 @@ INSTALLED_APPS = [
     'django_extensions',
     'crispy_forms',
     'social_django',
-    'home.apps.HomeConfig',
     'rest_framework',
     'channels',
 
     # Sample Applications
+    'home.apps.HomeConfig',
     'authz.apps.AuthzConfig',
     'ads.apps.AdsConfig',
     'chat.apps.ChatConfig',
-    'xmas-tree.apps.XmasTreeConfig',
 ]
 
 # When we get to crispy forms

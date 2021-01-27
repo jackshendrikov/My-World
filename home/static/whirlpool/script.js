@@ -1,6 +1,5 @@
 let artwork;
 let colorArray;
-let btnRegen;
 
 function degrees_to_radians(degrees) {
 	let pi = Math.PI;
@@ -13,9 +12,8 @@ function setup() {
 	artwork.createNew(50, 10, 20);
 }
 
-function mousePressed(event) {
-	btnRegen.onClick();
-	return false;
+function mousePressed() {
+	setup();
 }
 
 function draw() {

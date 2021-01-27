@@ -8,7 +8,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'game/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'xmas-tree/game/css/style.css' %}">
 </head>
 
 <body>
@@ -47,69 +47,69 @@
         let world;
 
         function preloadFn() {
-            this.load.spritesheet('girl', '{% static "game/img/dasha.png" %}', {
+            this.load.spritesheet('girl', '{% static "xmas-tree/game/img/dasha.png" %}', {
                 frameWidth: Config.DASHA_SPRITE_WIDTH,
                 frameHeight: Config.DASHA_SPRITE_HEIGHT
             });
 
-            this.load.spritesheet('santarun', '{% static "game/img/santarun.png" %}', {
+            this.load.spritesheet('santarun', '{% static "xmas-tree/game/img/santarun.png" %}', {
                 frameWidth: Config.SANTA_RUN_SPRITE_WIDTH,
                 frameHeight: Config.SANTA_RUN_SPRITE_HEIGHT
             });
 
-            this.load.spritesheet('santadead', '{% static "game/img/santadead.png" %}', {
+            this.load.spritesheet('santadead', '{% static "xmas-tree/game/img/santadead.png" %}', {
                 frameWidth: Config.SANTA_DEAD_SPRITE_WIDTH,
                 frameHeight: Config.SANTA_DEAD_SPRITE_HEIGHT
             });
 
-            this.load.spritesheet('grinchrun', '{% static "game/img/grinchrun.png" %}', {
+            this.load.spritesheet('grinchrun', '{% static "xmas-tree/game/img/grinchrun.png" %}', {
                 frameWidth: Config.GRINCH_RUN_SPRITE_WIDTH,
                 frameHeight: Config.GRINCH_RUN_SPRITE_HEIGHT
             });
 
-            this.load.spritesheet('tree', '{% static "game/img/tree.png" %}', {
+            this.load.spritesheet('tree', '{% static "xmas-tree/game/img/tree.png" %}', {
                 frameWidth: Config.TREE_SPRITE_WIDTH,
                 frameHeight: Config.TREE_SPRITE_HEIGHT
             });
 
-            this.load.spritesheet('jackblink', '{% static "game/img/jack.png" %}', {
+            this.load.spritesheet('jackblink', '{% static "xmas-tree/game/img/jack.png" %}', {
                 frameWidth: Config.JACK_SPRITE_WIDTH,
                 frameHeight: Config.JACK_SPRITE_HEIGHT
             });
 
-            this.load.image('bookcase', '{% static "game/img/bookcase.png" %}');
-            this.load.image('carpathians', '{% static "game/img/carpathians.png" %}');
-            this.load.image('confetti1', '{% static "game/img/confetti1.png" %}');
-            this.load.image('confetti2', '{% static "game/img/confetti2.png" %}');
-            this.load.image('confetti3', '{% static "game/img/confetti3.png" %}');
-            this.load.image('confetti4', '{% static "game/img/confetti4.png" %}');
-            this.load.image('confetti5', '{% static "game/img/confetti5.png" %}');
-            this.load.image('confetti6', '{% static "game/img/confetti6.png" %}');
-            this.load.image('confetti7', '{% static "game/img/confetti7.png" %}');
-            this.load.image('counter', '{% static "game/img/counter.png" %}');
-            this.load.image('crate', '{% static "game/img/crate.png" %}');
-            this.load.image('fireplace', '{% static "game/img/fireplace.png" %}');
-            this.load.image('flowers', '{% static "game/img/flowers.png" %}');
-            this.load.image('gift', '{% static "game/img/gift.png" %}');
-            this.load.image('glow', '{% static "game/img/glow.png" %}');
-            this.load.image('goverla', '{% static "game/img/goverla.png" %}');
-            this.load.image('grinchfaint', '{% static "game/img/grinchfaint.png" %}');
-            this.load.image('harry', '{% static "game/img/harry.png" %}');
-            this.load.image('heart', '{% static "game/img/heart.png" %}');
-            this.load.image('kyiv', '{% static "game/img/kyiv.png" %}');
-            this.load.image('pathmarker', '{% static "game/img/pathmarker.png" %}');
-            this.load.image('piano', '{% static "game/img/piano.png" %}');
-            this.load.image('rugleft', '{% static "game/img/rugleft.png" %}');
-            this.load.image('rugmiddle', '{% static "game/img/rugmiddle.png" %}');
-            this.load.image('rugtop', '{% static "game/img/rugtop.png" %}');
-            this.load.image('rugtopleft', '{% static "game/img/rugtopleft.png" %}');
-            this.load.image('wallright', '{% static "game/img/wallright.png" %}');
-            this.load.image('walltop', '{% static "game/img/walltop.png" %}');
-            this.load.image('walltopright', '{% static "game/img/walltopright.png" %}');
-            this.load.image('wood', '{% static "game/img/wood.png" %}');
-            this.load.image('welcome', '{% static "game/img/welcome.png" %}');
-            this.load.image('window', '{% static "game/img/window.png" %}');
-            this.load.image('zp', '{% static "game/img/zp.png" %}');
+            this.load.image('bookcase', '{% static "xmas-tree/game/img/bookcase.png" %}');
+            this.load.image('carpathians', '{% static "xmas-tree/game/img/carpathians.png" %}');
+            this.load.image('confetti1', '{% static "xmas-tree/game/img/confetti1.png" %}');
+            this.load.image('confetti2', '{% static "xmas-tree/game/img/confetti2.png" %}');
+            this.load.image('confetti3', '{% static "xmas-tree/game/img/confetti3.png" %}');
+            this.load.image('confetti4', '{% static "xmas-tree/game/img/confetti4.png" %}');
+            this.load.image('confetti5', '{% static "xmas-tree/game/img/confetti5.png" %}');
+            this.load.image('confetti6', '{% static "xmas-tree/game/img/confetti6.png" %}');
+            this.load.image('confetti7', '{% static "xmas-tree/game/img/confetti7.png" %}');
+            this.load.image('counter', '{% static "xmas-tree/game/img/counter.png" %}');
+            this.load.image('crate', '{% static "xmas-tree/game/img/crate.png" %}');
+            this.load.image('fireplace', '{% static "xmas-tree/game/img/fireplace.png" %}');
+            this.load.image('flowers', '{% static "xmas-tree/game/img/flowers.png" %}');
+            this.load.image('gift', '{% static "xmas-tree/game/img/gift.png" %}');
+            this.load.image('glow', '{% static "xmas-tree/game/img/glow.png" %}');
+            this.load.image('goverla', '{% static "xmas-tree/game/img/goverla.png" %}');
+            this.load.image('grinchfaint', '{% static "xmas-tree/game/img/grinchfaint.png" %}');
+            this.load.image('harry', '{% static "xmas-tree/game/img/harry.png" %}');
+            this.load.image('heart', '{% static "xmas-tree/game/img/heart.png" %}');
+            this.load.image('kyiv', '{% static "xmas-tree/game/img/kyiv.png" %}');
+            this.load.image('pathmarker', '{% static "xmas-tree/game/img/pathmarker.png" %}');
+            this.load.image('piano', '{% static "xmas-tree/game/img/piano.png" %}');
+            this.load.image('rugleft', '{% static "xmas-tree/game/img/rugleft.png" %}');
+            this.load.image('rugmiddle', '{% static "xmas-tree/game/img/rugmiddle.png" %}');
+            this.load.image('rugtop', '{% static "xmas-tree/game/img/rugtop.png" %}');
+            this.load.image('rugtopleft', '{% static "xmas-tree/game/img/rugtopleft.png" %}');
+            this.load.image('wallright', '{% static "xmas-tree/game/img/wallright.png" %}');
+            this.load.image('walltop', '{% static "xmas-tree/game/img/walltop.png" %}');
+            this.load.image('walltopright', '{% static "xmas-tree/game/img/walltopright.png" %}');
+            this.load.image('wood', '{% static "xmas-tree/game/img/wood.png" %}');
+            this.load.image('welcome', '{% static "xmas-tree/game/img/welcome.png" %}');
+            this.load.image('window', '{% static "xmas-tree/game/img/window.png" %}');
+            this.load.image('zp', '{% static "xmas-tree/game/img/zp.png" %}');
         }
 
         function createFn() {
@@ -224,21 +224,21 @@
 window.onload = main;
 </script>
 
-<script src="{% static 'game/js/blocklist.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/blockstate.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/config.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/dasha.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/depths.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/director.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/directorstate.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/gift.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/grid.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/gridrunner.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/grinch.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/instructions.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/puzzle.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/santa.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/victorycutscene.js' %}" type="text/javascript"></script>
-<script src="{% static 'game/js/world.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/blocklist.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/blockstate.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/config.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/dasha.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/depths.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/director.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/directorstate.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/gift.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/grid.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/gridrunner.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/grinch.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/instructions.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/puzzle.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/santa.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/victorycutscene.js' %}" type="text/javascript"></script>
+<script src="{% static 'xmas-tree/game/js/world.js' %}" type="text/javascript"></script>
 </body>
 </html>

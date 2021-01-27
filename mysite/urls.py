@@ -5,8 +5,6 @@ from django.urls import include, path
 from django.conf.urls import url
 from django.views.static import serve
 from django.contrib.auth import views as auth_views
-from django.conf import settings
-from django.conf.urls.static import static
 
 # Up two folders to serve "site" content
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,8 +20,7 @@ urlpatterns = [
     path('ads/', include('ads.urls')),
     path('authz/', include('authz.urls')),
     path('chat/', include('chat.urls')),
-    path('xmas-tree/', include('xmas-tree.urls')),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
 handler404 ='home.views.error_404'
 

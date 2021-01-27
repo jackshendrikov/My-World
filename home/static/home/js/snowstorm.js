@@ -1,62 +1,66 @@
+function snowfall() {
+    let xmasSet = document.getElementById("xmas-version");
+    xmasSet.style.display = "none";
 
+    let defaultSet = document.getElementById("default-version");
+    defaultSet.style.display = "inline";
 
-$(document).ready(function () {
     // Only supported in IE8+
     if ($.browser.msie && parseInt($.browser.version) < 8) return;
 
     // -------------------------------
     // --- Configuration variables ---
     // -------------------------------
-    
+
     // How many frames per second?  More => smoother but more processor intensive
-    var fps = 40;
+    let fps = 40;
 
     // How often should flakes be added?  Every 10 frames by default.  Greater => fewer flakes
-    var addNewFlakesEveryNFrames = 10;
+    let addNewFlakesEveryNFrames = 10;
 
     // How many flakes should be added each time?  Greater => more flakes, more processor intensive
-    var newFlakesToAdd = 3;
+    let newFlakesToAdd = 3;
 
     // Controls the speed; 0.7 provides a nice speed
-    var speedControl = 0.7;
+    let speedControl = 0.7;
 
     // -------------------------------
     // -------------------------------
     // -------------------------------
-    
+
     // Holder variables
-    var flakes = [];
-    var additionCounter = 0;
+    let flakes = [];
+    let additionCounter = 0;
 
     // The flake creator function
     function createFlake(curX, curY) {
 
         // How unique should each flake be?  These values specify max unique speed and wiggle/drift
-        var maxSpeedOffset = 2;
-        var maxWiggleOffset = 10;
+        let maxSpeedOffset = 2;
+        let maxWiggleOffset = 10;
 
         // How big should the flakes be?
-        var minSize = 5;
-        var maxSize = 15;
+        let minSize = 5;
+        let maxSize = 15;
 
         // How much drifting/wiggling should be allowed in the downward path?
-        var minWiggle = 10;
-        var maxWiggle = 40;
+        let minWiggle = 10;
+        let maxWiggle = 40;
 
-        var sizePercent = Math.random();
-        var size = Math.floor(sizePercent * (maxSize - minSize) + minSize);
-        var opacity = 0.3 + Math.random() * 0.7;
+        let sizePercent = Math.random();
+        let size = Math.floor(sizePercent * (maxSize - minSize) + minSize);
+        let opacity = 0.3 + Math.random() * 0.7;
         if ($.browser.msie && parseInt($.browser.version) < 10) //disable transparency on old IE to make rendering easier
             opacity = undefined;
-        var color = '#9CF';
+        let color = '#9CF';
 
         // Create a unique speed offset, so each flake falls at a unique rate
-        var speedOffset = Math.floor(Math.random() * maxSpeedOffset);
+        let speedOffset = Math.floor(Math.random() * maxSpeedOffset);
 
         // Create a unique wiggle amount based on size (bigger = more wiggle/drift)
-        var wiggle = minWiggle + (maxWiggleOffset * Math.random()) + (maxWiggle - minWiggle) * sizePercent;
+        let wiggle = minWiggle + (maxWiggleOffset * Math.random()) + (maxWiggle - minWiggle) * sizePercent;
 
-        var flake = $('<div>').text(' ').css({
+        let flake = $('<div class="snowflake">').text(' ').css({
             position: 'fixed',
             left: curX,
             top: curY,
@@ -70,7 +74,7 @@ $(document).ready(function () {
             backgroundColor: color
         }).appendTo('body');
 
-        var flakeObj = {
+        let flakeObj = {
             size: size,
             sizePercent: sizePercent,
             homeX: curX,
@@ -87,16 +91,16 @@ $(document).ready(function () {
     }
 
     // Create the sin table to save processing power later
-    var sinTable = [];
-    for (var i = 0; i < 100; i++) {
-        var sin = Math.sin((i / 100) * Math.PI * 2);
+    let sinTable = [];
+    for (let i = 0; i < 100; i++) {
+        let sin = Math.sin((i / 100) * Math.PI * 2);
         sinTable.push(sin);
     }
 
     // Track where the mouse is, so we can move flakes away from it
-    var mouseX = -200;
-    var mouseY = -200;
-    var $w = $(window);
+    let mouseX = -200;
+    let mouseY = -200;
+    let $w = $(window);
     $(document).mousemove(function(e) {
         mouseX = e.pageX - $w.scrollLeft();
         mouseY = e.pageY - $w.scrollTop();
@@ -104,29 +108,29 @@ $(document).ready(function () {
 
     function onEnterFrame() {
         // Update existing flakes
-        var winH = $w.height();
-        for (var i = flakes.length - 1; i > -1; i--) {
-            var flakeObj = flakes[i];
-            var flake = flakeObj.flake;
-            var speed = 2 + (1 - flakeObj.sizePercent) * 5 + flakeObj.uniqueSpeedOffset; // bigger = slower to fall
+        let winH = $w.height();
+        for (let i = flakes.length - 1; i > -1; i--) {
+            let flakeObj = flakes[i];
+            let flake = flakeObj.flake;
+            let speed = 2 + (1 - flakeObj.sizePercent) * 5 + flakeObj.uniqueSpeedOffset; // bigger = slower to fall
             speed *= speedControl; // apply the speed control
-            var curY = flakeObj.curY;
-            var newY = curY + speed;
+            let curY = flakeObj.curY;
+            let newY = curY + speed;
 
-            var wiggleCounter = flakeObj.wiggleCounter = (++flakeObj.wiggleCounter % 100);
-            var sin = sinTable[wiggleCounter];
-            var wiggle = flakeObj.wiggle * sin;
-            var newX = flakeObj.homeX + wiggle;
+            let wiggleCounter = flakeObj.wiggleCounter = (++flakeObj.wiggleCounter % 100);
+            let sin = sinTable[wiggleCounter];
+            let wiggle = flakeObj.wiggle * sin;
+            let newX = flakeObj.homeX + wiggle;
 
             // If we're close to the mouse, force out of the way
-            var mouseXDist = Math.abs(mouseX - newX);
-            var mouseYDist = Math.abs(mouseY - newY);
-            var influenceArea = 150;
+            let mouseXDist = Math.abs(mouseX - newX);
+            let mouseYDist = Math.abs(mouseY - newY);
+            let influenceArea = 150;
             if (mouseXDist < influenceArea && mouseYDist < influenceArea) {
-                var maxForce = 10;
-                var dist = Math.sqrt(mouseXDist * mouseXDist + mouseYDist * mouseYDist);
+                let maxForce = 10;
+                let dist = Math.sqrt(mouseXDist * mouseXDist + mouseYDist * mouseYDist);
                 if (dist < influenceArea) {
-                    var influence = maxForce * (1 - (dist / influenceArea));
+                    let influence = maxForce * (1 - (dist / influenceArea));
                     if (mouseY > newY) {
                         newY -= influence;
                         if (mouseX < newX) flakeObj.homeX += influence;
@@ -152,26 +156,27 @@ $(document).ready(function () {
         }
 
         // Add any new flakes
-        if (++additionCounter % addNewFlakesEveryNFrames == 0) {
+        if (++additionCounter % addNewFlakesEveryNFrames === 0) {
             additionCounter = 0;
 
-            var minX = -100;
-            var maxX = $(window).width() + 100;
-            var homeY = -100;
-            for (var i = 0; i < newFlakesToAdd; i++) {
-                var curX = minX + Math.floor(Math.random() * (maxX - minX));
-                var curY = homeY + Math.floor(100 * Math.random());
+            let minX = -100;
+            let maxX = $(window).width() + 100;
+            let homeY = -100;
+            for (let i = 0; i < newFlakesToAdd; i++) {
+                let curX = minX + Math.floor(Math.random() * (maxX - minX));
+                let curY = homeY + Math.floor(100 * Math.random());
                 createFlake(curX, curY);
             }
         }
     }
 
     // Start the animation based on the requested frames per second
-    setInterval(onEnterFrame, 1000 / fps);
-	
-	// Add easy support for a toggle button
-	$('#toggleSnow').click(function(){
-        newFlakesToAdd = (newFlakesToAdd==0) ? 3 : 0;
-    });
+    let timerID = setInterval(onEnterFrame, 1000 / fps);
 
-})();
+    $("#default-version").click(function() {
+        clearInterval(timerID);
+        [...document.getElementsByClassName("snowflake")].map(n => n && n.remove());
+        defaultSet.style.display = "none";
+        xmasSet.style.display = "inline";
+    });
+}

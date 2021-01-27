@@ -7,10 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JackShen Engineering</title>
     <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'home/css/main-style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="{% static 'libs/normalize.min.css' %}">
     <link rel="stylesheet" href="{% static 'home/css/xmas-lights.css' %}">
     <script src="{% static 'libs/prefixfree.min.js' %}"></script>
 </head>
@@ -20,7 +21,7 @@
 
     <div class="heading">
         <div class="logo">
-            <a href="{% url "intro" %}" target="_self" rel="nofollow" title="JackShen Engineering" class="logo-link">JackShen Engineering</a>
+            <a href="{% url "home_page" %}" target="_self" rel="nofollow" title="JackShen Engineering" class="logo-link">JackShen Engineering</a>
         </div>
         <button id="toggle-nav">
             menu
@@ -29,11 +30,11 @@
 
     <ul class="menu">
         <li class="menu-item">
-            <a class="menu-item-link" href="../ads" target="_blank">Blog</a>
+            <a class="menu-item-link" href="{% url "blog" %}" target="_blank">Blog</a>
         </li>
 
         <li class="menu-item">
-            <a class="menu-item-link" href="../chat" target="_blank">Chat</a>
+            <a class="menu-item-link" href="{% url "chat" %}" target="_blank">Chat</a>
         </li>
 
         <li class="menu-item menu-item-dropdown">
@@ -76,6 +77,13 @@
         </li>
 
         <li class="menu-item">
+            <a id="xmas-decor" class="menu-item-link">
+                <i id="xmas-version" style="color: green; font-size: 1.75rem;" class="fa fa-tree" onclick="snowfall()"></i>
+                <i id="default-version" style="color: white; font-size: 1.5rem; display: none" class="fa fa-undo"></i>
+            </a>
+        </li>
+
+        <li class="menu-item">
             <a class="menu-item-link" href=""></a>
             <div class='options'>
                 <button class='dark'></button>
@@ -105,7 +113,7 @@
                     <li></li> <li></li> <li></li> <li></li> <li></li> <li></li>
                 </ul>
                 <svg preserveAspectRatio='xMidYMid slice' viewBox='0 0 1100 600'>
-                    <a href="../xmas-tree" target="_blank">
+                    <a href="{% url "xmas-intro" %}" target="_blank">
                         <defs>
                             <clipPath id='clip-0'>
                                 <circle cx='0' cy='0' fill='#000' r='400px'></circle>

@@ -335,7 +335,7 @@ button.light {
 }
 
 .light {
-  background-color: #f9f9f9;
+  background-color: #f7f9fb;
   color: #1a1a1a;
 }
 .light p {
@@ -348,7 +348,7 @@ button.light {
   fill: rgba(0, 0, 0, 0.5);
 }
 .light .main-nav {
-  background: #4a8f1a;
+  background: #508fb5;
 }
 
 .light .main-nav__menu-item-link {
@@ -357,7 +357,7 @@ button.light {
 
 .light .main-nav__menu-item--active .main-nav__menu-item-link {
   color: white;
-  background: #54a21d;
+  background: #4b87ab;
 }
 
 .light .main-nav__logo-link {
