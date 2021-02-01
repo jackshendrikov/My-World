@@ -1,13 +1,21 @@
 Django>=3.1
 django-crispy-forms>=1.9.2
+django-filter==2.3.0
 djangorestframework>=3.11.1
-django-autocomplete-light~=3.8.1
+django-extensions>=3.0.5
 dj_database_url~=0.5.0
 python-decouple~=3.4
+django-heroku>=0.3.1
+Markdown==3.0.1
+social-auth-app-django>=3.1.0
+social-auth-core>=3.3.3
 psycopg2==2.8.6
+whitenoise==5.2.0
+dj-database-url==0.5.0
+gunicorn==19.6.0
 asgiref~=3.2.10
 channels~=2.4.0
-PyJWT~=1.7.1
+PyJWT~=2.0.0
 pip~=20.2.4
 wheel~=0.34.2
 pytz~=2019.3
@@ -18,6 +26,7 @@ certifi~=2018.8.24
 chardet~=3.0.4
 urllib3~=1.25.9
 oauthlib~=3.1.0
+channels-redis ~=2.4.2
 idna~=2.7
 pycparser~=2.18
 setuptools~=41.2.0
@@ -25,8 +34,6 @@ future~=0.16.0
 requests~=2.23.0
 six~=1.14.0
 Pygments~=2.3.0
-pytest~=6.2.2
 bleach~=3.0.2
 cryptography~=3.2.1
-py~=1.10.0
 boto~=2.49.0
