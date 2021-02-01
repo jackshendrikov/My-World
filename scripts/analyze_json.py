@@ -1,4 +1,9 @@
-from re import sub
+from os import path, walk, remove
+from re import sub, search
+
+for dirpath, dirnames, filenames in walk("../staticfiles/"):
+    for filename in [f for f in filenames if bool(search(r'.[0-9a-f]{12}', f))]:
+        remove(path.join(dirpath, filename))
 
 fhandler = '../staticfiles/staticfiles.json'
 

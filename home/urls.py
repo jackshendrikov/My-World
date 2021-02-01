@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.urls import path
+from django.urls import path, include
 from django.views.generic import TemplateView
 
 from . import views
@@ -8,7 +8,6 @@ urlpatterns = [
     path('', views.HomeView.as_view()),
     path('intro/', TemplateView.as_view(template_name='home/intro.html'), name='intro'),
     path('home/', TemplateView.as_view(template_name='home/main.html'), name='home_page'),
-    path('blog/', login_required(TemplateView.as_view(template_name='ads/base_menu.html')), name='blog'),
     path('chat/', login_required(TemplateView.as_view(template_name='chat/chat.html')), name='chat'),
     path('home/concentus', TemplateView.as_view(template_name='concentus/index.html'), name='concentus'),
     path('home/constellation', TemplateView.as_view(template_name='constellation/index.html'), name='constellation'),

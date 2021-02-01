@@ -9,10 +9,13 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#000000">
     <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
+    <style>
+        body { background-image: url('{% static "todo/img/main-wallpaper.jpg" %}'); }
+    </style>
     <link rel="stylesheet" href="{% static 'home/css/start.css' %}">
 </head>
 <body>
-<div class="button fire" onclick="window.open('{% url "intro" %}', '_self')">START</div>
+<div class="button ice" onclick="window.open('{% url "intro" %}', '_self')">START</div>
 
 </body>
 </html>

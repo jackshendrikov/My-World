@@ -1,11 +1,18 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View
 from django.conf import settings
 
 
+def error_403(request, exception=None):
+    return render(request, 'home/403.html')
+
+
 def error_404(request, exception):
-    return render(request, 'home/404.html')
+    return render(request, "home/404.html", {})
+
+
+def error_500(request, exception=None):
+    return render(request, "home/500.html", {})
 
 
 class HomeView(View):

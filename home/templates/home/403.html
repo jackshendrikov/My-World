@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Access Forbidden - 403</title>
+    <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'libs/reset.min.css' %}">
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Dosis:400,300,500,800'>
+    <link rel="stylesheet" href="{% static 'home/css/error.css' %}">
+</head>
+
+<body>
+<div class="content">
+    <canvas class="snow" id="snow"></canvas>
+    <div class="main-text">
+        <h1>Access to this page is restricted.<br/>Ensure you have sufficient permissions to access the same.</h1>
+        <a class="home-link" href="{% url "home_page" %}">Go back home.</a>
+    </div>
+
+    <div class="ground">
+        <div class="mound">
+            <div class="mound_text">403</div>
+            <div class="mound_spade"></div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'home/js/error.js' %}"></script>
+</body>
+</html>

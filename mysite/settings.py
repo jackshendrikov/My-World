@@ -13,6 +13,24 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Used for a default title
 APP_NAME = 'JackShen Engineering'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Document
+TODO_DEFAULT_LIST_SLUG = 'fix-site'
+TODO_DEFAULT_ASSIGNEE = 'godfather'
+TODO_PUBLIC_SUBMIT_REDIRECT = '/todo/ticket/add/'
+
+TODO_ALLOW_FILE_ATTACHMENTS = True
+TODO_ALLOWED_FILE_ATTACHMENTS = [".jpg", ".gif", ".csv", ".pdf", ".zip"]
+TODO_MAXIMUM_ATTACHMENT_SIZE = 5000000  # In bytes
+
+TODO_COMMENT_CLASSES = []
+TODO_STAFF_ONLY = True
+
+
+# Without this, uploaded files > 4MB end up with perm 0600, unreadable by web server process
+FILE_UPLOAD_PERMISSIONS = 0o644
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
@@ -20,6 +38,8 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+SITE_ID = 1
 
 # Application definition
 INSTALLED_APPS = [
@@ -29,6 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
+    'django.contrib.sites',
     'django.contrib.humanize',
 
     # Extensions - installed with pip3
@@ -37,12 +59,15 @@ INSTALLED_APPS = [
     'social_django',
     'rest_framework',
     'channels',
+    'dal',
+    'dal_select2',
 
     # Sample Applications
     'home.apps.HomeConfig',
     'authz.apps.AuthzConfig',
     'ads.apps.AdsConfig',
     'chat.apps.ChatConfig',
+    'todo.apps.ToDoConfig',
 ]
 
 # When we get to crispy forms
@@ -72,6 +97,9 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 'django.contrib.messages.context_processors.messages',
                 'home.context_processors.settings',
                 'social_django.context_processors.backends',
@@ -142,7 +170,7 @@ USE_TZ = True
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -174,8 +202,8 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-LOGOUT_REDIRECT_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/home/'
+LOGIN_REDIRECT_URL = '/home/'
 
 # Don't set default LOGIN_URL - let django.contrib.auth set it when it is loaded
 # LOGIN_URL = '/accounts/login'
@@ -193,6 +221,23 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             "hosts": [os.environ.get('REDIS_URL')],
+        },
+    },
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
         },
     },
 }
