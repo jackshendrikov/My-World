@@ -2,6 +2,7 @@ Django>=3.1
 django-crispy-forms>=1.9.2
 django-filter==2.3.0
 djangorestframework>=3.11.1
+django-autocomplete-light~=3.8.1
 django-extensions>=3.0.5
 dj_database_url~=0.5.0
 python-decouple~=3.4
@@ -11,7 +12,6 @@ social-auth-app-django>=3.1.0
 social-auth-core>=3.3.3
 psycopg2==2.8.6
 whitenoise==5.2.0
-dj-database-url==0.5.0
 gunicorn==19.6.0
 asgiref~=3.2.10
 channels~=2.4.0
