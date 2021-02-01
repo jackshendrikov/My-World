@@ -16,7 +16,7 @@ APP_NAME = 'JackShen Engineering'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Document
-TODO_DEFAULT_LIST_SLUG = 'fix-site'
+TODO_DEFAULT_LIST_SLUG = 'personal'
 TODO_DEFAULT_ASSIGNEE = 'godfather'
 TODO_PUBLIC_SUBMIT_REDIRECT = '/todo/ticket/add/'
 
