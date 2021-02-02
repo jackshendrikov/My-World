@@ -36,7 +36,7 @@
         <div class="content-section-title">Group: {{ group.grouper }}</div>
         <ul>
             {% for task in group.list %}
-                <li>
+                <li class="all-products" onclick="window.location.href='{% url "todo:list_detail" task.id task.slug %}';">
                     <div class="products">
                         <a href="{% url 'todo:list_detail' task.id task.slug %}" style="color: var(--theme-color);">{{ task.name }}</a>
                     </div>
@@ -45,13 +45,13 @@
                         {% if task.task_set.count > 0 %}
                             <span class="status-circle green"></span>Updated
                         {% else %}
-                            <span class="status-circle"></span> Not Updated Yet
+                            <span class="status-circle"></span>Not Updated Yet
                         {% endif %}
                     </span>
 
-                    <div class="button-wrapper-main">
+                    <div class="button-wrapper-main" style="padding-top: 0; margin-left: 40px;">
                         <button class="content-button status-button open" onclick="location.href='{% url "todo:list_detail" task.id task.slug %}';" >Open</button>
-                        <span class="badge badge-primary badge-pill">{{ task.task_set.count }}</span>
+                        <span class="badge badge-primary badge-pill" style="margin-left: 20px;">{{ task.task_set.count }}</span>
                     </div>
                 </li>
             {% endfor %}

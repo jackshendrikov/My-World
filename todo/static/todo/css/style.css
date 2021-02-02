@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
 * {
   outline: none;
   box-sizing: border-box;
@@ -9,7 +9,7 @@
   --border-color: rgba(113 119 144 / 25%);
   --theme-color: #f9fafb;
   --inactive-color: rgb(113 119 144 / 78%);
-  --body-font: "Poppins", sans-serif;
+  --body-font: "Montserrat", sans-serif;
   --hover-menu-bg: rgba(12 15 25 / 30%);
   --content-title-color: #999ba5;
   --content-bg: rgb(146 151 179 / 13%);
@@ -140,7 +140,7 @@ body.light-mode:before {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .header {
@@ -569,7 +569,7 @@ body.light-mode:before {
 }
 
 @media screen and (max-width: 415px) {
-  .adobe-product .menu {
+  .all-products .menu {
     display: none;
   }
 }

@@ -25,7 +25,7 @@ TODO_ALLOWED_FILE_ATTACHMENTS = [".jpg", ".gif", ".csv", ".pdf", ".zip"]
 TODO_MAXIMUM_ATTACHMENT_SIZE = 5000000  # In bytes
 
 TODO_COMMENT_CLASSES = []
-TODO_STAFF_ONLY = True
+TODO_STAFF_ONLY = config('TODO_STAFF_ONLY', default=False, cast=bool)
 
 
 # Without this, uploaded files > 4MB end up with perm 0600, unreadable by web server process
@@ -180,8 +180,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 # configuring the location for media
-MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Configure the social login
 try:
