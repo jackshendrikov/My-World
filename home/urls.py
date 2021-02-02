@@ -19,6 +19,7 @@ urlpatterns = [
     path('home/infinity', TemplateView.as_view(template_name='infinity/index.html'), name='infinity'),
     path('home/neon', TemplateView.as_view(template_name='neon/index.html'), name='neon'),
     path('home/phoenix', TemplateView.as_view(template_name='phoenix/index.html'), name='phoenix'),
+    path('home/psychedelic', TemplateView.as_view(template_name='psychedelic/index.html'), name='psychedelic'),
     path('home/spirals', TemplateView.as_view(template_name='spirals/index.html'), name='spirals'),
     path('home/whirlpool', TemplateView.as_view(template_name='whirlpool/index.html'), name='whirlpool'),
     path('home/xmas-tree', TemplateView.as_view(template_name='xmas-tree/index.html'), name='xmas-home'),
