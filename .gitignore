@@ -137,3 +137,6 @@ dmypy.json
 # See the name for you IDE
 .DS_Store
 .idea
+
+# Media Dirs
+media/
