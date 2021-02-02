@@ -263,6 +263,15 @@ body.light-mode:before {
   margin-left: 22px;
 }
 
+.logo-img {
+  width: 32px;
+  height: 32px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 14px;
+  cursor: pointer;
+}
+
 .wide .header-menu,
 .wide .header-profile {
   display: none;
