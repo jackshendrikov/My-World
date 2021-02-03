@@ -84,7 +84,7 @@ void main(void) {
     float rgb[3];
     float len = 1.0 - length(uv) * 0.02;
 
-    float zoom = nsin(t * 0.1) + len * 3.5;
+    float zoom = nsin(t * 0.1) + len * 10.0;
     float angle = TWO_PI * nsin(t * 0.05);
 
     vec3 hex = coordToHex(uv, gridSize*zoom, angle);

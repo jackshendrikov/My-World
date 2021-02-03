@@ -13,22 +13,23 @@
 <div id="title">Click to Regenerate</div>
 <div id="3d-graph"></div>
 
-<script src='{% static 'libs/3d-force-graph.min.js' %}'></script>
+<script src='//unpkg.com/3d-force-graph'></script>
+
 <script type="module">
     import { UnrealBloomPass } from '//unpkg.com/three/examples/jsm/postprocessing/UnrealBloomPass.js';
     const deg2rad = deg => { return deg * Math.PI / 180; };
-    const N = 600;
+    const N = 500;
     const nodes = [...Array(N).keys()].map(i => {
         return {
             id: i,
-            val: (Math.random() * 1.5) + 1
+            val: (Math.random() * 1.25) + 1
         };
     });
 
     function generateLinks(nodes) {
         let links = [];
         nodes.forEach(node => {
-            let numNodeLinks = Math.round(Math.random() * (0.75 + Math.random())) + 1;
+            let numNodeLinks = Math.round(Math.random() * (0.5 + Math.random())) + 1;
             for(let i = 0; i < numNodeLinks; i++) {
                 links.push({
                     source: node.id,
