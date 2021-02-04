@@ -1,3 +1,8 @@
+$(window).on("load",function(){
+     $('.spinner').hide();
+     $('.app').show();
+});
+
 $(function () {
     $(".menu-link").click(function () {
         $(".menu-link").removeClass("is-active");
