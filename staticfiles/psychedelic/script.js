@@ -10,7 +10,7 @@ function init() {
 
     scene = new THREE.Scene();
 
-    let geometry = new THREE.PlaneBufferGeometry(3, 3);
+    let geometry = new THREE.PlaneBufferGeometry(2, 2);
 
     uniforms = {
         time: { type: "f", value: 1.0 },
