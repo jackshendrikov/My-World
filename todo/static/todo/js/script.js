@@ -1,6 +1,7 @@
 $(window).on("load",function(){
      $('.spinner').hide();
-     $('.app').show();
+     $('.app').css("display", "flex");
+     $('.content-section-footer-title').css("display", "flex");
 });
 
 $(function () {

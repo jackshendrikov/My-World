@@ -457,6 +457,7 @@ body.light-mode:before {
 }
 .content-section-footer-title {
   color: var(--footer-color);
+  display: none;
   margin-top: 20px;
   font-size: 14px;
   text-align: center;
