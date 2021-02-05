@@ -6,6 +6,7 @@ html {
 	width: 100%;
 	height: 100%;
 	background: #6b92b9;
+	overflow: hidden;
 	margin: 0;
 	padding: 0;
 	background: -moz-radial-gradient(center, ellipse cover, #b4cfe0 0%, #6b92b9 100%);

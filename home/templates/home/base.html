@@ -1,0 +1,105 @@
+{% load static %}
+{% load app_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="To-Do App">
+    <meta name="author" content="JackShen">
+    <title>JackShen World</title>
+    <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
+
+    <!-- Main core CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <style>
+        body { background-image: url('{% static "todo/img/main-wallpaper.jpg" %}'); }
+    </style>
+
+    {% block extrahead %}
+        <link rel="stylesheet" href="{% static 'home/css/main-style.css' %}">
+        <link rel="stylesheet" href="{% static 'libs/normalize.min.css' %}">
+        <link rel="stylesheet" href="{% static 'home/css/xmas-lights.css' %}">
+    {% endblock extrahead %}
+</head>
+
+<body>
+<div class="spinner">
+  <div class="inner one"></div>
+  <div class="inner two"></div>
+  <div class="inner three"></div>
+</div>
+
+<div class="dark-light">
+    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+    </svg>
+</div>
+
+<div class="app">
+
+    <div class="header">
+        <img class="logo-img" src="{% static 'home/ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
+        <div class="header-menu">
+                <a class="menu-link" href="{% url 'blog:all' %}">Blog</a>
+                <a class="menu-link" href="{% url 'chat' %}">Chat</a>
+                <a class="menu-link" href="{% url 'todo:lists' %}">To-Do</a>
+            {% if user.is_authenticated %}
+                <a class="menu-link" href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+                <a class="menu-link" href="{% url 'login' %}">Log In</a>
+            {% endif %}
+        </div>
+
+        {% if user.is_authenticated %}
+{#             <form class="search-bar" action="" method="get">#}
+{#                 <input type="text" name="q" value="" placeholder="Search" id="q">#}
+{#             </form>#}
+
+             <div class="header-profile">
+                 {{ user.username }}
+                 <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
+
+                 <i id="xmas-version" style="color: green; font-size: 1.75rem; margin-left: 40px; cursor: pointer;" class="fa fa-tree" onclick="snowfall()"></i>
+                 <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 40px; cursor: pointer;" class="fa fa-undo"></i>
+
+             </div>
+        {% endif %}
+    </div>
+
+    <div class="wrapper">
+        <div class="main-container">
+            <div class="content-wrapper">
+                <div class="content-section">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if form.errors %}
+                        <p>{{ form.non_field_errors }}</p>
+                    {% endif %}
+
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span class="content-section-footer-title">JackShen Engeneering, {% now "Y" %}</span>
+
+<!--Main core JS, JQuery -->
+<script src="{% static 'libs/jquery1-7-1.min.js' %}"></script>
+<script src="{% static 'libs/prefixfree.min.js' %}"></script>
+{% block extra_js %}
+    <script src="{% static 'todo/js/script.js' %}"></script>
+    <script src="{% static 'home/js/snowstorm.js' %}"></script>
+    <script src="{% static 'home/js/main_script.js' %}"></script>
+{% endblock extra_js %}
+</body>
+</html>
