@@ -54,20 +54,19 @@
             {% endif %}
         </div>
 
-        {% if user.is_authenticated %}
-{#             <form class="search-bar" action="" method="get">#}
-{#                 <input type="text" name="q" value="" placeholder="Search" id="q">#}
-{#             </form>#}
+{#      <form class="search-bar" action="" method="get">#}
+{#          <input type="text" name="q" value="" placeholder="Search" id="q">#}
+{#      </form>#}
 
-             <div class="header-profile">
+         <div class="header-profile">
+             {% if user.is_authenticated %}
                  {{ user.username }}
                  <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
+             {% endif %}
+             <i id="xmas-version" style="color: green; font-size: 1.75rem; margin-left: 40px; cursor: pointer;" class="fa fa-tree" onclick="snowfall()"></i>
+             <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 40px; cursor: pointer;" class="fa fa-undo"></i>
+         </div>
 
-                 <i id="xmas-version" style="color: green; font-size: 1.75rem; margin-left: 40px; cursor: pointer;" class="fa fa-tree" onclick="snowfall()"></i>
-                 <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 40px; cursor: pointer;" class="fa fa-undo"></i>
-
-             </div>
-        {% endif %}
     </div>
 
     <div class="wrapper">
