@@ -671,14 +671,24 @@ body.light-mode:before {
   margin-right: 8px;
 }
 
-.apps-card {
+.items {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   width: calc(100% + 20px);
 }
 
-.app-card {
+.card {
+  display: flex;
+  font-size: 16px;
+  background-color: var(--content-bg);
+  border-radius: 14px;
+  border: 1px solid var(--theme-bg-color);
+  padding: 20px;
+  transition: 0.3s ease;
+  margin: 0 20px 0 20px;
+}
+.item {
   display: flex;
   flex-direction: column;
   width: calc(30.3% - 20px);
@@ -691,54 +701,56 @@ body.light-mode:before {
   transition: 0.3s ease;
   margin: 0 14px 0 38px;
 }
-.app-card:hover {
+.item:hover {
   transform: scale(1.02);
   background-color: var(--theme-bg-color);
 }
-.app-card svg {
+.item svg {
   width: 28px;
   border-radius: 6px;
   margin-right: 12px;
   flex-shrink: 0;
 }
-.app-card + .app-card {
+.item + .item {
   margin-left: 20px;
 }
-.app-card span {
+.item span {
   display: flex;
   align-items: center;
 }
-.app-card__subtext {
-  font-size: 14px;
-  font-weight: 400;
+.item-text {
+  font-size: 20px;
   line-height: 1.6em;
-  margin-top: 20px;
+  text-align: center;
   border-bottom: 1px solid var(--border-color);
-  padding-bottom: 20px;
+  padding-bottom: 15px;
 }
-.app-card-buttons {
+.item-button {
   display: flex;
   align-items: center;
   margin-left: auto;
   margin-top: 16px;
 }
 @media screen and (max-width: 1110px) {
-  .app-card {
+  .item {
     width: calc(50% - 20px);
     margin: 14px 0 14px 0;
   }
-  .app-card:last-child {
+  .item:last-child {
     margin-top: 20px;
     margin-left: 0;
   }
 }
 @media screen and (max-width: 565px) {
-  .app-card {
+  .item {
     width: calc(100% - 20px);
     margin-top: 20px;
   }
-  .app-card + .app-card {
+  .item + .item {
     margin-left: 0;
+  }
+  .card {
+     margin: 0;
   }
 }
 

@@ -113,7 +113,7 @@ class CSVImporter:
 
         creator = get_user_model().objects.filter(username=row.get("Created By")).first()
         if not creator:
-            msg = f"Invalid task creator {row.get('Created By')}"
+            msg = f"Invalid task creator \"{row.get('Created By')}\""
             row_errors.append(msg)
 
         # #######################
@@ -124,7 +124,7 @@ class CSVImporter:
             if assigned.exists():
                 assignee = assigned.first()
             else:
-                msg = f"Missing or invalid task assignee {row.get('Assigned To')}"
+                msg = f"Missing or invalid task assignee \"{row.get('Assigned To')}\""
                 row_errors.append(msg)
 
         # #######################
@@ -132,20 +132,20 @@ class CSVImporter:
         try:
             target_group = Group.objects.get(name=row.get("Group"))
         except Group.DoesNotExist:
-            msg = f"Could not find group {row.get('Group')}."
+            msg = f"Could not find group \"{row.get('Group')}\""
             row_errors.append(msg)
             target_group = None
 
         # #######################
         # Task creator must be in the target group
         if creator and target_group not in creator.groups.all():
-            msg = f"{creator} is not in group {target_group}"
+            msg = f"{creator} is not in group \"{target_group}\""
             row_errors.append(msg)
 
         # #######################
         # Assignee must be in the target group
         if assignee and target_group not in assignee.groups.all():
-            msg = f"{assignee} is not in group {target_group}"
+            msg = f"{assignee} is not in group \"{target_group}\""
             row_errors.append(msg)
 
         # #######################
@@ -154,7 +154,7 @@ class CSVImporter:
             tasklist = TaskList.objects.get(name=row.get("Task List"), group=target_group)
             row["Task List"] = tasklist
         except TaskList.DoesNotExist:
-            msg = f"Task list {row.get('Task List')} in group {target_group} does not exist"
+            msg = f"Task list \"{row.get('Task List')}\" in group \"{target_group}\" does not exist"
             row_errors.append(msg)
 
         # #######################
@@ -167,7 +167,7 @@ class CSVImporter:
                 if valid_date:
                     row[datefield] = valid_date
                 else:
-                    msg = f"Could not convert {datefield} {datestring} to valid date instance"
+                    msg = f"Could not convert \"{datefield} {datestring}\" to valid date instance"
                     row_errors.append(msg)
 
         # #######################

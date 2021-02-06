@@ -5,66 +5,68 @@
 {% block content %}
     <div class="content-section-main-title" style="margin-bottom: 14px; font-size: 24px;">Import CSV</div>
 
-    <p style="text-align: center">Here you can upload a specifically-formatted CSV. All problems will be reported here.
+    <p style="text-align: center; color: var(--content-title-color);">Here you can upload a specifically-formatted CSV. All problems will be reported here.
     </p>
 
     {% if results %}
         <div class="card mb-4">
-            <div class="card-header">
+            <div class="item-text" style="color: var(--theme-color);">
                 Results of CSV upload
             </div>
 
-            <div class="card-body">
+
                 {% if results.summaries %}
-                    <p><b>Summary:</b></p>
+                    <p style="margin: 15px 0 15px 30px; font-size: 16px;"><b>Summary:</b></p>
                     <ul>
                         {% for line in results.summaries %}
-                            <li>{{ line }}</li>
+                            <li style="font-size: 14px; color: var(--content-title-color); cursor: default;">{{ line }}</li>
                         {% endfor %}
                     </ul>
                 {% endif %}
 
                 {% if results.upserts %}
-                    <p><b>Upserts (tasks created or updated):</b></p>
+                    <p style="margin: 25px 0 15px 30px; font-size: 16px;"><b>Upserts (tasks created or updated):</b></p>
                     <ul>
                         {% for line in results.upserts %}
-                            <li>{{ line }}</li>
+                            <li style="font-size: 14px; color: var(--content-title-color); cursor: default;">{{ line }}</li>
                         {% endfor %}
                     </ul>
                 {% endif %}
 
                 {% if results.errors %}
-                    <p><b>Errors (tasks NOT created or updated):</b></p>
-                    <ul>
-                        {% for error_row in results.errors %}
-                            {% for k, error_list in error_row.items  %}
-                                <li>CSV row {{ k }}</li>
-                                <ul>
-                                    {% for err in error_list %}
-                                        <li>{{ err }}</li>
-                                    {% endfor %}
-                                </ul>
-                            {% endfor %}
+                    <p style="margin: 25px 0 15px 30px; font-size: 16px;"><b>Errors (tasks NOT created or updated):</b></p>
+                    {% for error_row in results.errors %}
+                        {% for k, error_list in error_row.items  %}
+                            <p style="font-size: 14px; text-align: center;">Errors at CSV row {{ k }}:</p>
+                            <ul>
+                                {% for err in error_list %}
+                                    <li style="font-size: 14px; color: var(--content-title-color); cursor: default;">{{ err }}</li>
+                                {% endfor %}
+                            </ul>
                         {% endfor %}
-                    </ul>
+                    {% endfor %}
                 {% endif %}
-            </div>
+
         </div>
     {% endif %}
 
     <div class="card">
-        <div class="card-header" style="color: #2C2C2C;">
+        <div class="item-text" style="color: var(--theme-color); font-size: 20px;">
             Upload Tasks
         </div>
 
         <div class="card-body">
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div style="color: #2C2C2C;">
-                    <input type="file" name="csvfile" accept="text/csv">
+                <div style="color: var(--content-title-color);">
+                    <input type="file" class="form-control" name="csvfile" accept="text/csv" style="height: 100%;">
                 </div>
                 <button type="submit" class="btn btn-primary mt-4" style="width: 150px;">Upload</button>
             </form>
         </div>
     </div>
+
+    <form method="get" style="text-align: center;" action="{% static 'todo/csv/csv_example.csv' %}">
+        <button type="submit" class="btn btn-success mt-4" style="width: 250px;">Download Example &nbsp;<i class="fa fa-download"></i></button>
+    </form>
 {% endblock %}
