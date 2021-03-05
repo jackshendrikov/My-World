@@ -18,9 +18,9 @@
 <script src="{% static 'home/js/error.js' %}"></script>
 <script>
   $container.append($('<div class="main-text">\n' +
-          '  <h1 class="neon">403</h1>\n' +
-          '  <h1>Access to this page is restricted.<br/>Ensure you have sufficient permissions to access the same.</h1>\n' +
-          '  <a class="home-link" href="">Go back home.</a>\n' +
+          '  <h1 class="neon" style="padding: 30px 0">403</h1>\n' +
+          '  <h1 style="padding: 0 0 20px 0">Access to this page is restricted.<br/>Ensure you have sufficient permissions to access the same.</h1>\n' +
+          '  <a class="home-link" href="{% url 'home_page' %}">Go back home.</a>\n' +
           '</div>'));
 </script>
 </body>

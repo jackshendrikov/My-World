@@ -6,7 +6,6 @@ body {
   margin:0;
   height:100%;
   font-family: 'Indie Flower', cursive;
-  font-size: 32px;
   font-weight: bold;
   color: #fff;
 }
@@ -16,21 +15,23 @@ body {
   height:4px;
   position:absolute;
   background-color: #ecc45e;
-  box-shadow:0px 0px 17px 2px wheat;
+  box-shadow: 0 0 17px 2px wheat;
   border-radius: 50%;
   filter: blur(1px);
 }
 
 .main-text {
-  padding: 10vh 20px 0 20px;
-  text-shadow: 0 0 2px black;
+  font-size: 7vh;
   text-align: center;
-  line-height: 2em;
-  font-size: 4vh;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-shadow: 0 0 2px black;
 }
 
 .home-link {
-  font-size: 1em;
+  font-size: 4vh;
   font-weight: 400;
   color: inherit;
   text-shadow: 0 0 2px black;
@@ -45,10 +46,9 @@ body {
 .container {
   margin: 0 auto;
   height: 120vh;
-  display: block;
   background-image: url('https://wallpaper.dog/large/10813683.jpg');
   background-size: cover;
-
+  display: block;
 }
 
 .neon {
