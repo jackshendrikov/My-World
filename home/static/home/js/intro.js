@@ -2,10 +2,15 @@ const IS_MOBILE = window.innerWidth <= 640;
 const IS_DESKTOP = window.innerWidth > 800;
 const IS_HEADER = IS_DESKTOP && window.innerHeight < 300;
 
+$(window).on("load",function(){
+     $('.spinner').hide();
+     $('.container').css("display", "flex").css("visibility", "visible");
+});
+
 var letters = $('#logo-text span');
 setTimeout(() => {
     letters.css("visibility", "visible");
-    TweenMax.staggerFrom(letters, 2, { opacity:0, y: 150, ease: Back.easeOut }, 0.2);
+    TweenMax.staggerFrom(letters, 2, { opacity:0, y: 150, ease: Back.easeOut }, 0.12);
 }, 106 * 100)
 
 var canvas = document.getElementById('canvas');

@@ -11,20 +11,18 @@
 </head>
 
 <body>
-<div class="content">
-    <canvas class="snow" id="snow"></canvas>
-    <div class="main-text">
-        <h1>Oh S#*t!<br/>That page has gone missing.</h1>
-        <a class="home-link" href="{% url "home_page" %}">Go back home.</a>
-    </div>
+<div class="container"></div>
 
-    <div class="ground">
-        <div class="mound">
-            <div class="mound_text">404</div>
-            <div class="mound_spade"></div>
-        </div>
-    </div>
-</div>
+<script src="{% static 'libs/jquery.min.js' %}"></script>
+<script src="{% static 'libs/TweenMax.min.js' %}"></script>
 <script src="{% static 'home/js/error.js' %}"></script>
+<script>
+  $container.append($('<div class="main-text">\n' +
+          '  <h1 class="neon">404</h1>\n' +
+          '  <h1>Oh S#*t!<br/>That page has gone missing.</h1>\n' +
+          '  <a class="home-link" href="">Go back home.</a>\n' +
+          '</div>'));
+</script>
+
 </body>
 </html>

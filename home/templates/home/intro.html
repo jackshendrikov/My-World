@@ -20,55 +20,63 @@
 </head>
 
 <body>
+{# Loader #}
+<div class="spinner">
+  <div class="inner one"></div>
+  <div class="inner two"></div>
+  <div class="inner three"></div>
+</div>
+
 <audio class="song" controls loop autoplay>
     <source src="{% static 'audio/takeonme.mp3' %}"/>
     Your browser isn't invited for super fun audio time.
 </audio>
 
 <div class="container">
-		<div class="canvas-container">
-            <canvas id="canvas"></canvas>
-            {% include 'home/logo.html' %}
+    <div class="canvas-container">
+        <canvas id="canvas"></canvas>
 
-            <div class="blur blurTop">
-                <canvas class="canvas"id="blurCanvasTop"></canvas>
-            </div>
+        <div class="blur blurTop">
+            <canvas class="canvas"id="blurCanvasTop"></canvas>
+        </div>
 
-            <div class="blur blurBottom">
-                <canvas width="1000px" height="1000px" class="canvas" id="blurCanvasBottom"></canvas>
-            </div>
+        <div class="blur blurBottom">
+            <canvas width="1000px" height="1000px" class="canvas" id="blurCanvasBottom"></canvas>
+        </div>
 
-            <div id="logo-text" style="visibility: hidden;">
-                <h1>
-                    <span>W</span>
-                    <span>e</span>
-                    <span>l</span>
-                    <span>c</span>
-                    <span>o</span>
-                    <span>m</span>
-                    <span>e</span>
-                    <span>&nbsp;</span>
-                    <span>t</span>
-                    <span>o</span>
-                </h1>
-                <h2>
-                    <span>J</span>
-                    <span>a</span>
-                    <span>c</span>
-                    <span>k</span>
-                    <span>S</span>
-                    <span>h</span>
-                    <span>e</span>
-                    <span>n</span>
-                    <span>&nbsp;</span>
-                    <span>W</span>
-                    <span>o</span>
-                    <span>r</span>
-                    <span>l</span>
-                    <span>d</span>
-                </h2>
-            </div>
-		</div>
+        <div id="logo-text" style="visibility: hidden;">
+            <h1>
+                <span>W</span>
+                <span>e</span>
+                <span>l</span>
+                <span>c</span>
+                <span>o</span>
+                <span>m</span>
+                <span>e</span>
+                <span>&nbsp;</span>
+                <span>t</span>
+                <span>o</span>
+            </h1>
+            <h2>
+                <span>J</span>
+                <span>a</span>
+                <span>c</span>
+                <span>k</span>
+                <span>S</span>
+                <span>h</span>
+                <span>e</span>
+                <span>n</span>
+                <span>&nbsp;</span>
+                <span>W</span>
+                <span>o</span>
+                <span>r</span>
+                <span>l</span>
+                <span>d</span>
+            </h2>
+        </div>
+
+        {% include 'home/logo.html' %}
+    </div>
 </div>
 
 

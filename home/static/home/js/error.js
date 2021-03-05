@@ -1,81 +1,49 @@
-(function() {
-	function ready(fn) {
-		if (document.readyState !== 'loading'){
-			fn();
-		} else {
-			document.addEventListener('DOMContentLoaded', fn);
-		}
-	}
+let fireflies = 100;
+let $container = $(".container");
+let $containerWidth = $container.width();
+let $containerHeight = $container.height();
 
-	function makeSnow(el) {
-		let ctx = el.getContext('2d');
-        let width = 0;
-        let height = 0;
-        let particles = [];
-
-        const Particle = function () {
-            this.x = this.y = this.dx = this.dy = 0;
-            this.reset();
-        };
-
-        Particle.prototype.reset = function() {
-			this.y = Math.random() * height;
-			this.x = Math.random() * width;
-			this.dx = (Math.random()) - 0.5;
-			this.dy = (Math.random() * 0.5) + 0.5;
-		}
-
-		function createParticles(count) {
-			if (count !== particles.length) {
-				particles = [];
-				for (var i = 0; i < count; i++) {
-					particles.push(new Particle());
-				}
-			}
-		}
-
-		function onResize() {
-			width = window.innerWidth;
-			height = window.innerHeight;
-			el.width = width;
-			el.height = height;
-
-			createParticles((width * height) / 10000);
-		}
-
-		function updateParticles() {
-			ctx.clearRect(0, 0, width, height);
-			ctx.fillStyle = '#f6f9fa';
-
-			particles.forEach(function(particle) {
-				particle.y += particle.dy;
-				particle.x += particle.dx;
-
-				if (particle.y > height) {
-					particle.y = 0;
-				}
-
-				if (particle.x > width) {
-					particle.reset();
-					particle.y = 0;
-				}
-
-				ctx.beginPath();
-				ctx.arc(particle.x, particle.y, 5, 0, Math.PI * 2, false);
-				ctx.fill();
-			});
-
-			window.requestAnimationFrame(updateParticles);
-		}
-
-		onResize();
-		updateParticles();
-
-		window.addEventListener('resize', onResize);
-	}
-
-	ready(function() {
-        let canvas = document.getElementById('snow');
-        makeSnow(canvas);
+for (let i = 0; i < fireflies; i++) {
+	let firefly = $('<div class="firefly"></div>');
+	TweenLite.set(firefly, {
+		x: Math.random() * $containerWidth,
+		y: Math.random() * $containerHeight
 	});
-})();
+	$container.append(firefly);
+	flyFirefly(firefly);
+}
+
+function flyFirefly(elm) {
+	let fly = new TimelineMax();
+	let fade = new TimelineMax({
+		delay: Math.floor(Math.random() * 2) + 1,
+		repeatDelay: Math.floor(Math.random() * 6) + 1,
+		repeat: -1
+	});
+
+	fade.to(
+		[elm],
+		0.25,
+		{ opacity: 0.25, yoyo: true, repeat: 1, repeatDelay: 0.2 },
+		Math.floor(Math.random() * 6) + 1
+	);
+
+	fly
+		.set(elm, {scale: Math.random() * 0.75 + 0.5})
+		.to(elm, Math.random() * 100 + 100, {
+			bezier: {
+				values: [
+					{
+						x: Math.random() * $containerWidth,
+						y: Math.random() * $containerHeight
+					},
+					{
+						x: Math.random() * $containerWidth,
+						y: Math.random() * $containerHeight
+					}
+					]
+			},
+			onComplete: flyFirefly,
+			onCompleteParams: [elm]
+		});
+}
