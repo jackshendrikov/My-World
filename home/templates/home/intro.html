@@ -85,6 +85,9 @@
 <script src="{% static 'home/js/intro.js' %}"></script>
 
 <script>
+    if (IS_MOBILE)
+        window.open('{% url "home_page" %}', '_self')
+
     setTimeout(() => {
             let audio = $('.song')[0];
             audio.play();
