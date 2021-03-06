@@ -1,5 +1,9 @@
 <h1 align="center"> JackShen World</h1>
 
+<p align="center">
+  <img src="img/intro.png" alt="Welcome Logo" width="800">
+</p>
+
 <div align="center"> 
 This project is my portfolio and contains a variety of projects in which I learned the fun sides and possibilities of JavaScript, as well as a couple of projects in which I learned how Django works. 
 </div>
