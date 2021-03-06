@@ -60,12 +60,12 @@ Users can view and edit all to-do lists belonging to their groups. Only staff us
 
 To-Do Main Page         |  To-Do Tasks | Completed Tasks       |  To-Do Search
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/todo-main.png" title="To-Do Main Page" width="100%"> |<img src="img/todo-tasks.png" title="To-Do Tasks" width="100%">|<img src="ing/todo-completed-tasks.png" title="Completed Tasks" width="100%"> |<img src="ing/todo-search.png" title="To-Do Search" width="100%">
+<img src="img/todo-main.png" title="To-Do Main Page" width="100%"> |<img src="img/todo-tasks.png" title="To-Do Tasks" width="100%">|<img src="img/todo-completed-tasks.png" title="Completed Tasks" width="100%"> |<img src="img/todo-search.png" title="To-Do Search" width="100%">
 
 
 Add To-Do List         |  Add To-Do  | Import CSV       |  Help Center
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/todo-add-list.png" title="Add To-Do List" width="100%"> |<img src="img/todo-add.png" title="Add To-Do" width="100%">|<img src="ing/todo-import.png" title="Import CSV" width="100%"> |<img src="ing/todo-help.png" title="Help Center" width="100%">
+<img src="img/todo-add-list.png" title="Add To-Do List" width="100%"> |<img src="img/todo-add.png" title="Add To-Do" width="100%">|<img src="img/todo-import.png" title="Import CSV" width="100%"> |<img src="img/todo-help.png" title="Help Center" width="100%">
 
 
 ### 📫 &nbsp;Get in touch
