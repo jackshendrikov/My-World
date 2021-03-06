@@ -4,6 +4,19 @@
 This project is my portfolio and contains a variety of projects in which I learned the fun sides and possibilities of JavaScript, as well as a couple of projects in which I learned how Django works. 
 </div>
 
+## 🗃 &nbsp;Portfolio
+The home page of my site contains my projects in which I studied the features of JavaScript and its libraries such as `p5.js`, `three.js`, `gsap.js` and others, there are also a couple of projects on pure CSS, including a project using `css-doodle`. When the time comes, I will write a full description of each project.
+
+### 📷 App Screenshots
+
+Intro (My Logo SVG)         |  Login Page | 404 Page      |  Project Example (Heartverse)
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+<img src="img/intro.png" title="Intro (My Logo SVG)" width="100%"> |<img src="img/login.png" title="Login Page" width="100%">|<img src="img/404.png" title="404 Page" width="100%"> |<img src="img/heartverse.png" title="Project Example (Heartverse)" width="100%">
+
+Home Page (Dark Theme)         |  Home Page (Light Theme)   |  Home page (Item Selection)     |  Home page (Xmas Theme)
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+<img src="img/main-dark.png" title="ome Page (Dark Theme) " width="100%"> |<img src="img/main-light.png" title="Home Page (Light Theme)" width="100%">|<img src="img/item-select.png" title="Home page (Item Selection)" width="100%"> |<img src="img/xmas-theme.png" title="Home page (Xmas Theme)" width="100%">
+
 
 ## 📋 &nbsp;To-Do App
 
@@ -22,39 +35,24 @@ Users can view and edit all to-do lists belonging to their groups. Only staff us
 
 ### ✨ &nbsp;Features
 
-✔️ __Login is essential to use the App__;
-
-✔️ __Ability to make Joint Groups__ (where To-Do can be seen and edited by several people);
-
-✔️ __Ability to make a Personal Group__ (where only you can see your To-Do);
-
-✔️ __Ability to view all Tasks I need to do__;
-
-✔️ __Ability to view all Completed Tasks__;
-
-✔️ __Add, Edit, Delete To-Do's and To-Do Lists__;
-
-✔️ __Add, Delete Comments under Tasks__;
-
-✔️ __Search To-Do's__;
-
-✔️ __Batch-Import and Export To-Do's in CSV Format__;
-
-✔️ __Drag&Drop To-Do Prioritization__;
-
-✔️ __File Attachments to Task__ (сurrently only images are supported);
-
-✔️ __Fantastic UI__;
-
-❌ __Email Notification__;
-
-❌ __Register on the site__;
-
-❌ __Attach any files__;
-
-❌ __Fix Support Page__ (messages are not sent);
-
-❌ __Mobile-friendly__ (fix tables and header).
+|                                         Feature                                         | Implementation |
+|:---------------------------------------------------------------------------------------:|:--------------:|
+| __Ability to make Joint Groups__ (To-Do can be seen and edited by several people) |        ✔️       |
+| __Ability to make a Personal Group__ (only you can see your To-Do)                |        ✔️       |
+| __Ability to view all Tasks I need to do__                                              |        ✔️       |
+| __Ability to view all Completed Tasks__                                                 |        ✔️       |
+| __Add, Edit, Delete To-Do's and To-Do Lists__                                           |        ✔️       |
+| __Add, Delete Comments under Tasks__                                                    |        ✔️       |
+| __Batch-Import and Export To-Do's in CSV Format__                                       |        ✔️       |
+| __Drag&Drop To-Do Prioritization__                                                      |        ✔️       |
+| __Fantastic UI__                                                                        |        ✔️       |
+| __File Attachments to Task__ (сurrently only images are supported)                      |        ✔️       |
+| __Login is essential to use the App__                                                   |        ✔️       |
+| __Attach any files__                                                                    |        ❌       |
+| __Email Notification__                                                                  |        ❌       |
+| __Fix Support Page__ (messages are not sent)                                            |        ❌       |
+| __Mobile-friendly__ (fix tables and header)                                             |        ❌       |
+| __Register on the site__                                                                |        ❌       |
 
 ### 📷 App Screenshots
 
@@ -68,7 +66,7 @@ Add To-Do List         |  Add To-Do  | Import CSV       |  Help Center
 <img src="img/todo-add-list.png" title="Add To-Do List" width="100%"> |<img src="img/todo-add.png" title="Add To-Do" width="100%">|<img src="img/todo-import.png" title="Import CSV" width="100%"> |<img src="img/todo-help.png" title="Help Center" width="100%">
 
 
-### 📫 &nbsp;Get in touch
+## 📫 &nbsp;Get in touch
 
 <p align="center">
 <a href="https://www.linkedin.com/in/yevhenii-shendrikov-6795291b8/"><img src="https://img.shields.io/badge/-Jack%20Shendrikov-0077B5?style=flat&logo=Linkedin&logoColor=white"/></a>
