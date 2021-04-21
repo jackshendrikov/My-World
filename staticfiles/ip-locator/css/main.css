@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
+
+:root{
+    --main-bg-color : #4caf50;
+    --row-font : 'RocknRoll One', sans-serif;
+}
+
+html {
+    min-height: 100%;
+    width: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+nav {
+    background-color: var(--main-bg-color) !important;
+}
+
+.navbar-brand {
+    font-family: var(--row-font) !important;
+}
+
+.detection {
+    font-family: var(--row-font) !important;
+}
+
+.detection::selection, .detection > b::selection {
+    color: white;
+    background-color: black;
+}
+
+tr {
+    font-family: var(--row-font) !important;
+
+}
+
+td::selection {
+    color: white;
+    background-color: var(--main-bg-color);
+}
+
+th::selection {
+    background-color: yellow;
+    color: black;
+}
+
+thead {
+    background-color: var(--main-bg-color) !important;
+    font-family: var(--row-font) !important;
+}
