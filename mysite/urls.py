@@ -23,6 +23,7 @@ urlpatterns = [
     path('authz/', include('authz.urls')),
     path('chat/', include('chat.urls')),
     path('todo/', include('todo.urls', namespace='todo')),
+    path('ip-locator/', include('ip-locator.urls', namespace='ip-locator')),
 ]
 
 handler403 = 'home.views.error_403'
