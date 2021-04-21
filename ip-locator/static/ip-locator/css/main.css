@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Karantina:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
 
 :root{
     --main-bg-color : #4caf50;
-    --row-font : 'Karantina', sans-serif;
+    --row-font : 'RocknRoll One', sans-serif;
 }
 
 html {
@@ -11,6 +11,7 @@ html {
 }
 
 body {
+    font-size: 18px;
     margin: 0;
     padding: 0;
     min-height: 100%;
