@@ -60,32 +60,33 @@
             <tbody>
             <tr>
                 <td>Address</td>
-                <td>{{data.address}}</td>
+                <td>
+                    {{ data.country }}, {{ data.region }}, {{ data.city }}
+                </td>
             </tr>
 
             <tr>
-                <td>City</td>
-                <td><i class="fa fa-info-circle"></i><a href="{{page_link}}" target="_blank" rel="noopener"> {{data.city}}</a> </td>
-            </tr>
-
-            <tr>
-                <td>Postal</td>
-                <td>{{data.postal}}</td>
-            </tr>
-
-            <tr>
-                <td>Region</td>
-                <td>{{data.raw.region}}</td>
-            </tr>
-
-            <tr>
-                <td>State</td>
-                <td>{{data.state}}</td>
+                <td>Country Flag</td>
+                <td>
+                    <p>
+                        <img src={{ data.country_flag }} height="10%" width="10%" border="1px" alt="country flag">
+                    </p>
+                </td>
             </tr>
 
             <tr>
                 <td>Country</td>
                 <td>{{data.country}}</td>
+            </tr>
+
+            <tr>
+                <td>Region</td>
+                <td>{{data.region}}</td>
+            </tr>
+
+            <tr>
+                <td>City</td>
+                <td><i class="fa fa-info-circle"></i><a href="{{page_link}}" target="_blank" rel="noopener"> {{data.city}}</a> </td>
             </tr>
 
             <tr>
@@ -95,17 +96,17 @@
 
             <tr>
                 <td>Latitude</td>
-                <td>{{data.lat}}</td>
+                <td>{{data.latitude}}</td>
             </tr>
 
             <tr>
                 <td>Longitude</td>
-                <td>{{data.lng}}</td>
+                <td>{{data.longitude}}</td>
             </tr>
 
             <tr>
                 <td>Timezone</td>
-                <td>{{data.raw.timezone}}</td>
+                <td>{{data.timezone}}</td>
             </tr>
             </tbody>
         </table>

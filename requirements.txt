@@ -37,5 +37,4 @@ Pygments~=2.3.0
 bleach~=3.0.2
 cryptography~=3.2.1
 boto~=2.49.0
-geocoder==1.38.1
 wikipedia==1.4.0

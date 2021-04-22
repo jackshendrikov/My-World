@@ -1,18 +1,22 @@
-from django.shortcuts import render
-import geocoder
 import wikipedia as wk
+import json
+
+from django.shortcuts import render
+from urllib.request import urlopen
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 
 API_KEY = settings.API_KEY
 
 
-#  function to find user's IP location
+#  function to find user's IP location, by default return user IP
 #       'ip' - represents, that it's user's IP address
-def find_ip_address(ip='ip'):
+def find_ip_address(ip=''):
     try:
+        response = urlopen("http://ipwhois.app/json/" + ip)
+
         # return JSON with details about IP address
-        return (geocoder.ip(ip)).json
+        return json.load(response)
     except:
         return find_ip_address()  # send details about user's address only
 
@@ -42,7 +46,7 @@ def index(request):
     else:
         data = find_ip_address()  # if IP field is empty, it'll return user's address
     try:
-        map_url = get_map_url(data['lat'], data['lng'])  # try to fetch URL for MAP using lat, lng fetched from IP
+        map_url = get_map_url(data['latitude'], data['longitude'])  # try to fetch URL for MAP using lat, lng fetched from IP
         page_link = get_url(f"{data['city']} in {data['country']}")  # fetching wikipedia page link
     except:
         map_url = f'https://www.maps.google.com'
