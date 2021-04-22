@@ -4,10 +4,10 @@ import json
 from django.shortcuts import render
 from urllib.request import urlopen
 from django.views.decorators.csrf import csrf_exempt
+from ipware import get_client_ip
 from django.conf import settings
 
 API_KEY = settings.API_KEY
-
 
 #  function to find user's IP location, by default return user IP
 #       'ip' - represents, that it's user's IP address
@@ -33,7 +33,6 @@ def get_url(keyword):
 #   lng - longitude
 def get_map_url(lat, lng):
     try:
-        print(f'https://www.google.com/maps/embed/v1/place?key={API_KEY}&q={lat},{lng}&maptype=satellite&zoom=20')
         return f'https://www.google.com/maps/embed/v1/place?key={API_KEY}&q={lat},{lng}&maptype=satellite&zoom=20'
     except:
         return f'https://www.google.com/maps/embed/v1/place?key={API_KEY}&q='
@@ -45,7 +44,18 @@ def index(request):
     if 'ip_address' in request.GET:  # fetching IP address from template
         data = find_ip_address(request.GET['ip_address'])  # if user enters data than it'll find it's IP details
     else:
-        data = find_ip_address()  # if IP field is empty, it'll return user's address
+        client_ip, is_routable = get_client_ip(request)
+        if client_ip is None:
+            # Unable to get the client's IP address
+            data = find_ip_address('8.8.8.8')  # return standard IP address
+        else:
+            # We got the client's IP address
+            if is_routable:
+                # The client's IP address is publicly routable on the Internet
+                data = find_ip_address(client_ip)  # return user IP address
+            else:
+                # The client's IP address is private
+                data = find_ip_address('8.8.8.8')  # return standard IP address
     try:
         map_url = get_map_url(data['latitude'], data['longitude'])  # try to fetch URL for MAP using lat, lng fetched from IP
         page_link = get_url(f"{data['city']} in {data['country']}")  # fetching wikipedia page link

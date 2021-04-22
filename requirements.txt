@@ -38,3 +38,4 @@ bleach~=3.0.2
 cryptography~=3.2.1
 boto~=2.49.0
 wikipedia==1.4.0
+django-ipware==3.0.2
