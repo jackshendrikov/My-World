@@ -33,7 +33,8 @@ def get_url(keyword):
 #   lng - longitude
 def get_map_url(lat, lng):
     try:
-        return f'https://www.google.com/maps/embed/v1/place?key={API_KEY}&q={lat},{lng}'
+        print(f'https://www.google.com/maps/embed/v1/place?key={API_KEY}&q={lat},{lng}&maptype=satellite&zoom=20')
+        return f'https://www.google.com/maps/embed/v1/place?key={API_KEY}&q={lat},{lng}&maptype=satellite&zoom=20'
     except:
         return f'https://www.google.com/maps/embed/v1/place?key={API_KEY}&q='
 
