@@ -40,6 +40,7 @@ DEBUG = config('DEBUG', default=False, cast=bool)
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 API_KEY = config('API_KEY')
+API_IP_KEY = config('API_IP_KEY')
 
 SITE_ID = 1
 

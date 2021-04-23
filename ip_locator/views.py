@@ -16,9 +16,10 @@ def find_ip_address(ip=''):
     try:
         response1 = urlopen("http://ipwhois.app/json/" + ip)
         response2 = urlopen("http://ip-api.com/json/" + ip)
+        response3 = urlopen("http://api.ipapi.com/" + ip + "?access_key=a650836dbd58c826162460691cb51b69")
 
         # return JSON with details about IP address
-        return json.load(response1), json.load(response2)
+        return [json.load(response1), json.load(response2), json.load(response3)]
     except:
         return find_ip_address()  # send details about user's address only
 
@@ -45,48 +46,58 @@ def get_map_url(lat, lng):
 #   if so -  we give data from `ipwhois`
 #   if not (but same country) - we combine data from `ip-api` and `ipwhois`
 #   if they issued different countries - then we issue data from `ip-api`
-def analyze_api(data_api1, data_api2):
-    key_to_replace = ['city', 'region', 'latitude', 'longitude', 'org', 'timezone']
-    key_for_replace = ['city', 'regionName', 'lat', 'lon', 'org', 'timezone']
+def analyze_api(data_apis):
+    keys1_replace = ['city', 'region', 'latitude', 'longitude', 'org', 'timezone']
+    keys2_replace = ['city', 'regionName', 'lat', 'lon', 'isp', 'timezone']
 
-    if data_api1['country'] == data_api2['country'] and data_api1['city'] == data_api2['city']:
-        return data_api1
-    elif data_api1['country'] == data_api2['country']:
-        data = data_api1
+    if (data_apis[0]['country'] == data_apis[1]['country'] and data_apis[0]['city'] == data_apis[1]['city']) \
+            or (data_apis[0]['country'] == data_apis[2]['country'] and data_apis[0]['city'] == data_apis[2]['city']):
+        # check equality of lng, lat from API1 and API3
+        if int(data_apis[0]['latitude']) == int(data_apis[2]['latitude']) \
+                and int(data_apis[0]['longitude']) == int(data_apis[2]['longitude']):
+            data_apis[0]['latitude'] = data_apis[2]['latitude']
+            data_apis[0]['longitude'] = data_apis[2]['longitude']
+            return data_apis[0]
+        else:
+            return data_apis[0]
+    elif data_apis[0]['country'] == data_apis[1]['country']:
+        data = data_apis[1]
 
-        for i in range(len(key_to_replace)):
-            data[key_to_replace[i]] = data_api2[key_for_replace[i]]
+        for i in range(len(keys1_replace)):
+            data[keys1_replace[i]] = data_apis[1][keys2_replace[i]]
 
         return data
     else:
-        data = data_api2
+        data = data_apis[1]
         data['latitude'] = data.pop('lat')
         data['longitude'] = data.pop('lon')
         data['country_flag'] = 'https://imgur.com/a/SClnaQB'
+
+        return data
 
 
 # function to render template's html and data
 @csrf_exempt
 def index(request):
     if 'ip_address' in request.GET:  # fetching IP address from template
-        data1, data2 = find_ip_address(request.GET['ip_address'])  # if user enters data than it'll find it's IP details
-        data = analyze_api(data1, data2)
+        data = find_ip_address(request.GET['ip_address'])  # if user enters data than it'll find it's IP details
+        data = analyze_api(data)
     else:
         client_ip, is_routable = get_client_ip(request)
         if client_ip is None:
             # Unable to get the client's IP address
-            data1, data2 = find_ip_address('8.8.8.8')  # return standard IP address
-            data = analyze_api(data1, data2)
+            data = find_ip_address('8.8.8.8')  # return standard IP address
+            data = analyze_api(data)
         else:
             # We got the client's IP address
             if is_routable:
                 # The client's IP address is publicly routable on the Internet
-                data1, data2 = find_ip_address(client_ip)  # return user IP address
-                data = analyze_api(data1, data2)
+                data = find_ip_address(client_ip)  # return user IP address
+                data = analyze_api(data)
             else:
                 # The client's IP address is private
-                data1, data2 = find_ip_address('8.8.8.8')  # return standard IP address
-                data = analyze_api(data1, data2)
+                data = find_ip_address('8.8.8.8')  # return standard IP address
+                data = analyze_api(data)
     try:
         # try to fetch URL for MAP using lat, lng fetched from IP
         map_url = get_map_url(data['latitude'], data['longitude'])
