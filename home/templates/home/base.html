@@ -54,7 +54,7 @@
                 <a class="menu-link" href="{% url 'blog:all' %}">Blog</a>
                 <a class="menu-link" href="{% url 'chat' %}">Chat</a>
                 <a class="menu-link" href="{% url 'todo:lists' %}">To-Do</a>
-                <a class="menu-link" href="{% url 'ip-locator:ip-locator' %}">IP Locator</a>
+                <a class="menu-link" href="{% url 'iplocator:iplocator' %}">IP Locator</a>
             {% if user.is_authenticated %}
                 <a class="menu-link" href="{% url 'logout' %}">Log Out</a>
             {% else %}
