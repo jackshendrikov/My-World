@@ -8,6 +8,7 @@ from ipware import get_client_ip
 from django.conf import settings
 
 API_KEY = settings.API_KEY
+API_IP_KEY = settings.API_IP_KEY
 
 
 #  function to find user's IP location, by default return user IP
@@ -16,7 +17,7 @@ def find_ip_address(ip=''):
     try:
         response1 = urlopen("http://ipwhois.app/json/" + ip)
         response2 = urlopen("http://ip-api.com/json/" + ip)
-        response3 = urlopen("http://api.ipapi.com/" + ip + "?access_key=a650836dbd58c826162460691cb51b69")
+        response3 = urlopen("http://api.ipapi.com/" + ip + "?" + API_IP_KEY)
 
         # return JSON with details about IP address
         return [json.load(response1), json.load(response2), json.load(response3)]
@@ -53,8 +54,8 @@ def analyze_api(data_apis):
     if (data_apis[0]['country'] == data_apis[1]['country'] and data_apis[0]['city'] == data_apis[1]['city']) \
             or (data_apis[0]['country'] == data_apis[2]['country_name'] and data_apis[0]['city'] == data_apis[2]['city']):
         # check equality of lng, lat from API1 and API3
-        if int(data_apis[0]['latitude']) == int(data_apis[2]['latitude']) \
-                and int(data_apis[0]['longitude']) == int(data_apis[2]['longitude']):
+        if int(float(data_apis[0]['latitude'])) == int(data_apis[2]['latitude']) \
+                and int(float(data_apis[0]['longitude'])) == int(data_apis[2]['longitude']):
             data_apis[0]['latitude'] = data_apis[2]['latitude']
             data_apis[0]['longitude'] = data_apis[2]['longitude']
             return data_apis[0]
@@ -66,6 +67,7 @@ def analyze_api(data_apis):
         for i in range(len(keys1_replace)):
             data[keys1_replace[i]] = data_apis[1][keys2_replace[i]]
 
+        data['country_flag'] = data_apis[0]['country_flag']
         return data
     else:
         data = data_apis[1]
