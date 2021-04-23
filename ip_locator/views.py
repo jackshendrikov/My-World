@@ -64,5 +64,5 @@ def index(request):
         map_url = f'https://www.maps.google.com'
         page_link = 'https://www.wikipedia.org'
 
-    return render(request, "ip-locator/ip-locator.html",
+    return render(request, "ip_locator/ip-locator.html",
                   {'data': data, 'page_link': page_link, 'map_url': map_url})

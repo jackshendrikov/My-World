@@ -70,7 +70,7 @@ INSTALLED_APPS = [
     'ads.apps.AdsConfig',
     'chat.apps.ChatConfig',
     'todo.apps.ToDoConfig',
-    'ip-locator.apps.IpLocatorConfig'
+    'ip_locator.apps.IpLocatorConfig'
 ]
 
 # When we get to crispy forms
