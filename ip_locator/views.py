@@ -17,7 +17,7 @@ def find_ip_address(ip=''):
     try:
         response1 = urlopen("http://ipwhois.app/json/" + ip)
         response2 = urlopen("http://ip-api.com/json/" + ip)
-        response3 = urlopen("http://api.ipapi.com/" + ip + "?" + API_IP_KEY)
+        response3 = urlopen("http://api.ipapi.com/" + ip + "?access_key=" + API_IP_KEY)
 
         # return JSON with details about IP address
         return [json.load(response1), json.load(response2), json.load(response3)]
@@ -61,6 +61,11 @@ def analyze_api(data_apis):
             return data_apis[0]
         else:
             return data_apis[0]
+    elif int(float(data_apis[0]['latitude'])) == int(data_apis[2]['latitude']) \
+                and int(float(data_apis[0]['longitude'])) == int(data_apis[2]['longitude']):
+        data_apis[0]['latitude'] = data_apis[2]['latitude']
+        data_apis[0]['longitude'] = data_apis[2]['longitude']
+        return data_apis[0]
     elif data_apis[0]['country'] == data_apis[1]['country']:
         data = data_apis[1]
 
