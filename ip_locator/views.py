@@ -51,7 +51,7 @@ def analyze_api(data_apis):
     keys2_replace = ['city', 'regionName', 'lat', 'lon', 'isp', 'timezone']
 
     if (data_apis[0]['country'] == data_apis[1]['country'] and data_apis[0]['city'] == data_apis[1]['city']) \
-            or (data_apis[0]['country'] == data_apis[2]['country'] and data_apis[0]['city'] == data_apis[2]['city']):
+            or (data_apis[0]['country'] == data_apis[2]['country_name'] and data_apis[0]['city'] == data_apis[2]['city']):
         # check equality of lng, lat from API1 and API3
         if int(data_apis[0]['latitude']) == int(data_apis[2]['latitude']) \
                 and int(data_apis[0]['longitude']) == int(data_apis[2]['longitude']):
