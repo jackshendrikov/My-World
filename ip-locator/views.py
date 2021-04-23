@@ -9,6 +9,7 @@ from django.conf import settings
 
 API_KEY = settings.API_KEY
 
+
 #  function to find user's IP location, by default return user IP
 #       'ip' - represents, that it's user's IP address
 def find_ip_address(ip=''):

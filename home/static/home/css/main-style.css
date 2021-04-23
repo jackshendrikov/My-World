@@ -1,7 +1,7 @@
 /* ==== GENERAL SETTINGS ==== */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=RocknRoll+One&display=swap');
 * {
   padding: 0;
   margin: 0;
@@ -12,7 +12,7 @@
 }
 
 :root {
-  --body-font: "Montserrat", sans-serif;
+  --body-font: 'RocknRoll One', sans-serif;
   --content-bg: rgb(146 151 179 / 13%);
   --theme-bg-color: rgba(16 18 27 / 40%);
   --theme-color: #f9fafb;

@@ -3,5 +3,5 @@ from . import views
 
 app_name = 'ip-locator'
 urlpatterns = [
-    path('', views.index)
+    path('', views.index, name='ip-locator')
 ]
