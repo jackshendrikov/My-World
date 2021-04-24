@@ -12,11 +12,10 @@
 <body>
 <div id="title">Click to Regenerate</div>
 <div id="3d-graph"></div>
-
-<script src='//unpkg.com/3d-force-graph'></script>
+<script src='https://unpkg.com/3d-force-graph'></script>
 
 <script type="module">
-    import { UnrealBloomPass } from '//unpkg.com/three/examples/jsm/postprocessing/UnrealBloomPass.js';
+    import { UnrealBloomPass } from 'https://unpkg.com/three@0.118.1/examples/jsm/postprocessing/UnrealBloomPass.js'
     const deg2rad = deg => { return deg * Math.PI / 180; };
     const N = 500;
     const nodes = [...Array(N).keys()].map(i => {
