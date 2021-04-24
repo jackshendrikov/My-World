@@ -24,7 +24,7 @@ urlpatterns = [
     path('chat/', include('chat.urls')),
     path('todo/', include('todo.urls', namespace='todo')),
     path('ip-locator/', include('ip_locator.urls', namespace='ip_locator')),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 handler403 = 'home.views.error_403'
 handler404 = 'home.views.error_404'

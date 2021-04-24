@@ -1,30 +1,8 @@
-SOCIAL_AUTH_GITHUB_KEY = '3d6ca1bf811b76162baf'
-SOCIAL_AUTH_GITHUB_SECRET = 'ba3608499ae29ee365c902cd4b4b8581588cb3a5'
+from . import settings
 
-# Copy this file to github_settings.py (don't check it into github)
+SOCIAL_AUTH_GITHUB_KEY = settings.SOCIAL_AUTH_GITHUB_KEY
+SOCIAL_AUTH_GITHUB_SECRET = settings.SOCIAL_AUTH_GITHUB_SECRET
 
 # Go to https://github.com/settings/developers
-
 # Add a New OAuth2 App
-
-# Using ngrok is hard because the url changes every time you start ngrok
-
-# If you are running on localhost, here are some settings:
-
-# Application name: ChuckList Local
-# Homepage Url: http://localhost:8000
-# Application Description: Whatever
-# Authorization callback URL: http://127.0.0.1:8000/oauth/complete/github/
-
-
-# Using PythonAnywhere here are some settings:
-
-# Application name: ChuckList PythonAnywhere
-# Homepage Url: https://drchuck.pythonanywhere.com
-# Application Description: Whatever
-# Authorization callback URL: https://drchuck.pythonanywhere.com/oauth/complete/github/
-
-# Also on PythonAnywhere, go into the Web tab and enable "Force HTTPS"
-# so you don't get a redirect URI mismatch.
-
 # Then copy the client_key and secret to this file

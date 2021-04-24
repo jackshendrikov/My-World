@@ -6,20 +6,20 @@
     <title>Merry Christmas</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="mobile-web-app-capable" content="yes">
-    <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'xmas-tree/xmas-home.css' %}">
+    <link rel="icon" href="{% static 'home/home/ico/logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'home/xmas-tree/xmas-home.css' %}">
 </head>
 
 <body>
 <style>
     @font-face {
-    font-family: 'Grinched';  src: local('Grinched'), url('{% static "home/font/GrinchedRegular.otf" %}') format('woff');
+    font-family: 'Grinched';  src: local('Grinched'), url('{% static "home/home/font/GrinchedRegular.otf" %}') format('woff');
     }
 
     body {
-        background-image: url("{% static 'xmas-tree/snow1.png' %}"),
-        url("{% static 'xmas-tree/snow2.png' %}"),
-        url("{% static 'xmas-tree/snow3.png' %}");
+        background-image: url("{% static 'home/xmas-tree/snow1.png' %}"),
+        url("{% static 'home/xmas-tree/snow2.png' %}"),
+        url("{% static 'home/xmas-tree/snow3.png' %}");
     }
 
     h1 {
@@ -92,7 +92,7 @@
 <script type="text/javascript">
     const links = ['{% url "xmas-game" %}', '{% url "xmas-scene" %}'];
 </script>
-<script src="{% static 'xmas-tree/xmas-home.js' %}"></script>
+<script src="{% static 'home/xmas-tree/xmas-home.js' %}"></script>
 
 </body>
 </html>

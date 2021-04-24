@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Fractal Zoom</title>
-    <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
-    <link rel="stylesheet" href="{% static 'fractal/style.css' %}">
+    <link rel="icon" href="{% static 'home/home/ico/logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'home/fractal/style.css' %}">
 </head>
 
 <body>
@@ -15,9 +15,9 @@
 </div>
 
 <div class="choices">
-  <button data-url="{% static 'fractal/img/1.png' %}">1</button>
-  <button data-url="{% static 'fractal/img/2.png' %}">2</button>
-  <button data-url="{% static 'fractal/img/3.png' %}">3</button>
+  <button data-url="{% static 'home/fractal/img/1.png' %}">1</button>
+  <button data-url="{% static 'home/fractal/img/2.png' %}">2</button>
+  <button data-url="{% static 'home/fractal/img/3.png' %}">3</button>
 </div>
 
 <script id="vertex-shader" type="x-shader/x-vertex">
@@ -72,11 +72,11 @@
             ctx.drawImage(image, 0, 0, tex.width, tex.height);
             main();
         };
-        image.src = "{% static 'fractal/img/1.png' %}";
+        image.src = "{% static 'home/fractal/img/1.png' %}";
         image.crossOrigin = 'anonymous';
     }
 </script>
 
-<script  src="{% static 'fractal/script.js' %}"></script>
+<script  src="{% static 'home/fractal/script.js' %}"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@ from django import template
 
 register = template.Library()
 
+
 @register.filter(name='gravatar')
 def gravatar(user, size=35):
     email = str(user.email.strip().lower()).encode('utf-8')

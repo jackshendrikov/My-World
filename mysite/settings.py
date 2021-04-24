@@ -42,6 +42,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 API_KEY = config('API_KEY')
 API_IP_KEY = config('API_IP_KEY')
 
+SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
+
 SITE_ID = 1
 
 # Application definition
@@ -172,20 +175,23 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-
-# The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
+
+STATICFILES_DIRS = (
+    'static',
+    os.path.join(BASE_DIR, 'static'),
+)
+
+# The absolute path to the directory where collectstatic will collect static files for deployment.
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # configuring the location for media
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+
 
 # Configure the social login
 try:

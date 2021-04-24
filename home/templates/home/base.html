@@ -15,7 +15,7 @@
     <meta property="og:image:url" content="https://i.imgur.com/rRdN8kn.png" />
 
     <title>JackShen World</title>
-    <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'home/home/ico/logo.ico' %}" type="image/x-icon">
 
     <!-- Main core CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
@@ -27,9 +27,9 @@
     </style>
 
     {% block extrahead %}
-        <link rel="stylesheet" href="{% static 'home/css/main-style.css' %}">
+        <link rel="stylesheet" href="{% static 'home/home/css/main-style.css' %}">
         <link rel="stylesheet" href="{% static 'libs/normalize.min.css' %}">
-        <link rel="stylesheet" href="{% static 'home/css/xmas-lights.css' %}">
+        <link rel="stylesheet" href="{% static 'home/home/css/xmas-lights.css' %}">
     {% endblock extrahead %}
 </head>
 
@@ -49,7 +49,7 @@
 <div class="app">
 
     <div class="header">
-        <img class="logo-img" src="{% static 'home/ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
+        <img class="logo-img" src="{% static 'home/home/ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
         <div class="header-menu">
                 <a class="menu-link" href="{% url 'blog:all' %}">Blog</a>
                 <a class="menu-link" href="{% url 'chat' %}">Chat</a>
@@ -105,8 +105,8 @@
 <script src="{% static 'libs/prefixfree.min.js' %}"></script>
 {% block extra_js %}
     <script src="{% static 'todo/js/script.js' %}"></script>
-    <script src="{% static 'home/js/snowstorm.js' %}"></script>
-    <script src="{% static 'home/js/main_script.js' %}"></script>
+    <script src="{% static 'home/home/js/snowstorm.js' %}"></script>
+    <script src="{% static 'home/home/js/main_script.js' %}"></script>
 {% endblock extra_js %}
 </body>
 </html>

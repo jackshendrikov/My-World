@@ -16,10 +16,10 @@
     <meta property="og:url" content="https://jackshen.herokuapp.com/home/" />
     <meta property="og:image:url" content="https://jackshen.herokuapp.com/static/home/img/home.png" />
 
-    <link rel="icon" href="{% static 'home/ico/logo.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'home/home/ico/logo.ico' %}" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/reset.min.css' %}">
-    <link rel="stylesheet" href="{% static 'home/css/intro.css' %}">
+    <link rel="stylesheet" href="{% static 'home/home/css/intro.css' %}">
 
     <style type="text/css"> audio { display:none;} </style>
 </head>
@@ -42,7 +42,7 @@
         <canvas id="canvas"></canvas>
 
         <div class="blur blurTop">
-            <canvas class="canvas"id="blurCanvasTop"></canvas>
+            <canvas class="canvas" id="blurCanvasTop"></canvas>
         </div>
 
         <div class="blur blurBottom">
@@ -87,7 +87,7 @@
 
 <script src="{% static 'libs/jquery.min.js' %}"></script>
 <script src="{% static 'libs/TweenMax.min.js' %}"></script>
-<script src="{% static 'home/js/intro.js' %}"></script>
+<script src="{% static 'home/home/js/intro.js' %}"></script>
 
 <script>
     if (IS_MOBILE)
