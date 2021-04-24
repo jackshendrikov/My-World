@@ -1,0 +1,213 @@
+@import 'https://fonts.googleapis.com/css?family=Lalezar';
+
+* {
+  position: relative;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html {
+  background: linear-gradient(-45deg,#000000,#923CB5);
+}
+
+body {
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Lalezar', cursive;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+}
+
+.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.remove {
+  display: none !important;
+}
+
+.container {
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+}
+
+.canvas-container {
+  width: 100%;
+  height: 100%;
+  transition: filter 0.3s, -webkit-filter 0.3s;
+}
+
+.canvas-container canvas {
+  position: absolute;
+  mix-blend-mode: lighten;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+
+#Logo {
+  width: 125%;
+  height: 125%;
+  bottom: 20%;
+  display: block;
+  margin: auto;
+  fill: #aa7f3d;
+  fill: url("#MyGradient");
+  stroke: #EEBE7B;
+  stroke-miterlimit: 5;
+}
+
+.Animate-Draw {
+  fill-opacity: 0;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+  animation-iteration: 1;
+  animation-name: DrawLine, FadeStroke, FillIn;
+  animation-duration: 17s, 5s, 5s;
+  animation-delay: 0s, 14s, 14s;
+}
+
+#Draw-Mark {
+  stroke-dashArray: 1100;
+  stroke-dashoffset: 1100;
+}
+
+#Draw-Frame {
+  animation-delay: 3s, 11s, 11s;
+  animation-duration: 11s, 3s, 3s;
+  stroke-dashArray: 1500;
+  stroke-dashoffset: 1500;
+}
+
+#Draw-Text {
+  animation-delay: 6s, 11s, 11s;
+  animation-duration: 6s, 3s, 3s;
+  stroke-dashArray: 300;
+  stroke-dashoffset: 300;
+}
+
+@keyframes DrawLine {
+  to {
+    stroke-dashOffset: 0;
+  }
+}
+
+@keyframes FadeStroke {
+  to {
+    stroke-opacity: 0;
+  }
+}
+
+@keyframes FillIn {
+  from {
+    fill-opacity: 0;
+  }
+  to {
+    fill-opacity: 1;
+  }
+}
+
+#logo-text {
+   position:absolute;
+   bottom:60px;
+   left: calc(50% - 190px);
+   margin:auto;
+   z-index: 3;
+   color:#ccc7c3;
+}
+
+#logo-text h1 {
+   font-size: 1.9em;
+   text-transform: uppercase;
+   margin: 0;
+   padding:0;
+   font-weight: 400;
+   line-height: 0;
+   text-align: center;
+}
+
+#logo-text h2 span{
+   font-size: 2.7em;
+   text-transform: uppercase;
+   margin: 0;
+   padding:0;
+   text-align: center;
+}
+
+/* ==== PRELOADER ==== */
+
+.spinner {
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  perspective: 800px;
+}
+
+.inner {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 5px solid transparent;
+}
+
+.inner.one {
+  left: 0;
+  top: 0;
+  animation: rotate-one 1s linear infinite;
+  border-bottom: 5px solid #f7f48b;
+}
+
+.inner.two {
+  right: 0;
+  top: 0;
+  animation: rotate-two 1s linear infinite;
+  border-right: 5px solid #f47c7c;
+}
+
+.inner.three {
+  right: 0;
+  bottom: 0;
+  animation: rotate-three 1s linear infinite;
+  border-top: 5px solid #a1de93;
+}
+
+@keyframes rotate-one {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-three {
+  0% {
+    transform: rotateX(50deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
