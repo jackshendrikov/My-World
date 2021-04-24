@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+body {
+  background: #000;
+  overflow: hidden;
+  margin:0;
+  height:100%;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+  color: #fff;
+}
+
+.firefly {
+  width:4px;
+  height:4px;
+  position:absolute;
+  background-color: #ecc45e;
+  box-shadow: 0 0 17px 2px wheat;
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+.main-text {
+  font-size: 7vh;
+  text-align: center;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  text-shadow: 0 0 2px black;
+}
+
+.home-link {
+  font-size: 4vh;
+  font-weight: 400;
+  color: inherit;
+  text-shadow: 0 0 2px black;
+  text-decoration: none;
+  opacity: 0.6;
+  border-bottom: 1px dashed rgba(93, 115, 153, 0.5);
+}
+.home-link:hover {
+  opacity: 1;
+}
+
+.container {
+  margin: 0 auto;
+  height: 120vh;
+  background-image: url('https://wallpaper.dog/large/10813683.jpg');
+  background-size: cover;
+  display: block;
+}
+
+.neon {
+  font-size: 20vh;
+  color: #fff;
+  text-shadow:
+          0 0 5px #fff,
+          0 0 10px #fff,
+          0 0 20px #fff,
+          0 0 40px #1fc700 ,
+          0 0 80px #1fc700 ,
+          0 0 90px #1fc700 ,
+          0 0 100px #1fc700;
+}
