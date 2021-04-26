@@ -17,10 +17,11 @@ def find_ip_address(ip=''):
     try:
         response1 = urlopen("http://ipwhois.app/json/" + ip)
         response2 = urlopen("http://ip-api.com/json/" + ip)
-        response3 = urlopen("http://api.ipapi.com/" + ip + "?access_key=" + API_IP_KEY)
+        # response3 = urlopen("http://api.ipapi.com/" + ip + "?access_key=" + API_IP_KEY)
 
         # return JSON with details about IP address
-        return [json.load(response1), json.load(response2), json.load(response3)]
+        # return [json.load(response1), json.load(response2), json.load(response3)]
+        return [json.load(response1), json.load(response2)]
     except:
         return find_ip_address()  # send details about user's address only
 
@@ -51,21 +52,21 @@ def analyze_api(data_apis):
     keys1_replace = ['city', 'region', 'latitude', 'longitude', 'org', 'timezone']
     keys2_replace = ['city', 'regionName', 'lat', 'lon', 'isp', 'timezone']
 
-    if (data_apis[0]['country'] == data_apis[1]['country'] and data_apis[0]['city'] == data_apis[1]['city']) \
-            or (data_apis[0]['country'] == data_apis[2]['country_name'] and data_apis[0]['city'] == data_apis[2]['city']):
-        # check equality of lng, lat from API1 and API3
-        if int(float(data_apis[0]['latitude'])) == int(data_apis[2]['latitude']) \
-                and int(float(data_apis[0]['longitude'])) == int(data_apis[2]['longitude']):
-            data_apis[0]['latitude'] = data_apis[2]['latitude']
-            data_apis[0]['longitude'] = data_apis[2]['longitude']
-            return data_apis[0]
-        else:
-            return data_apis[0]
-    elif int(float(data_apis[0]['latitude'])) == int(data_apis[2]['latitude']) \
-                and int(float(data_apis[0]['longitude'])) == int(data_apis[2]['longitude']):
-        data_apis[0]['latitude'] = data_apis[2]['latitude']
-        data_apis[0]['longitude'] = data_apis[2]['longitude']
+    if (data_apis[0]['country'] == data_apis[1]['country'] and data_apis[0]['city'] == data_apis[1]['city']):
+        # # check equality of lng, lat from API1 and API3
+        # if int(float(data_apis[0]['latitude'])) == int(data_apis[2]['latitude']) \
+        #         and int(float(data_apis[0]['longitude'])) == int(data_apis[2]['longitude']):
+        #     data_apis[0]['latitude'] = data_apis[2]['latitude']
+        #     data_apis[0]['longitude'] = data_apis[2]['longitude']
+        #     return data_apis[0]
+        # else:
+        #     return data_apis[0]
         return data_apis[0]
+    # elif int(float(data_apis[0]['latitude'])) == int(data_apis[2]['latitude']) \
+    #             and int(float(data_apis[0]['longitude'])) == int(data_apis[2]['longitude']):
+    #     data_apis[0]['latitude'] = data_apis[2]['latitude']
+    #     data_apis[0]['longitude'] = data_apis[2]['longitude']
+    #     return data_apis[0]
     elif data_apis[0]['country'] == data_apis[1]['country']:
         data = data_apis[1]
 
