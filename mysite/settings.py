@@ -1,8 +1,6 @@
 import os
 import django_heroku
 import dj_database_url
-import tensorflow as tf
-import gensim.models.keyedvectors as word2vec
 from pathlib import Path
 from decouple import config, Csv
 
@@ -47,14 +45,6 @@ API_IP_KEY = config('API_IP_KEY')
 SOCIAL_AUTH_GITHUB_KEY = config('SOCIAL_AUTH_GITHUB_KEY')
 SOCIAL_AUTH_GITHUB_SECRET = config('SOCIAL_AUTH_GITHUB_SECRET')
 
-ALLOW_FILE_ATTACHMENTS = True
-ALLOWED_FILE_ATTACHMENTS = [".pdf"]
-MAXIMUM_ATTACHMENT_SIZE = 5000000  # In bytes
-MAXIMUM_ATTACHMENT_FILES = 3
-
-WordVec = word2vec.KeyedVectors.load_word2vec_format('models/glove.6B.50d.w2vformat.txt', binary=False)
-graph = tf.compat.v1.get_default_graph()
-
 SITE_ID = 1
 
 # Application definition
@@ -82,7 +72,6 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'authz.apps.AuthzConfig',
     'ads.apps.AdsConfig',
-    'analyzer.apps.AnalyzerConfig',
     'chat.apps.ChatConfig',
     'todo.apps.ToDoConfig',
     'ip_locator.apps.IpLocatorConfig'
@@ -201,7 +190,6 @@ MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
     'static',
-    'models',
     os.path.join(BASE_DIR, 'static'),
 )
 
