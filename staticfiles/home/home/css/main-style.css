@@ -21,7 +21,7 @@
   --content-title-color: #999ba5;
   --main-bg: #21242d;
   --search-bg: #14162b;
-  --scrollbar-bg: rgb(1 2 3 / 40%);
+  --scrollbar-bg: rgb(255 253 253 / 27%);
   --img-border: rgba(16 18 27 / 40%);
   --footer-color: #f9fafb;
 }
@@ -34,7 +34,7 @@
   --content-title-color: --theme-color;
   --main-bg: #f7f7f7;
   --search-bg: rgb(255 255 255 / 31%);
-  --scrollbar-bg: rgb(255 253 253 / 57%);
+  --scrollbar-bg: rgb(1 2 3 / 20%);
   --img-border: rgba(53 97 158 / 50%);
   --footer-color: #f7f7f7;
 }

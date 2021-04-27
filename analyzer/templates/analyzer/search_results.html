@@ -1,0 +1,29 @@
+{% extends "analyzer/base.html" %}
+{% block title %}Search results{% endblock %}
+{% block content_title %}<h2 class="page_title">Search</h2>{% endblock %}
+
+{% block content %}
+    {% if found_tasks %}
+        <div class="content-section-main-title" style="margin-bottom: 14px; font-size: 24px;">{{found_tasks.count}} search results for term: "{{ query_string }}"</div>
+        <div class="post_list">
+            {% for f in found_tasks %}
+                <p>
+                    <strong>
+                        <a href="{% url 'analyzer:task_detail' f.id %}" style="text-decoration: none; color: #d9edf7; font-size: 1.15rem;">{{ f.username }}</a>
+                    </strong>
+                    <br/>
+                    <span class="minor">
+                        In list:
+                        <a href="{% url 'analyzer:list_detail' f.task_list.id f.task_list.slug %}">
+                            {{ f.task_list.name }}
+                        </a>
+                        <br/> Assigned to: {% if f.assigned_to %}{{ f.assigned_to }}{% else %}Anyone{% endif %}
+                        <br/> Complete: {{ f.checked|yesno:"Yes,No" }}
+                    </span>
+                </p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="content-section-main-title" style="margin-bottom: 14px; font-size: 24px;"> No results to show, sorry.</div>
+    {% endif %}
+{% endblock %}

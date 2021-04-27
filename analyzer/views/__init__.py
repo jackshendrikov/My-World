@@ -1,0 +1,12 @@
+from analyzer.views.add_list import add_list  # noqa: F401
+from analyzer.views.del_list import del_list  # noqa: F401
+from analyzer.views.delete_task import delete_task  # noqa: F401
+from analyzer.views.import_csv import import_csv  # noqa: F401
+from analyzer.views.list_detail import list_detail  # noqa: F401
+from analyzer.views.list_lists import list_lists  # noqa: F401
+from analyzer.views.remove_attachment import remove_attachment  # noqa: F401
+from analyzer.views.prediction import prediction  # noqa: F401
+from analyzer.views.reorder_tasks import reorder_tasks  # noqa: F401
+from analyzer.views.search import search  # noqa: F401
+from analyzer.views.task_detail import task_detail  # noqa: F401
+from analyzer.views.toggle_done import toggle_done  # noqa: F401

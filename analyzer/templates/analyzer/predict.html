@@ -1,0 +1,98 @@
+{% extends "analyzer/base.html" %}
+{% load static %}
+{% block extrahead %}
+    <link href="{% static 'analyzer/css/prediction.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="card-deck">
+        <div class="item col-sm-7" style="cursor: default;">
+            <div class="card-body">
+                <div class="content-section-main-title" style="font-size: 20px;">
+                    Attachment Analysis
+                </div>
+
+                <div class="content-section-title" style="margin: auto; width: 40%;">
+                    <div class="green">
+                        <div class="progress">
+                            <div class="inner">
+                                {% if prediction == None %}
+                                <div class="percent"><span>0</span>%</div>
+                                {% else %}
+                                <div class="percent"><span>{{ prediction }}</span>%</div>
+                                {% endif %}
+                                <div class="water"></div>
+                                <div class="glare"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4 p-0">
+            <ul>
+                <li>
+                    <strong>Document: &nbsp;</strong> {{ attachment|truncatechars:25 }}
+                </li>
+
+                <li>
+                    <strong>Positivity: &nbsp;</strong> {{ prediction }}%
+                </li>
+
+                <li>
+                    <strong>Analyzed by: &nbsp;</strong> {{ user.username }}
+                </li>
+
+                <li id="date"></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script type="text/javascript">
+
+    let n = new Date();
+    let y = n.getFullYear();
+    let m = n.getMonth() + 1;
+    let d = n.getDate();
+    let colorInc = 100 / 3;
+
+    document.getElementById("date").innerHTML = "<strong>Analyzed on: &nbsp;</strong>" + d + "/" + m + "/" + y;
+
+    $(function() {
+        let val = {{ prediction }};
+
+        if (val !== "" && !isNaN(val) && val <= 100 && val >= 0) {
+            console.log(val);
+
+            let valOrig = val;
+            val = 100 - val;
+
+            if (valOrig === 0) {
+                $(".progress .percent").text(0 + "%");
+            }
+
+            else $(".progress .percent").text(valOrig + "%");
+
+            $(".progress").parent().removeClass();
+            $(".progress .water").css("top", val + "%");
+
+            if (valOrig < colorInc)
+                $(".progress").parent().addClass("red");
+            else if(valOrig < colorInc * 2)
+                $(".progress").parent().addClass("orange");
+            else
+                $(".progress").parent().addClass("green");
+        } else {
+            $(".progress").parent().removeClass();
+            $(".progress").parent().addClass("green");
+            $(".progress .water").css("top", 100 - 67 + "%");
+            $(".progress .percent").text(67 + "%");
+        }
+    });
+</script>
+{% endblock extra_js %}

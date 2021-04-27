@@ -1,0 +1,41 @@
+{% extends "analyzer/base.html" %}
+{% block title %}{{ list_title }} Task Lists{% endblock %}
+
+{% block content %}
+    <div class="content-section-main-title">Tasks Lists ({{ task_count }} tasks in {{ list_count }} list{{ list_count|pluralize }})</div>
+
+    {% regroup lists by group as section_list %}
+    {% for group in section_list %}
+        <div class="content-section-title">Group: {{ group.grouper }}</div>
+        <ul>
+            {% for task in group.list %}
+                <li class="all-products" onclick="window.location.href='{% url "analyzer:list_detail" task.id task.slug %}';">
+                    <div class="products">
+                        <a href="{% url 'analyzer:list_detail' task.id task.slug %}" style="color: var(--theme-color);">{{ task.name }}</a>
+                    </div>
+
+                    <span class="status">
+                        {% if task.task_set.count > 0 %}
+                            <span class="status-circle green"></span>Updated
+                        {% else %}
+                            <span class="status-circle"></span>Not Updated Yet
+                        {% endif %}
+                    </span>
+
+                    <div class="button-wrapper-main" style="padding-top: 0; margin-left: 40px;">
+                        <button class="content-button status-button open" onclick="location.href='{% url "analyzer:list_detail" task.id task.slug %}';" >Open</button>
+                        <span class="badge badge-primary badge-pill" style="margin-left: 20px;">{{ task.task_set.count }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <div class="button-wrapper-main">
+        {% if user.is_staff %}
+            <a href="{% url 'analyzer:add_list' %}" class="btn btn-primary">Create new task list</a>
+        {% else %}
+            <a href="" class="btn btn-primary disabled">If you were staff, you could create a new list</a>
+        {% endif %}
+    </div>
+{% endblock %}

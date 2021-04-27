@@ -21,7 +21,7 @@ wheel~=0.34.2
 pytz~=2019.3
 sqlparse~=0.3.1
 Jinja2~=2.11.2
-numpy~=1.18.3
+numpy==1.19.5
 certifi~=2018.8.24
 chardet~=3.0.4
 urllib3~=1.25.9
@@ -39,3 +39,8 @@ cryptography~=3.2.1
 boto~=2.49.0
 wikipedia==1.4.0
 django-ipware==3.0.2
+tensorflow>=2.1.0
+pdfminer==20191125
+nltk==3.5
+Keras==2.4.3
+gensim==3.8.3

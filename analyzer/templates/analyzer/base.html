@@ -1,0 +1,104 @@
+{% load static %}
+{% load app_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sentimento App">
+    <meta name="author" content="JackShen">
+    <title>Sentimento Web App</title>
+    <link rel="icon" href="{% static 'home/home/ico/logo.ico' %}" type="image/x-icon">
+
+    <!-- Bootstrap core CSS -->
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    <link href="{% static 'todo/css/style.css' %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <style>
+        body { background-image: url('{% static "todo/img/main-wallpaper.jpg" %}'); }
+
+        .img-content { display: block; }
+        .content-text { -webkit-line-clamp: 7; }
+        .content-wrapper-img { width: 176px; }
+    </style>
+
+    {# Additional CSS or html head data inserted by templates here. #}
+    {% block extrahead %}{% endblock extrahead %}
+</head>
+
+<body>
+
+<div class="spinner">
+  <div class="inner one"></div>
+  <div class="inner two"></div>
+  <div class="inner three"></div>
+</div>
+
+<div class="dark-light">
+    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+    </svg>
+</div>
+
+<div class="app">
+    <div class="header">
+        <img class="logo-img" src="{% static 'home/home/ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
+        <div class="header-menu">
+            {% if user.is_authenticated %}
+                <a class="menu-link" href="{% url 'analyzer:lists' %}">Task Lists</a>
+                <a class="menu-link" href="{% url 'analyzer:mine' %}">My Tasks</a>
+                <a class="menu-link" href="{% url 'analyzer:import_csv' %}">Import</a>
+                <a class="menu-link" href="{% url 'logout' %}">Log Out</a>
+            {% else %}
+                <a class="menu-link" href="{% url 'login' %}">Log In</a>
+            {% endif %}
+        </div>
+
+        {% if user.is_authenticated %}
+             <form class="search-bar" action="{% url 'analyzer:search' %}" method="get">
+                 <input type="text" name="q" value="" placeholder="Search" id="q">
+             </form>
+
+             <div class="header-profile">
+                 {{ user.username }}
+                 <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
+             </div>
+        {% endif %}
+    </div>
+
+    <div class="wrapper">
+        <div class="main-container">
+            <div class="content-wrapper">
+                <div class="content-section">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}{% endif %}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if form.errors %}
+                        <p>{{ form.non_field_errors }}</p>
+                    {% endif %}
+
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span class="content-section-footer-title">JackShen Engeneering, {% now "Y" %}</span>
+
+<!-- jQuery and Bootstrap core JS, plus Popper -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+
+<script src="{% static 'todo/js/script.js' %}"></script>
+{% block extra_js %} {% endblock extra_js %}
+</body>
+</html>

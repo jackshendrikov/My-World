@@ -775,6 +775,13 @@ body.light-mode:before {
   margin: 0;
 }
 
+.btn-info{
+  font-family: var(--body-font);
+  font-size: 16px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
 .btn-success, .btn-warning, .btn-danger{
   width: 220px;
   font-family: var(--body-font);

@@ -21,6 +21,7 @@ urlpatterns = [
     # Sample applications
     path('ads/', include('ads.urls', namespace='blog')),
     path('authz/', include('authz.urls')),
+    path('analyzer/', include('analyzer.urls', namespace='analyzer')),
     path('chat/', include('chat.urls')),
     path('todo/', include('todo.urls', namespace='todo')),
     path('ip-locator/', include('ip_locator.urls', namespace='ip_locator')),

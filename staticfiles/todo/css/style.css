@@ -18,7 +18,7 @@
   --main-bg: #21242d;
   --search-bg: #14162b;
   --overlay-bg: rgba(36, 39, 59, 0.3);
-  --scrollbar-bg: rgb(1 2 3 / 40%);
+  --scrollbar-bg: rgb(255 253 253 / 27%);
   --img-border: rgba(16 18 27 / 40%);
   --table-text: #4DC3FA;
   --table-bg: #1F2739;
@@ -35,7 +35,7 @@
   --overlay-bg: rgb(255 255 255 / 30%);
   --border-color: rgb(255 255 255 / 35%);
   --hover-menu-bg: rgba(255 255 255 / 35%);
-  --scrollbar-bg: rgb(255 253 253 / 57%);
+  --scrollbar-bg: rgb(1 2 3 / 20%);
   --content-title-color: --theme-color;
   --img-border: rgba(53 97 158 / 50%);
   --table-text: #d9edf7;
@@ -773,6 +773,13 @@ body.light-mode:before {
   background-color: #3a6df0;
   font-family: var(--body-font);
   margin: 0;
+}
+
+.btn-info{
+  font-family: var(--body-font);
+  font-size: 16px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .btn-success, .btn-warning, .btn-danger{
