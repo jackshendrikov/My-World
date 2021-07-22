@@ -1,0 +1,141 @@
+p {
+  font-size: 15px;
+  font-family: "Cabin Sketch", sans-serif;
+  color: var(--content-title-color);
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+h1 {
+  font-size: 18px;
+  font-family: "Cabin Sketch", sans-serif;
+  line-height: 1.2em;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* ==== ITEM SETTINGS ==== */
+.item-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+circle {
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transform: scale(0);
+          transform: scale(0);
+  -webkit-transition: -webkit-transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: -webkit-transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.svg-text {
+  fill: #545a64;
+}
+.svg-masked-text {
+  fill: white;
+}
+
+.item-image {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+  -webkit-transition: -webkit-transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: -webkit-transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94), -webkit-transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+}
+
+.items {
+  display: -webkit-box;
+  display: flex;
+  width: calc(100% + 20px);
+  flex-wrap: wrap;
+  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row wrap;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.item {
+  display: -webkit-box;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  position: relative;
+  overflow: hidden;
+  width: calc(28.5% - 20px);
+  height: 225px;
+  margin: 7px;
+  cursor: pointer;
+  padding: 20px;
+  background-color: var(--content-bg);
+  border-radius: 14px;
+  border: 1px solid var(--theme-bg-color);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.02), inset 0 0 0 1px rgba(0, 0, 0, 0.07);
+  transition: 0.3s ease;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+}
+
+.item:hover circle,
+.item:hover image {
+  -webkit-transform: scale(1.02);
+          transform: scale(1.02);
+  background-color: var(--theme-bg-color);
+}
+
+text {
+  font-size: 16px;
+  font-family: 'Cabin Sketch', sans-serif;
+  text-transform: uppercase;
+  text-anchor: middle;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* --- Stuff for the xmas item --- */
+
+/*.item:last-child {*/
+/*  width: calc(40% - 20px);*/
+/*  height: 300px;*/
+/*}*/
+
+@media (max-width: 769px) {
+  .lightrope {
+    margin-top: -50%;
+  }
+}
+
+@media screen and (max-width: 1110px) {
+  .item {
+    width: calc(50% - 20px);
+  }
+  .item:last-child {
+    margin-top: 20px;
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 565px) {
+  .item {
+    width: calc(100% - 20px);
+    margin-top: 20px;
+  }
+}

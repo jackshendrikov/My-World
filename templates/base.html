@@ -9,7 +9,7 @@
     <meta name="author" content="JackShen">
 
     <meta property="og:title" content="JackShen World" />
-    <meta property="og:description" content="My site with lots of my old and new works on JavaScript and Django" />
+    <meta property="og:description" content="Portfolio with my web development projects" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jackshen.herokuapp.com/home/" />
     <meta property="og:image:url" content="https://i.imgur.com/rRdN8kn.png" />
@@ -20,6 +20,11 @@
     <!-- Main core CSS -->
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'libs/css/normalize.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'home/home/css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'home/home/css/xmas-lights.css' %}">
 
     <!-- Custom styles for this template -->
     <style>
@@ -27,9 +32,6 @@
     </style>
 
     {% block extrahead %}
-        <link rel="stylesheet" href="{% static 'home/home/css/main-style.css' %}">
-        <link rel="stylesheet" href="{% static 'libs/css/normalize.min.css' %}">
-        <link rel="stylesheet" href="{% static 'home/home/css/xmas-lights.css' %}">
     {% endblock extrahead %}
 </head>
 
@@ -101,10 +103,11 @@
 <!--Main core JS, JQuery -->
 <script src="{% static 'libs/js/jquery1-7-1.min.js' %}"></script>
 <script src="{% static 'libs/js/prefixfree.min.js' %}"></script>
+<script src="{% static 'base.js' %}"></script>
+<script src="{% static 'home/home/js/snowstorm.js' %}"></script>
+<script src="{% static 'home/home/js/main_script.js' %}"></script>
+
 {% block extra_js %}
-    <script src="{% static 'base.js' %}"></script>
-    <script src="{% static 'home/home/js/snowstorm.js' %}"></script>
-    <script src="{% static 'home/home/js/main_script.js' %}"></script>
 {% endblock extra_js %}
 </body>
 </html>
