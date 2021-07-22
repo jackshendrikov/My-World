@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Psychedelic</title>
+    <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'libs/css/normalize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/psychedelic/style.css' %}">
+</head>
+
+<body>
+<div id="container"></div>
+
+<script src="{% static 'libs/js/three.min.js' %}"></script>
+
+<script id="vertexShader" type="x-shader/x-vertex">
+void main() {
+    gl_Position = vec4(position, 1.0);
+}
+</script>
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+// https://tympanus.net/codrops/2017/04/26/webgl-scroll-spiral/
+
+#define TWO_PI 6.2831853072
+#define PI 3.14159265359
+
+precision highp float;
+uniform vec2 resolution;
+uniform float time;
+
+const float displace = 3.;
+const float gridSize = 2.0;
+const int layers = 2;
+const float detail = 5.0;
+const float wave = 10.0;
+
+vec2 rotate(vec2 v, float angle) {
+    float c = cos(angle);
+    float s = sin(angle);
+
+    return v * mat2(c, -s, s, c);
+}
+
+vec3 coordToHex(vec2 coord, float scale, float angle) {
+    vec2 c = rotate(coord, angle);
+
+    float q = (1.0 / 3.0 * sqrt(3.0) * c.x - 1.0 / 3.0 * c.y) * scale;
+    float r = 2.0 / 3.0 * c.y * scale;
+
+    return vec3(q, r, -q - r);
+}
+
+vec3 hexToCell(vec3 hex, float m) {
+    return fract(hex / m) * 2.0 - 1.0;
+}
+
+float absMax(vec3 v) {
+    return max(max(abs(v.x), abs(v.y)), abs(v.z));
+}
+
+float nsin(float value) {
+    return sin(value * TWO_PI) * 0.5 + 0.5;
+}
+
+float hexToFloat(vec3 hex, float amt) {
+    return mix(absMax(hex), 1.0 - length(hex) / sqrt(3.0), amt);
+}
+
+float calc(vec3 hex, float time, float len) {
+    float value = 0.0;
+    for (int i = 0; i < layers; i++) {
+        vec3 cell = hexToCell(hex, 1.0 + float(i) * 2.0);
+        value += nsin(hexToFloat(cell, nsin(len * wave + time + float(i) / float(layers))) * detail + nsin(time * 0.5));
+    }
+
+    return value / float(layers);
+}
+
+void main(void) {
+    vec2 uv = (gl_FragCoord.xy * 2.0 - resolution.xy) / min(resolution.x, resolution.y);
+    float t = time * 0.02;
+    float rgb[3];
+    float len = 1.0 - length(uv) * 0.02;
+
+    float zoom = nsin(t * 0.1) + len * 3.5;
+    float angle = TWO_PI * nsin(t * 0.05);
+
+    vec3 hex = coordToHex(uv, gridSize*zoom, angle);
+
+    for (int i = 0; i < 3; i++) {
+        float t2 = t + float(i) * displace;
+        hex[i] += sin(PI * len * 0.5) * 0.1;
+
+        // rgb[i] = pow(calc(hex, t2 - float(i) * 0.9, len), 8.0) * 2.  * (0.2 + 0.8 * sin(PI * len * 0.5));
+        rgb[i] = pow(calc(hex, t2 - float(i) * 0.9, len), 7.0) * 2.  * (0.3 + 0.6 * sin(PI * len * 0.5));
+    }
+
+    // gl_FragColor = vec4(rgb[0]-0.8, rgb[1]-0.8, rgb[2]+0.85, 1.0);
+    gl_FragColor = vec4(rgb[0]+0.45, rgb[1]-0.95, rgb[2]+0.65, 1.0);
+}
+</script>
+
+
+<script  src="{% static 'home/psychedelic/script.js' %}"></script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block title %}Sign Up{% endblock %}
+
+{% block extrahead %}
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'registration/css/register.css' %}">
+
+     <style>
+        .sign-up .container .sign-up-header, .sign-up .container .form-footer {
+            padding: 1rem 0;
+        }
+
+        .sign-up .container .sign-up-form .form-content .row-wrapper:not(:last-child) {
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .app {
+                margin-bottom: 20px;
+            }
+        }
+
+    </style>
+{% endblock %}
+
+{% block content %}
+{% if form.errors %}
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+        }, 4000);
+</script>
+    {% for field, errors in form.errors.items %}
+        {% for error in errors %}
+            {% if error != "This field is required." %}
+<div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>{{ error }}</strong>
+</div>
+            {% else %}
+<div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Fill all fields and try again.</strong>
+</div>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+<form class="sign-up" id="myform" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <header class="sign-up-header">
+            <h2 class="title">Sign Up</h2>
+        </header>
+
+        <div class="sign-up-form">
+            <section class="form-content">
+                <div class="row-wrapper">
+                    <div class="element username">
+                        <label for="username">Username</label>
+                        {{ form.username }}
+                    </div>
+                </div>
+
+                <div class="row-wrapper">
+                    <div class="element email">
+                         <label for="email">Email</label>
+                         {{ form.email }}
+                    </div>
+                </div>
+
+                <div class="row-wrapper">
+                    <div class="element pass1">
+                        <label for="pass1">Password</label>
+                        {{ form.password1 }}
+                    </div>
+
+                    <div class="element pass2">
+                        <label for="pass2">Password confirmation</label>
+                        {{ form.password2 }}
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="form-footer">
+            <div class="footer-wrapper">
+                <a onclick="document.getElementById('myform').submit()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <i class="fa fa-sign-in" aria-hidden="true"> </i> Sign Up
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </a>
+            </div>
+            <div style="margin-top: 15px; text-align: center;">
+                <p style="color: white; cursor: default;">Already have an account?
+                    <a style="color: #1da2dc; text-decoration: none;"  href="{% url 'login' %}">Log In</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+</form>
+{% endblock %}
+
+
+{% block extra_js %}
+<script>
+$(window).on("load",function(){
+     $('.sign-up').css("display", "block");
+});
+</script>
+{% endblock extra_js %}

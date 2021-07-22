@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#000000">
+
+    <meta property="og:title" content="My Portfolio Site - Home" />
+    <meta property="og:description" content="My site with lots of my old and new works on JavaScript and Django" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jackshen.herokuapp.com/home/" />
+    <meta property="og:image:url" content="https://i.imgur.com/rRdN8kn.png" />
+
+    <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
+    <style>
+        body { background-image: url('{% static "img/main-wallpaper.jpg" %}'); }
+    </style>
+    <link rel="stylesheet" href="{% static 'home/home/css/start.css' %}">
+</head>
+<body>
+<div class="button ice" onclick="window.open('{% url "intro" %}', '_self')">START</div>
+
+</body>
+</html>

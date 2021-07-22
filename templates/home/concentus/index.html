@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>Concentus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="{% static 'home/concentus/style.css' %}">
+</head>
+<body>
+
+<div id="menu">
+  <a id="btStartAudioVisualization" class="btn btn--start"> <i class="fa fa-play" aria-hidden="true"></i> Start Audio</a>
+  <input id="btLoadAudio" type="file" accept="audio/*"/><label id="labelLoadAudio" for="btLoadAudio" class="btn btn--load"><i class="fa fa-upload" aria-hidden="true"></i> Load Audio</label>
+</div>
+
+<p id="txtStatus"></p>
+  <script>
+        let url = "{% static 'audio/maytherumbewithyou.mp3' %}";
+  </script>
+  <script  src="{% static 'home/concentus/script.js' %}"></script>
+</body>
+</html>
