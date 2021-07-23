@@ -15,6 +15,24 @@ h1 {
   text-align: center;
 }
 
+@media screen and (max-width: 1050px) {
+  #locator-link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #sentimento-link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #todo-link {
+    display: none;
+  }
+}
+
 /* ==== ITEM SETTINGS ==== */
 .item-svg {
   position: absolute;
@@ -137,5 +155,60 @@ text {
   .item {
     width: calc(100% - 20px);
     margin-top: 20px;
+  }
+}
+
+.modal-content .round {
+  display: block;
+}
+
+.modal-content footer .button.finderly,
+.modal-content footer .button.todo-lists,
+.modal-content footer .button.sentimento,
+.modal-content footer .button.locator,
+.modal-content footer .button.sign-out {
+  text-shadow: 1px 0 0 #565454;
+  text-decoration: none;
+}
+
+.modal-content footer .button.finderly {
+  margin-right: 10px;
+  background-color: #ef476f;
+  text-shadow: 1px 0 0 #565454;
+  text-decoration: none;
+}
+
+.modal-content footer .button.todo-lists {
+  margin-right: 10px;
+  background-color: #e9c46a;
+}
+
+.modal-content footer .button.sentimento {
+  margin-right: 10px;
+  background-color: #06d6a0;
+}
+
+.modal-content footer .button.locator {
+  margin-right: 10px;
+  background-color: #118ab2;
+  display: none;
+}
+
+.modal-content footer .button.sign-out {
+  background-color: #073b4c;
+}
+
+@media (max-width: 900px) {
+  .modal-content footer .button.locator {
+    display: block;
+  }
+  .modal-content footer .button.finderly,
+  .modal-content footer .button.todo-lists,
+  .modal-content footer .button.sentimento,
+  .modal-content footer .button.locator,
+  .modal-content footer .button.sign-out {
+    margin-bottom: 10px;
+    width: 150px;
+    text-align: center;
   }
 }

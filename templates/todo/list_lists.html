@@ -1,6 +1,16 @@
 {% extends "todo/base.html" %}
 {% block title %}{{ list_title }} To-Do Lists{% endblock %}
 
+{% block extrahead %}
+<style>
+@media screen and (max-width: 700px) {
+    .button-wrapper-main .btn {
+        font-size: 15px;
+    }
+}
+</style>
+{% endblock extrahead %}
+
 {% block content %}
     <div class="content-wrapper-header">
         <div class="content-wrapper-context">
@@ -22,7 +32,7 @@
                 </svg>
                 To-Do Lists
             </h3>
-            <div class="content-text">Start by creating your first To-Do Task or List (if you are stuff).<br>You can drag and drop task prioritization, search, comment, import tasks via CSV and much more. Explore it!</div>
+            <div class="content-text">You can drag and drop task prioritization, search, comment, import tasks via CSV and much more. Explore it!<br>Start by creating your first To-Do Task.</div>
         </div>
              <img class="content-wrapper-img" src="https://i.imgur.com/myo4VOB.png" alt="">
     </div>
@@ -33,29 +43,29 @@
 
     {% regroup lists by group as section_list %}
     {% for group in section_list %}
-        <div class="content-section-title">Group: {{ group.grouper }}</div>
-        <ul>
-            {% for task in group.list %}
-                <li class="all-products" onclick="window.location.href='{% url "todo:list_detail" task.id task.slug %}';">
-                    <div class="products">
-                        <a href="{% url 'todo:list_detail' task.id task.slug %}" style="color: var(--theme-color);">{{ task.name }}</a>
-                    </div>
+    <div class="content-section-title" id="todo-group">Group: {{ group.grouper }}</div>
+    <ul>
+        {% for task in group.list %}
+            <li class="all-todos" onclick="window.location.href='{% url "todo:list_detail" task.id task.slug %}';">
+                <div class="todos">
+                    <a href="{% url 'todo:list_detail' task.id task.slug %}" style="color: var(--theme-color);">{{ task.name }}</a>
+                </div>
 
-                    <span class="status">
-                        {% if task.task_set.count > 0 %}
-                            <span class="status-circle green"></span>Updated
-                        {% else %}
-                            <span class="status-circle"></span>Not Updated Yet
-                        {% endif %}
-                    </span>
+                <span class="status">
+                    {% if task.task_set.count > 0 %}
+                        <span class="status-circle green"></span>Updated
+                    {% else %}
+                        <span class="status-circle"></span>Not Updated Yet
+                    {% endif %}
+                </span>
 
-                    <div class="button-wrapper-main" style="padding-top: 0; margin-left: 40px;">
-                        <button class="content-button status-button open" onclick="location.href='{% url "todo:list_detail" task.id task.slug %}';" >Open</button>
-                        <span class="badge badge-primary badge-pill" style="margin-left: 20px;">{{ task.task_set.count }}</span>
-                    </div>
-                </li>
-            {% endfor %}
-        </ul>
+                <div class="button-wrapper-main" style="padding-top: 0; margin-left: 40px;">
+                    <button class="content-button status-button open" onclick="location.href='{% url "todo:list_detail" task.id task.slug %}';" >Open</button>
+                    <span class="badge badge-primary badge-pill" style="margin-left: 20px;">{{ task.task_set.count }}</span>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
     {% endfor %}
 
     <div class="button-wrapper-main">

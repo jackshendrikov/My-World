@@ -48,13 +48,37 @@
     </svg>
 </div>
 
-<div class="app">
+{% if user.is_authenticated %}
+<input type="checkbox" id="modal" />
+<label for="modal" class="modal-bg"></label>
+<div class="modal-content">
+    <label for="modal" class="close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+	</label>
 
+    <img class="round" src="{{ user|gravatar:128 }}" alt="user" />
+
+    <header>
+		<h2>{{ user.username }}</h2>
+	</header>
+	<footer>
+        <a href="https://finderly.herokuapp.com/" class="button finderly"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
+        <a href="{% url 'todo:mine' %}" class="button todo-lists"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;To-Do</a>
+        <a href="https://sentimento-web.herokuapp.com/" class="button sentimento"><i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;Sentimento</a>
+        <a href="{% url 'ip_locator:ip_locator' %}" class="button locator"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;IP Locator</a>
+		<a href="{% url 'logout' %}" class="button sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out</a>
+	</footer>
+</div>
+{% endif %}
+
+<div class="app">
     <div class="header">
         <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
         <div class="header-menu">
-                <a class="menu-link" href="{% url 'todo:lists' %}">To-Do</a>
-                <a class="menu-link" href="{% url 'ip_locator:ip_locator' %}">IP Locator</a>
+                <a class="menu-link" href="https://finderly.herokuapp.com/">Movie Finder</a>
+                <a class="menu-link" id="todo-link" href="{% url 'todo:lists' %}">To-Do</a>
+                <a class="menu-link" id="sentimento-link" href="https://sentimento-web.herokuapp.com/">Sentimento</a>
+                <a class="menu-link" id="locator-link" href="{% url 'ip_locator:ip_locator' %}">IP Locator</a>
             {% if user.is_authenticated %}
                 <a class="menu-link" href="{% url 'logout' %}">Log Out</a>
             {% else %}
@@ -66,14 +90,14 @@
 {#          <input type="text" name="q" value="" placeholder="Search" id="q">#}
 {#      </form>#}
 
-         <div class="header-profile">
-             {% if user.is_authenticated %}
+        {% if user.is_authenticated %}
+            <label for="modal" class="header-profile" style="cursor: pointer;">
                  {{ user.username }}
                  <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
-             {% endif %}
-             <i id="xmas-version" style="color: green; font-size: 1.75rem; margin-left: 40px; cursor: pointer;" class="fa fa-tree" onclick="snowfall()"></i>
-             <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 40px; cursor: pointer;" class="fa fa-undo"></i>
-         </div>
+                <i id="xmas-version" style="color: green; font-size: 1.75rem; margin-left: 40px; cursor: pointer;" class="fa fa-tree" onclick="snowfall()"></i>
+                <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 40px; cursor: pointer;" class="fa fa-undo"></i>
+            </label>
+        {% endif %}
 
     </div>
 

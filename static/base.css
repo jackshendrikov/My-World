@@ -290,6 +290,12 @@ body.light-mode:before {
   color: var(--theme-color);
 }
 
+@media screen and (max-width: 450px) {
+  .header-profile {
+      padding: 0 16px 0 20px;
+  }
+}
+
 .header-profile svg {
   width: 22px;
   color: var(--theme-color);
