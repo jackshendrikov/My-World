@@ -1,0 +1,114 @@
+{% extends 'movie_finder/base.html' %}
+{% load static %}
+{% block title %}Advanced Movie Search{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'movie-finder/css/adv-search.css' %}">
+    {% if user.is_authenticated %}
+    <style>
+    .adv-search {
+        margin-top: 30px;
+    }
+
+    @media (max-width: 992px) {
+        .adv-search {
+            margin-top: 0;
+        }
+    }
+    </style>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not user.is_authenticated %}
+<div style="width: 100%; text-align: center;">
+    <a class="auth-button" style="margin-right: 20px;" href="{% url 'login' %}">Log In</a>
+    <a class="auth-button" href="{% url 'register' %}">Sign Up</a>
+</div>
+{% endif %}
+
+<form class="adv-search" action="{% url 'movie-finder:advanced-search' %}" method="GET" autocomplete="off">
+    {% csrf_token %}
+    <div class="container">
+        <header class="adv-search-header">
+            <h2 class="title">ADVANCED SEARCH</h2>
+        </header>
+
+        <div class="adv-search-form">
+            <section class="form-content">
+                <div class="row-wrapper">
+                    <div class="element imdb-rate ">
+                        <label for="imdb-rate">IMDB Rating (Greater than)</label>
+                        <input type="number" name="getRate" step="0.1" value="6" min="1" max="10" placeholder="IMDB Rating" id="imdb-rate">
+                    </div>
+
+                    <div class="element year">
+                        <label for="year">Year (After)</label>
+                        <input type="number" name="getYear" min="1970" max="2021" value="2000"  placeholder="Year" id="year">
+                    </div>
+                </div>
+
+                <div class="row-wrapper">
+                    <div class="element cast">
+                        <label for="cast">Cast Member or Members</label>
+                        <input type="text" name="getCast" placeholder="Cast Member" id="cast">
+                    </div>
+
+                    <div class="element keywords">
+                        <label for="keywords">Keywords</label>
+                        <input type="text" name="getKeywords" value="" placeholder="Keywords" id="keywords">
+                    </div>
+                </div>
+
+                <div class="row-wrapper">
+                    <div class="element genres">
+                        <label for="title">Select the Genre</label>
+                        <select name="getGenre" id="title">
+                            <option value="All" selected>All</option>
+                            <option value="Action">Action</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Mystery">Mystery</option>
+                            <option value="Family">Family</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Crime">Crime</option>
+                        </select>
+                    </div>
+
+                    <div class="row-wrapper more-options">
+                        <label for="by-rating" class="radio">
+                            <input type="radio" value="byIMDb" name="sorting" id="by-rating" class="hidden" checked/>
+                            <span class="label"></span>By IMDb
+                        </label>
+
+                        <label for="by-votes" class="radio">
+                            <input type="radio" value="byVotes" name="sorting" id="by-votes" class="hidden"/>
+                            <span class="label"></span>By Votes
+                        </label>
+
+                        <label for="by-year" class="radio">
+                            <input type="radio" value="byYear" name="sorting" id="by-year" class="hidden"/>
+                            <span class="label"></span>By Year
+                        </label>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="form-footer">
+            <div class="footer-wrapper">
+                <input type="submit" value="Search Movies!" class="">
+            </div>
+        </footer>
+    </div>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'movie-finder/js/adv-search.js' %}"></script>
+{% endblock extra_js %}

@@ -1,0 +1,125 @@
+{% extends 'movie_finder/base.html' %}
+{% load static %}
+
+{% block title %}Genres{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'movie-finder/css/genres.css' %}">
+    <style>
+        #mobBtn > .auth-button {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="content-section-main-title" style="text-align: center; margin: 0 auto 20px;">
+        Popular TV Show and Movie Genres
+    </div>
+
+    <div class="row" align="center">
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Comedy" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/comedy.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>COMEDY</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Sci-Fi" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/sci-fi.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>SCI-FI</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Horror" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/horror.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>HORROR</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Action" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/action.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>ACTION</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Fantasy" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/fantasy.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>FANTASY</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Familt" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/family.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>FAMILY</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Thriller" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/thriller.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>THRILLER</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Drama" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/drama.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>DRAMA</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Mystery" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/mystery.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>MYSTERY</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Crime" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/crime.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>CRIME</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Adventure" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/adventure.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>ADVENTURE</h1>
+            </div>
+        </form>
+
+        <form action="{% url 'movie-finder:genre' %}" method="GET" class="genre col-xs-12 col-sm-6 col-md-4">
+            <input type="hidden" value="Animation" name="typeGenre">
+            <div class="bg-img" style="background-image: url({% static 'img/genres/animation.jpg' %})"></div>
+            <div class="bg-text">
+                <h1>ANIMATION</h1>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(".genre").click(function(){
+    $(this).closest('form').submit();
+});
+</script>
+{% endblock extra_js %}

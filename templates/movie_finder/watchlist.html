@@ -1,0 +1,193 @@
+{% extends 'movie_finder/base.html' %}
+{% load static %}
+{% block title %}{{ user.username }}'s Watchlist{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'movie-finder/css/movies-list.css' %}">
+<style>
+#mobBtn > .auth-button {
+  display: none;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="app-content-header" style="text-align: center; margin: auto;">
+    <h1 class="app-content-header-text">{{ user.username }}'s Watchlist &#160;<i class="fa fa-film" aria-hidden="true" style="color: #FFBC0B"></i></h1>
+</div>
+
+{% if userWatchlist %}
+<div class="app-content-list">
+    <div class="app-content-list-wrapper">
+        <button class="action-button list" title="List View">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+        </button>
+
+        <button class="action-button grid active" title="Grid View">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
+                <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect>
+                <rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<div class="movies-wrapper gridView">
+    <div class="movies-header">
+        <div class="movie-cell poster">
+            Movie
+            <button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="movie-cell genre">
+            Genre
+        </div>
+
+        <div class="movie-cell netflix">
+            Netflix Status
+        </div>
+
+        <div class="movie-cell imdb-num">
+            IMDb Votes
+             <button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="movie-cell rating" style="margin: 0;">
+            &#160;&#160;Rating
+            <button class="sort-button">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 512 512">
+                    <path fill="currentColor" d="M496.1 138.3L375.7 17.9c-7.9-7.9-20.6-7.9-28.5 0L226.9 138.3c-7.9 7.9-7.9 20.6 0 28.5 7.9 7.9 20.6 7.9 28.5 0l85.7-85.7v352.8c0 11.3 9.1 20.4 20.4 20.4 11.3 0 20.4-9.1 20.4-20.4V81.1l85.7 85.7c7.9 7.9 20.6 7.9 28.5 0 7.9-7.8 7.9-20.6 0-28.5zM287.1 347.2c-7.9-7.9-20.6-7.9-28.5 0l-85.7 85.7V80.1c0-11.3-9.1-20.4-20.4-20.4-11.3 0-20.4 9.1-20.4 20.4v352.8l-85.7-85.7c-7.9-7.9-20.6-7.9-28.5 0-7.9 7.9-7.9 20.6 0 28.5l120.4 120.4c7.9 7.9 20.6 7.9 28.5 0l120.4-120.4c7.8-7.9 7.8-20.7-.1-28.5z"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="movie-cell watchlist">
+            Remove from Watchlist
+        </div>
+    </div>
+
+    {% for movie in userWatchlist %}
+    <div class="movies-row">
+        <form action="{% url 'movie-finder:result' movie.0 %}" method="POST" class="movie-cell poster" style="text-align: center;">
+            {% csrf_token %}
+            <input type="hidden" value="{{movie.1}}" name="movie">
+            <div style="position: relative;">
+                <input type="image" src="{{movie.14}}" alt="movie" onclick="$(this).closest('form').submit();">
+                <button type="button" class="watchlist-btn {% if movie.1 in myWatchlist %}added{% else %}add{% endif %}">
+                    <div class="icn-btn">
+                        <span class="line line-1"></span>
+                        <span class="line line-2"></span>
+                    </div>
+                </button>
+            </div>
+             <span style="cursor: pointer;" onclick="$(this).closest('form').submit();">{{movie.1}}</span>
+        </form>
+
+        <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="add-watchlist">
+                {% csrf_token %}
+                <input type="hidden" value="{{movie.1}}" name="movie">
+         </form>
+
+        <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="delete-watchlist">
+                {% csrf_token %}
+                <input type="hidden" value="delete{{movie.1}}" name="movie">
+         </form>
+
+        <div class="movie-cell genre" style="display: none;"><span class="cell-label">Genre:</span>{{movie.5}}</div>
+
+        <div class="movie-cell netflix" style="display: none;">
+            <span class="cell-label">Netflix Status:</span>
+            {% if movie.9 != "None" %}
+            <span class="status active">Available</span>
+            {% else %}
+            <span class="status disabled">Unavailable</span>
+            {% endif %}
+        </div>
+
+        <div class="movie-cell imdb-num" style="display: none;">
+            <span class="cell-label">IMDb Votes:</span>
+            <a href="{{movie.3}}" style="text-decoration: none;">{{movie.4}}</a>
+        </div>
+
+        <div class="movie-cell rating">
+{#            <span class="cell-label">Rating:</span>#}
+            <div class="movie-cell rating" style="text-align: center; margin: auto; color: var(--content-title-color);">
+                <i class="fa fa-star"></i>&#160;{{movie.2}}
+            </div>
+        </div>
+
+        <div class="movie-cell watchlist" style="display: none;"><span class="cell-label">Remove from Watchlist:</span>
+            <form action="{% url 'movie-finder:watchlist' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="delete{{movie.1}}" name="movie" id="my_title">
+                <button class="action-button" type="submit" style="background-color: #f44336;">
+                    <i class="fa fa-times"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% if userWatchlist.has_other_pages %}
+<ul class="pagination">
+    {% if userWatchlist.has_previous %}
+    <li class="previous"><a href="?page={{ userWatchlist.previous_page_number }}"></a></li>
+    {% else %}
+    <li class="previous" style="display: none;"></li>
+    {% endif %}
+
+    {% for i in userWatchlist.paginator.page_range %}
+      {% if userWatchlist.number == i %}
+    <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+      {% else %}
+    <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+
+    {% if userWatchlist.has_next %}
+    <li class="last"><a href="?page={{ userWatchlist.next_page_number }}"></a></li>
+    {% else %}
+    <li class="last" style="display: none;"></li>
+    {% endif %}
+</ul>
+{% endif %}
+
+{% else %}
+<h4 style="position: fixed; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
+    Your watchlist is empty :(
+</h4>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(".watchlist-btn").click(function(){
+    if ($(this).hasClass('added')) {
+        $(this).removeClass('added');
+        $(this).addClass('add');
+        $(this).closest('.movies-row').find('.delete-watchlist').submit();
+    } else {
+        $(this).removeClass('add');
+        $(this).addClass('added');
+        $(this).closest('.movies-row').find('.add-watchlist').submit();
+    }
+});
+</script>
+<script src="{% static 'movie-finder/js/movies-list.js' %}"></script>
+{% endblock extra_js %}

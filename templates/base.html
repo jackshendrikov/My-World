@@ -62,7 +62,7 @@
 		<h2>{{ user.username }}</h2>
 	</header>
 	<footer>
-        <a href="https://finderly.herokuapp.com/" class="button finderly"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
+        <a href="{% url 'movie-finder:movies-main' %}" class="button finderly"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
         <a href="{% url 'todo:mine' %}" class="button todo-lists"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;To-Do</a>
         <a href="https://sentimento-web.herokuapp.com/" class="button sentimento"><i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;Sentimento</a>
         <a href="{% url 'ip_locator:ip_locator' %}" class="button locator"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;IP Locator</a>
@@ -75,7 +75,7 @@
     <div class="header">
         <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
         <div class="header-menu">
-                <a class="menu-link" href="https://finderly.herokuapp.com/">Movie Finder</a>
+                <a class="menu-link" href="{% url 'movie-finder:movies-main' %}">Movie Finder</a>
                 <a class="menu-link" id="todo-link" href="{% url 'todo:lists' %}">To-Do</a>
                 <a class="menu-link" id="sentimento-link" href="https://sentimento-web.herokuapp.com/">Sentimento</a>
                 <a class="menu-link" id="locator-link" href="{% url 'ip_locator:ip_locator' %}">IP Locator</a>

@@ -1,0 +1,49 @@
+.genre {
+  margin-bottom: 25px;
+}
+.genre > .bg-img {
+  color: white;
+  cursor: pointer;
+  background-size: cover !important;
+  background-position: center !important;
+  height: 200px;
+  background: #313131;
+  box-shadow: 0 10px 20px 20px rgba(0, 0, 0, 0.17);
+  border-radius: 10px;
+   -webkit-filter: blur(2px);
+           filter: blur(2px);
+}
+
+.bg-text {
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.4);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  border: 3px solid #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
+  padding: 20px;
+  text-align: center;
+}
+
+.bg-text h1 {
+  font-size: 22px;
+  padding: 10px 0;
+  margin: 0;
+}
+
+.content-section-main-title {
+  margin-bottom: 14px;
+  font-size: 22px;
+}
+
+@media (max-width: 992px) {
+  .content-section-main-title {
+    font-size: 18px;
+  }
+}

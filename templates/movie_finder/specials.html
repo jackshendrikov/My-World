@@ -1,0 +1,94 @@
+{% extends 'movie_finder/base.html' %}
+{% load static %}
+
+{% block title %}Special Collections{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'movie-finder/css/specials.css' %}">
+    <style>
+        #sp-card-1 .special-card-bg {
+            background: url("{% static 'img/back-top100.png' %}") center/cover no-repeat;
+        }
+
+        #sp-card-2 .special-card-bg {
+            background: url("{% static 'img/back-netflix.jpg' %}") center/cover no-repeat;
+        }
+
+        #sp-card-3 .special-card-bg {
+            background: url("{% static 'img/back-series.jpg' %}") center/cover no-repeat;
+        }
+
+        #mobBtn > .auth-button {
+            display: none;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="special-cards">
+        <h3 style="color: var(--special-title);">Special Categories</h3><br>
+        <a class="special-card" id="sp-card-1" href="{% url 'movie-finder:top100' %}">
+            <div class="special-card-bg"></div>
+            <img class="special-card-img" src="{% static 'img/top100.png' %}" />
+            <div class="special-card-text">
+                <p class="special-card-title" style="color: #ffce45; text-shadow: 1px 1px 2px black;">TOP-100</p>
+            </div>
+        </a>
+        
+        <a class="special-card" id="sp-card-2" href="{% url 'movie-finder:netflix' %}">
+            <div class="special-card-bg"></div>
+            <img class="special-card-img" src="{% static 'img/netflix.png' %}" />
+            <div class="special-card-text">
+                <p class="special-card-title" style="color: #e50914; text-shadow: 1px 1px 2px black;">Netflix Movies</p>
+            </div>
+        </a>
+        
+        <a class="special-card" id="sp-card-3" href="{% url 'movie-finder:series' %}">
+            <div class="special-card-bg"></div>
+            <img class="special-card-img" src="{% static 'img/all_series.png' %}" />
+            <div class="special-card-text">
+                <p class="special-card-title" style="color: #f8f9fa; text-shadow: 1px 1px 2px black;">All Series</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="app-content-header" style="text-align: center; margin: 0 auto 20px;">
+        Special Categories
+    </div>
+
+    <div class="row" align="center">
+        <div class="col-md-4">
+            <a class="card movie-card" href="{% url 'movie-finder:top100' %}">
+                <img src="{% static 'img/back-top100.png' %}" alt="category-back" class="background"/>
+                <img src="{% static 'img/top100.png' %}" alt="category" class="category"/>
+                <div class="card-content">
+                    <h2 style="color: #ffce45; text-shadow: 1px 1px 2px black;">TOP-100</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a class="card movie-card" href="{% url 'movie-finder:netflix' %}">
+                <img src="{% static 'img/back-netflix.jpg' %}" alt="category-back" class="background"/>
+                <img src="{% static 'img/netflix.png' %}" style="max-width: 160px; top: 3%;" alt="category" class="category"/>
+                <div class="card-content">
+                    <h2 style="color: #e50914; text-shadow: 1px 1px 2px black;">Netflix Movies</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a class="card movie-card" href="{% url 'movie-finder:series' %}">
+                <img src="{% static 'img/back-series.jpg' %}" style="transform: scale(1.2);" alt="category-back" class="background"/>
+                <img src="{% static 'img/all_series.png' %}" style="max-width: 120px;" alt="category" class="category"/>
+                <div class="card-content">
+                    <h2 style="color: #f8f9fa; text-shadow: 1px 1px 2px black;">All Series</h2>
+                </div>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'movie-finder/js/specials.js' %}"></script>
+{% endblock extra_js %}

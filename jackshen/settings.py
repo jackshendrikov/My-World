@@ -67,9 +67,13 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django.contrib.sites',
 
+    'django_extensions',
+
     'home',
     'ip_locator',
     'todo',
+    'movie_finder',
+    'users'
 ]
 
 MIDDLEWARE = [

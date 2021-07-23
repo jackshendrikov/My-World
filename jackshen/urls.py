@@ -13,6 +13,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('todo/', include('todo.urls', namespace='todo')),
     path('ip-locator/', include('ip_locator.urls', namespace='ip_locator')),
+    path('movie-finder/', include('movie_finder.urls', namespace='movie-finder')),
 ]
 
 handler403 = 'home.views.error_403'
@@ -24,8 +25,7 @@ urlpatterns += [
     path('favicon.ico', serve, {
         'path': 'favicon.ico',
         'document_root': os.path.join(BASE_DIR, 'home/static'),
-    }
-         ),
+    }),
 ]
 
 # Serve the media

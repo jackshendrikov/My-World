@@ -1,0 +1,171 @@
+{% extends 'movie_finder/base.html' %}
+{% load static %}
+{% load app_index %}
+{% block title %}{{ title }}{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'movie-finder/css/movie-info.css' %}">
+    <link rel="stylesheet" href="{% static 'movie-finder/css/movie-reviews.css' %}">
+    <style>
+    #mobBtn > .auth-button {
+      display: none;
+    }
+    </style>
+{% endblock %}
+
+{% block content %}
+<form action="{% url 'movie-finder:show-intro' %}" method="POST" id="showIntro">
+    {% csrf_token %}
+    <input type="hidden" value="{{ youtube }}" name="intro">
+    <input type="hidden" value="{{ title }}" name="title">
+</form>
+
+<div class='movie-card'>
+    <div class='movie-card-left'>
+        <img src='{{ poster }}' alt="poster">
+    </div>
+
+    <div class='movie-card-right'>
+        <h1>{{ title }}</h1>
+        <div class='movie-card-right-details'>
+            <ul>
+                <li>{{ mtype }}</li>
+                <li>{{ year }}</li>
+                <li>{{ runtime }} min</li>
+                <li>{{ genres }}</li>
+            </ul>
+
+            <div class='movie-card-right-rating' title="{{ rating }}%">
+                <div class='back-stars'>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fa fa-star' aria-hidden="true"></i>
+
+                    <div class='front-stars' style="width: {{ rating }}%">
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fa fa-star' aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class='movie-card-right-review'>
+                <p>{{ plot }}
+                    <a href='{{ link }}' target='_blank' style="font-weight: bold;">Read more!</a>
+                </p>
+            </div>
+
+
+            <ul>
+                {% for actor in cast_list %}
+                <li style="font-weight: bold;">{{ actor }}</li>
+                {% endfor %}
+            </ul>
+
+            {% if netflix != "None" %}
+            <div class='movie-card-netflix-button'>
+                <a href='{{ netflix }}' target='_blank' >
+                    <i class="fa fa-play" aria-hidden="true"></i>
+                    &nbsp;WATCH ON NETFLIX
+                </a>
+            </div>
+            {% else %}
+            <div class='movie-card-netflix-button-disable'>
+                <a style="color: #9c9c9c;">
+                    <i class="fa fa-frown-o" aria-hidden="true"></i>
+                    &nbsp;MISSING ON NETFLIX
+                </a>
+            </div>
+            {% endif %}
+            <div class='movie-card-back-button'>
+                <a onclick="{% if youtube != "None" or intro == "Played" %}window.history.go(-2);{% elif msg %}window.history.go(-4);{% else %}window.history.back();{% endif %}">
+                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    &nbsp;GO BACK
+                </a>
+            </div>
+
+            <form id="add-review" class='movie-card-review-button' action="{% url 'movie-finder:review' %}" method="GET">
+                 <input type="hidden" value="{{ title }}" name="movie">
+                 <input type="hidden" value="{{ imdb_id }}" name="imdb">
+                 <span onclick="$('#add-review').submit();">
+                    <i class="fa fa-comment" aria-hidden="true"></i>
+                    &nbsp;ADD REVIEW
+                </span>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="reviews-card">
+    <div class="reviews-list">
+        <div class="title">"{{ title }}" Reviews &#160;<i class="fa fa-film" aria-hidden="true" style="color: #FFBC0B"></i></div>
+        {% if reviews %}
+            {% for review in reviews %}
+        <div class="review-card">
+            <div class="review-header">
+                <div class="name-group">
+                    <div class="initials">{{ review.author|make_list|first }}</div>
+                    <p>{{ review.author }}</p>
+                </div>
+
+                <div class="rating">
+                    {% for star in reviews_rate|rate_active_index:forloop.counter0 %}
+                    <i class="fa fa-star"></i>
+                    {% endfor %}
+
+                    {% for star in reviews_rate|rate_dis_index:forloop.counter0 %}
+                    <i class="fa fa-star" style="color: #999ba5;"></i>
+                    {% endfor %}
+                </div>
+
+                <div class="short-rating">
+                    <i class="fa fa-star"></i>&nbsp;{{ review.rating }}
+                </div>
+            </div>
+
+            <div id="review-{{ review.id }}" class="review-description">
+                {{ review.review_description|linebreaksbr|truncatewords:70 }}
+                {% if review.review_description|length > 350 %}
+                <a style="text-decoration: none; color: var(--read-more); cursor: pointer;" onclick="readMore({{ review.id }}, '{{ review.review_description|linebreaksbr|escapejs }}')">read more</a>
+                {% endif %}
+            </div>
+
+            <div class="review-details">
+                <div class="review-date">{{ review.timestamp|date:"F j, Y, g:i a" }}</div>
+            </div>
+        </div>
+            {% endfor %}
+        {% else %}
+        <div class="empty">No reviews yet :(</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+let intro = "{{ youtube }}";
+
+if (intro !== "None" && intro !== "") {
+    $("#showIntro").submit();
+}
+
+function readMore(reviewID, reviewDescription) {
+    document.getElementById('review-' + reviewID).innerHTML = reviewDescription;
+}
+</script>
+{% endblock extra_js %}

@@ -1,0 +1,80 @@
+{% extends 'movie_finder/base.html' %}
+{% load static %}
+{% load app_index %}
+{% block title %}My Reviews{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'movie-finder/css/my-reviews.css' %}">
+<style>
+#mobBtn > .auth-button {
+  display: none;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class="app-content-header" style="text-align: center; margin: auto;">
+        My Reviews &#160;<i class="fa fa-comment" aria-hidden="true" style="color: #FFBC0B"></i>
+    </div>
+
+    <div id="MyReviews" class="row row-cols-1 row-cols-sm-2 row-cols-md-2">
+        {% for review in reviewPosts %}
+            {% if review.author_id == user.id %}
+        <div class="col">
+            <div class="card mb-3">
+                <div class="card-header theme-bg-fade">
+                    <form action="{% url 'movie-finder:result' review.imdb %}" method="POST" class="movie-review" style="cursor: pointer;">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ review.movie }}" name="movie">
+                        <span class="float-left mr-2 mt-1 h4-responsive robotoBold" style="color: var(--select-color);">
+                            {{ review.movie }}
+                        </span>
+                    </form>
+
+                    <span class="float-right mr-2 mt-1 h4-responsive robotoBold"  style="color: var(--author-color);">
+                        @{{ review.author }}
+                    </span>
+                </div>
+
+                <div class="card-body secondary-bg-fade">
+                    <p id="review-{{ review.id }}" class="card-text">{{ review.review_description|truncatechars:240 }}
+                        {% if review.review_description|length  > 240 %}
+                        <a style="text-decoration: none; color: #ffc107; cursor: pointer;" onclick="readMore({{ review.id }}, '{{ review.review_description|linebreaksbr|escapejs }}')">read more</a>
+                        {% endif %}
+                    </p>
+                    <div style="margin: 20px 0; text-align: center;">
+                        <a href="{% url 'movie-finder:review-update' review.id %}" class="btn btn-sm btn-primary" style="margin-right: 5px;">Update</a>
+                        <a href="{% url 'movie-finder:review-delete' review.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </div>
+
+                <div class="card-footer secondary-bg-fade robotoBold">
+                    <span class="float-left"><i class="fa fa-star" style="color: #f3d779;"></i>&nbsp;{{ review.rating }}</span>
+                    <span class="float-right">{{review.timestamp|date:"F j, Y, g:i a"}}</span>
+                </div>
+            </div>
+        </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div id="NoReviews" class="content-section-title" style="text-align: center; font-size: 16px; position: relative; top: 50%; transform: translateY(-50%); margin: auto;">
+        You have no reviews for movies yet...
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(".movie-review").click(function(){
+    $(this).closest('form').submit();
+});
+
+if ($("#MyReviews .col").length > 0) {
+    $( "#NoReviews" ).hide();
+}
+
+function readMore(reviewID, reviewDescription) {
+    document.getElementById('review-' + reviewID).innerHTML = reviewDescription;
+}
+</script>
+{% endblock extra_js %}

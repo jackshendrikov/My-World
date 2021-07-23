@@ -1,0 +1,18 @@
+{% extends 'movie_finder/base.html' %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+            <legend class="app-content-header-text text-danger" style="text-align: center;">Delete Review</legend>
+            <h3 class="content-section-main-title">
+                Are you sure you want to delete the Review for <b>"{{ object.movie }}"</b>?
+            </h3>
+        </fieldset>
+
+        <div class="form-group" style="text-align: center;">
+            <button type="submit" class="btn btn-outline-danger">Yes, Delete</button>
+            <a onclick="window.history.back();" class="btn btn-outline-secondary">Cancel</a>
+        </div>
+    </form>
+{% endblock %}

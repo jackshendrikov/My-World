@@ -1,0 +1,281 @@
+.movie-card {
+    width: 900px;
+    height: 100%;
+    background: var(--main-bg);
+    margin: 60px auto 50px;
+    -webkit-border-radius: 10px;
+       -moz-border-radius: 10px;
+            border-radius: 10px;
+    box-shadow: 0 43px 100px rgba(68, 104, 194, 0.18);
+}
+
+@media (max-width: 992px) {
+    .movie-card {
+        width: 100%;
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+}
+
+.movie-card-left {
+    width: 30%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    background: transparent;
+}
+
+.movie-card-left img {
+    width: 100%;
+    height: 100%;
+    -webkit-border-radius: 10px 0 0 10px;
+       -moz-border-radius: 10px 0 0 10px;
+            border-radius: 10px 0 0 10px;
+    position: relative;
+}
+
+@media (max-width: 992px) {
+    .movie-card-left {
+        text-align: center;
+        padding: 30px 0 0 0;
+        width: 100%;
+        height: auto;
+    }
+
+    .movie-card-left img {
+        width: auto;
+        height: 300px;
+        -webkit-border-radius: 10px;
+           -moz-border-radius: 10px;
+                border-radius: 10px;
+    }
+}
+
+.movie-card-right {
+    width: 70%;
+    float: left;
+    background: var(--main-bg);
+    height: 400px;
+    -webkit-border-radius: 0 10px 10px 0;
+           -moz-border-radius: 0 10px 10px 0;
+                border-radius: 0 10px 10px 0;
+}
+
+@media (max-width: 992px) {
+    .movie-card-right {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.movie-card-right h1 {
+    color: var(--theme-color);
+    font-weight: 400;
+    text-align: left;
+    font-family: "Montserrat", sans-serif;
+    font-size: 40px;
+    margin: 30px 0 0 0;
+    padding: 0 0 0 40px;
+    letter-spacing: 1px;
+}
+
+.movie-card-right-details ul {
+    list-style-type: none;
+    padding: 0 0 0 40px;
+    margin: 10px 0 0 0;
+}
+
+.movie-card-right-details ul li {
+    display: inline;
+    color: var(--theme-color);
+    font-weight: 400;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    padding: 0 40px 0 0;
+}
+
+.front-stars, .back-stars, .movie-card-right-rating {
+  display: flex;
+}
+
+.movie-card-right-rating {
+    align-items: flex-start;
+    font-size: 2em;
+    justify-content: left;
+    right: 160px;
+    margin: 10px 0 15px 35px;
+    font-family: "Montserrat", sans-serif;
+}
+
+.movie-card-right-rating .back-stars {
+    color: #8f7e50;
+    position: relative;
+    text-shadow: 2px 2px 5px #635737;
+}
+
+.back-stars i,
+.front-stars i {
+    margin: 0 3px;
+}
+
+.back-stars i:first-of-type,
+.front-stars i:first-of-type {
+    margin-left: 0;
+}
+
+.back-stars i:last-of-type,
+.front-stars i:last-of-type {
+    margin-right: 0;
+}
+
+@media (max-width: 992px) {
+    .movie-card-right-rating {
+        font-size: 1.8em;
+    }
+    .back-stars i,
+    .front-stars i {
+        margin: 0 1px;
+    }
+}
+
+.movie-card-right-rating .front-stars {
+    color: #FFBC0B;
+    overflow: hidden;
+    position: absolute;
+    text-shadow: 1px 1px 3px #d29b09;
+    top: 0;
+    transition: all 0.5s;
+}
+
+
+.movie-card-right-review p {
+    color: var(--theme-color);
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    padding: 0 40px 0 40px;
+    letter-spacing: 1px;
+    margin: 10px 0 10px 0;
+    line-height: 20px;
+}
+
+.movie-card-right-review a {
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-size: 14px;
+    color: var(--read-more);
+    margin: 0;
+}
+
+.movie-card-netflix-button,
+.movie-card-netflix-button-disable {
+    padding: 0 0 0 40px;
+    margin: 30px auto 0;
+    display: inline-block;
+}
+
+.movie-card-review-button,
+.movie-card-back-button {
+    padding: 0 0 0 20px;
+    margin: 30px auto 0;
+    display: inline-block;
+}
+
+
+@media (max-width: 992px) {
+    .movie-card-netflix-button,
+    .movie-card-review-button,
+    .movie-card-netflix-button-disable {
+        padding: 0;
+        text-align: center;
+        margin: 20px 20px 20px 20px;
+        display: block;
+    }
+}
+
+@media (max-width: 992px) {
+    .movie-card-review-button {
+        padding: 10px 0 0 0;
+    }
+
+    .movie-card-back-button {
+        display: none;
+    }
+}
+
+.movie-card-netflix-button a,
+.movie-card-review-button span,
+.movie-card-back-button a,
+.movie-card-netflix-button-disable a {
+    text-decoration: none;
+    padding: 10px 15px 10px 15px;
+    margin: auto;
+    font-family: "Montserrat", sans-serif;
+    font-size: 13px;
+    background-size: 12px 12px;
+    border-radius: 5px;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+
+.movie-card-netflix-button a {
+    color: #e50914;
+    border: 2px solid #e50914;
+}
+
+.movie-card-back-button a {
+    border: 2px solid var(--select-color);
+}
+
+.movie-card-back-button {
+    color: var(--select-color);
+}
+
+.movie-card-review-button span {
+    border: 2px solid var(--review-color);
+}
+
+.movie-card-review-button {
+    color: var(--review-color);
+}
+
+.movie-card-netflix-button-disable a {
+    cursor: default;
+    color: #9c9c9c;
+    border: 2px solid #9c9c9c;
+}
+
+.movie-card-netflix-button a:hover {
+    color: #ffffff;
+    background-color: #e50914;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+
+.movie-card-review-button span:hover,
+.movie-card-back-button a:hover {
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+
+.movie-card-back-button a:hover {
+    background-color: var(--select-color);
+}
+
+.movie-card-review-button span:hover {
+    background-color: var(--review-color);
+}
+
+.movie-card-review-button:hover,
+.movie-card-back-button:hover {
+    color: #ffffff;
+}

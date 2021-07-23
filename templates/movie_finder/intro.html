@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Intro Movie</title>
+    <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet"  href="{% static 'movie-finder/css/intro.css' %}">
+</head>
+<body>
+<form action="{% url 'movie-finder:result' imdb %}" method="POST" style="display: none;">
+    {% csrf_token %}
+    <input type="hidden" value="{{ title }}" name="movie">
+    <input type="hidden" value="noIntro" name="intro">
+</form>
+
+
+<div id="mute-button" class='volume' style="right: 105px; top:12px;" onclick="jQuery('#intro').YTPMute();  document.getElementById('unmute-button').style.display = 'block'; this.style.display = 'none';">
+    <i class="fa fa-volume-up" style="font-weight: bold;"></i>
+</div>
+
+<div id="unmute-button" class='volume' style="right: 105px; top:12px; display: none;" onclick="jQuery('#intro').YTPUnmute(); document.getElementById('mute-button').style.display = 'block'; this.style.display = 'none';">
+    <i class="fa fa-volume-off" style="font-weight: bold;"></i>
+</div>
+
+<div id="skip-button" onclick='$("form").submit();'>
+    <span>skip&nbsp;</span>
+    <i class="fa fa-angle-double-right" style="font-weight: bold;"></i>
+</div>
+
+
+<div id="intro" class="mbYTPVideo inline_YTPlayer"
+     data-property="{
+        videoURL:'{{ youtube }}',
+        useOnMobile: true,
+        opacity:1,
+        autoPlay:true,
+        containment:'body',
+        startAt:0,
+        stopAt:0,
+        mute:false,
+        vol:40,
+        optimizeDisplay:true,
+        showControls:false,
+        printUrl:true,
+        loop:false,
+        addRaster:false,
+        realfullscreen:true,
+        ratio:'auto',
+        abundance:'0.1',
+        anchor:'center,center',
+        gaTrack:false,
+        stopMovieOnBlur:true,
+        remember_last_time:false}">
+</div>
+
+<script src="{% static 'libs/js/jquery.min.js' %}"></script>
+<script src="{% static 'libs/js/YTPlayer.js' %}"></script>
+<script>
+    jQuery(".mbYTPVideo").YTPlayer({
+		useNoCookie: true,
+
+		onError: function( err ) {
+		    $("form").submit();
+        }
+	});
+
+    jQuery('#intro').on("YTPEnd",function(){
+        $("form").submit();
+    });
+</script>
+</body>
+</html>
