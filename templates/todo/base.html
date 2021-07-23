@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="To-Do App">
     <meta name="author" content="JackShen">
-    <title>To-Do App</title>
+
+    <title>{% block title %}To-Do App{% endblock %}</title>
     <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
 
     <!-- Bootstrap core CSS -->
@@ -40,6 +41,28 @@
     </svg>
 </div>
 
+{% if user.is_authenticated %}
+<input type="checkbox" id="modal" />
+<label for="modal" class="modal-bg"></label>
+<div class="modal-content">
+    <label for="modal" class="close">
+        <i class="fa fa-times" aria-hidden="true"></i>
+	</label>
+
+    <img class="round" src="{{ user|gravatar:128 }}" alt="user" />
+
+    <header>
+		<h2>{{ user.username }}</h2>
+	</header>
+	<footer>
+        <a href="{% url 'todo:mine' %}" class="button my-tasks"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;My Tasks</a>
+        <a href="{% url 'todo:lists' %}" class="button todo-lists"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;To Do Lists</a>
+        <a href="{% url 'todo:import_csv' %}" class="button import"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Import</a>
+		<a href="{% url 'logout' %}" class="button sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out</a>
+	</footer>
+</div>
+{% endif %}
+
 <div class="app">
     <div class="header">
         <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
@@ -60,10 +83,10 @@
                  <input type="text" name="q" value="" placeholder="Search" id="q">
              </form>
 
-             <div class="header-profile">
+             <label for="modal" class="header-profile" style="cursor: pointer;">
                  {{ user.username }}
                  <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
-             </div>
+             </label>
         {% endif %}
     </div>
 

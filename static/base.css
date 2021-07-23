@@ -108,6 +108,13 @@ td a:hover {
   cursor: pointer;
 }
 
+@media screen and (max-width: 600px) {
+  .dark-light {
+    bottom: 10px;
+    right: 15px;
+  }
+}
+
 .dark-light svg {
   width: 24px;
   flex-shrink: 0;
@@ -477,5 +484,138 @@ body.light-mode:before {
   }
   100% {
     transform: rotateX(50deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+
+.modal-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+  visibility: hidden;
+  transition: background-color 250ms linear;
+}
+
+.modal-content {
+  position: absolute;
+  width: 40%;
+  height: auto;
+  padding: 30px;
+  background-color: #1F1A36;
+  border-radius: 10px;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  transform: scale(0);
+  transition: transform 250ms ease;
+  visibility: hidden;
+  z-index: 20;
+}
+
+.modal-content .close {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 20px;
+  cursor: pointer;
+  z-index: 11;
+  color: white;
+}
+
+.modal-content header {
+  position: relative;
+  display: block;
+}
+
+.modal-content .round {
+  margin: 0 auto;
+  width: 128px;
+  height: 128px;
+  border: 1px solid #4dccf9;
+  padding: 7px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.modal-content header h2 {
+  margin: 0 0 10px;
+  padding: 15px 5px 5px;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+.modal-content footer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0;
+  padding: 10px 0 0;
+}
+
+.modal-content footer .button {
+  position: relative;
+  padding: 10px 10px;
+  border-radius: 3px;
+  font-size: 14px;
+  font-weight: 400;
+  color: white;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.modal-content footer .button:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: width 250ms ease;
+  z-index: 0;
+}
+
+.modal-content footer .button:hover:before {
+  width: 100%;
+}
+
+#modal {
+  display: none;
+}
+
+#modal:checked ~ .modal-bg {
+  visibility: visible;
+  background-color: black;
+  opacity: 0.7;
+  transition: background-color 250ms linear;
+}
+
+#modal:checked ~ .modal-content {
+  visibility: visible;
+  transform: scale(1);
+  transition: transform 250ms ease;
+  z-index: 111;
+}
+
+label.header-profile {
+  font-size: 15px;
+  text-transform: none;
+  font-weight: 600;
+  font-family: var(--body-font);
+}
+
+@media (max-width: 900px) {
+    .modal-content footer {
+      display: grid;
+    }
+
+  .modal-content {
+    width: fit-content;
+    padding-right: 50px;
+    padding-left: 50px;
   }
 }

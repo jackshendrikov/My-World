@@ -20,7 +20,7 @@
             {% csrf_token %}
             <input type="hidden" name="task_list" value="{{ task_list.id }}">
             <div style="text-align:center;">
-                <a href="{% url 'todo:list_detail' task_list.id task_list.slug %}" class="btn btn-success">Return to list: {{ task_list.name }}</a>
+                <a href="{% url 'todo:list_detail' task_list.id task_list.slug %}" class="list-btn btn btn-success">Return to list: {{ task_list.name }}</a>
                 <input type="submit" name="delete-confirm" value="Do it! &rarr;" class="btn btn-danger">
             </div>
         </form>

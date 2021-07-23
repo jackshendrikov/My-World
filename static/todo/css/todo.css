@@ -1,3 +1,7 @@
+.content-section-main-title, .content-section-title {
+  font-size: 20px;
+}
+
 .content-wrapper-header {
   display: flex;
   align-items: center;
@@ -96,7 +100,6 @@
 }
 
 .content-section {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
@@ -382,7 +385,7 @@
 }
 @media screen and (max-width: 565px) {
   .item {
-    width: calc(100% - 20px);
+    width: auto;
     margin-top: 20px;
   }
   .item + .item {
@@ -412,14 +415,119 @@
   margin-left: 5px;
 }
 
-#EditTaskButton {
-  width: auto;
-  margin: 0 10px 0 50px;
-  font-size: 14px;
+@media screen and (max-width: 900px) {
+  .todo-assigned, .todo-owner {
+    display: none;
+  }
 }
 
-@media screen and (max-width: 1200px) {
-  #EditTaskButton {
-    margin: 0 10px 0 0;
+.overdue {
+  color: #f44336;
+}
+
+.input-attach {
+  padding: 0 200px;
+}
+
+.input-group-append .btn, #Add-Comment {
+  font-size: 16px;
+}
+
+.card-body .content-section-title {
+  font-size: 16px;
+}
+
+@media screen and (max-width: 992px) {
+  .input-attach {
+    padding: 0 100px;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .input-attach {
+    padding: 0 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .todo-created, .todo-completed, .todo-due {
+    display: none;
+  }
+
+  .button-wrapper-main {
+    display: grid;
+  }
+
+  .button-wrapper-main .btn{
+    margin-bottom: 10px;
+  }
+
+  .list-btn {
+    margin-bottom: 10px;
+  }
+
+  .input-attach {
+    padding: 0;
+  }
+
+  .card-body {
+    padding: 0;
+  }
+
+  .input-group>.custom-file, .input-group-append .btn {
+    font-size: 14px;
+  }
+
+  .content-section ul li {
+    font-size: 15px;
+  }
+
+  .item-text, .content-section-main-title, .content-section-title {
+    font-size: 16px;
+  }
+
+  #Add-Comment {
+    font-size: 14px;
+  }
+}
+
+
+.modal-content footer .button.my-tasks,
+.modal-content footer .button.todo-lists,
+.modal-content footer .button.import,
+.modal-content footer .button.sign-out {
+  text-shadow: 1px 0 0 #565454;
+  text-decoration: none;
+}
+
+.modal-content footer .button.my-tasks {
+  margin-right: 10px;
+  background-color: #673ab7;
+  text-shadow: 1px 0 0 #565454;
+  text-decoration: none;
+}
+
+.modal-content footer .button.todo-lists {
+  margin-right: 10px;
+  background-color: #cb4269;
+}
+
+.modal-content footer .button.import {
+  margin-right: 10px;
+  background-color: #9c27b0;
+}
+
+.modal-content footer .button.sign-out {
+  background-color: #2196f3;
+}
+
+@media (max-width: 900px) {
+  .modal-content footer .button.my-tasks,
+  .modal-content footer .button.todo-lists,
+  .modal-content footer .button.import,
+  .modal-content footer .button.sign-out {
+    margin-bottom: 10px;
+    width: 150px;
+    text-align: center;
   }
 }

@@ -23,48 +23,61 @@
         {% endif %}
 
         <table class="table" id="tasktable">
-            <tr class="nodrop" style="color: var(--table-text); background: var(--table-bg);">
-                <th>Task</th>
-                <th>Created</th>
-                <th>Due on</th>
-                <th>Owner</th>
-                <th>Assigned</th>
-                <th>Mark</th>
-                <th>Delete</th>
-            </tr>
+            <thead>
+                <tr class="nodrop" style="color: var(--table-text); background: var(--table-bg);">
+                    <th>Task</th>
+                    {% if view_completed %}
+                    <th class="todo-completed">Completed</th>
+                    {% else %}
+                    <th class="todo-created">Created</th>
+                    {% endif %}
+                    <th class="todo-due">Due on</th>
+                    <th class="todo-owner">Owner</th>
+                    <th class="todo-assigned">Assigned</th>
+                    <th>Mark</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
 
+            <tbody>
             {% for task in tasks %}
                 <tr id="{{ task.id }}" style="color: var(--content-title-color);">
-                    <td>
+                    <td data-label="Task">
                         <a href="{% url 'todo:task_detail' task.id %}">{{ task.title|truncatewords:10 }}</a>
                     </td>
 
-                    <td>{{ task.created_date|date:"d/m/Y" }}</td>
+                    {% if view_completed %}
+                    <td data-label="Completed" class="todo-completed">{{ task.completed_date|date:"d/m/Y" }}</td>
+                    {% else %}
+                    <td data-label="Created" class="todo-created">{{ task.created_date|date:"d/m/Y" }}</td>
+                    {% endif %}
 
-                    <td>
+                    <td class="todo-due" data-label="Due on">
                         <span {% if task.overdue_status %}class="overdue"{% endif %}>
-                            {{ task.due_date|date:"d/m/Y" }}
+                           {% if not task.due_date %}&nbsp;{% endif %}{{ task.due_date|date:"d/m/Y" }}
                         </span>
                     </td>
 
-                    <td>{{ task.created_by }}</td>
+                    <td data-label="Owner" class="todo-owner">{{ task.created_by }}</td>
 
-                    <td>{% if task.assigned_to %}{{ task.assigned_to }}{% else %}Anyone{% endif %}</td>
+                    <td data-label="Assigned" class="todo-assigned">{% if task.assigned_to %}{{ task.assigned_to }}{% else %}Anyone{% endif %}</td>
 
-                    <td>
+                    <td data-label="Mark">
                         <form method="post" action="{% url "todo:task_toggle_done" task.id %}" role="form">
                             {% csrf_token %}
-                            <button class="btn btn-info btn-sm" type="submit" name="toggle_done">
-                                {% if view_completed %}
-                                    Not Done
-                                {% else %}
-                                    Done
-                                {% endif %}
+                             {% if view_completed %}
+                            <button class="btn btn-warning btn-sm" type="submit" name="toggle_done" style="width: 40px; font-size: 14px;">
+                                <i class="fa fa-minus" aria-hidden="true"></i>
                             </button>
+                            {% else %}
+                            <button class="btn btn-success btn-sm" type="submit" name="toggle_done" style="width: 40px; font-size: 14px;">
+                                <i class="fa fa-check" aria-hidden="true"></i>
+                            </button>
+                            {% endif %}
                         </form>
                     </td>
 
-                    <td>
+                    <td data-label="Delete">
                         <form method="post" action="{% url "todo:delete_task" task.id %}" role="form">
                             {% csrf_token %}
                             <input type="submit" value="X" class="btn btn-danger btn-sm" name="submit_delete" style="width: 40px; font-size: 14px;">
@@ -72,6 +85,7 @@
                     </td>
                 </tr>
             {% endfor %}
+            </tbody>
         </table>
 
         {% include 'todo/include/toggle_delete.html' %}
