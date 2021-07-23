@@ -8,6 +8,7 @@ urlpatterns = [
     path('', views.main_page, name="main_page"),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('register/', views.register, name='register'),
 
     path('intro/', TemplateView.as_view(template_name='home/home/intro.html'), name='intro'),
     path('home/', TemplateView.as_view(template_name='home/home/main.html'), name='home_page'),

@@ -1,89 +1,117 @@
+{% extends 'movie_finder/base.html' %}
 {% load static %}
+{% block title %}Sign In{% endblock %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Login Form</title>
-<link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
-<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-<link rel="stylesheet"  href="{% static 'registration/css/register.css' %}">
+{% block extrahead %}
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'registration/css/register.css' %}">
+    <style>
+        .sign-up {
+            width: 450px;
+        }
 
-{% block head %} {% endblock %}
-</head>
+        .sign-up .container .sign-up-form .form-content .row-wrapper .username,
+        .sign-up .container .sign-up-form .form-content .row-wrapper .pass1 {
+            flex-basis: 400px;
+        }
+    </style>
+{% endblock %}
 
-<body>
 {% block content %}
-
 {% if form.errors %}
-    <script>
-        window.setTimeout(function() {
-            $(".alert").fadeTo(500, 0).slideUp(500, function(){
-                $(this).remove();
-            });
-            }, 4000);
-    </script>
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+        }, 4000);
+</script>
 
-    <div class="alert alert-success" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Your username and password didn't match.</strong> Please try again.
-    </div>
+<div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Your username and password didn't match.</strong> Please try again.
+</div>
 {% endif %}
 
 {% if next %}
   {% if user.is_authenticated %}
-      <div class="alert alert-success" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Your account doesn't have access to this page.</strong>
-          To proceed, please login with an account that has access.
-      </div>
+<div class="alert alert-danger" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Your account doesn't have access to this page.</strong>
+    To proceed, please login with an account that has access.
+</div>
   {% else %}
-      <div class="alert alert-success" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Please login to see this site.</strong>
-      </div>
+<div class="alert alert-info" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Please login to see this site.</strong>
+</div>
   {% endif %}
 {% endif %}
 
-<div class="login-box">
-    <h2>Login</h2>
-    <form id="myform" method="post" action="{% url 'login' %}">
-        {% csrf_token %}
-        <div class="user-box">
-            {{ form.username }}
-            <label for="id_username">Username</label>
-        </div>
-        <div class="user-box">
-            {{ form.password }}
-            <label for="id_password">Password</label>
-        </div>
-        <a onclick="document.getElementById('myform').submit()">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
-            <i class="fa fa-sign-in" aria-hidden="true"> </i> Login Locally
-            <input type="hidden" name="next" value="{{ next }}" />
-        </a>
-        {% if settings.SOCIAL_AUTH_GITHUB_KEY %}
-            <div class="github-box">
-                <a href="{% url 'social:begin' 'github' %}?next={{ next }}">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <i class="fa fa-github" aria-hidden="true"> </i> Login with GitHub
-                </a>
-            </div>
-        {% endif %}
-        <p><a href="{% url 'password_reset' %}" id="lost">Lost password?</a></p>
-        <!-- ROOT_URLCONF {{ settings.ROOT_URLCONF }} -->
-</form>
-</div>
+<form class="sign-up" id="myform" method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="container">
+        <header class="sign-up-header">
+            <h2 class="title">Sign In</h2>
+        </header>
 
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js'></script>
+        <div class="sign-up-form">
+            <section class="form-content">
+                <div class="row-wrapper">
+                    <div class="element username">
+                        <label for="username">Username</label>
+                        {{ form.username }}
+                    </div>
+                </div>
+
+                <div class="row-wrapper">
+                    <div class="element pass1">
+                        <label for="pass1">Password</label>
+                        {{ form.password }}
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="form-footer">
+            <div class="footer-wrapper">
+                <a onclick="document.getElementById('myform').submit()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                   <i class="fa fa-sign-in" aria-hidden="true"> </i> Sign In
+                   <input type="hidden" name="next" value="{{ next }}" />
+                </a>
+                {% if settings.SOCIAL_AUTH_GITHUB_KEY %}
+                <div class="github-box">
+                    <a href="{% url 'social:begin' 'github' %}?next={{ next }}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <i class="fa fa-github" aria-hidden="true"> </i> Login with GitHub
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            <div style="margin-top: 15px; text-align: center;">
+                <p><a style="color: #1da2dc; text-decoration: none;" href="{% url 'password_reset' %}">Lost password?</a></p>
+                <p style="color: white; cursor: default;">Need an Account?
+                    <a style="color: #1da2dc; text-decoration: none;" href="{% url 'register' %}">Sign Up</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+</form>
 {% endblock %}
 
+
+{% block extra_js %}
+<script>
+$(window).on("load",function(){
+     $('.app').css("display", "block");
+     $('.sign-up').css("display", "block");
+});
+</script>
+{% endblock extra_js %}

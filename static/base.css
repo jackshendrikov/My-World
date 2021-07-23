@@ -31,8 +31,21 @@
   --button-inactive: rgb(249 250 251 / 55%);
 
   --content-title-color: #999ba5;
+  --initials-color: #d56a6a;
+  --special-color: #332d5e75;
+  --author-color: #8bc34a;
   --footer-color: #f9fafb;
+  --select-color: #fc9803;
+  --review-color: #4a90e2;
+  --auth-color: #4a90e2;
+
+  --special-title: #dc3545;
+  --review-card: #2c2b3f;
   --table-text: #4DC3FA;
+  --read-more: #ffda00;
+
+  --projects-btn-color: #4caf50;
+  --add-btn-color: #673ab7;
 }
 
 .light-mode {
@@ -52,8 +65,17 @@
   --button-inactive: #3c3a3a;
 
   --content-title-color: #3c3a3a;
+  --initials-color: #007bff80;
+  --special-color: #35619e38;
+  --author-color: #009688;
   --footer-color: #f7f7f7;
+  --select-color: #4a90e2;
+  --review-color: #fc9803;
+
+  --special-title: #21242d;
+  --review-card: #35619e38;
   --table-text: #d9edf7;
+  --read-more: #4a90e2;
 }
 
 html {

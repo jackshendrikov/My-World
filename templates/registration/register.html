@@ -1,12 +1,13 @@
-{% extends 'registration/base.html' %}
+{% extends 'movie_finder/base.html' %}
 {% load static %}
 {% block title %}Sign Up{% endblock %}
 
 {% block extrahead %}
     <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'movie-finder/css/movie-finder.css' %}">
     <link rel="stylesheet" href="{% static 'registration/css/register.css' %}">
 
-     <style>
+    <style>
         .sign-up .container .sign-up-header, .sign-up .container .form-footer {
             padding: 1rem 0;
         }
@@ -20,7 +21,6 @@
                 margin-bottom: 20px;
             }
         }
-
     </style>
 {% endblock %}
 

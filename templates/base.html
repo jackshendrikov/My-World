@@ -91,12 +91,12 @@
 {#      </form>#}
 
         {% if user.is_authenticated %}
-            <label for="modal" class="header-profile" style="cursor: pointer;">
-                 {{ user.username }}
-                 <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
-                <i id="xmas-version" style="color: green; font-size: 1.75rem; margin-left: 40px; cursor: pointer;" class="fa fa-tree" onclick="snowfall()"></i>
-                <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 40px; cursor: pointer;" class="fa fa-undo"></i>
-            </label>
+        <label for="modal" class="header-profile" style="cursor: pointer;">
+             {{ user.username }}
+             <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
+        </label>
+        <i id="xmas-version" style="color: green; font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fa fa-tree" onclick="snowfall()"></i>
+        <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 10px; cursor: pointer;" class="fa fa-undo"></i>
         {% endif %}
 
     </div>

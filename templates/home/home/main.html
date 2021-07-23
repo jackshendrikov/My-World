@@ -1,11 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Welcome to JackShen World!</h1>
-    <p style="padding-bottom: 0.5rem;">NOTE: For login use -> <b>Login:</b> <i>guest</i> &nbsp;|&nbsp; <b>Password:</b> <i>!jack$hen.guest</i></p>
-    <p>
-        Some of my old and new projects on Django, as well as web design and web animation using HTML + CSS + JS
-    </p>
+<h1>Welcome to JackShen World!</h1>
+<p style="padding-bottom: 1rem;">Some of my old and new projects on Django, as well as web design and web animation using HTML + CSS + JS</p>
+
+{% if not user.is_authenticated %}
+<div style="width: 100%; text-align: center;">
+    <a class="auth-button" style="margin-right: 10px;" href="{% url 'login' %}">Log In</a>
+    <a class="auth-button" href="{% url 'register' %}">Sign Up</a>
+</div>
+{% endif %}
+
+<div id="mobBtn" style="width: 100%; text-align: center;">
+    <a class="auth-button" style="margin-right: 10px;" href="https://finderly.herokuapp.com/">Finderly</a>
+    <a class="auth-button" href="{% url 'todo:lists' %}">To-Do</a>
+</div>
+
+<div id="mobBtn" style="width: 100%; text-align: center;">
+    <a class="auth-button" style="margin-right: 10px; margin-bottom: 0;" href="https://sentimento-web.herokuapp.com/">Sentimento</a>
+    <a class="auth-button" style="margin-bottom: 0;" href="{% url 'ip_locator:ip_locator' %}">IP Locator</a>
+</div>
 
 <div class='items'>
     <div class='item'>
