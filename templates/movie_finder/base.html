@@ -65,7 +65,7 @@
 	<footer>
 		<a href="{% url 'movie-finder:watchlist' %}" class="button my-watchlist"><i class="fa fa-list-ul" aria-hidden="true"></i>&nbsp;My Watchlist</a>
 		<a href="{% url 'movie-finder:my-reviews' %}" class="button my-reviews"><i class="fa fa-comment-o" aria-hidden="true"></i>&nbsp;My Reviews</a>
-		{% if user.is_superuser %}<a href="{% url 'all-reviews' %}" class="button all-reviews"><i class="fa fa-comment-o" aria-hidden="true"></i>&nbsp;All Reviews</a>{% endif %}
+		{% if user.is_superuser %}<a href="{% url 'movie-finder:all-reviews' %}" class="button all-reviews"><i class="fa fa-comment-o" aria-hidden="true"></i>&nbsp;All Reviews</a>{% endif %}
 		<a href="{% url 'logout' %}" class="button sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out</a>
 	</footer>
 </div>
