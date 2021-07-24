@@ -13,7 +13,7 @@
 
 {% block content %}
 <div class="app-content-header" style="text-align: center; margin: auto;">
-    <h1 class="app-content-header-text">{{ user.username }}'s Watchlist &#160;<i class="fa fa-film" aria-hidden="true" style="color: #FFBC0B"></i></h1>
+    <h1 class="app-content-header-text">{{ user.username }}'s Watchlist &#160;<i class="fas fa-film" aria-hidden="true" style="color: #FFBC0B"></i></h1>
 </div>
 
 {% if userWatchlist %}
@@ -127,7 +127,7 @@
         <div class="movie-cell rating">
 {#            <span class="cell-label">Rating:</span>#}
             <div class="movie-cell rating" style="text-align: center; margin: auto; color: var(--content-title-color);">
-                <i class="fa fa-star"></i>&#160;{{movie.2}}
+                <i class="fas fa-star"></i>&#160;{{movie.2}}
             </div>
         </div>
 
@@ -136,7 +136,7 @@
                 {% csrf_token %}
                 <input type="hidden" value="delete{{movie.1}}" name="movie" id="my_title">
                 <button class="action-button" type="submit" style="background-color: #f44336;">
-                    <i class="fa fa-times"></i>
+                    <i class="fas fa-times"></i>
                 </button>
             </form>
         </div>

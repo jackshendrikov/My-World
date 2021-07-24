@@ -21,18 +21,18 @@
             <ul>
                 <li style="display: inline-block; text-align: center;">
                     <button class="btn btn-sm btn-primary" type="button" style="width: auto; font-size: 14px;" data-toggle="collapse" data-target="#TaskEdit">
-                        <i class="fa fa-edit"></i>
+                        <i class="fas fa-edit" style="padding-left: 1px;"></i>
                     </button>
 
                     <form method="post" action="{% url "todo:task_toggle_done" task.id %}" role="form" class="d-inline">
                         {% csrf_token %}
                         {% if task.completed %}
                         <button class="btn btn-sm btn-warning" type="submit" name="toggle_done" style="width: auto; font-size: 14px;">
-                            <i class="fa fa-minus"></i>
+                            <i class="fas fa-minus"></i>
                         </button>
                         {% else %}
                         <button class="btn btn-sm btn-success" type="submit" name="toggle_done" style="width: auto; font-size: 14px;">
-                            <i class="fa fa-check"></i>
+                            <i class="fas fa-check"></i>
                         </button>
                         {% endif %}
                     </form>
@@ -40,7 +40,7 @@
                     <form method="post" action="{% url "todo:delete_task" task.id %}" role="form" class="d-inline">
                         {% csrf_token %}
                         <button class="btn btn-danger btn-sm" type="submit" name="submit_delete" style="width: auto; margin: 0; font-size: 14px;">
-                            <i class="fa fa-times"></i>
+                            <i class="fas fa-times" style="padding: 0 3px;"></i>
                         </button>
                     </form>
                 </li>
@@ -114,9 +114,9 @@
                             <thead>
                             <tr style="color: var(--table-text); background: var(--table-bg);">
                                 <th>File</th>
-                                <th>Uploaded</th>
-                                <th>By</th>
-                                <th>Type</th>
+                                <th id="attachment-upload">Uploaded</th>
+                                <th id="attachment-by">By</th>
+                                <th id="attachment-type">Type</th>
                                 <th>Remove</th>
                             </tr>
                             </thead>
@@ -125,9 +125,9 @@
                             {% for attachment in task.attachment_set.all %}
                                 <tr style="color: var(--content-title-color);">
                                     <td><a style="color: #1496bb;" href="{{ attachment.file.url }}">{{ attachment.filename }}</a></td>
-                                    <td>{{ attachment.timestamp }}</td>
-                                    <td>{{ attachment.added_by.get_full_name }}</td>
-                                    <td>{{ attachment.extension.lower }}</td>
+                                    <td id="attachment-upload">{{ attachment.timestamp }}</td>
+                                    <td id="attachment-by">{{ attachment.added_by.get_full_name }}</td>
+                                    <td id="attachment-type">{{ attachment.extension.lower }}</td>
                                     <td>
                                         <form action="{% url "todo:remove_attachment" attachment.id %}" method="POST">
                                             {% csrf_token %}

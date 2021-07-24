@@ -18,7 +18,7 @@
     <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
 
     <!-- Main core CSS -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='{% static 'libs/css/font-awesome.css' %}'>
     <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'libs/css/normalize.min.css' %}">
 
@@ -26,10 +26,10 @@
     <link rel="stylesheet" href="{% static 'home/home/css/home.css' %}">
     <link rel="stylesheet" href="{% static 'home/home/css/xmas-lights.css' %}">
 
-    <!-- Custom styles for this template -->
-    <style>
-        body { background-image: url('{% static "img/main-wallpaper.jpg" %}'); }
-    </style>
+{#    <!-- Custom styles for this template -->#}
+{#    <style>#}
+{#        body { background-image: url('{% static "img/main-wallpaper.jpg" %}'); }#}
+{#    </style>#}
 
     {% block extrahead %}
     {% endblock extrahead %}
@@ -53,7 +53,7 @@
 <label for="modal" class="modal-bg"></label>
 <div class="modal-content">
     <label for="modal" class="close">
-        <i class="fa fa-times" aria-hidden="true"></i>
+        <i class="fas fa-times" aria-hidden="true"></i>
 	</label>
 
     <img class="round" src="{{ user|gravatar:128 }}" alt="user" />
@@ -62,11 +62,11 @@
 		<h2>{{ user.username }}</h2>
 	</header>
 	<footer>
-        <a href="{% url 'movie-finder:movies-main' %}" class="button finderly"><i class="fa fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
-        <a href="{% url 'todo:mine' %}" class="button todo-lists"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;To-Do</a>
-        <a href="https://sentimento-web.herokuapp.com/" class="button sentimento"><i class="fa fa-smile-o" aria-hidden="true"></i>&nbsp;Sentimento</a>
-        <a href="{% url 'ip_locator:ip_locator' %}" class="button locator"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;IP Locator</a>
-		<a href="{% url 'logout' %}" class="button sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out</a>
+        <a href="{% url 'movie-finder:movies-main' %}" class="button finderly"><i class="fas fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
+        <a href="{% url 'todo:mine' %}" class="button todo-lists"><i class="fas fa-list" aria-hidden="true"></i>&nbsp;To-Do</a>
+        <a href="https://sentimento-web.herokuapp.com/" class="button sentimento"><i class="fas fa-smile-beam" aria-hidden="true"></i>&nbsp;Sentimento</a>
+        <a href="{% url 'ip_locator:ip_locator' %}" class="button locator"><i class="fas fa-globe" aria-hidden="true"></i>&nbsp;IP Locator</a>
+		<a href="{% url 'logout' %}" class="button sign-out"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Sign Out</a>
 	</footer>
 </div>
 {% endif %}
@@ -95,8 +95,8 @@
              {{ user.username }}
              <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
         </label>
-        <i id="xmas-version" style="color: green; font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fa fa-tree" onclick="snowfall()"></i>
-        <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 10px; cursor: pointer;" class="fa fa-undo"></i>
+        <i id="xmas-version" style="color: #2196f3; font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-snowflake" onclick="snowfall()"></i>
+        <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 10px; cursor: pointer;" class="fas fa-undo fa-sm"></i>
         {% endif %}
 
     </div>
@@ -127,9 +127,9 @@
 <!--Main core JS, JQuery -->
 <script src="{% static 'libs/js/jquery1-7-1.min.js' %}"></script>
 <script src="{% static 'libs/js/prefixfree.min.js' %}"></script>
-<script src="{% static 'base.js' %}"></script>
 <script src="{% static 'home/home/js/snowstorm.js' %}"></script>
 <script src="{% static 'home/home/js/main_script.js' %}"></script>
+<script src="{% static 'base.js' %}"></script>
 
 {% block extra_js %}
 {% endblock extra_js %}

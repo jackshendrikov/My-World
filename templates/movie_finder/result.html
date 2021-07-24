@@ -37,28 +37,28 @@
 
             <div class='movie-card-right-rating' title="{{ rating }}%">
                 <div class='back-stars'>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
-                    <i class='fa fa-star' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                    <i class='fas fa-star fa-sm' aria-hidden="true"></i>
 
                     <div class='front-stars' style="width: {{ rating }}%">
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
-                        <i class='fa fa-star' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
+                        <i class='fas fa-star fa-sm' aria-hidden="true"></i>
                     </div>
                 </div>
             </div>
@@ -79,21 +79,21 @@
             {% if netflix != "None" %}
             <div class='movie-card-netflix-button'>
                 <a href='{{ netflix }}' target='_blank' >
-                    <i class="fa fa-play" aria-hidden="true"></i>
+                    <i class="fas fa-play" aria-hidden="true"></i>
                     &nbsp;WATCH ON NETFLIX
                 </a>
             </div>
             {% else %}
             <div class='movie-card-netflix-button-disable'>
                 <a style="color: #9c9c9c;">
-                    <i class="fa fa-frown-o" aria-hidden="true"></i>
+                    <i class="fas fa-frown" aria-hidden="true"></i>
                     &nbsp;MISSING ON NETFLIX
                 </a>
             </div>
             {% endif %}
             <div class='movie-card-back-button'>
                 <a onclick="{% if youtube != "None" or intro == "Played" %}window.history.go(-2);{% elif msg %}window.history.go(-4);{% else %}window.history.back();{% endif %}">
-                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    <i class="fas fa-hiking fa-flip-horizontal" aria-hidden="true"></i>
                     &nbsp;GO BACK
                 </a>
             </div>
@@ -102,7 +102,7 @@
                  <input type="hidden" value="{{ title }}" name="movie">
                  <input type="hidden" value="{{ imdb_id }}" name="imdb">
                  <span onclick="$('#add-review').submit();">
-                    <i class="fa fa-comment" aria-hidden="true"></i>
+                    <i class="fas fa-comment-dots aria-hidden="true"></i>
                     &nbsp;ADD REVIEW
                 </span>
             </form>
@@ -112,7 +112,7 @@
 
 <div class="reviews-card">
     <div class="reviews-list">
-        <div class="title">"{{ title }}" Reviews &#160;<i class="fa fa-film" aria-hidden="true" style="color: #FFBC0B"></i></div>
+        <div class="title">"{{ title }}" Reviews &#160;<i class="fas fa-film" aria-hidden="true" style="color: #FFBC0B"></i></div>
         {% if reviews %}
             {% for review in reviews %}
         <div class="review-card">
@@ -124,16 +124,16 @@
 
                 <div class="rating">
                     {% for star in reviews_rate|rate_active_index:forloop.counter0 %}
-                    <i class="fa fa-star"></i>
+                    <i class="fas fa-star fa-sm"></i>
                     {% endfor %}
 
                     {% for star in reviews_rate|rate_dis_index:forloop.counter0 %}
-                    <i class="fa fa-star" style="color: #999ba5;"></i>
+                    <i class="fas fa-star fa-sm" style="color: #999ba5;"></i>
                     {% endfor %}
                 </div>
 
                 <div class="short-rating">
-                    <i class="fa fa-star"></i>&nbsp;{{ review.rating }}
+                    <i class="fas fa-star fa-sm"></i>&nbsp;{{ review.rating }}
                 </div>
             </div>
 

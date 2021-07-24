@@ -1,3 +1,38 @@
+p {
+  font-size: 15px;
+  font-family: "Cabin Sketch", sans-serif;
+  color: var(--content-title-color);
+  text-align: center;
+  padding-bottom: 2rem;
+}
+
+h1 {
+  font-size: 18px;
+  font-family: "Cabin Sketch", sans-serif;
+  line-height: 1.2em;
+  padding-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media screen and (max-width: 1050px) {
+  #home-link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #specials-link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #popular-link {
+    display: none;
+  }
+}
+
 /* ==== ITEM SETTINGS ==== */
 .item-svg {
   position: absolute;
@@ -324,8 +359,15 @@
 
 @media (max-width: 450px) {
     .auth-button {
+      width: 130px;
       font-size: 14px;
       padding: 13px 15px;
       margin-top: 7px;
+    }
+}
+
+@media (max-width: 345px) {
+    .auth-button {
+      width: auto;
     }
 }

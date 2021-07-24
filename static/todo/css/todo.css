@@ -576,3 +576,24 @@
     text-align: center;
   }
 }
+
+@media (max-width: 900px) {
+  #attachment-by, #attachment-upload, #attachment-type {
+    display: none;
+  }
+}
+
+@media (min-width: 950px) {
+  .card-deck {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .item {
+    width: auto;
+  }
+}

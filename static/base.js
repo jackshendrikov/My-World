@@ -31,3 +31,14 @@ const toggleButton = document.querySelector('.dark-light');
 toggleButton.addEventListener('click', () => {
     document.body.classList.toggle('light-mode');
 });
+
+
+$(document).mousemove(function(event) {
+    let windowWidth = $(window).width();
+    let windowHeight = $(window).height();
+
+    let mouseXpercentage = Math.round(event.pageX / windowWidth * 100);
+    let mouseYpercentage = Math.round(event.pageY / windowHeight * 100);
+
+    $('html, body').css('background', 'radial-gradient(at ' + mouseXpercentage + '% ' + mouseYpercentage + '%, #614385, #516395)');
+});

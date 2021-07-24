@@ -67,11 +67,11 @@
                             {% csrf_token %}
                              {% if view_completed %}
                             <button class="btn btn-warning btn-sm" type="submit" name="toggle_done" style="width: 40px; font-size: 14px;">
-                                <i class="fa fa-minus" aria-hidden="true"></i>
+                                <i class="fas fa-minus" aria-hidden="true"></i>
                             </button>
                             {% else %}
                             <button class="btn btn-success btn-sm" type="submit" name="toggle_done" style="width: 40px; font-size: 14px;">
-                                <i class="fa fa-check" aria-hidden="true"></i>
+                                <i class="fas fa-check" aria-hidden="true"></i>
                             </button>
                             {% endif %}
                         </form>

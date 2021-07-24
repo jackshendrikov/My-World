@@ -12,14 +12,9 @@
     <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
 
     <!-- Bootstrap core CSS -->
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='{% static 'libs/css/font-awesome.css' %}'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
-    <!-- Custom styles for this template -->
-    <style>
-        body { background-image: url('{% static "img/main-wallpaper.jpg" %}'); }
-    </style>
 
     <link href="{% static 'base.css' %}" rel="stylesheet">
     <link href="{% static 'todo/css/todo.css' %}" rel="stylesheet">
@@ -46,7 +41,7 @@
 <label for="modal" class="modal-bg"></label>
 <div class="modal-content">
     <label for="modal" class="close">
-        <i class="fa fa-times" aria-hidden="true"></i>
+        <i class="fas fa-times" aria-hidden="true"></i>
 	</label>
 
     <img class="round" src="{{ user|gravatar:128 }}" alt="user" />
@@ -55,10 +50,10 @@
 		<h2>{{ user.username }}</h2>
 	</header>
 	<footer>
-        <a href="{% url 'todo:mine' %}" class="button my-tasks"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;My Tasks</a>
-        <a href="{% url 'todo:lists' %}" class="button todo-lists"><i class="fa fa-list" aria-hidden="true"></i>&nbsp;To Do Lists</a>
-        <a href="{% url 'todo:import_csv' %}" class="button import"><i class="fa fa-upload" aria-hidden="true"></i>&nbsp;Import</a>
-		<a href="{% url 'logout' %}" class="button sign-out"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Sign Out</a>
+        <a href="{% url 'todo:mine' %}" class="button my-tasks"><i class="fas fa-user" aria-hidden="true"></i>&nbsp; My Tasks</a>
+        <a href="{% url 'todo:lists' %}" class="button todo-lists"><i class="fas fa-list" aria-hidden="true"></i>&nbsp;To Do Lists</a>
+        <a href="{% url 'todo:import_csv' %}" class="button import"><i class="fas fa-upload" aria-hidden="true"></i>&nbsp;Import</a>
+		<a href="{% url 'logout' %}" class="button sign-out"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Sign Out</a>
 	</footer>
 </div>
 {% endif %}

@@ -110,7 +110,7 @@
 .movie-card-right-rating .back-stars {
     color: #8f7e50;
     position: relative;
-    text-shadow: 2px 2px 5px #635737;
+    text-shadow: 1px 1px 1px #1d222c;
 }
 
 .back-stars i,
@@ -138,11 +138,17 @@
     }
 }
 
+@media (max-width: 500px) {
+    .movie-card-right-rating {
+        font-size: 1.5em;
+    }
+
+}
+
 .movie-card-right-rating .front-stars {
     color: #FFBC0B;
     overflow: hidden;
     position: absolute;
-    text-shadow: 1px 1px 3px #d29b09;
     top: 0;
     transition: all 0.5s;
 }

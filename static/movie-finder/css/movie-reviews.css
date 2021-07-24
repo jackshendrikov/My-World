@@ -141,7 +141,7 @@
 .reviews-list .review-card .review-header .short-rating i,
 .reviews-list .review-card .review-header .rating i {
     color: #f3d779;
-    text-shadow: 0 0 1px #23272b;
+    text-shadow: 1px 1px 1px #23272b;
 }
 
 .reviews-list .review-card .review-description {

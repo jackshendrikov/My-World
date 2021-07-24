@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Intro Movie</title>
     <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='{% static 'libs/css/font-awesome.css' %}'>
     <link rel="stylesheet"  href="{% static 'movie-finder/css/intro.css' %}">
 </head>
 <body>
@@ -16,17 +16,17 @@
 </form>
 
 
-<div id="mute-button" class='volume' style="right: 105px; top:12px;" onclick="jQuery('#intro').YTPMute();  document.getElementById('unmute-button').style.display = 'block'; this.style.display = 'none';">
-    <i class="fa fa-volume-up" style="font-weight: bold;"></i>
+<div id="mute-button" class='volume' style="right: 110px; top:12px;" onclick="jQuery('#intro').YTPMute();  document.getElementById('unmute-button').style.display = 'block'; this.style.display = 'none';">
+    <i class="fas fa-volume-up fa-sm" style="font-weight: bold; padding: 3px;"></i>
 </div>
 
-<div id="unmute-button" class='volume' style="right: 105px; top:12px; display: none;" onclick="jQuery('#intro').YTPUnmute(); document.getElementById('mute-button').style.display = 'block'; this.style.display = 'none';">
-    <i class="fa fa-volume-off" style="font-weight: bold;"></i>
+<div id="unmute-button" class='volume' style="right: 110px; top:12px; display: none;" onclick="jQuery('#intro').YTPUnmute(); document.getElementById('mute-button').style.display = 'block'; this.style.display = 'none';">
+    <i class="fas fa-volume-mute fa-sm" style="font-weight: bold;"></i>
 </div>
 
 <div id="skip-button" onclick='$("form").submit();'>
     <span>skip&nbsp;</span>
-    <i class="fa fa-angle-double-right" style="font-weight: bold;"></i>
+    <i class="fas fa-forward fa-sm" style="font-weight: bold;"></i>
 </div>
 
 
