@@ -11,7 +11,7 @@ body {
 }
 
 html {
-  background: linear-gradient(-45deg,#000000,#923CB5);
+  /*background: linear-gradient(-45deg,#000000,#923CB5);*/
 }
 
 body {
@@ -20,6 +20,8 @@ body {
   font-family: 'Lalezar', cursive;
   line-height: 1.25;
   letter-spacing: 0.06em;
+  background: #614385;
+  background: radial-gradient(at center, #614385, #516395);
 }
 
 .hide {

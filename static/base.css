@@ -613,7 +613,7 @@ body.light-mode:before {
   width: 100%;
 }
 
-#modal {
+#modal, #sentimento {
   display: none;
 }
 

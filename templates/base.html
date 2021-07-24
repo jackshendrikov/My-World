@@ -26,11 +26,6 @@
     <link rel="stylesheet" href="{% static 'home/home/css/home.css' %}">
     <link rel="stylesheet" href="{% static 'home/home/css/xmas-lights.css' %}">
 
-{#    <!-- Custom styles for this template -->#}
-{#    <style>#}
-{#        body { background-image: url('{% static "img/main-wallpaper.jpg" %}'); }#}
-{#    </style>#}
-
     {% block extrahead %}
     {% endblock extrahead %}
 </head>
@@ -64,7 +59,7 @@
 	<footer>
         <a href="{% url 'movie-finder:movies-main' %}" class="button finderly"><i class="fas fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
         <a href="{% url 'todo:mine' %}" class="button todo-lists"><i class="fas fa-list" aria-hidden="true"></i>&nbsp;To-Do</a>
-        <a href="https://sentimento-web.herokuapp.com/" class="button sentimento"><i class="fas fa-smile-beam" aria-hidden="true"></i>&nbsp;Sentimento</a>
+        <a href="https://github.com/JackShen1/sentimento-web" class="button sentimento"><i class="fas fa-smile-beam" aria-hidden="true"></i>&nbsp;Sentimento</a>
         <a href="{% url 'ip_locator:ip_locator' %}" class="button locator"><i class="fas fa-globe" aria-hidden="true"></i>&nbsp;IP Locator</a>
 		<a href="{% url 'logout' %}" class="button sign-out"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Sign Out</a>
 	</footer>
@@ -77,7 +72,7 @@
         <div class="header-menu">
                 <a class="menu-link" href="{% url 'movie-finder:movies-main' %}">Movie Finder</a>
                 <a class="menu-link" id="todo-link" href="{% url 'todo:lists' %}">To-Do</a>
-                <a class="menu-link" id="sentimento-link" href="https://sentimento-web.herokuapp.com/">Sentimento</a>
+                <a class="menu-link" id="sentimento-link" href="https://github.com/JackShen1/sentimento-web">Sentimento</a>
                 <a class="menu-link" id="locator-link" href="{% url 'ip_locator:ip_locator' %}">IP Locator</a>
             {% if user.is_authenticated %}
                 <a class="menu-link" href="{% url 'logout' %}">Log Out</a>
@@ -95,10 +90,12 @@
              {{ user.username }}
              <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
         </label>
+        {% endif %}
+        <div class="header-profile" style="cursor: pointer;">
+            <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
+        </div>
         <i id="xmas-version" style="color: #2196f3; font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-snowflake" onclick="snowfall()"></i>
         <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 10px; cursor: pointer;" class="fas fa-undo fa-sm"></i>
-        {% endif %}
-
     </div>
 
     <div class="wrapper">
@@ -130,6 +127,25 @@
 <script src="{% static 'home/home/js/snowstorm.js' %}"></script>
 <script src="{% static 'home/home/js/main_script.js' %}"></script>
 <script src="{% static 'base.js' %}"></script>
+<script>
+let theme_flag = 1;
+let github = document.getElementById('github');
+
+$('.dark-light').click(function() {
+    if (theme_flag) {
+        github.src = "{% static 'img/github-light.png' %}";
+        theme_flag = 0;
+    }
+    else {
+        github.src = "{% static 'img/github-dark.png' %}";
+        theme_flag = 1;
+    }
+});
+
+$(github).click(function() {
+    window.open('https://github.com/JackShen1/My-World');
+});
+</script>
 
 {% block extra_js %}
 {% endblock extra_js %}

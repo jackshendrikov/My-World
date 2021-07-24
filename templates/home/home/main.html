@@ -12,7 +12,7 @@
 {% endif %}
 
 <div id="mobBtn" style="width: 100%; text-align: center;">
-    <a class="auth-button" style="margin-right: 10px;" href="https://finderly.herokuapp.com/">Finderly</a>
+    <a class="auth-button" style="margin-right: 10px;" href="{% url 'movie-finder:movies-main' %}">Finderly</a>
     <a class="auth-button" href="{% url 'todo:lists' %}">To-Do</a>
 </div>
 

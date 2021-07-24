@@ -23,7 +23,7 @@
 {% block content %}
 {% if not user.is_authenticated %}
 <div style="width: 100%; text-align: center;">
-    <a class="auth-button" style="margin-right: 20px;" href="{% url 'login' %}">Log In</a>
+    <a class="auth-button" style="margin-right: 10px;" href="{% url 'login' %}">Log In</a>
     <a class="auth-button" href="{% url 'register' %}">Sign Up</a>
 </div>
 {% endif %}

@@ -10,19 +10,28 @@
     <meta name="theme-color" content="#000000">
 
     <meta property="og:title" content="My Portfolio Site - Home" />
-    <meta property="og:description" content="My site with lots of my old and new works on JavaScript and Django" />
+    <meta property="og:description" content="Portfolio with my web development projects" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jackshen.herokuapp.com/home/" />
     <meta property="og:image:url" content="https://i.imgur.com/rRdN8kn.png" />
 
     <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
-    <style>
-        body { background-image: url('{% static "img/main-wallpaper.jpg" %}'); }
-    </style>
     <link rel="stylesheet" href="{% static 'home/home/css/start.css' %}">
 </head>
 <body>
 <div class="button ice" onclick="window.open('{% url "intro" %}', '_self')">START</div>
 
+<script src="{% static 'libs/js/jquery1-7-1.min.js' %}"></script>
+<script>
+    $(document).mousemove(function(event) {
+    let windowWidth = $(window).width();
+    let windowHeight = $(window).height();
+
+    let mouseXpercentage = Math.round(event.pageX / windowWidth * 100);
+    let mouseYpercentage = Math.round(event.pageY / windowHeight * 100);
+
+    $('html, body').css('background', 'radial-gradient(at ' + mouseXpercentage + '% ' + mouseYpercentage + '%, #614385, #516395)');
+});
+</script>
 </body>
 </html>
