@@ -11,15 +11,17 @@ This project is my portfolio and contains a variety of projects in which I learn
 ## 🗃 &nbsp;Portfolio
 The home page of my site contains my projects in which I studied the features of JavaScript and its libraries such as `p5.js`, `three.js`, `gsap.js` and others, there are also a couple of projects on pure CSS, including a project using `css-doodle`. When the time comes, I will write a full description of each project.
 
+The site is also fully optimized for use on mobile phones.
+
 ### 📷 App Screenshots
 
-Intro (My Logo SVG)         |  Login Page | 404 Page      |  Project Example (Heartverse)
+Intro (My Logo SVG)         |  Login Page | Sign Up Page     |  User Page
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/intro.png" title="Intro (My Logo SVG)" width="100%"> |<img src="img/login.png" title="Login Page" width="100%">|<img src="img/404.png" title="404 Page" width="100%"> |<img src="img/heartverse.png" title="Project Example (Heartverse)" width="100%">
+<img src="img/intro.png" title="Intro (My Logo SVG)" width="100%"> |<img src="img/login.png" title="Login Page" width="100%">|<img src="img/sign-up.png" title="Sign Up Page" width="100%"> |<img src="img/user-page.png" title="User Page" width="100%">
 
-Home Page (Dark Theme)         |  Home Page (Light Theme)   |  Home page (Item Selection)     |  Home page (Xmas Theme)
+Home Page (Dark Theme)         |  Home Page (Light Theme)   |  Project Example (Heartverse)     |  404 Page 
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/main-dark.png" title="ome Page (Dark Theme) " width="100%"> |<img src="img/main-light.png" title="Home Page (Light Theme)" width="100%">|<img src="img/item-select.png" title="Home page (Item Selection)" width="100%"> |<img src="img/xmas-theme.png" title="Home page (Xmas Theme)" width="100%">
+<img src="img/main-dark.png" title="Home Page (Dark Theme) " width="100%"> |<img src="img/main-light.png" title="Home Page (Light Theme)" width="100%">|<img src="img/heartverse.png" title="Project Example (Heartverse)" width="100%"> |<img src="img/404.png" title="404 Page" width="100%">
 
 
 ## 📋 &nbsp;To-Do App
@@ -27,15 +29,6 @@ Home Page (Dark Theme)         |  Home Page (Light Theme)   |  Home page (Item S
 This is a Django Web Application that helps you maintain a To-Do. It can be used as a personal tracker to do things or for a wider range of people, as the application is multi-user and multi-group. Users can belong to several groups, and each group can have several to-do lists. At least one group (configured in the Django administrator) must be created before starting, and this group must have at least one user as a member.
 
 Users can view and edit all to-do lists belonging to their groups. Only staff users can add or delete lists. All tasks are created by the current user and can be assigned to a specific user. Unassigned tasks are displayed as belonging to anyone.
-
-### 📝 &nbsp;Requirements
-
-- Django 2.0+
-- Python 3.7+
-- Bootstrap (necessary in a couple of moments to maintain a normal design)
-- jQuery (for tasks prioritization)
-- bleach (pip install bleach)
-
 
 ### ✨ &nbsp;Features
 
@@ -52,11 +45,11 @@ Users can view and edit all to-do lists belonging to their groups. Only staff us
 | __Fantastic UI__                                                                        |        ✔️       |
 | __File Attachments to Task__ (сurrently only images are supported)                      |        ✔️       |
 | __Login is essential to use the App__                                                   |        ✔️       |
+| __Mobile-friendly__                                                                     |        ✔️       |
+| __Register on the site__                                                                |        ✔️       |
 | __Attach any files__                                                                    |        ❌       |
 | __Email Notification__                                                                  |        ❌       |
 | __Fix Support Page__ (messages are not sent)                                            |        ❌       |
-| __Mobile-friendly__ (fix tables and header)                                             |        ❌       |
-| __Register on the site__                                                                |        ❌       |
 
 ### 📷 App Screenshots
 
@@ -76,5 +69,5 @@ Add To-Do List         |  Add To-Do  | Import CSV       |  Help Center
 <a href="https://www.linkedin.com/in/yevhenii-shendrikov-6795291b8/"><img src="https://img.shields.io/badge/-Jack%20Shendrikov-0077B5?style=flat&logo=Linkedin&logoColor=white"/></a>
 <a href="mailto:jackshendrikov@gmail.com"><img src="https://img.shields.io/badge/-Jack%20Shendrikov-D14836?style=flat&logo=Gmail&logoColor=white"/></a>
 <a href="https://www.facebook.com/jack.shendrikov"><img src="https://img.shields.io/badge/-Jack%20Shendrikov-1877F2?style=flat&logo=Facebook&logoColor=white"/></a>
-<a href=""><img src="https://img.shields.io/badge/-@jackshen-0088cc?style=flat&logo=Telegram&logoColor=white"/></a>
+<a href="https://t.me/jackshen"><img src="https://img.shields.io/badge/-@jackshen-0088cc?style=flat&logo=Telegram&logoColor=white"/></a>
 </p>
