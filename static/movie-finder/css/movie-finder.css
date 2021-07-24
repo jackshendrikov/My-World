@@ -16,18 +16,12 @@ h1 {
 }
 
 @media screen and (max-width: 1050px) {
-  #home-link {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 900px) {
   #specials-link {
     display: none;
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 900px) {
   #popular-link {
     display: none;
   }
@@ -349,6 +343,10 @@ h1 {
 }
 
 @media (max-width: 900px) {
+    #HomePage {
+      display: none;
+    }
+
     .auth-button {
       font-size: 16px;
       padding: 15px 20px;
@@ -357,7 +355,7 @@ h1 {
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 650px) {
     .auth-button {
       width: 130px;
       font-size: 14px;
@@ -369,5 +367,11 @@ h1 {
 @media (max-width: 345px) {
     .auth-button {
       width: auto;
+    }
+}
+
+@media (max-width: 450px) {
+    #github {
+      display: none;
     }
 }

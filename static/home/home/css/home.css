@@ -255,7 +255,7 @@ text {
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 650px) {
     .auth-button {
       width: 130px;
       font-size: 14px;
@@ -287,4 +287,10 @@ text {
     #mobBtn > .auth-button {
       display: inline-block;
     }
+}
+
+@media screen and (max-width: 650px) {
+  #xmas-version {
+    display: none;
+  }
 }

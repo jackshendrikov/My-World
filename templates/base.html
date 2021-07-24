@@ -59,7 +59,7 @@
 	<footer>
         <a href="{% url 'movie-finder:movies-main' %}" class="button finderly"><i class="fas fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
         <a href="{% url 'todo:mine' %}" class="button todo-lists"><i class="fas fa-list" aria-hidden="true"></i>&nbsp;To-Do</a>
-        <a href="https://github.com/JackShen1/sentimento-web" class="button sentimento"><i class="fas fa-smile-beam" aria-hidden="true"></i>&nbsp;Sentimento</a>
+        <a href="https://github.com/JackShen1/sentimento-web" class="button sentimento"><i class="fas fa-theater-masks" aria-hidden="true"></i>&nbsp;Sentimento</a>
         <a href="{% url 'ip_locator:ip_locator' %}" class="button locator"><i class="fas fa-globe" aria-hidden="true"></i>&nbsp;IP Locator</a>
 		<a href="{% url 'logout' %}" class="button sign-out"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Sign Out</a>
 	</footer>
@@ -70,14 +70,14 @@
     <div class="header">
         <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
         <div class="header-menu">
-                <a class="menu-link" href="{% url 'movie-finder:movies-main' %}">Movie Finder</a>
-                <a class="menu-link" id="todo-link" href="{% url 'todo:lists' %}">To-Do</a>
-                <a class="menu-link" id="sentimento-link" href="https://github.com/JackShen1/sentimento-web">Sentimento</a>
-                <a class="menu-link" id="locator-link" href="{% url 'ip_locator:ip_locator' %}">IP Locator</a>
+                <a class="menu-link" href="{% url 'movie-finder:movies-main' %}"><i class="fas fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
+                <a class="menu-link" id="todo-link" href="{% url 'todo:lists' %}"><i class="fas fa-list-ul" aria-hidden="true"></i>&nbsp;To-Do</a>
+                <a class="menu-link" id="sentimento-link" href="https://github.com/JackShen1/sentimento-web"><i class="fas fa-theater-masks" aria-hidden="true"></i>&nbsp;Sentimento</a>
+                <a class="menu-link" id="locator-link" href="{% url 'ip_locator:ip_locator' %}"><i class="fas fa-globe" aria-hidden="true"></i>&nbsp;IP Locator</a>
             {% if user.is_authenticated %}
-                <a class="menu-link" href="{% url 'logout' %}">Log Out</a>
+                <a class="menu-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Log Out</a>
             {% else %}
-                <a class="menu-link" href="{% url 'login' %}">Log In</a>
+                <a class="menu-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>&nbsp;Log In</a>
             {% endif %}
         </div>
 
@@ -90,10 +90,10 @@
              {{ user.username }}
              <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
         </label>
+        {% else %}
+        <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
-        <div class="header-profile" style="cursor: pointer;">
-            <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
-        </div>
+        <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
         <i id="xmas-version" style="color: #2196f3; font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-snowflake" onclick="snowfall()"></i>
         <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 10px; cursor: pointer;" class="fas fa-undo fa-sm"></i>
     </div>

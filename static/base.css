@@ -223,7 +223,7 @@ body.light-mode:before {
 }
 
 .header-menu a {
-  padding: 20px 30px;
+  padding: 20px 25px;
   text-decoration: none;
   color: var(--inactive-color);
   border-bottom: 2px solid transparent;
@@ -333,7 +333,7 @@ body.light-mode:before {
   -o-object-fit: cover;
      object-fit: cover;
   border: 2px solid var(--theme-color);
-  margin-left: 22px;
+  margin-left: 12px;
 }
 
 .logo-img {
@@ -648,4 +648,9 @@ label.header-profile {
     padding-right: 50px;
     padding-left: 50px;
   }
+}
+
+#github {
+  margin-left: 0;
+  margin-right: 5px;
 }

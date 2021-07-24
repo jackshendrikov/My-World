@@ -70,14 +70,13 @@
     <div class="header">
         <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "movie-finder:movies-main" %}'"/>
         <div class="header-menu">
-            <a class="menu-link" href="{% url 'movie-finder:genres' %}">Genres</a>
-            <a class="menu-link" id="specials-link" href="{% url 'movie-finder:specials' %}">Specials</a>
-            <a class="menu-link" id="popular-link" href="{% url 'movie-finder:popular' %}">Popular</a>
-            <a class="menu-link" id="home-link" href="{% url 'home_page' %}">Go Home</a>
+            <a class="menu-link" href="{% url 'movie-finder:genres' %}"><i class="fas fa-theater-masks" aria-hidden="true"></i>&nbsp;Genres</a>
+            <a class="menu-link" id="specials-link" href="{% url 'movie-finder:specials' %}"><i class="fas fa-certificate" aria-hidden="true"></i>&nbsp;Specials</a>
+            <a class="menu-link" id="popular-link" href="{% url 'movie-finder:popular' %}"><i class="fas fa-fire" aria-hidden="true"></i>&nbsp;Popular</a>
             {% if user.is_authenticated %}
-            <a class="menu-link" href="{% url 'logout' %}">Log Out</a>
+            <a class="menu-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Log Out</a>
             {% else %}
-            <a class="menu-link" href="{% url 'login' %}">Log In</a>
+            <a class="menu-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>&nbsp;Log In</a>
             {% endif %}
         </div>
 
@@ -90,11 +89,11 @@
              {{ user.username }}
              <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
          </label>
+        {% else %}
+        <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
-        <div class="header-profile" style="cursor: pointer;">
-            <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
-        </div>
-
+        <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
+        <i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-home" onclick="window.open('{% url "home_page" %}')"></i>
     </div>
 
     <div class="wrapper">
@@ -117,13 +116,13 @@
                     {% endif %}
 
                     <div id="mobBtn" style="width: 100%; text-align: center;">
-                        <a class="auth-button" style="margin-right: 10px;" href="{% url 'movie-finder:genres' %}">Genres</a>
-                        <a class="auth-button" href="{% url 'movie-finder:specials' %}">Specials</a>
+                        <a class="auth-button" style="margin-right: 10px;" href="{% url 'movie-finder:genres' %}"><i class="fas fa-theater-masks" aria-hidden="true"></i>&nbsp;Genres</a>
+                        <a class="auth-button" href="{% url 'movie-finder:specials' %}"><i class="fas fa-certificate" aria-hidden="true"></i>&nbsp;Specials</a>
                     </div>
 
                     <div id="mobBtn" style="width: 100%; text-align: center;">
-                        <a class="auth-button" style="margin-right: 10px;" href="{% url 'movie-finder:popular' %}">Popular</a>
-                        <a class="auth-button" href="{% url 'home_page' %}">Go Home</a>
+                        <a class="auth-button" style="margin-right: 10px;" href="{% url 'movie-finder:popular' %}"><i class="fas fa-fire" aria-hidden="true"></i>&nbsp;Popular</a>
+                        <a class="auth-button" href="{% url 'home_page' %}"><i class="fas fa-home" aria-hidden="true"></i>&nbsp;Go Home</a>
                     </div>
 
                     {% block content %}{% endblock %}

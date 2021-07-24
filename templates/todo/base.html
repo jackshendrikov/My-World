@@ -74,18 +74,18 @@
         </div>
 
         {% if user.is_authenticated %}
-             <form class="search-bar" action="{% url 'todo:search' %}" method="get">
-                 <input type="text" name="q" value="" placeholder="Search" id="q">
-             </form>
+         <form class="search-bar" action="{% url 'todo:search' %}" method="get">
+             <input type="text" name="q" value="" placeholder="Search" id="q">
+         </form>
 
-             <label for="modal" class="header-profile" style="cursor: pointer;">
-                 {{ user.username }}
-                 <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
-             </label>
+         <label for="modal" class="header-profile" style="cursor: pointer;">
+             {{ user.username }}
+             <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
+         </label>
+        {% else %}
+        <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
-        <div class="header-profile" style="cursor: pointer;">
-            <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
-        </div>
+        <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
     </div>
 
     <div class="wrapper">
