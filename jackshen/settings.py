@@ -49,6 +49,8 @@ TODO_MAXIMUM_ATTACHMENT_SIZE = 5000000  # In bytes
 TODO_COMMENT_CLASSES = []
 TODO_STAFF_ONLY = config('TODO_STAFF_ONLY', default=False, cast=bool)
 
+SHEET_ID = config('SHEET_ID')
+
 
 # Without this, uploaded files > 4MB end up with perm 0600, unreadable by web server process
 FILE_UPLOAD_PERMISSIONS = 0o644

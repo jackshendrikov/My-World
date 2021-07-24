@@ -11,6 +11,7 @@ from .models import Movie
 from users.models import Watchlist
 from users.models import Review
 
+from jackshen.settings import SHEET_ID
 
 values = ('imdb_id', 'title', 'rating_id__rating', 'link', 'votes', 'genres_id__genres', 'cast', 'runtime_id__runtime',
           'mtype_id__mtype', 'netflix_id__netflix', 'plot', 'keywords', 'release', 'year_id__year', 'poster',
@@ -119,7 +120,9 @@ def top_movies(request):
 
 
 def advanced_search(request):
-    cast = pd.read_csv('movies.csv')['cast']
+    url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=904865657'
+    cast = pd.read_csv(url)['cast']
+
     all_cast = list(set([j for sub in list(cast.str[2:-2].str.replace("'", "").str.replace('"', '')
                                            .str.split(', ')) for j in sub]))
 
