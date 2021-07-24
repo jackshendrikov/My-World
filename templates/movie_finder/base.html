@@ -93,7 +93,7 @@
         <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
         <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
-        <i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-home" onclick="window.open('{% url "home_page" %}')"></i>
+        <i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-home" onclick="window.open('{% url "home_page" %}', '_self')"></i>
     </div>
 
     <div class="wrapper">

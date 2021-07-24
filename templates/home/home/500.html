@@ -20,7 +20,7 @@
   $container.append($('<div class="main-text">\n' +
           '  <h1 class="neon" style="padding: 30px 0">500</h1>\n' +
           '  <h1 style="padding: 0 0 20px 0">Ooooops!<br/>Internal Server Error. That is, something went terribly wrong.</h1>\n' +
-          '  <a class="home-link" href="{% url 'home_page' %}">Go back home.</a>\n' +
+          '  <a class="home-link" href="#" onclick="window.history.go(-1); return false;">Go back.</a>\n' +
           '</div>'));
 </script>
 </body>
