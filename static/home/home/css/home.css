@@ -294,3 +294,13 @@ text {
     display: none;
   }
 }
+
+.section-title {
+  font-size: 22px;
+}
+
+@media screen and (max-width: 650px) {
+ .section-title {
+   font-size: 18px;
+ }
+}

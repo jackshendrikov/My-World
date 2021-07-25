@@ -13,24 +13,12 @@
 <body>
 <div id="scene"></div>
 
-<audio class="song" controls loop>
-    <source src="{% static 'audio/interstellar.mp3' %}"/>
-    Your browser isn't invited for super fun audio time.
-</audio>
-
 <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/109/three.min.js'></script>
 <script src='{% static 'libs/js/PCDLoader.js' %}'></script>
 <script src='{% static 'libs/js/OrbitControls.js' %}'></script>
 <script src='{% static 'libs/js/OBJExporter.js' %}'></script>
 <script src='{% static 'libs/js/STLExporter.js' %}'></script>
 <script src='{% static 'libs/js/dat.gui.min.js' %}'></script>
-<script src='{% static 'libs/js/jquery.min.js' %}'></script>
-<script>
-    setInterval(function () {
-        let audio = $('.song')[0];
-        audio.play();
-    }, 2);
-</script>
 <script  src="{% static 'home/galaxy/script.js' %}"></script>
 </body>
 </html>

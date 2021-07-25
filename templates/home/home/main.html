@@ -1,8 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-<h1>Welcome to JackShen World!</h1>
-<p style="padding-bottom: 1rem;">Some of my old and new projects on Django, as well as web design and web animation using HTML + CSS + JS</p>
+<h1 class="section-title">The Best Projects from My GitHub</h1>
 
 {% if not user.is_authenticated %}
 <div style="width: 100%; text-align: center;">
@@ -21,19 +21,283 @@
     <a class="auth-button" style="margin-bottom: 0;" href="{% url 'ip_locator:ip_locator' %}">IP Locator</a>
 </div>
 
+
 <div class='items'>
     <div class='item'>
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
-            <a href="{% url "concentus" %}" target="_blank">
+            <a href="https://github.com/JackShen1/slab-allocator" target="_blank">
                 <defs>
                     <clipPath id='clip-0'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
-                    Concentus
+                    Slab Allocator
                 </text>
                 <g clip-path='url(#clip-0)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Slab Allocator
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/CCompiler" target="_blank">
+                <defs>
+                    <clipPath id='clip-1'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    C Compiler (Python)
+                </text>
+                <g clip-path='url(#clip-1)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        C Compiler (Python)
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/football-guess" target="_blank">
+                <defs>
+                    <clipPath id='clip-2'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Football Telegram Bot
+                </text>
+                <g clip-path='url(#clip-2)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Football Telegram Bot
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/sensus" target="_blank">
+                <defs>
+                    <clipPath id='clip-3'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Sentiment Analysis (UA)
+                </text>
+                <g clip-path='url(#clip-3)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Sentiment Analysis (UA)
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/sentimento" target="_blank">
+                <defs>
+                    <clipPath id='clip-4'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Sentiment Analysis (EN)
+                </text>
+                <g clip-path='url(#clip-4)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Sentiment Analysis (EN)
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/cpu-scheduling" target="_blank">
+                <defs>
+                    <clipPath id='clip-5'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Scheduling Algorithms
+                </text>
+                <g clip-path='url(#clip-5)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Scheduling Algorithms
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/android-samples" target="_blank">
+                <defs>
+                    <clipPath id='clip-6'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Book/Image Search (Android)
+                </text>
+                <g clip-path='url(#clip-6)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Book/Image Search (Android)
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/implicit-transition-graph" target="_blank">
+                <defs>
+                    <clipPath id='clip-7'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Planning Algorithm
+                </text>
+                <g clip-path='url(#clip-7)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Planning Algorithm
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/graph-plotter" target="_blank">
+                <defs>
+                    <clipPath id='clip-8'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Graph Plotter (JavaFX)
+                </text>
+                <g clip-path='url(#clip-8)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Graph Plotter (JavaFX)
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/parallel-calc" target="_blank">
+                <defs>
+                    <clipPath id='clip-9'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Parallel Programming
+                </text>
+                <g clip-path='url(#clip-9)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Parallel Programming
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/assembly-labs" target="_blank">
+                <defs>
+                    <clipPath id='clip-10'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Basics of Assembly
+                </text>
+                <g clip-path='url(#clip-10)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Basics of Assembly
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="https://github.com/JackShen1/multi-editor" target="_blank">
+                <defs>
+                    <clipPath id='clip-11'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Graphical & Image Editor
+                </text>
+                <g clip-path='url(#clip-11)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Graphical & Image Editor
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+</div>
+
+<h1 class="section-title">Best Web Dev Projects</h1>
+
+
+<div class='items'>
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="{% url "concentus" %}" target="_blank">
+                <defs>
+                    <clipPath id='clip-12'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Concentus
+                </text>
+                <g clip-path='url(#clip-12)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/7xhto00.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Concentus
@@ -47,14 +311,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "constellation" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-1'>
+                    <clipPath id='clip-13'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Constellation
                 </text>
-                <g clip-path='url(#clip-1)'>
+                <g clip-path='url(#clip-13)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/gM4qqYv.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Constellation
@@ -68,14 +332,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "expressionism" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-2'>
+                    <clipPath id='clip-14'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Expressionism
                 </text>
-                <g clip-path='url(#clip-2)'>
+                <g clip-path='url(#clip-14)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/aXwiXiE.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Expressionism
@@ -89,14 +353,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "expressionism2" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-3'>
+                    <clipPath id='clip-15'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Expressionism II
                 </text>
-                <g clip-path='url(#clip-3'>
+                <g clip-path='url(#clip-15)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/8NgBkBz.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Expressionism II
@@ -110,14 +374,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "fractal" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-4'>
+                    <clipPath id='clip-16'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Fractal Zoom
                 </text>
-                <g clip-path='url(#clip-4)'>
+                <g clip-path='url(#clip-16)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/QzW6Tlk.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Fractal Zoom
@@ -131,14 +395,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "galaxy" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-5'>
+                    <clipPath id='clip-17'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Galaxy
                 </text>
-                <g clip-path='url(#clip-5)'>
+                <g clip-path='url(#clip-17)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/oIQKBtR.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Galaxy
@@ -152,14 +416,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "heartverse" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-6'>
+                    <clipPath id='clip-18'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Heartverse
                 </text>
-                <g clip-path='url(#clip-6)'>
+                <g clip-path='url(#clip-18)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/5nHtI0z.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Heartverse
@@ -173,14 +437,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "infinity" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-7'>
+                    <clipPath id='clip-19'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Infinity
                 </text>
-                <g clip-path='url(#clip-7)'>
+                <g clip-path='url(#clip-19)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/vNqWa6S.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Infinity
@@ -194,14 +458,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "neon" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-8'>
+                    <clipPath id='clip-20'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Neon Heart
                 </text>
-                <g clip-path='url(#clip-8)'>
+                <g clip-path='url(#clip-20)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/ilKn1l6.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Neon Heart
@@ -215,14 +479,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "phoenix" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-9'>
+                    <clipPath id='clip-21'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Phoenix
                 </text>
-                <g clip-path='url(#clip-9)'>
+                <g clip-path='url(#clip-21)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/XWXiOu0.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Phoenix
@@ -236,14 +500,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "psychedelic" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-10'>
+                    <clipPath id='clip-22'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Psychedelic
                 </text>
-                <g clip-path='url(#clip-10)'>
+                <g clip-path='url(#clip-22)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/1NGrlxf.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Psychedelic
@@ -257,14 +521,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "spirals" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-11'>
+                    <clipPath id='clip-23'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Spirals (Fractal) Symphony
                 </text>
-                <g clip-path='url(#clip-11)'>
+                <g clip-path='url(#clip-23)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/APpcZlD.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Spirals (Fractal) Symphony
@@ -278,14 +542,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
             <a href="{% url "whirlpool" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-12'>
+                    <clipPath id='clip-24'>
                         <circle cx='0' cy='0' fill='#000' r='150px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
                     Whirlpool
                 </text>
-                <g clip-path='url(#clip-12)'>
+                <g clip-path='url(#clip-24)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/Mf4gtHM.png'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
                         Whirlpool
@@ -307,14 +571,14 @@
         <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 1100 600'>
             <a href="{% url "xmas-intro" %}" target="_blank">
                 <defs>
-                    <clipPath id='clip-13'>
+                    <clipPath id='clip-25'>
                         <circle cx='0' cy='0' fill='#000' r='400px'></circle>
                     </clipPath>
                 </defs>
                 <text class='svg-text' id='xmas-text' dy='.3em' x='50%' y='50%' style="font-size: 3rem;">
                     XMAS WONDERLAND
                 </text>
-                <g clip-path='url(#clip-13)'>
+                <g clip-path='url(#clip-25)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/EuSTTBy.png'></image>
                     <text id="xmas-text" class='svg-masked-text' dy='.3em' x='50%' y='50%' style="font-size: 3rem;">
                         XMAS WONDERLAND
