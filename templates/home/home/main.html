@@ -2,8 +2,6 @@
 {% load static %}
 
 {% block content %}
-<h1 class="section-title">The Best Projects from My GitHub</h1>
-
 {% if not user.is_authenticated %}
 <div style="width: 100%; text-align: center;">
     <a class="auth-button" style="margin-right: 10px;" href="{% url 'login' %}">Log In</a>
@@ -21,6 +19,7 @@
     <a class="auth-button" style="margin-bottom: 0;" href="{% url 'ip_locator:ip_locator' %}">IP Locator</a>
 </div>
 
+<h1 class="section-title">The Best Projects from My GitHub</h1>
 
 <div class='items'>
     <div class='item'>
@@ -162,12 +161,12 @@
                     </clipPath>
                 </defs>
                 <text class='svg-text' dy='.3em' x='50%' y='50%'>
-                    Book/Image Search (Android)
+                    Android Project
                 </text>
                 <g clip-path='url(#clip-6)'>
                     <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
                     <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
-                        Book/Image Search (Android)
+                        Android Project
                     </text>
                 </g>
             </a>
