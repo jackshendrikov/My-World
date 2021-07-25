@@ -8,11 +8,14 @@
     <meta name="description" content="Movie Finder">
     <meta name="author" content="JackShen">
 
+    <meta property="og:image" content="{% static 'img/movie-img.png' %}" />
+    <meta property="og:image:alt" content="Movie Finder" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="600" />
     <meta property="og:title" content="Movie Finder" />
     <meta property="og:description" content="Find movie, add review, get recommendation, watch on Netflix" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://jackshen.herokuapp.com/movie-finder/" />
-    <meta property="og:image:url" content="https://i.imgur.com/rRdN8kn.png" />
 
     <title>{% block title %}Movie Finder{% endblock %}</title>
     <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
