@@ -85,7 +85,7 @@
         </form>
 
          {% if user.is_authenticated %}
-         <label for="modal" class="header-profile" style="cursor: pointer;">
+         <label for="modal" class="header-profile" style="cursor: pointer; margin-bottom: 0;">
              {{ user.username }}
              <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
          </label>

@@ -57,7 +57,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     context_object_name = 'reviews'
     fields = ['rating', 'review_description']
     template_name = 'movie_finder/review.html'
-    success_url = '/reviews/'
+    success_url = '/movie-finder/reviews/'
 
     def form_valid(self, form, *args, **kwargs):
         form.instance.author = self.request.user
@@ -75,7 +75,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Review
     template_name = 'movie_finder/confirm-delete.html'
     success_message = f"Review has been deleted successfully."
-    success_url = '/reviews/'
+    success_url = '/movie-finder/reviews/'
 
     def test_func(self):
         post = self.get_object()
