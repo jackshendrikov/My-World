@@ -56,7 +56,7 @@
     <img class="round" src="{{ user|gravatar:128 }}" alt="user" />
 
     <header>
-		<h2>{{ user.username }}</h2>
+		<h2>{{ user.username|truncatechars:15 }}</h2>
 	</header>
 	<footer>
         <a href="{% url 'todo:mine' %}" class="button my-tasks"><i class="fas fa-user-tie" aria-hidden="true"></i>&nbsp; My Tasks</a>
@@ -69,16 +69,16 @@
 
 <div class="app">
     <div class="header">
-        <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
+        <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "todo:lists" %}'"/>
         <div class="header-menu">
             {% if user.is_authenticated %}
                 <a class="menu-link" href="{% url 'todo:lists' %}"><i class="fas fa-clipboard-list" aria-hidden="true"></i>&nbsp;To Do Lists</a>
                 <a class="menu-link" id="my-task-link" href="{% url 'todo:mine' %}"><i class="fas fa-user-tie" aria-hidden="true"></i>&nbsp;My Tasks</a>
                 <a class="menu-link" id="import-link" href="{% url 'todo:import_csv' %}"><i class="fas fa-file-upload" aria-hidden="true"></i>&nbsp;Import</a>
                 <a class="menu-link" id="support-link" href="{% url 'todo:external_add' %}"><i class="fas fa-question-circle" aria-hidden="true"></i>&nbsp;Support</a>
-                <a class="menu-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Log Out</a>
+                <a class="menu-link" id="logout-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Log Out</a>
             {% else %}
-                <a class="menu-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>&nbsp;Log In</a>
+                <a class="menu-link" id="login-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>&nbsp;Log In</a>
             {% endif %}
         </div>
 
@@ -88,13 +88,14 @@
          </form>
 
          <label for="modal" class="header-profile" style="cursor: pointer; margin-bottom: 0;">
-             {{ user.username }}
+             <span id="username-text">{{ user.username|truncatechars:15 }}</span>
              <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
          </label>
         {% else %}
         <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
         <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
+        <i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-home" onclick="window.open('{% url "home_page" %}', '_self')"></i>
     </div>
 
     <div class="wrapper">
@@ -103,12 +104,17 @@
                 <div class="content-section">
                     {% if messages %}
                         {% for message in messages %}
-                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="display: flex; justify-content: center; font-size: 1.2rem; width: auto;">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
+                    </div>
                         {% endfor %}
                     {% endif %}
 
                     {% if form.errors %}
-                        <p>{{ form.non_field_errors }}</p>
+                    <p>{{ form.non_field_errors }}</p>
                     {% endif %}
 
                     {% block content %}{% endblock %}

@@ -12,6 +12,14 @@
 {% endblock extrahead %}
 
 {% block content %}
+    {% if not user.is_authenticated %}
+    <div class="alert alert-warning">Log In to see default To-Do List.</div>
+    <div style="width: 100%; text-align: center;">
+        <a class="auth-button" style="margin-right: 10px;" href="{% url 'login' %}">Log In</a>
+        <a class="auth-button" href="{% url 'register' %}">Sign Up</a>
+    </div>
+    {% endif %}
+
     <div class="content-wrapper-header">
         <div class="content-wrapper-context">
             <h3 class="img-content">
@@ -70,9 +78,9 @@
 
     <div class="button-wrapper-main">
         {% if user.is_staff %}
-            <a href="{% url 'todo:add_list' %}" class="btn btn-primary">Create new todo list</a>
+            <a href="{% url 'todo:add_list' %}" class="btn btn-primary">Create new To-Do List</a>
         {% else %}
-            <a href="" class="btn btn-primary disabled">If you were staff, you could create a new list</a>
+            <a href="" class="btn btn-primary disabled">Create new list (stuff only)</a>
         {% endif %}
     </div>
 {% endblock %}

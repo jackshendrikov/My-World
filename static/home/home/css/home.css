@@ -6,6 +6,10 @@ p {
   padding-bottom: 2rem;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 h1 {
   font-size: 18px;
   font-family: "Cabin Sketch", sans-serif;
@@ -15,20 +19,26 @@ h1 {
   text-align: center;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1200px) {
   #locator-link {
     display: none;
   }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1050px) {
   #sentimento-link {
     display: none;
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 900px) {
   #todo-link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  #login-link, #logout-link {
     display: none;
   }
 }
@@ -119,7 +129,7 @@ circle {
   background-color: var(--theme-bg-color);
 }
 
-text {
+.item-svg text {
   font-size: 16px;
   font-family: 'Cabin Sketch', sans-serif;
   text-transform: uppercase;
@@ -306,4 +316,18 @@ text {
    margin-top: 20px;
    padding-bottom: 0;
  }
+}
+
+.btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  padding: .75rem 1.25rem;
+  color: inherit;
+  float: right;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
 }

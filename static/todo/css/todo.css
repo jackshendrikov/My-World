@@ -2,20 +2,35 @@
   font-size: 20px;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1225px) {
   #import-link {
     display: none;
   }
 }
 
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 1110px) {
   #support-link {
     display: none;
   }
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 975px) {
   #my-task-link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  #username-text {
+    display: none;
+  }
+  .header-profile {
+    padding-left: 5px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #login-link, #logout-link {
     display: none;
   }
 }
@@ -596,4 +611,59 @@
   .item {
     width: auto;
   }
+}
+
+.auth-button {
+  display: inline-block;
+  padding: 0.8em 2em;
+  margin-bottom: 20px;
+  align-self: center;
+
+  font-size: 16px;
+  font-weight: 600;
+
+  line-height: 1;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: var(--theme-color);
+  background-color: transparent;
+  cursor: pointer;
+
+  border-color: var(--auth-color);
+  border-radius: 0.6em;
+  /*box-shadow: 0 0 40px 40px var(--auth-color) inset, 0 0 0 0 var(--auth-color);*/
+  box-shadow: 0 0 5px 0 var(--auth-color) inset, 0 0 5px 2px var(--auth-color);
+  transition: all 150ms ease-in-out;
+}
+
+.auth-button:hover {
+  box-shadow: 0 0 40px 40px var(--auth-color) inset, 0 0 0 0 var(--auth-color);
+  text-decoration: none;
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+    .auth-button {
+      font-size: 16px;
+      padding: 15px 20px;
+      margin-bottom: 20px;
+      margin-top: 10px;
+    }
+}
+
+@media (max-width: 650px) {
+    .auth-button {
+      width: 130px;
+      font-size: 14px;
+      padding: 13px 15px;
+      margin-top: 7px;
+    }
+}
+
+@media (max-width: 345px) {
+    .auth-button {
+      width: auto;
+    }
 }

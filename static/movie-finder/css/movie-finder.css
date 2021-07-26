@@ -15,15 +15,19 @@ h1 {
   text-align: center;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1150px) {
   #specials-link {
     display: none;
   }
 }
 
-@media screen and (max-width: 900px) {
-  #popular-link {
+@media screen and (max-width: 1020px) {
+  #username-text {
     display: none;
+  }
+
+  .header-profile {
+    padding-left: 5px;
   }
 }
 

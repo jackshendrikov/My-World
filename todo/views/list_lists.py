@@ -1,13 +1,13 @@
 import datetime
 
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required, user_passes_test
 from django.http import HttpResponse
 from django.shortcuts import render
 
 from todo.forms import SearchForm
-from todo.models import Task, TaskList
 from todo.utils import staff_check
+from todo.models import Task, TaskList
+# from django.contrib.auth.decorators import login_required, user_passes_test
 
 
 # @login_required
