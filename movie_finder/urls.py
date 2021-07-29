@@ -15,6 +15,7 @@ urlpatterns = [
     path('popular/', views.popular, name='popular'),
 
     path('series/', views.all_series, name='series'),
+    path('xmas-category/', views.xmas, name='xmas-category'),
     path('top/', views.top_movies, name='top100'),
     path('netflix/', views.netflix, name='netflix'),
 
