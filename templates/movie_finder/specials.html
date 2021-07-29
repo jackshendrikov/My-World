@@ -22,6 +22,10 @@
             background: url("{% static 'img/back-xmas.jpg' %}") center/cover no-repeat;
         }
 
+        #sp-card-5 .special-card-bg {
+            background: url("{% static 'img/back-halloween.jpg' %}") center/cover no-repeat;
+        }
+
         #mobBtn > .auth-button {
             display: none;
         }
@@ -60,6 +64,14 @@
             <img class="special-card-img" src="{% static 'img/xmas-category.png' %}" />
             <div class="special-card-text">
                 <p class="special-card-title" style="color: #7ba3ff; text-shadow: 1px 1px 2px black;">Xmas Edition</p>
+            </div>
+        </a>
+
+         <a class="special-card" id="sp-card-5" href="{% url 'movie-finder:halloween-category' %}">
+            <div class="special-card-bg"></div>
+            <img class="special-card-img" src="{% static 'img/halloween-category.png' %}" />
+            <div class="special-card-text">
+                <p class="special-card-title" style="color: #f59611; text-shadow: 1px 1px 2px black;">Halloween</p>
             </div>
         </a>
     </div>
@@ -104,7 +116,17 @@
                 <img src="{% static 'img/back-xmas.jpg' %}" style="transform: scale(1.2);" alt="category-back" class="background"/>
                 <img src="{% static 'img/xmas-category.png' %}" style="max-width: 165px;" alt="category" class="category"/>
                 <div class="card-content">
-                    <h2 style="color: #f8f9fa; text-shadow: 1px 1px 2px black;">Xmas Edition</h2>
+                    <h2 style="color: #7ba3ff; text-shadow: 1px 1px 2px black;">Xmas Edition</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a class="card movie-card" href="{% url 'movie-finder:halloween-category' %}">
+                <img src="{% static 'img/back-halloween.jpg' %}" style="transform: scale(1.2);" alt="category-back" class="background"/>
+                <img src="{% static 'img/halloween-category.png' %}" style="max-width: 180px;" alt="category" class="category"/>
+                <div class="card-content">
+                    <h2 style="color: #f59611; text-shadow: 1px 1px 2px black;">Halloween</h2>
                 </div>
             </a>
         </div>

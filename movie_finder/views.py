@@ -26,6 +26,22 @@ def get_watchlist(request):
     else: return False
 
 
+def get_category_movies(movie_list, request):
+    my_watchlist = get_watchlist(request)
+
+    page = request.GET.get('page', 1)
+    paginator_category = Paginator(movie_list, 15)
+
+    try:
+        movie_items = paginator_category.page(page)
+    except PageNotAnInteger:
+        movie_items = paginator_category.page(1)
+    except EmptyPage:
+        movie_items = paginator_category.page(paginator_category.num_pages)
+
+    return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'myWatchlist': my_watchlist})
+
+
 @login_required
 def watchlist(request):
     my_watchlist = get_watchlist(request)
@@ -68,72 +84,29 @@ def main_page(request):
     return render(request, 'movie_finder/movies-main.html')
 
 
+def halloween(request):
+    halloween_list = list(all_movies.filter(keywords__contains='halloween-category').order_by('-rating_id__rating'))
+    return get_category_movies(halloween_list, request)
+
+
 def xmas(request):
-    my_watchlist = get_watchlist(request)
     xmas_list = list(all_movies.filter(keywords__contains='xmas-category').order_by('-rating_id__rating'))
-
-    page = request.GET.get('page', 1)
-    paginator_all_series = Paginator(xmas_list, 15)
-
-    try:
-        movie_items = paginator_all_series.page(page)
-    except PageNotAnInteger:
-        movie_items = paginator_all_series.page(1)
-    except EmptyPage:
-        movie_items = paginator_all_series.page(paginator_all_series.num_pages)
-
-    return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'myWatchlist': my_watchlist})
+    return get_category_movies(xmas_list, request)
 
 
 def all_series(request):
-    my_watchlist = get_watchlist(request)
     series_list = list(all_movies.filter(mtype_id__mtype='Series').order_by('-release'))
-
-    page = request.GET.get('page', 1)
-    paginator_all_series = Paginator(series_list, 15)
-
-    try:
-        movie_items = paginator_all_series.page(page)
-    except PageNotAnInteger:
-        movie_items = paginator_all_series.page(1)
-    except EmptyPage:
-        movie_items = paginator_all_series.page(paginator_all_series.num_pages)
-
-    return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'myWatchlist': my_watchlist})
+    return get_category_movies(series_list, request)
 
 
 def netflix(request):
-    my_watchlist = get_watchlist(request)
     netflix_movies = list(all_movies.exclude(netflix_id__netflix='None').order_by('-rating_id__rating'))
-
-    page = request.GET.get('page', 1)
-    paginator_netflix = Paginator(netflix_movies, 15)
-
-    try:
-        movie_items = paginator_netflix.page(page)
-    except PageNotAnInteger:
-        movie_items = paginator_netflix.page(1)
-    except EmptyPage:
-        movie_items = paginator_netflix.page(paginator_netflix.num_pages)
-
-    return render(request, "movie_finder/special-item.html", {'movieItems': movie_items, 'myWatchlist': my_watchlist})
+    return get_category_movies(netflix_movies, request)
 
 
 def top_movies(request):
-    my_watchlist = get_watchlist(request)
-
     top_list = list(all_movies.order_by('-rating_id__rating')[:100])
-    page = request.GET.get('page', 1)
-    paginator_top_movies = Paginator(top_list, 15)
-
-    try:
-        movie_items = paginator_top_movies.page(page)
-    except PageNotAnInteger:
-        movie_items = paginator_top_movies.page(1)
-    except EmptyPage:
-        movie_items = paginator_top_movies.page(paginator_top_movies.num_pages)
-
-    return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'myWatchlist': my_watchlist})
+    return get_category_movies(top_list, request)
 
 
 def advanced_search(request):

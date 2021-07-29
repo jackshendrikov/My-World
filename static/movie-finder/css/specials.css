@@ -28,6 +28,14 @@
   cursor: pointer;
   text-align: center;
 }
+
+@media (max-width: 1290px) {
+  .special-card {
+    margin-bottom: 15px;
+  }
+}
+
+
 .special-card:not(:last-child) {
   margin-right: 30px;
 }
@@ -70,6 +78,12 @@
   top: 38px;
   left: 0;
   height: 60%;
+}
+
+#sp-card-5 .special-card-img {
+  top: 30px;
+  left: 0;
+  height: 70%;
 }
 
 .special-card-text {
