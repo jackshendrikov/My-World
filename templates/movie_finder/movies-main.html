@@ -81,6 +81,13 @@
                     </div>
 
                     <div class="row-wrapper more-options">
+                        {% if user.is_authenticated %}
+                        <label for="exclude-titles" class="check" >
+                            <input type="checkbox" value="excludeTitles" name="exclude" id="exclude-titles" class="hidden"/>
+                            <span class="label"></span>Exclude Titles I've Seen
+                        </label>
+                        {% endif %}
+
                         <label for="by-rating" class="radio">
                             <input type="radio" value="byIMDb" name="sorting" id="by-rating" class="hidden" checked/>
                             <span class="label"></span>By IMDb

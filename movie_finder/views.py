@@ -127,7 +127,9 @@ def advanced_search(request):
         get_cast = request.GET.get('getCast')
         get_keywords = request.GET.get('getKeywords')
         get_genre = request.GET.get('getGenre')
+
         sorting = request.GET.get('sorting')
+        exclude = request.GET.get('exclude')
 
         if get_cast:
             get_cast = difflib.get_close_matches(get_cast, all_cast)
@@ -149,12 +151,17 @@ def advanced_search(request):
         cast = all_movies.filter(cast__icontains=get_cast)
         keywords = all_movies.filter(keywords__icontains=get_keywords)
 
-        if sorting == 'byYear':
-            select = list(all_movies.intersection(year).order_by('-release'))
-        elif sorting == 'byVotes':
-            select = list(all_movies.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
+        if exclude == 'excludeTitles':
+            my_movies = all_movies.exclude(imdb_id__in=my_watchlist)
         else:
-            select = list(all_movies.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
+            my_movies = all_movies
+
+        if sorting == 'byYear':
+            select = list(my_movies.intersection(year).order_by('-release'))
+        elif sorting == 'byVotes':
+            select = list(my_movies.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
+        else:
+            select = list(my_movies.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
 
         if get_genre == '': get_genre = 'All'
         if get_cast == '': get_cast = 'All'
@@ -177,9 +184,10 @@ def advanced_search(request):
             movie_items = paginator_advanced_search.page(paginator_advanced_search.num_pages)
 
         return render(request, 'movie_finder/movies-list.html', {'getRate': get_rating, 'getYear': get_year,
-                                                        'getGenre': get_genre, 'getCast': get_cast,
-                                                        'getKeywords': get_keywords, 'sorting': sorting,
-                                                        'movieItems': movie_items, 'myWatchlist': my_watchlist})
+                                                                 'getGenre': get_genre, 'getCast': get_cast,
+                                                                 'getKeywords': get_keywords, 'sorting': sorting,
+                                                                 'movieItems': movie_items,
+                                                                 'myWatchlist': my_watchlist})
     elif request.method == 'GET' and \
             (request.GET.get('getYear') is None or request.GET.get('getRate') is None) and \
             request.GET.get('page') is not None:
