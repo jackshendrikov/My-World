@@ -88,7 +88,7 @@
             <input type="hidden" value="{{movie.1}}" name="movie">
             <div style="position: relative;">
                 <input type="image" src="{{movie.14}}" alt="movie" onclick="$(this).closest('form').submit();">
-                <button type="button" class="watchlist-btn {% if movie.1 in myWatchlist %}added{% else %}add{% endif %}">
+                <button type="button" class="watchlist-btn {% if movie.0 in myWatchlist %}added{% else %}add{% endif %}">
                     <div class="icn-btn">
                         <span class="line line-1"></span>
                         <span class="line line-2"></span>
@@ -100,11 +100,13 @@
 
         <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="add-watchlist">
                 {% csrf_token %}
+                <input type="hidden" value="{{movie.0}}" name="imdb">
                 <input type="hidden" value="{{movie.1}}" name="movie">
          </form>
 
         <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="delete-watchlist">
                 {% csrf_token %}
+                <input type="hidden" value="{{movie.0}}" name="imdb">
                 <input type="hidden" value="delete{{movie.1}}" name="movie">
          </form>
 
@@ -134,6 +136,7 @@
         <div class="movie-cell watchlist" style="display: none;"><span class="cell-label">Remove from Watchlist:</span>
             <form action="{% url 'movie-finder:watchlist' %}" method="POST">
                 {% csrf_token %}
+                <input type="hidden" value="{{movie.0}}" name="imdb">
                 <input type="hidden" value="delete{{movie.1}}" name="movie" id="my_title">
                 <button class="action-button" type="submit" style="background-color: #f44336;">
                     <i class="fas fa-times"></i>

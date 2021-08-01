@@ -1,3 +1,4 @@
+import uuid
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -22,6 +23,7 @@ class Review(models.Model):
 
 
 class Watchlist(models.Model):
+    imdb_id = models.CharField(max_length=128, unique=True, default=uuid.uuid4, primary_key=True)
     movie = models.CharField(max_length=100, null=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 

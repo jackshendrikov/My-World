@@ -22,7 +22,7 @@ all_movies = Movie.objects.values_list(*values)
 
 def get_watchlist(request):
     if request.user.is_authenticated:
-        return list([x.movie for x in Watchlist.objects.filter(author=request.user)])
+        return list([x.imdb_id for x in Watchlist.objects.filter(author=request.user)])
     else: return False
 
 
@@ -48,9 +48,10 @@ def watchlist(request):
 
     if request.method == 'POST':
         movie = request.POST.get('movie')
+        imdb = request.POST.get('imdb')
         if movie[:6] != "delete":
-            if movie not in my_watchlist:
-                add_movie = Watchlist(movie=movie, author=request.user)
+            if imdb not in my_watchlist:
+                add_movie = Watchlist(imdb_id=imdb, movie=movie, author=request.user)
                 messages.success(request, f'{movie} successfully added to your watchlist!')
                 add_movie.save()
                 return redirect(request.META['HTTP_REFERER'])
@@ -58,14 +59,12 @@ def watchlist(request):
                 messages.info(request, f'{movie} was already in your watchlist!')
                 return redirect(request.META['HTTP_REFERER'])
         else:
-            delete_movie = Watchlist.objects.filter(movie=movie[6:], author=request.user)
+            delete_movie = Watchlist.objects.get(imdb_id=imdb, movie=movie[6:], author=request.user)
             messages.error(request, f'{movie[6:]} has been deleted from your watchlist!')
             delete_movie.delete()
             return redirect(request.META['HTTP_REFERER'])
 
-    user_watchlist = [all_movies.get(title=val) for val in my_watchlist]
-
-    print(user_watchlist)
+    user_watchlist = [all_movies.get(imdb_id=val) for val in my_watchlist]
 
     page = request.GET.get('page', 1)
     paginator_watchlist = Paginator(user_watchlist, 15)
