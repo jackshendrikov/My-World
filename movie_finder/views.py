@@ -22,7 +22,7 @@ all_movies = Movie.objects.values_list(*values)
 
 def get_watchlist(request):
     if request.user.is_authenticated:
-        return list([x.imdb_id for x in Watchlist.objects.filter(author=request.user)])
+        return list([x.imdb for x in Watchlist.objects.filter(author=request.user)])
     else: return False
 
 
@@ -51,7 +51,7 @@ def watchlist(request):
         imdb = request.POST.get('imdb')
         if movie[:6] != "delete":
             if imdb not in my_watchlist:
-                add_movie = Watchlist(imdb_id=imdb, movie=movie, author=request.user)
+                add_movie = Watchlist(imdb=imdb, movie=movie, author=request.user)
                 messages.success(request, f'{movie} successfully added to your watchlist!')
                 add_movie.save()
                 return redirect(request.META['HTTP_REFERER'])
@@ -59,7 +59,7 @@ def watchlist(request):
                 messages.info(request, f'{movie} was already in your watchlist!')
                 return redirect(request.META['HTTP_REFERER'])
         else:
-            delete_movie = Watchlist.objects.get(imdb_id=imdb, movie=movie[6:], author=request.user)
+            delete_movie = Watchlist.objects.get(imdb=imdb, movie=movie[6:], author=request.user)
             messages.error(request, f'{movie[6:]} has been deleted from your watchlist!')
             delete_movie.delete()
             return redirect(request.META['HTTP_REFERER'])
