@@ -84,7 +84,7 @@
         </div>
 
         <form class="search-bar" action="{% url 'movie-finder:movie-search' %}" method="GET">
-            <input type="text" name="q" value="" placeholder="Search" id="q" style="padding: 0 20px 0 40px; margin-top: 0; border: none;">
+            <input type="text" name="q" value="" placeholder="Search" id="q" style="padding: 0 20px 0 40px; margin-top: 0; border: none; color: var(--theme-color);">
         </form>
 
          {% if user.is_authenticated %}

@@ -1,6 +1,6 @@
 {% extends 'movie_finder/base.html' %}
 {% load static %}
-{% block title %}{{ user.username }}'s Watchlist{% endblock %}
+{% block title %}{{ user.username|capfirst }}'s Watchlist{% endblock %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'movie-finder/css/movies-list.css' %}">
@@ -13,7 +13,7 @@
 
 {% block content %}
 <div class="app-content-header" style="text-align: center; margin: auto;">
-    <h1 class="app-content-header-text">{{ user.username }}'s Watchlist &#160;<i class="fas fa-film" aria-hidden="true" style="color: #FFBC0B"></i></h1>
+    <h1 class="app-content-header-text">{{ user.username|capfirst }}'s Watchlist ({{ userWatchlist|length }}) &#160;<i class="fas fa-film" aria-hidden="true" style="color: #FFBC0B"></i></h1>
 </div>
 
 {% if userWatchlist %}
