@@ -26,8 +26,8 @@ def fill_form(request):
             form.instance.imdb = imdb
             msg = f'Added review for "{movie_selected}"'
             form.save()
-            return render(request, 'movie_finder/review.html', {'form': form, 'msg': msg, 'movie': movie_selected, 'imdb': imdb,
-                                                   'back': True})
+            return render(request, 'movie_finder/review.html', {'form': form, 'msg': msg, 'movie': movie_selected,
+                                                                'imdb': imdb, 'back': True})
         else:
             print(form.errors)
     else:

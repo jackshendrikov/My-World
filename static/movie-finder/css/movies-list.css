@@ -313,6 +313,11 @@
     padding: 0 4px;
 }
 
+.movie-cell.poster a  {
+    text-decoration: none;
+    color: var(--theme-color);
+}
+
 .tableView .movies-header {
     display: flex;
     align-items: center;
@@ -342,7 +347,7 @@
     align-items: center;
 }
 
-.tableView .movie-cell input {
+.tableView .movie-cell img {
     width: 22px;
     height: 32px;
     border-radius: 6px;
@@ -354,7 +359,7 @@
         font-size: 12px;
     }
 
-    .tableView .movie-cell.poster span {
+    .tableView .movie-cell.poster a {
         display: none;
     }
 
@@ -466,7 +471,6 @@
     background-color: var(--app-content-secondary-color);
     padding: 8px;
     border-radius: 4px;
-    cursor: pointer;
     transition: transform 0.2s;
     position: relative;
 }
@@ -517,12 +521,12 @@
     justify-content: space-between;
 }
 
-.gridView .movie-cell.poster span {
+.gridView .movie-cell.poster a {
     font-size: 16px;
     line-height: 24px;
 }
 
-.gridView .movie-cell input {
+.gridView .movie-cell img {
     width: 100%;
     height: 300px;
     -o-object-fit: cover;

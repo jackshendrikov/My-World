@@ -91,8 +91,8 @@
                 </a>
             </div>
             {% endif %}
-            <div class='movie-card-back-button'>
-                <a onclick="{% if youtube != "None" or intro == "Played" %}window.history.go(-2);{% elif msg %}window.history.go(-4);{% else %}window.history.back();{% endif %}">
+            <div class='movie-card-back-button' id="backBtn">
+                <a onclick="goBack();">
                     <i class="fas fa-hiking fa-flip-horizontal" aria-hidden="true"></i>
                     &nbsp;GO BACK
                 </a>
@@ -102,7 +102,7 @@
                  <input type="hidden" value="{{ title }}" name="movie">
                  <input type="hidden" value="{{ imdb_id }}" name="imdb">
                  <span onclick="$('#add-review').submit();">
-                    <i class="fas fa-comment-dots aria-hidden="true"></i>
+                    <i class="fas fa-comment-dots" aria-hidden="true"></i>
                     &nbsp;ADD REVIEW
                 </span>
             </form>
@@ -159,13 +159,28 @@
 {% block extra_js %}
 <script>
 let intro = "{{ youtube }}";
+let hisLen = history.length;
 
 if (intro !== "None" && intro !== "") {
     $("#showIntro").submit();
 }
 
+if (hisLen === 1 || hisLen === 0) {
+    document.getElementById('backBtn').style.display = 'none';
+}
+
 function readMore(reviewID, reviewDescription) {
     document.getElementById('review-' + reviewID).innerHTML = reviewDescription;
+}
+
+function goBack() {
+    {% if youtube != "None" or intro == "Played" %}
+    window.history.go(-3);
+    {% elif msg %}
+    window.history.go(-4);
+    {% else %}
+    window.history.back();
+    {% endif %}
 }
 </script>
 {% endblock extra_js %}

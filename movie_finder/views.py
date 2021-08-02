@@ -256,7 +256,7 @@ def result_page(request, movie_id: str):
         return render(request, "movie_finder/result.html", full_result)
     else:
         messages.error(request, f'Error occurred while we\'re trying to show you info about the movie!')
-        return redirect('/')
+        return redirect('/home/')
 
 
 def movie_search(request):
