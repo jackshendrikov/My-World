@@ -1,4 +1,5 @@
 {% extends 'movie_finder/base.html' %}
+{% load app_tags %}
 {% load static %}
 {% block title %}Movies List{% endblock %}
 
@@ -171,21 +172,21 @@
 {% if movieItems.has_other_pages %}
 <ul class="pagination">
     {% if movieItems.has_previous %}
-    <li class="previous"><a href="?page={{ movieItems.previous_page_number }}"></a></li>
+    <li class="previous"><a href="?{% url_replace request 'page' movieItems.previous_page_number %}"></a></li>
     {% else %}
     <li class="previous" style="display: none;"></li>
     {% endif %}
 
     {% for i in movieItems.paginator.page_range %}
       {% if movieItems.number == i %}
-    <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
+    <li class="active"><a href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
       {% else %}
-    <li><a href="?page={{ i }}">{{ i }}</a></li>
+    <li><a href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
       {% endif %}
     {% endfor %}
 
     {% if movieItems.has_next %}
-    <li class="last"><a href="?page={{ movieItems.next_page_number }}"></a></li>
+    <li class="last"><a href="?{% url_replace request 'page' movieItems.next_page_number %}"></a></li>
     {% else %}
     <li class="last" style="display: none;"></li>
     {% endif %}

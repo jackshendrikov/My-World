@@ -20,3 +20,9 @@ def gravatar(user, size=35):
     url = "//www.gravatar.com/avatar/{0}?s={1}&d=identicon&r=PG"
     return url.format(email_hash, size)
 
+
+@register.simple_tag
+def url_replace(request, field, value):
+    dict_ = request.GET.copy()
+    dict_[field] = value
+    return dict_.urlencode()

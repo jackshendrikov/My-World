@@ -19,6 +19,10 @@ values = ('imdb_id', 'title', 'rating_id__rating', 'link', 'votes', 'genres_id__
 
 all_movies = Movie.objects.values_list(*values)
 
+url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=904865657'
+df_cast = pd.read_csv(url)['cast']
+all_cast = list(set([j for sub in list(df_cast.str[2:-2].str.replace("'", "").str.replace('"', '').str.split(', ')) for j in sub]))
+
 
 def get_watchlist(request):
     if request.user.is_authenticated:
@@ -109,72 +113,46 @@ def top_movies(request):
 
 
 def advanced_search(request):
-    url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=904865657'
-    cast = pd.read_csv(url)['cast']
-
-    all_cast = list(set([j for sub in list(cast.str[2:-2].str.replace("'", "").str.replace('"', '')
-                                           .str.split(', ')) for j in sub]))
-
     my_watchlist = get_watchlist(request)
+    movie_items = None
+    get_cast = ''
 
-    global paginator_advanced_search
-    page = request.GET.get('page', 1)
+    if request.method == 'GET':
+        if request.GET.get('getYear') is not None or request.GET.get('getRate') is not None:
+            get_rating = request.GET.get('getRate')
+            get_year = request.GET.get('getYear')
+            get_cast = request.GET.get('getCast')
+            get_keywords = request.GET.get('getKeywords')
+            get_genre = request.GET.get('getGenre')
+            sorting = request.GET.get('sorting')
 
-    if request.method == 'GET' and (request.GET.get('getYear') is not None or request.GET.get('getRate') is not None) \
-            and request.GET.get('page') is None:
-        get_rating = request.GET.get('getRate')
-        get_year = request.GET.get('getYear')
-        get_cast = request.GET.get('getCast')
-        get_keywords = request.GET.get('getKeywords')
-        get_genre = request.GET.get('getGenre')
+            if get_cast:
+                get_cast = difflib.get_close_matches(get_cast, all_cast)
 
-        sorting = request.GET.get('sorting')
-        exclude = request.GET.get('exclude')
-
-        if get_cast:
-            get_cast = difflib.get_close_matches(get_cast, all_cast)
-
-            if len(get_cast) > 0:
-                get_cast = get_cast[0]
+                if len(get_cast) > 0: get_cast = get_cast[0]
+                else: get_cast = 'No matches'
             else:
-                get_cast = 'No matches'
-        else:
-            get_cast = ''
+                get_cast = ''
 
-        if get_genre == 'All': get_genre = ''
-        if not get_year: get_year = 0
-        if not get_rating: get_rating = 0.0
+            if get_genre == 'All': get_genre = ''
+            if not get_year: get_year = 0
+            if not get_rating: get_rating = 0.0
 
-        rating = all_movies.filter(rating_id__rating__gte=float(get_rating))
-        year = all_movies.filter(year_id__year__gte=float(get_year))
-        genres = all_movies.filter(genres_id__genres__icontains=get_genre)
-        cast = all_movies.filter(cast__icontains=get_cast)
-        keywords = all_movies.filter(keywords__icontains=get_keywords)
+            rating = all_movies.filter(rating_id__rating__gte=float(get_rating))
+            year = all_movies.filter(year_id__year__gte=float(get_year))
+            genres = all_movies.filter(genres_id__genres__icontains=get_genre)
+            cast = all_movies.filter(cast__icontains=get_cast)
+            keywords = all_movies.filter(keywords__icontains=get_keywords)
 
-        if exclude == 'excludeTitles':
-            my_movies = all_movies.exclude(imdb_id__in=my_watchlist)
-        else:
-            my_movies = all_movies
+            if sorting == 'byYear':
+                movie_items = list(all_movies.intersection(year).order_by('-release'))
+            elif sorting == 'byVotes':
+                movie_items = list(all_movies.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
+            else:
+                movie_items = list(all_movies.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
 
-        if sorting == 'byYear':
-            select = list(my_movies.intersection(year).order_by('-release'))
-        elif sorting == 'byVotes':
-            select = list(my_movies.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
-        else:
-            select = list(my_movies.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
-
-        if get_genre == '': get_genre = 'All'
-        if get_cast == '': get_cast = 'All'
-        if get_keywords == '': get_keywords = 'Any'
-
-        if sorting == 'byYear':
-            sorting = 'By Year'
-        elif sorting == 'byVotes':
-            sorting = 'By Votes'
-        else:
-            sorting = 'By Rating'
-
-        paginator_advanced_search = Paginator(select, 15)
+        page = request.GET.get('page')
+        paginator_advanced_search = Paginator(movie_items, 15)
 
         try:
             movie_items = paginator_advanced_search.page(page)
@@ -183,36 +161,22 @@ def advanced_search(request):
         except EmptyPage:
             movie_items = paginator_advanced_search.page(paginator_advanced_search.num_pages)
 
-        return render(request, 'movie_finder/movies-list.html', {'getRate': get_rating, 'getYear': get_year,
-                                                                 'getGenre': get_genre, 'getCast': get_cast,
-                                                                 'getKeywords': get_keywords, 'sorting': sorting,
-                                                                 'movieItems': movie_items,
-                                                                 'myWatchlist': my_watchlist})
-    elif request.method == 'GET' and \
-            (request.GET.get('getYear') is None or request.GET.get('getRate') is None) and \
-            request.GET.get('page') is not None:
-        try:
-            movie_items = paginator_advanced_search.page(page)
-        except EmptyPage:
-            movie_items = paginator_advanced_search.page(paginator_advanced_search.num_pages)
-
-        return render(request, 'movie_finder/movies-list.html', {'movieItems': movie_items, 'myWatchlist': my_watchlist})
-    else:
-        return render(request, 'movie_finder/movies-list.html')
+    return render(request, 'movie_finder/movies-list.html', {'getCast': get_cast, 'movieItems': movie_items,
+                                                             'myWatchlist': my_watchlist})
 
 
 def genre(request):
     my_watchlist = get_watchlist(request)
+    movie_items = None
+    genre_type = None
 
-    global paginator_genre
-    page = request.GET.get('page', 1)
+    if request.method == 'GET':
+        if request.GET.get('typeGenre') is not None:
+            genre_type = request.GET.get('typeGenre', 'False')
+            movie_items = list(all_movies.filter(genres_id__genres__contains=genre_type).order_by('-rating_id__rating'))
 
-    if request.method == 'GET' and request.GET.get('typeGenre') is not None and request.GET.get('page') is None:
-        genre_type = request.GET.get('typeGenre', 'False')
-
-        top_genre = list(all_movies.filter(genres_id__genres__contains=genre_type).order_by('-rating_id__rating'))
-
-        paginator_genre = Paginator(top_genre, 15)
+        page = request.GET.get('page')
+        paginator_genre = Paginator(movie_items, 15)
 
         try:
             movie_items = paginator_genre.page(page)
@@ -221,17 +185,8 @@ def genre(request):
         except EmptyPage:
             movie_items = paginator_genre.page(paginator_genre.num_pages)
 
-        return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'genreType': genre_type,
-                                                     'myWatchlist': my_watchlist})
-    elif request.method == 'GET' and request.GET.get('typeGenre') is None and request.GET.get('page') is not None:
-        try:
-            movie_items = paginator_genre.page(page)
-        except EmptyPage:
-            movie_items = paginator_genre.page(paginator_genre.num_pages)
-
-        return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'myWatchlist': my_watchlist})
-    else:
-        return render(request, 'movie_finder/special-item.html')
+    return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'genreType': genre_type,
+                                                              'myWatchlist': my_watchlist})
 
 
 def show_intro(request):
@@ -264,7 +219,7 @@ def result_page(request, movie_id: str):
         cast_list = cast[2:-2].replace("'", "").split(',')
         runtime = search[7]
         mType = search[8].strip()
-        netflix = search[9].strip()
+        mNetflix = search[9].strip()
         plot = search[10].strip()
         year = search[13]
         poster = search[14].strip()
@@ -284,7 +239,7 @@ def result_page(request, movie_id: str):
             reviews_rate = [(range(int(review.rating)), range(int(10 - review.rating))) for review in reviews]
 
         full_result = {'movie': movie, 'imdb_id': imdb_id, 'title': title, 'rating': rating, 'link': link,
-                       'votes': votes, 'genres': genres, 'runtime': runtime, 'mtype': mType, 'netflix': netflix,
+                       'votes': votes, 'genres': genres, 'runtime': runtime, 'mtype': mType, 'netflix': mNetflix,
                        'plot': plot, 'poster': poster, 'genres_split': genres_split, 'year': year, 'youtube': youtube,
                        'cast_list': cast_list, 'reviews': reviews, 'reviews_rate': reviews_rate, 'intro': intro,
                        'msg': msg}
