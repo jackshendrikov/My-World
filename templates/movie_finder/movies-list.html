@@ -156,14 +156,25 @@
         </div>
 
         <div class="movie-cell watchlist" style="display: none;"><span class="cell-label">Add to Watchlist:</span>
+            {% if movie.0 not in myWatchlist %}
             <form action="{% url 'movie-finder:watchlist' %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" value="{{movie.0}}" name="imdb">
                 <input type="hidden" value="{{movie.1}}" name="movie">
                 <button class="action-button" type="submit" style="background-color: #007bff;">
-                    <span>Add</span>
+                     <span>&nbsp;<i class="fa fa-plus"></i>&nbsp;</span>
                 </button>
             </form>
+            {% else %}
+            <form action="{% url 'movie-finder:watchlist' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{movie.0}}" name="imdb">
+                <input type="hidden" value="delete{{movie.1}}" name="movie">
+                <button class="action-button" type="submit" style="background-color: #f44336;">
+                    <span>&nbsp;<i class="fa fa-times"></i>&nbsp;</span>
+                </button>
+            </form>
+            {% endif %}
         </div>
     </div>
     {% endfor %}

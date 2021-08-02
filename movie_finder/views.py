@@ -2,7 +2,7 @@ import difflib
 import pandas as pd
 
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -58,7 +58,7 @@ def watchlist(request):
                 add_movie = Watchlist(imdb=imdb, movie=movie, author=request.user)
                 messages.success(request, f'{movie} successfully added to your watchlist!')
                 add_movie.save()
-                return redirect(request.META['HTTP_REFERER'])
+                return HttpResponse(status=204)
             else:
                 messages.info(request, f'{movie} was already in your watchlist!')
                 return redirect(request.META['HTTP_REFERER'])
@@ -69,6 +69,7 @@ def watchlist(request):
             return redirect(request.META['HTTP_REFERER'])
 
     user_watchlist = [all_movies.get(imdb_id=val) for val in my_watchlist]
+    count_watchlist = len(user_watchlist)
 
     page = request.GET.get('page', 1)
     paginator_watchlist = Paginator(user_watchlist, 15)
@@ -80,7 +81,8 @@ def watchlist(request):
     except EmptyPage:
         user_watchlist = paginator_watchlist.page(paginator_watchlist.num_pages)
 
-    return render(request, 'movie_finder/watchlist.html', {'userWatchlist': user_watchlist, 'myWatchlist': my_watchlist})
+    return render(request, 'movie_finder/watchlist.html', {'userWatchlist': user_watchlist, 'myWatchlist': my_watchlist,
+                                                           'countWatchlist': count_watchlist})
 
 
 def main_page(request):
@@ -124,7 +126,9 @@ def advanced_search(request):
             get_cast = request.GET.get('getCast')
             get_keywords = request.GET.get('getKeywords')
             get_genre = request.GET.get('getGenre')
+
             sorting = request.GET.get('sorting')
+            exclude = request.GET.get('exclude')
 
             if get_cast:
                 get_cast = difflib.get_close_matches(get_cast, all_cast)
@@ -144,12 +148,17 @@ def advanced_search(request):
             cast = all_movies.filter(cast__icontains=get_cast)
             keywords = all_movies.filter(keywords__icontains=get_keywords)
 
-            if sorting == 'byYear':
-                movie_items = list(all_movies.intersection(year).order_by('-release'))
-            elif sorting == 'byVotes':
-                movie_items = list(all_movies.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
+            if exclude == 'excludeTitles':
+                movie_items = all_movies.exclude(imdb_id__in=my_watchlist)
             else:
-                movie_items = list(all_movies.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
+                movie_items = all_movies
+
+            if sorting == 'byYear':
+                movie_items = list(movie_items.intersection(year).order_by('-release'))
+            elif sorting == 'byVotes':
+                movie_items = list(movie_items.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
+            else:
+                movie_items = list(movie_items.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
 
         page = request.GET.get('page')
         paginator_advanced_search = Paginator(movie_items, 15)
