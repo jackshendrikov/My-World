@@ -176,8 +176,12 @@ function readMore(reviewID, reviewDescription) {
 function goBack() {
     {% if youtube != "None" or intro == "Played" %}
     window.history.go(-3);
-    {% elif msg %}
-    window.history.go(-4);
+    {% elif messages %}
+        {% for message in messages %}
+            {% if 'Added review' in message|escape %}
+    window.history.go(-3);
+            {% endif %}
+        {% endfor %}
     {% else %}
     window.history.back();
     {% endif %}

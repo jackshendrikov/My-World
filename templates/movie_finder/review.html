@@ -180,11 +180,6 @@
         </form>
     </form>
 </div>
-<form action="{% url 'movie-finder:result' imdb %}" method="POST" id="showInfo">
-    {% csrf_token %}
-    <input type="hidden" value="{{ movie }}" name="movie">
-    <input type="hidden" value="{{ msg }}" name="msg">
-</form>
 {% endblock %}
 
 {% block extra_js %}
@@ -192,12 +187,5 @@
 $(".alert").delay(4000).slideUp(200, function() {
     $(this).alert('close');
 });
-
-let goBack = '{{ back }}';
-
-if (goBack === 'True') {
-    $("#showInfo").submit();
-}
-
 </script>
 {% endblock extra_js %}

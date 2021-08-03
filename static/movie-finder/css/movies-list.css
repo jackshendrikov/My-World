@@ -495,14 +495,13 @@
 
 @media screen and (max-width: 520px) {
     .gridView .movies-row {
-        width: 100%;
-        margin: 8px 0;
+        width: calc(50% - 10px);
+        margin: 8px 5px;
     }
 
     .gridView .movie-cell.poster {
-        width: 100%;
+        width: 100%
     }
-
 
     .gridView .movies-row:hover {
         transform: none;
@@ -533,6 +532,16 @@
      object-fit: cover;
     border-radius: 4px;
     margin-bottom: 16px;
+}
+
+@media screen and (max-width: 520px) {
+    .gridView .movie-cell img {
+        height: 200px;
+    }
+
+    .gridView .movie-cell.poster a {
+        font-size: 14px;
+    }
 }
 
 .gridView .cell-label {

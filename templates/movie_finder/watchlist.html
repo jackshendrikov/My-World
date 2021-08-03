@@ -85,7 +85,6 @@
     <div class="movies-row">
         <form action="{% url 'movie-finder:result' movie.0 %}" method="POST" class="movie-cell poster" style="text-align: center;">
             {% csrf_token %}
-            <input type="hidden" value="{{movie.1}}" name="movie">
             <div style="position: relative;">
                 <a href="{% url 'movie-finder:result' movie.0 %}">
                     <img src="{{movie.14}}" alt="movie">

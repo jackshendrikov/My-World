@@ -25,7 +25,6 @@
                 <div class="card-header theme-bg-fade">
                     <form action="{% url 'movie-finder:result' review.imdb %}" method="POST" class="movie-review" style="cursor: pointer;">
                         {% csrf_token %}
-                        <input type="hidden" value="{{ review.movie }}" name="movie">
                         <span class="float-left mr-2 mt-1 h4-responsive robotoBold" style="color: var(--select-color);">
                             {{ review.movie }}
                         </span>

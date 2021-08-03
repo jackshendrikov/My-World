@@ -204,26 +204,24 @@ def show_intro(request):
 
     if youtube != 'False' and title != 'False':
         imdb = all_movies.get(title=title)[0]
-        return render(request, "movie_finder/intro.html", {'youtube': "https://www.youtube.com/watch?v=" + youtube, 'title': title,
-                                              'imdb': imdb})
+        return render(request, "movie_finder/intro.html", {'youtube': "https://www.youtube.com/watch?v=" + youtube,
+                                                           'title': title, 'imdb': imdb})
     else:
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def result_page(request, movie_id: str):
-    movie = request.POST.get('movie', False)
     intro = request.POST.get('intro', False)
-    msg = request.POST.get('msg', False)
-    if movie or movie_id:
+
+    if movie_id:
         search = list(all_movies.get(imdb_id=movie_id))
 
         imdb_id = search[0].strip()
         title = search[1].strip()
         rating = int(float(str(search[2]).strip()) * 10)
         link = search[3].strip()
-        votes = search[4]
+        # votes = search[4]
         genres = search[5].strip()
-        genres_split = genres.split(',')
         cast = search[6].strip()
         cast_list = cast[2:-2].replace("'", "").split(',')
         runtime = search[7]
@@ -239,19 +237,15 @@ def result_page(request, movie_id: str):
             youtube = search[15].strip()
             intro = 'None'
 
-        if msg:
-            messages.success(request, msg)
-
         reviews = Review.objects.filter(movie=title)
         reviews_rate = False
         if reviews:
             reviews_rate = [(range(int(review.rating)), range(int(10 - review.rating))) for review in reviews]
 
-        full_result = {'movie': movie, 'imdb_id': imdb_id, 'title': title, 'rating': rating, 'link': link,
-                       'votes': votes, 'genres': genres, 'runtime': runtime, 'mtype': mType, 'netflix': mNetflix,
-                       'plot': plot, 'poster': poster, 'genres_split': genres_split, 'year': year, 'youtube': youtube,
-                       'cast_list': cast_list, 'reviews': reviews, 'reviews_rate': reviews_rate, 'intro': intro,
-                       'msg': msg}
+        full_result = {'imdb_id': imdb_id, 'title': title, 'rating': rating, 'link': link, 'genres': genres,
+                       'runtime': runtime, 'mtype': mType, 'netflix': mNetflix, 'plot': plot, 'poster': poster,
+                       'year': year, 'youtube': youtube, 'cast_list': cast_list, 'reviews': reviews,
+                       'reviews_rate': reviews_rate, 'intro': intro}
 
         return render(request, "movie_finder/result.html", full_result)
     else:

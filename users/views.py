@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import (ListView,  UpdateView, DeleteView)
 
 from .forms import ReviewForms
@@ -24,16 +24,16 @@ def fill_form(request):
             form.instance.author = request.user
             form.instance.movie = movie_selected
             form.instance.imdb = imdb
-            msg = f'Added review for "{movie_selected}"'
             form.save()
-            return render(request, 'movie_finder/review.html', {'form': form, 'msg': msg, 'movie': movie_selected,
-                                                                'imdb': imdb, 'back': True})
+
+            messages.success(request, f'Added review for "{movie_selected}"')
+            return redirect('movie-finder:result', imdb)
         else:
             print(form.errors)
     else:
         form = ReviewForms()
 
-    params = {'form': form, 'movie': movie_selected, 'imdb': imdb, 'back': False}
+    params = {'form': form, 'movie': movie_selected, 'imdb': imdb}
     return render(request, 'movie_finder/review.html', params)
 
 
