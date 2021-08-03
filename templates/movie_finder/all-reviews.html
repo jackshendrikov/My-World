@@ -23,12 +23,11 @@
         <div class="col">
             <div class="card mb-3">
                 <div class="card-header theme-bg-fade">
-                    <form action="{% url 'movie-finder:result' review.imdb %}" method="POST" class="movie-review" style="cursor: pointer;">
-                        {% csrf_token %}
+                    <a href="{% url 'movie-finder:result' review.imdb %}" class="movie-review" style="cursor: pointer;">
                         <span class="float-left mr-2 mt-1 h4-responsive robotoBold" style="color: var(--select-color);">
                             {{ review.movie }}
                         </span>
-                    </form>
+                    </a>
 
                     <span class="float-right mr-2 mt-1 h4-responsive robotoBold"  style="color: var(--author-color);">
                         @{{ review.author }}
