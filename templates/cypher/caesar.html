@@ -1,0 +1,84 @@
+{% extends 'cypher/base.html' %}
+{% load static %}
+{% block title %}Caesar Cipher{% endblock %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
+    {% if user.is_authenticated %}
+    <style>
+    .cipher-form {
+        margin-top: 10px;
+    }
+
+    @media (max-width: 992px) {
+        .cipher-form {
+            margin-top: 0;
+        }
+    }
+    </style>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if not user.is_authenticated %}
+<div style="width: 100%; text-align: center;">
+    <a class="auth-button" style="margin-right: 10px;" href="{% url 'login' %}">Log In</a>
+    <a class="auth-button" href="{% url 'register' %}">Sign Up</a>
+</div>
+{% endif %}
+
+<form class="cipher-form" action="{% url 'cypher:caesar' %}" method="POST" autocomplete="off">
+    {% csrf_token %}
+    <div class="container">
+        <header class="cipher-form-header">
+            <h2 class="title">Encrypt Message</h2>
+        </header>
+
+        <div class="cipher-form-main">
+            <section class="form-content">
+                <div class="row-wrapper">
+                    <div class="element encrypt">
+                        <label for="plaintext">Plaintext</label>
+                        <textarea id="plaintext" name="plaintext" maxlength="1000" required>{% if plaintext %}{{ plaintext }}{% else %}Attack tomorrow at 6:45 from the north, the main target - the southern gate...{% endif %}</textarea>
+                    </div>
+
+                    <div class="element shift">
+                        <label for="shift">Shift</label>
+                        <input type="number" name="shift" min="0" max="25" value="{% if shift %}{{ shift }}{% else %}4{% endif %}" placeholder="Shift" id="shift">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="form-footer">
+            <div class="footer-wrapper">
+                <input type="submit" value="Encrypt!">
+            </div>
+        </footer>
+    </div>
+</form>
+
+{% if ciphertext %}
+<div class="cipher-form" id="result-caesar">
+    {% csrf_token %}
+    <div class="container">
+        <header class="cipher-form-header">
+            <h2 class="title">Result</h2>
+        </header>
+
+        <div class="cipher-form-main">
+            <section class="form-content">
+                <div class="row-wrapper">
+                    <div class="element encrypt">
+                        <textarea id="ciphertext" readonly="readonly">{{ ciphertext }}</textarea>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block extra_js %}
+{% endblock extra_js %}

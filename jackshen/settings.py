@@ -75,7 +75,8 @@ INSTALLED_APPS = [
     'ip_locator',
     'todo',
     'movie_finder',
-    'users'
+    'users',
+    'cypher'
 ]
 
 MIDDLEWARE = [

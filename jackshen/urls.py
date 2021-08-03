@@ -12,6 +12,7 @@ urlpatterns = [
     path('', include("home.urls")),
     path('admin/', admin.site.urls),
     path('todo/', include('todo.urls', namespace='todo')),
+    path('cypher/', include('cypher.urls', namespace='cypher')),
     path('ip-locator/', include('ip_locator.urls', namespace='ip_locator')),
     path('movie-finder/', include('movie_finder.urls', namespace='movie-finder')),
 ]

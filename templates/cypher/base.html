@@ -1,0 +1,154 @@
+{% load static %}
+{% load app_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Cryptography Tools">
+    <meta name="author" content="JackShen">
+
+{#    <meta property="og:image" content="{% static 'img/movie-img.png' %}" />#}
+    <meta property="og:image:alt" content="Cryptography Tools" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="600" />
+    <meta property="og:title" content="Cryptography Tools" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jackshen.herokuapp.com/cypher/" />
+    <meta property="og:description" content="Cryptography tools to encrypt/decrypt message" />
+
+    <title>{% block title %}Cryptography Tools{% endblock %}</title>
+    <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
+
+    <!-- Main core CSS -->
+    <link rel='stylesheet' href='{% static 'libs/css/font-awesome.css' %}'>
+    <link href='https://fonts.googleapis.com/css?family=Cabin+Sketch' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="{% static 'libs/css/normalize.min.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'cypher/css/cypher.css' %}">
+
+    {% block extrahead %}
+    {% endblock extrahead %}
+</head>
+
+<body>
+<div class="spinner">
+    <div class="inner one"></div>
+    <div class="inner two"></div>
+    <div class="inner three"></div>
+</div>
+
+<div class="dark-light">
+    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+    </svg>
+</div>
+
+{% if user.is_authenticated %}
+<input type="checkbox" id="modal" />
+<label for="modal" class="modal-bg"></label>
+<div class="modal-content">
+    <label for="modal" class="close">
+        <i class="fas fa-times" aria-hidden="true"></i>
+	</label>
+
+    <img class="round" src="{{ user|gravatar:128 }}" alt="user" />
+
+    <header>
+		<h2>{{ user.username|truncatechars:15 }}</h2>
+	</header>
+	<footer>
+		<a href="{% url 'logout' %}" class="button sign-out"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Log Out</a>
+	</footer>
+</div>
+{% endif %}
+
+<div class="app" id="App">
+    <div class="header">
+        <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" />
+        <div class="header-menu">
+            {% if user.is_authenticated %}
+            <a class="menu-link" id="logout-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Log Out</a>
+            {% else %}
+            <a class="menu-link" id="login-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>&nbsp;Log In</a>
+            {% endif %}
+        </div>
+
+         {% if user.is_authenticated %}
+         <label for="modal" class="header-profile" style="cursor: pointer; margin-bottom: 0;">
+             <span id="username-text">{{ user.username|truncatechars:15 }}</span>
+             <img class="profile-img" src="{{ user|gravatar:60 }}" alt="avatar"/>
+         </label>
+        {% else %}
+        <div class="header-profile" style="visibility: hidden;"></div>
+        {% endif %}
+        <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
+        <i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-home" onclick="window.open('{% url "home_page" %}', '_self')"></i>
+    </div>
+
+    <div class="wrapper">
+        <div class="main-container">
+            <div class="content-wrapper">
+                <div class="content-section">
+                    {% if messages %}
+                        {% for message in messages %}
+                    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %} alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="font-size: 1.2rem;">
+                            <span aria-hidden="true"><i class="fas fa-times"></i></span>
+                        </button>
+                    </div>
+                        {% endfor %}
+                    {% endif %}
+
+                    {% if form.errors %}
+                    <p>{{ form.non_field_errors }}</p>
+                    {% endif %}
+
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<span class="content-section-footer-title">JackShen Engeneering, {% now "Y" %}</span>
+
+<script src="{% static 'libs/js/prefixfree.min.js' %}"></script>
+
+<!-- jQuery and Bootstrap core JS, plus Popper -->
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+<script src="{% static 'base.js' %}"></script>
+<script>
+let theme_flag = 1;
+let github = document.getElementById('github');
+
+$('.dark-light').click(function() {
+    if (theme_flag) {
+        github.src = "{% static 'img/github-light.png' %}";
+        theme_flag = 0;
+    }
+    else {
+        github.src = "{% static 'img/github-dark.png' %}";
+        theme_flag = 1;
+    }
+});
+
+$(github).click(function() {
+    window.open('https://github.com/JackShen1/');
+});
+
+$(".alert").delay(3000).slideUp(200, function() {
+    $(this).alert('close');
+});
+</script>
+
+{% block extra_js %}
+{% endblock extra_js %}
+</body>
+</html>
