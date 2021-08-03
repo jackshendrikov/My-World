@@ -87,7 +87,9 @@
             {% csrf_token %}
             <input type="hidden" value="{{movie.1}}" name="movie">
             <div style="position: relative;">
-                <input type="image" src="{{movie.14}}" alt="movie" onclick="$(this).closest('form').submit();">
+                <a href="{% url 'movie-finder:result' movie.0 %}">
+                    <img src="{{movie.14}}" alt="movie">
+                </a>
                 <button type="button" class="watchlist-btn {% if movie.0 in myWatchlist %}added{% else %}add{% endif %}">
                     <div class="icn-btn">
                         <span class="line line-1"></span>
@@ -95,7 +97,7 @@
                     </div>
                 </button>
             </div>
-             <span style="cursor: pointer;" onclick="$(this).closest('form').submit();">{{movie.1}}</span>
+            <a style="cursor: pointer;" href="{% url 'movie-finder:result' movie.0 %}">{{movie.1}}</a>
         </form>
 
         <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="add-watchlist">
