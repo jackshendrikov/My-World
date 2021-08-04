@@ -48,3 +48,22 @@ def atbash(request):
                                                       'decrypt': decrypt})
 
     return render(request, 'cypher/atbash.html')
+
+
+def rot13(request):
+    if request.method == 'POST':
+        decrypt = False
+
+        if request.POST['cipherEncrypt'] == 'False':
+            decrypt = True
+
+            ciphertext = request.POST['ciphertext']
+            plaintext = decrypt_caesar(ciphertext, shift=13)
+        else:
+            plaintext = request.POST['plaintext']
+            ciphertext = encrypt_caesar(plaintext, shift=13)
+
+        return render(request, 'cypher/rot13.html', {'plaintext': plaintext, 'ciphertext': ciphertext,
+                                                     'decrypt': decrypt})
+
+    return render(request, 'cypher/rot13.html')
