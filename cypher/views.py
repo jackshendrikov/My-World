@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .utils.monoalphabetic.caesar import encrypt_caesar, decrypt_caesar
+from .utils.monoalphabetic.atbash import solve_atbash
 
 
 def caesar(request):
@@ -7,7 +8,7 @@ def caesar(request):
         caesarList = False
         decrypt = False
 
-        if request.POST['caesarEncrypt'] == 'False':
+        if request.POST['cipherEncrypt'] == 'False':
             decrypt = True
             ciphertext = request.POST['ciphertext']
             shift = request.POST.get('shift', False)
@@ -28,3 +29,22 @@ def caesar(request):
                                                       'decrypt': decrypt})
 
     return render(request, 'cypher/caesar.html')
+
+
+def atbash(request):
+    if request.method == 'POST':
+        decrypt = False
+
+        if request.POST['cipherEncrypt'] == 'False':
+            decrypt = True
+
+            ciphertext = request.POST['ciphertext']
+            plaintext = solve_atbash(ciphertext)
+        else:
+            plaintext = request.POST['plaintext']
+            ciphertext = solve_atbash(plaintext)
+
+        return render(request, 'cypher/atbash.html', {'plaintext': plaintext, 'ciphertext': ciphertext,
+                                                      'decrypt': decrypt})
+
+    return render(request, 'cypher/atbash.html')

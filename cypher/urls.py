@@ -3,5 +3,6 @@ from . import views
 
 app_name = 'cypher'
 urlpatterns = [
-    path('', views.caesar, name='caesar')
+    path('caesar-cipher/', views.caesar, name='caesar'),
+    path('atbash-cipher/', views.atbash, name='atbash')
 ]

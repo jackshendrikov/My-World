@@ -1,13 +1,13 @@
 {% extends 'cypher/base.html' %}
 {% load static %}
-{% block title %}Caesar Cipher{% endblock %}
+{% block title %}Atbash Cipher{% endblock %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
 {% endblock %}
 
 {% block content %}
-<form id="cipherDecrypt" class="cipher-form" action="{% url "cypher:caesar" %}" method="POST" autocomplete="off">
+<form id="cipherDecrypt" class="cipher-form" action="{% url "cypher:atbash" %}" method="POST" autocomplete="off">
     {% csrf_token %}
     <input type="hidden" value="False" name="cipherEncrypt">
     <div class="container">
@@ -20,16 +20,11 @@
                 <div class="row-wrapper">
                     <div class="element decrypt">
                         <label for="ciphertext">Ciphertext</label>
-                        <textarea id="ciphertext" name="ciphertext" minlength="5" maxlength="1000" required>{% if ciphertext and decrypt %}{{ ciphertext }}{% else %}Mffmow fayaddai mf 8:67 rday ftq zadft, ftq ymuz fmdsqf - ftq eagftqdz smfq.{% endif %}</textarea>
-                    </div>
-
-                    <div class="element shift">
-                        <label for="shift" style="display: block; text-align: center;">Shift (Optional)</label>
-                        <input type="number" name="shift" min="0" max="25" value="{% if shift and decrypt %}{{ shift }}{% endif %}" id="shift">
+                        <textarea id="ciphertext" name="ciphertext" minlength="5" maxlength="1000" required>{% if ciphertext and decrypt %}{{ ciphertext }}{% else %}Zggzxp glnliild zg 4:65 uiln gsv mligs, gsv nzrm gzitvg - gsv hlfgsvim tzgv.{% endif %}</textarea>
                     </div>
                 </div>
 
-                {% if plaintext and decrypt and not caesarList%}
+                {% if plaintext and decrypt %}
                 <div class="row-wrapper">
                     <div class="element encrypt">
                         <label for="plaintext">Plaintext</label>
@@ -48,7 +43,7 @@
     </div>
 </form>
 
-<form id="cipherEncrypt" class="cipher-form" action="{% url "cypher:caesar" %}" method="POST" autocomplete="off">
+<form id="cipherEncrypt" class="cipher-form" action="{% url "cypher:atbash" %}" method="POST" autocomplete="off">
     {% csrf_token %}
     <input type="hidden" value="True" name="cipherEncrypt">
     <div class="container">
@@ -62,11 +57,6 @@
                     <div class="element encrypt">
                         <label for="plaintext">Plaintext</label>
                         <textarea id="plaintext" name="plaintext" minlength="5" maxlength="1000" required>{% if plaintext and not decrypt %}{{ plaintext }}{% else %}Attack tomorrow at 6:45 from the north, the main target - the southern gate.{% endif %}</textarea>
-                    </div>
-
-                    <div class="element shift">
-                        <label for="shift" style="display: block; text-align: center;">Shift (Required)</label>
-                        <input type="number" name="shift" min="0" max="25" value="{% if shift and not decrypt %}{{ shift }}{% else %}4{% endif %}" placeholder="Shift" id="shift" required>
                     </div>
                 </div>
 
@@ -88,22 +78,6 @@
         </footer>
     </div>
 </form>
-
-{% if caesarList %}
-<table class="cipher-table" id="cipherTable">
-    <tr>
-        <th>Shift</th>
-        <th>Text</th>
-    </tr>
-
-    {% for shift in plaintext %}
-    <tr>
-        <td data-th="Shift">{{ shift.0 }}</td>
-        <td data-th="Text">{{ shift.1 }}</td>
-    </tr>
-    {% endfor %}
-</table>
-{% endif %}
 {% endblock %}
 
 {% block extra_js %}

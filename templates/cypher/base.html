@@ -108,6 +108,25 @@
                     <p>{{ form.non_field_errors }}</p>
                     {% endif %}
 
+                    {% if not user.is_authenticated %}
+                    <div style="width: 100%; text-align: center;">
+                        <a class="auth-button" style="margin-right: 10px;" href="{% url 'login' %}">Log In</a>
+                        <a class="auth-button" href="{% url 'register' %}">Sign Up</a>
+                    </div>
+                    {% endif %}
+
+                    <div style="text-align: center;">
+                        <div class="switcher">
+                            <input type="radio" name="balance" value="Encrypt" id="Encrypt" class="switcher-input switcher-encrypt" checked>
+                            <label for="Encrypt" class="switcher-label">Encrypt</label>
+
+                            <input type="radio" name="balance" value="Decrypt" id="Decrypt" class="switcher-input switcher-decrypt">
+                            <label for="Decrypt" class="switcher-label">Decrypt</label>
+
+                            <span class="switcher-toggle"></span>
+                        </div>
+                    </div>
+
                     {% block content %}{% endblock %}
                 </div>
             </div>
