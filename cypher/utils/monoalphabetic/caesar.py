@@ -38,4 +38,4 @@ def decrypt_caesar(ciphertext, shift=0):
     if shift:
         return decrypt_once(ciphertext, shift)
     else:
-        return [decrypt_once(ciphertext, shift) for shift in range(26)]
+        return [(shift, decrypt_once(ciphertext, shift)) for shift in range(26)]
