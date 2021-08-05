@@ -154,7 +154,7 @@ def advanced_search(request):
                 movie_items = all_movies
 
             if sorting == 'byYear':
-                movie_items = list(movie_items.intersection(year).order_by('-release'))
+                movie_items = list(movie_items.intersection(rating, year, genres, cast, keywords).order_by('-release'))
             elif sorting == 'byVotes':
                 movie_items = list(movie_items.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
             else:
