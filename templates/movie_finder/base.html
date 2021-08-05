@@ -31,6 +31,15 @@
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <link rel="stylesheet" href="{% static 'movie-finder/css/movie-finder.css' %}">
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YW2L42J25"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-6YW2L42J25');
+    </script>
+
     {% block extrahead %}
     {% endblock extrahead %}
 </head>
