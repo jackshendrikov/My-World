@@ -4,6 +4,14 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block extrahead %}
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{% block meta_title %}{{ title }}{% endblock %}">
+    <meta property="og:url" content="{% block meta_url %}https://jackshen.herokuapp.com/movie-finder/movie-info/{{ imdb_id }}/{% endblock %}">
+    <meta property="og:image" content="{% block meta_image %}{{ poster }}{% endblock %}">
+    <meta property="og:image:width" content="{% block meta_image_width %}300{% endblock %}" />
+    <meta property="og:image:height" content="{% block meta_image_height %}445{% endblock %}" />
+    <meta property="og:description" content="{% block meta_description %}{{ plot }}{% endblock %}">
+
     <link rel="stylesheet" href="{% static 'movie-finder/css/movie-info.css' %}">
     <link rel="stylesheet" href="{% static 'movie-finder/css/movie-reviews.css' %}">
     <style>

@@ -8,14 +8,15 @@
     <meta name="description" content="Movie Finder">
     <meta name="author" content="JackShen">
 
-    <meta property="og:image" content="{% static 'img/movie-img.png' %}" />
+    <meta property="og:site_name" content="{% block meta_sitename %}Movie Finder{% endblock %}">
+    <meta property="og:image" content="{% block meta_image %}{% static 'img/movie-img.png' %}{% endblock %}" />
     <meta property="og:image:alt" content="Movie Finder" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="600" />
-    <meta property="og:title" content="Movie Finder" />
+    <meta property="og:image:width" content="{% block meta_image_width %}1200{% endblock %}" />
+    <meta property="og:image:height" content="{% block meta_image_height %}600{% endblock %}" />
+    <meta property="og:title" content="{% block meta_title %}Movie Finder{% endblock %}" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://jackshen.herokuapp.com/movie-finder/" />
-    <meta property="og:description" content="Find movie, add review, get recommendation, watch on Netflix" />
+    <meta property="og:url" content="{% block meta_url %}https://jackshen.herokuapp.com/movie-finder/{% endblock %}" />
+    <meta property="og:description" content="{% block meta_description %}Find movie, add review, get recommendation, watch on Netflix{% endblock %}" />
 
     <title>{% block title %}Movie Finder{% endblock %}</title>
     <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
