@@ -175,6 +175,7 @@ circle {
 .modal-content footer .button.finderly,
 .modal-content footer .button.todo-lists,
 .modal-content footer .button.sentimento,
+.modal-content footer .button.cypher,
 .modal-content footer .button.locator,
 .modal-content footer .button.sign-out {
   text-shadow: 1px 0 0 #565454;
@@ -193,9 +194,15 @@ circle {
   background-color: #e9c46a;
 }
 
+.modal-content footer .button.cypher {
+  margin-right: 10px;
+  background-color: #4caf50;
+}
+
 .modal-content footer .button.sentimento {
   margin-right: 10px;
   background-color: #06d6a0;
+  display: none;
 }
 
 .modal-content footer .button.locator {
@@ -209,6 +216,7 @@ circle {
 }
 
 @media (max-width: 900px) {
+  .modal-content footer .button.sentimento,
   .modal-content footer .button.locator {
     display: block;
   }
@@ -217,6 +225,7 @@ circle {
   .modal-content footer .button.todo-lists,
   .modal-content footer .button.sentimento,
   .modal-content footer .button.locator,
+  .modal-content footer .button.cypher,
   .modal-content footer .button.sign-out {
     margin-bottom: 10px;
     width: 150px;
