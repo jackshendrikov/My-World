@@ -3,6 +3,7 @@ from . import views
 
 app_name = 'cypher'
 urlpatterns = [
+    path('', views.cypher_main,  name="cypher-main"),
     path('caesar-cipher/', views.caesar, name='caesar'),
     path('atbash-cipher/', views.atbash, name='atbash'),
     path('bacon-cipher/', views.bacon, name='bacon'),

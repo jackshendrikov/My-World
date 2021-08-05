@@ -1,0 +1,107 @@
+{% extends 'cypher/base.html' %}
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'home/home/css/home.css' %}">
+<style>
+#Switcher {
+    display: none;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1 class="section-title">Monoalphabetic Substitution Ciphers</h1>
+
+<div class='items'>
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="{% url "cypher:atbash" %}" target="_blank">
+                <defs>
+                    <clipPath id='clip-0'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Atbash Cipher
+                </text>
+                <g clip-path='url(#clip-0)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Atbash Cipher
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="{% url "cypher:rot13" %}" target="_blank">
+                <defs>
+                    <clipPath id='clip-1'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    ROT13 Cipher
+                </text>
+                <g clip-path='url(#clip-1)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        ROT13 Cipher
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="{% url "cypher:caesar" %}" target="_blank">
+                <defs>
+                    <clipPath id='clip-2'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Caesar Cipher
+                </text>
+                <g clip-path='url(#clip-2)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Caesar Cipher
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+
+
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="{% url "cypher:bacon" %}" target="_blank">
+                <defs>
+                    <clipPath id='clip-3'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Baconian Cipher
+                </text>
+                <g clip-path='url(#clip-3)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Baconian Cipher
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'home/home/js/main_script.js' %}"></script>
+{% endblock extra_js %}

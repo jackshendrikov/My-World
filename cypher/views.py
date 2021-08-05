@@ -4,6 +4,10 @@ from .utils.monoalphabetic.bacon import encrypt_bacon, decrypt_bacon
 from .utils.monoalphabetic.atbash import solve_atbash
 
 
+def cypher_main(request):
+    return render(request, 'cypher/main.html')
+
+
 def caesar(request):
     if request.method == 'POST':
         caesarList = False
