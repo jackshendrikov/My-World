@@ -490,6 +490,11 @@ textarea {
     flex-basis: 75px;
 }
 
+.cipher-form .container .cipher-form-main .form-content .row-wrapper .original-table {
+    flex: 0;
+    flex-basis: 125px;
+}
+
 .cipher-form .container .form-footer {
     grid-column: 1/-1;
     display: grid;

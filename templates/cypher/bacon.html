@@ -1,18 +1,18 @@
 {% extends 'cypher/base.html' %}
 {% load static %}
-{% block title %}Caesar Cipher{% endblock %}
+{% block title %}Bacon Cipher{% endblock %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
 {% endblock %}
 
 {% block content %}
-<form id="cipherDecrypt" class="cipher-form" action="{% url "cypher:caesar" %}" method="POST" autocomplete="off">
+<form id="cipherDecrypt" class="cipher-form" action="{% url "cypher:bacon" %}" method="POST" autocomplete="off">
     {% csrf_token %}
     <input type="hidden" value="False" name="cipherEncrypt">
     <div class="container">
         <header class="cipher-form-header">
-            <h2 class="title">Caesar Decoder</h2>
+            <h2 class="title">Bacon Decoder</h2>
         </header>
 
         <div class="cipher-form-main">
@@ -20,16 +20,19 @@
                 <div class="row-wrapper">
                     <div class="element decrypt">
                         <label for="ciphertext">Ciphertext</label>
-                        <textarea id="ciphertext" name="ciphertext" minlength="5" maxlength="1000" required>{% if ciphertext and decrypt %}{{ ciphertext }}{% else %}Mffmow fayaddai mf 8:67 rday ftq zadft, ftq ymuz fmdsqf - ftq eagftqdz smfq.{% endif %}</textarea>
+                        <textarea id="ciphertext" name="ciphertext" minlength="5" maxlength="1000" required>{% if ciphertext and decrypt %}{{ ciphertext }}{% else %}AAAAABAABABAABAAAAAAAAABAABAABBAABAABBABABABBABBABBAAAABAAAAABBABBABAAAABABBAAAAABBABABABBBAABAAABBBAABAAABBAAABBABBAAAABAABAAABBB{% endif %}</textarea>
                     </div>
 
-                    <div class="element shift">
-                        <label for="shift" style="display: block; text-align: center;">Shift (Optional)</label>
-                        <input type="number" name="shift" min="0" max="25" value="{% if shift and decrypt %}{{ shift }}{% endif %}" id="shift">
+                    <div class="element original-table">
+                        <label style="display: block; text-align: center;">Use Original Table (i=j, u=v)</label>
+                        <label for="originalDecode" class="check" style="text-align: center; padding-right: 0; display: block;">
+                            <input type="checkbox" value="True" name="originalTable" id="originalDecode" class="hidden" {% if originTable and decrypt %}checked{% endif %}/>
+                            <span class="label" style="margin-right: 0;"></span>
+                        </label>
                     </div>
                 </div>
 
-                {% if plaintext and decrypt and not caesarList %}
+                {% if plaintext and decrypt %}
                 <div class="row-wrapper">
                     <div class="element encrypt">
                         <label for="plaintext">Plaintext</label>
@@ -48,12 +51,12 @@
     </div>
 </form>
 
-<form id="cipherEncrypt" class="cipher-form" action="{% url "cypher:caesar" %}" method="POST" autocomplete="off">
+<form id="cipherEncrypt" class="cipher-form" action="{% url "cypher:bacon" %}" method="POST" autocomplete="off">
     {% csrf_token %}
     <input type="hidden" value="True" name="cipherEncrypt">
     <div class="container">
         <header class="cipher-form-header">
-            <h2 class="title">Caesar Encoder</h2>
+            <h2 class="title">Bacon Encoder</h2>
         </header>
 
         <div class="cipher-form-main">
@@ -61,12 +64,15 @@
                 <div class="row-wrapper">
                     <div class="element encrypt">
                         <label for="plaintext">Plaintext</label>
-                        <textarea id="plaintext" name="plaintext" minlength="5" maxlength="1000" required>{% if plaintext and not decrypt %}{{ plaintext }}{% else %}Attack tomorrow at 6:45 from the north, the main target - the southern gate.{% endif %}</textarea>
+                        <textarea id="plaintext" name="plaintext" minlength="5" maxlength="1000" required>{% if plaintext and not decrypt %}{{ plaintext }}{% else %}Attack tomorrow from the north.{% endif %}</textarea>
                     </div>
 
-                    <div class="element shift">
-                        <label for="shift" style="display: block; text-align: center;">Shift (Required)</label>
-                        <input type="number" name="shift" min="0" max="25" value="{% if shift and not decrypt %}{{ shift }}{% else %}4{% endif %}" placeholder="Shift" id="shift" required>
+                    <div class="element original-table">
+                        <label style="display: block; text-align: center;">Use Original Table (i=j, u=v)</label>
+                        <label for="originalEncode" class="check" style="text-align: center; padding-right: 0; display: block;">
+                            <input type="checkbox" value="True" name="originalTable" id="originalEncode" class="hidden" {% if originTable and not decrypt %}checked{% endif %}/>
+                            <span class="label" style="margin-right: 0;"></span>
+                        </label>
                     </div>
                 </div>
 
@@ -88,22 +94,6 @@
         </footer>
     </div>
 </form>
-
-{% if caesarList %}
-<table class="cipher-table" id="cipherTable">
-    <tr>
-        <th>Shift</th>
-        <th>Text</th>
-    </tr>
-
-    {% for shift in plaintext %}
-    <tr>
-        <td data-th="Shift">{{ shift.0 }}</td>
-        <td data-th="Text">{{ shift.1 }}</td>
-    </tr>
-    {% endfor %}
-</table>
-{% endif %}
 {% endblock %}
 
 {% block extra_js %}

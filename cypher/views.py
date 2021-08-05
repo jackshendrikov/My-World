@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .utils.monoalphabetic.caesar import encrypt_caesar, decrypt_caesar
+from .utils.monoalphabetic.bacon import encrypt_bacon, decrypt_bacon
 from .utils.monoalphabetic.atbash import solve_atbash
 
 
@@ -67,3 +68,30 @@ def rot13(request):
                                                      'decrypt': decrypt})
 
     return render(request, 'cypher/rot13.html')
+
+
+def bacon(request):
+    if request.method == 'POST':
+        decrypt = False
+        origin_table = request.POST.get('originalTable', False)
+
+        if request.POST['cipherEncrypt'] == 'False':
+            decrypt = True
+            ciphertext = request.POST['ciphertext']
+
+            if origin_table:
+                plaintext = decrypt_bacon(ciphertext)
+            else:
+                plaintext = decrypt_bacon(ciphertext, original=False)
+        else:
+            plaintext = request.POST['plaintext']
+
+            if origin_table:
+                ciphertext = encrypt_bacon(plaintext)
+            else:
+                ciphertext = encrypt_bacon(plaintext, original=False)
+
+        return render(request, 'cypher/bacon.html', {'plaintext': plaintext, 'ciphertext': ciphertext,
+                                                     'decrypt': decrypt, 'originTable': origin_table})
+
+    return render(request, 'cypher/bacon.html')
