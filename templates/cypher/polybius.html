@@ -26,7 +26,7 @@
 
                 <div class="row-wrapper">
                     <div class="element encryption-key">
-                        <label for="encryptionKey">ENCRYPTION KEY (No repetitions, Only caps letters)</label>
+                        <label for="encryptionKey">ENCRYPTION KEY (No Repetitions, Only Caps Letters or Numbers)</label>
                         <textarea id="encryptionKey" class="cipher-key" name="encryptionKey" minlength="25" maxlength="25" required>{% if ciphertext and decrypt %}{{ encryption_key }}{% else %}ABCDEFGHIKLMNOPQRSTUVWXYZ{% endif %}</textarea>
                     </div>
                 </div>
