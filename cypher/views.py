@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from .utils.monoalphabetic.caesar import encrypt_caesar, decrypt_caesar
-from .utils.monoalphabetic.bacon import encrypt_bacon, decrypt_bacon
 from .utils.monoalphabetic.atbash import solve_atbash
+from .utils.monoalphabetic.bacon import encrypt_bacon, decrypt_bacon
+from .utils.monoalphabetic.caesar import encrypt_caesar, decrypt_caesar
+from .utils.monoalphabetic.polybius import encrypt_polybius, decrypt_polybius
 
 
 def cypher_main(request):
@@ -99,3 +100,22 @@ def bacon(request):
                                                      'decrypt': decrypt, 'originTable': origin_table})
 
     return render(request, 'cypher/bacon.html')
+
+
+def polybius(request):
+    if request.method == 'POST':
+        decrypt = False
+        encryption_key = request.POST['encryptionKey']
+
+        if request.POST['cipherEncrypt'] == 'False':
+            decrypt = True
+            ciphertext = request.POST['ciphertext']
+            plaintext = decrypt_polybius(ciphertext, encryption_key)
+        else:
+            plaintext = request.POST['plaintext']
+            ciphertext = encrypt_polybius(plaintext, encryption_key)
+
+        return render(request, 'cypher/polybius.html', {'plaintext': plaintext, 'ciphertext': ciphertext,
+                                                        'decrypt': decrypt, 'encryption_key': encryption_key})
+
+    return render(request, 'cypher/polybius.html')

@@ -1,0 +1,120 @@
+{% extends 'cypher/base.html' %}
+{% load static %}
+{% block title %}Polybius Square{% endblock %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
+{% endblock %}
+
+{% block content %}
+<form id="cipherDecrypt" class="cipher-form" action="{% url "cypher:polybius" %}" method="POST" autocomplete="off">
+    {% csrf_token %}
+    <input type="hidden" value="False" name="cipherEncrypt">
+    <div class="container">
+        <header class="cipher-form-header">
+            <h2 class="title">Polybius Square Decoder</h2>
+        </header>
+
+        <div class="cipher-form-main">
+            <section class="form-content">
+                <div class="row-wrapper">
+                    <div class="element decrypt">
+                        <label for="ciphertext">Ciphertext (Numbers only)</label>
+                        <textarea id="ciphertext" class="cipher-text" name="ciphertext" minlength="5" maxlength="1000" required>{% if ciphertext and decrypt %}{{ ciphertext }}{% else %}1144441113254435333543433552214335334423153435434423{% endif %}</textarea>
+                    </div>
+                </div>
+
+                <div class="row-wrapper">
+                    <div class="element encryption-key">
+                        <label for="encryptionKey">ENCRYPTION KEY (No repetitions, Only caps letters)</label>
+                        <textarea id="encryptionKey" class="cipher-key" name="encryptionKey" minlength="25" maxlength="25" required>{% if ciphertext and decrypt %}{{ encryption_key }}{% else %}ABCDEFGHIKLMNOPQRSTUVWXYZ{% endif %}</textarea>
+                    </div>
+                </div>
+
+                {% if plaintext and decrypt %}
+                <div class="row-wrapper">
+                    <div class="element encrypt">
+                        <label for="plaintext">Plaintext</label>
+                        <textarea id="plaintext" readonly="readonly">{{ plaintext }}</textarea>
+                    </div>
+                </div>
+                {% endif %}
+            </section>
+        </div>
+
+        <footer class="form-footer">
+            <div class="footer-wrapper">
+                <input type="submit" value="Decrypt!">
+            </div>
+        </footer>
+    </div>
+</form>
+
+<form id="cipherEncrypt" class="cipher-form" action="{% url "cypher:polybius" %}" method="POST" autocomplete="off">
+    {% csrf_token %}
+    <input type="hidden" value="True" name="cipherEncrypt">
+    <div class="container">
+        <header class="cipher-form-header">
+            <h2 class="title">Polybius Square Encoder</h2>
+        </header>
+
+        <div class="cipher-form-main">
+            <section class="form-content">
+                <div class="row-wrapper">
+                    <div class="element encrypt">
+                        <label for="plaintext">Plaintext</label>
+                        <textarea id="plaintext" name="plaintext" minlength="5" maxlength="1000" required>{% if plaintext and not decrypt %}{{ plaintext }}{% else %}Attack tomorrow from the north.{% endif %}</textarea>
+                    </div>
+                </div>
+
+                <div class="row-wrapper">
+                    <div class="element encryption-key">
+                        <label for="encryptionKey">ENCRYPTION KEY (No Repetitions, Only Caps Letters or Numbers)</label>
+                        <textarea id="encryptionKey" class="cipher-key" name="encryptionKey" minlength="25" maxlength="25" required>{% if plaintext and not decrypt %}{{ encryption_key }}{% else %}ABCDEFGHIKLMNOPQRSTUVWXYZ{% endif %}</textarea>
+                    </div>
+                </div>
+
+                {% if ciphertext and not decrypt %}
+                <div class="row-wrapper">
+                    <div class="element encrypt">
+                        <label for="ciphertext">Ciphertext</label>
+                        <textarea id="ciphertext" readonly="readonly">{{ ciphertext }}</textarea>
+                    </div>
+                </div>
+                {% endif %}
+            </section>
+        </div>
+
+        <footer class="form-footer">
+            <div class="footer-wrapper">
+                <input type="submit" value="Encrypt!">
+            </div>
+        </footer>
+    </div>
+</form>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'cypher/js/cypher.js' %}"></script>
+<script>
+$('.cipher-key').keypress(function(event){
+    let key = event.keyCode;
+
+    if (/^.*(.).*\1.*$/.test($(this).val()) || !((key >= 65 && key <= 90) || (key >= 48 && key <= 57))) {
+        return false;
+    }
+})
+
+$('.cipher-text').keypress(function(event){
+    let key = event.keyCode;
+
+    if (!(key >= 48 && key <= 57)) {
+        return false;
+    }
+})
+
+{% if decrypt %}
+decrypt();
+{% endif %}
+</script>
+{% endblock extra_js %}

@@ -481,6 +481,7 @@ textarea {
 }
 
 .cipher-form .container .cipher-form-main .form-content .row-wrapper .encrypt,
+.cipher-form .container .cipher-form-main .form-content .row-wrapper .encryption-key,
 .cipher-form .container .cipher-form-main .form-content .row-wrapper .decrypt {
     width: 100%;
 }
@@ -697,4 +698,8 @@ textarea {
 
 #cipherDecrypt {
     display: none;
+}
+
+#encryptionKey {
+    height: 65px;
 }
