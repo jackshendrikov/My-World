@@ -491,6 +491,11 @@ textarea {
     flex-basis: 75px;
 }
 
+.cipher-form .container .cipher-form-main .form-content .row-wrapper .abcoef {
+    flex: 0;
+    flex-basis: 75px;
+}
+
 .cipher-form .container .cipher-form-main .form-content .row-wrapper .original-table {
     flex: 0;
     flex-basis: 125px;

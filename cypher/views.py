@@ -3,6 +3,7 @@ from .utils.monoalphabetic.atbash import solve_atbash
 from .utils.monoalphabetic.bacon import encrypt_bacon, decrypt_bacon
 from .utils.monoalphabetic.caesar import encrypt_caesar, decrypt_caesar
 from .utils.monoalphabetic.polybius import encrypt_polybius, decrypt_polybius
+from .utils.monoalphabetic.affine import encrypt_affine, decrypt_affine
 
 
 def cypher_main(request):
@@ -119,3 +120,22 @@ def polybius(request):
                                                         'decrypt': decrypt, 'encryption_key': encryption_key})
 
     return render(request, 'cypher/polybius.html')
+
+
+def affine(request):
+    if request.method == 'POST':
+        decrypt = False
+        coefs = (int(request.POST['acoef']), int(request.POST['bcoef']))
+
+        if request.POST['cipherEncrypt'] == 'False':
+            decrypt = True
+            ciphertext = request.POST['ciphertext']
+            plaintext = decrypt_affine(ciphertext, coefs)
+        else:
+            plaintext = request.POST['plaintext']
+            ciphertext = encrypt_affine(plaintext, coefs)
+
+        return render(request, 'cypher/affine.html', {'plaintext': plaintext, 'ciphertext': ciphertext,
+                                                      'decrypt': decrypt, 'acoef': coefs[0], 'bcoef': coefs[1]})
+
+    return render(request, 'cypher/affine.html')

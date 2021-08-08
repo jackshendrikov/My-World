@@ -1,33 +1,34 @@
 {% extends 'cypher/base.html' %}
 {% load static %}
-{% block title %}Polybius Square{% endblock %}
+{% block title %}Affine Cipher{% endblock %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
 {% endblock %}
 
 {% block content %}
-<form id="cipherDecrypt" class="cipher-form" action="{% url "cypher:polybius" %}" method="POST" autocomplete="off">
+<form id="cipherDecrypt" class="cipher-form" action="{% url "cypher:affine" %}" method="POST" autocomplete="off">
     {% csrf_token %}
     <input type="hidden" value="False" name="cipherEncrypt">
     <div class="container">
         <header class="cipher-form-header">
-            <h2 class="title">Polybius Square Decoder</h2>
+            <h2 class="title">Affine Decoder</h2>
         </header>
 
         <div class="cipher-form-main">
             <section class="form-content">
                 <div class="row-wrapper">
                     <div class="element decrypt">
-                        <label for="ciphertext">Ciphertext (Numbers only)</label>
-                        <textarea id="ciphertext" class="cipher-text" name="ciphertext" minlength="5" maxlength="1000" required>{% if ciphertext and decrypt %}{{ ciphertext }}{% else %}1144441113254434323442423452214234324423153334424423{% endif %}</textarea>
+                        <label for="ciphertext">Ciphertext</label>
+                        <textarea id="ciphertext" name="ciphertext" minlength="5" maxlength="1000" required>{% if ciphertext and decrypt %}{{ ciphertext }}{% else %}Dwwdfn wrpruurz dw 6:45 iurp wkh qruwk, wkh pdlq wdujhw - wkh vrxwkhuq jdwh.{% endif %}</textarea>
                     </div>
-                </div>
-
-                <div class="row-wrapper">
-                    <div class="element encryption-key">
-                        <label for="encryptionKey">ENCRYPTION KEY (No Repetitions, Only Caps Letters or Numbers)</label>
-                        <textarea id="encryptionKey" class="cipher-key" name="encryptionKey" minlength="25" maxlength="25" required>{% if ciphertext and decrypt %}{{ encryption_key }}{% else %}ABCDEFGHIKLMNOPQRSTUVWXYZ{% endif %}</textarea>
+                    <div class="element abcoef">
+                        <label for="acoef">A COEFFICIENT</label>
+                        <input type="number" id="acoef" name="acoef" min="0" max="25" value="{% if ciphertext and decrypt %}{{ acoef }}{% else %}1{% endif %}" required>
+                    </div>
+                     <div class="element abcoef">
+                        <label for="bcoef">B COEFFICIENT</label>
+                        <input type="number" id="bcoef" name="bcoef" min="0" max="25" value="{% if ciphertext and decrypt %}{{ bcoef }}{% else %}3{% endif %}" required>
                     </div>
                 </div>
 
@@ -50,12 +51,12 @@
     </div>
 </form>
 
-<form id="cipherEncrypt" class="cipher-form" action="{% url "cypher:polybius" %}" method="POST" autocomplete="off">
+<form id="cipherEncrypt" class="cipher-form" action="{% url "cypher:affine" %}" method="POST" autocomplete="off">
     {% csrf_token %}
     <input type="hidden" value="True" name="cipherEncrypt">
     <div class="container">
         <header class="cipher-form-header">
-            <h2 class="title">Polybius Square Encoder</h2>
+            <h2 class="title">Affine Encoder</h2>
         </header>
 
         <div class="cipher-form-main">
@@ -63,14 +64,15 @@
                 <div class="row-wrapper">
                     <div class="element encrypt">
                         <label for="plaintext">Plaintext</label>
-                        <textarea id="plaintext" name="plaintext" minlength="5" maxlength="1000" required>{% if plaintext and not decrypt %}{{ plaintext }}{% else %}Attack tomorrow from the north.{% endif %}</textarea>
+                        <textarea id="plaintext" name="plaintext" minlength="5" maxlength="1000" required>{% if plaintext and not decrypt %}{{ plaintext }}{% else %}Attack tomorrow at 6:45 from the north, the main target - the southern gate.{% endif %}</textarea>
                     </div>
-                </div>
-
-                <div class="row-wrapper">
-                    <div class="element encryption-key">
-                        <label for="encryptionKey">ENCRYPTION KEY (No Repetitions, Only Caps Letters or Numbers)</label>
-                        <textarea id="encryptionKey" class="cipher-key" name="encryptionKey" minlength="25" maxlength="25" required>{% if plaintext and not decrypt %}{{ encryption_key }}{% else %}ABCDEFGHIKLMNOPQRSTUVWXYZ{% endif %}</textarea>
+                    <div class="element abcoef">
+                        <label for="acoef">A COEFF</label>
+                        <input type="number" id="acoef" name="acoef" min="0" max="25" value="{% if ciphertext and not decrypt %}{{ acoef }}{% else %}1{% endif %}" required>
+                    </div>
+                     <div class="element abcoef">
+                        <label for="bcoef">B COEFF</label>
+                        <input type="number" id="bcoef" name="bcoef" min="0" max="25" value="{% if ciphertext and not decrypt %}{{ bcoef }}{% else %}3{% endif %}" required>
                     </div>
                 </div>
 
@@ -97,22 +99,6 @@
 {% block extra_js %}
 <script src="{% static 'cypher/js/cypher.js' %}"></script>
 <script>
-$('.cipher-key').keypress(function(event){
-    let key = event.keyCode;
-
-    if (/^.*(.).*\1.*$/.test($(this).val()) || !((key >= 65 && key <= 90) || (key >= 48 && key <= 57))) {
-        return false;
-    }
-})
-
-$('.cipher-text').keypress(function(event){
-    let key = event.keyCode;
-
-    if (!(key >= 48 && key <= 57)) {
-        return false;
-    }
-})
-
 {% if decrypt %}
 decrypt();
 {% endif %}
