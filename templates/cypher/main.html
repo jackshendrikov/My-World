@@ -120,6 +120,27 @@
             </a>
         </svg>
     </div>
+
+    <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="{% url "cypher:affine" %}" target="_self">
+                <defs>
+                    <clipPath id='clip-5'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Affine Cipher
+                </text>
+                <g clip-path='url(#clip-5)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='{% static 'img/item-back.jpg' %}'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Affine Cipher
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
 </div>
 {% endblock %}
 
