@@ -586,6 +586,27 @@
             </a>
         </svg>
     </div>
+
+     <div class='item'>
+        <svg class='item-svg' preserveAspectRatio='xMidYMid slice' viewBox='0 0 300 200'>
+            <a href="{% url "secret" %}" target="_blank">
+                <defs>
+                    <clipPath id='clip-26'>
+                        <circle cx='0' cy='0' fill='#000' r='150px'></circle>
+                    </clipPath>
+                </defs>
+                <text class='svg-text' dy='.3em' x='50%' y='50%'>
+                    Secret Project
+                </text>
+                <g clip-path='url(#clip-26)'>
+                    <image class="item-image" height='100%' preserveAspectRatio='xMinYMin slice' width='100%' xlink:href='https://i.imgur.com/T81MXJu.jpg'></image>
+                    <text class='svg-masked-text' dy='.3em' x='50%' y='50%'>
+                        Secret Project
+                    </text>
+                </g>
+            </a>
+        </svg>
+    </div>
 </div>
 
 {% endblock %}

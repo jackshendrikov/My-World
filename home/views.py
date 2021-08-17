@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import Group
 from django.contrib import messages
@@ -19,6 +20,10 @@ def error_500(request, exception=None):
 
 def main_page(request):
     return render(request, 'home/home/start.html')
+
+
+def secret(request):
+    return HttpResponseRedirect('https://youtu.be/dQw4w9WgXcQ')
 
 
 def register(request):

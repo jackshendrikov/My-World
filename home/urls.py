@@ -26,6 +26,7 @@ urlpatterns = [
     path('home/psychedelic', TemplateView.as_view(template_name='home/psychedelic/index.html'), name='psychedelic'),
     path('home/spirals', TemplateView.as_view(template_name='home/spirals/index.html'), name='spirals'),
     path('home/whirlpool', TemplateView.as_view(template_name='home/whirlpool/index.html'), name='whirlpool'),
+    path('home/secret', views.secret, name='secret'),
 
     path('home/xmas-tree', TemplateView.as_view(template_name='home/xmas-tree/index.html'), name='xmas-home'),
     path('home/xmas-tree/intro', TemplateView.as_view(template_name='home/xmas-tree/intro.html'), name='xmas-intro'),
