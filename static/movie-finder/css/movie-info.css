@@ -79,6 +79,25 @@
     letter-spacing: 1px;
 }
 
+.movie-card-right .large-title{
+    font-size: 28px;
+}
+
+@media (max-width: 992px) {
+    .movie-card-right h1,
+    .movie-card-right .large-title {
+        font-size: 24px;
+        margin: 20px 0 0 0;
+    }
+}
+
+@media (max-width: 500px) {
+    .movie-card-right h1,
+    .movie-card-right .large-title {
+        font-size: 20px;
+    }
+}
+
 .movie-card-right-details ul {
     list-style-type: none;
     padding: 0 0 0 40px;
@@ -142,7 +161,6 @@
     .movie-card-right-rating {
         font-size: 1.5em;
     }
-
 }
 
 .movie-card-right-rating .front-stars {
