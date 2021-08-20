@@ -29,6 +29,6 @@ def reorder_tasks(request) -> HttpResponse:
                 # Not easy to remove it from the UI without page refresh, but prevent crash.
                 pass
 
-    # All views must return an httpresponse of some kind ... without this we get
+    # All views must return an http_response of some kind, without this we get
     # error 500s in the log even though things look peachy in the browser.
     return HttpResponse(status=201)

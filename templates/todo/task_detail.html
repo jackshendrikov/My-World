@@ -3,7 +3,6 @@
 
 {% block extrahead %}
     {{ form.media }}
-    {{ merge_form.media }}
 {% endblock %}
 
 {% block content %}
@@ -81,26 +80,6 @@
     <div id="TaskEdit" class="collapse">
         {# Task edit / new task form #}
         {% include 'todo/include/task_edit.html' %}
-        {% if merge_form is not None %}
-            <form action="" method="post">
-                <div class="card border-danger" style="margin-top: 30px;">
-                    <div class="item-text" style="color: var(--theme-color); font-size: 18px;">Merge task</div>
-                    <div class="card-body">
-                        <div class="">
-                            <p style="color: var(--theme-color);">Merging is a destructive operation. This task will not exist anymore, and comments will be moved to the target task.</p>
-                            {% csrf_token %}
-                            {% for field in merge_form.visible_fields %}
-                                <p>
-                                    {{ field.errors }}
-                                    {{ field }}
-                                </p>
-                            {% endfor %}
-                            <input class="d-inline btn btn-sm btn-outline-danger" style="font-size: 16px;" type="submit" name="merge_task_into" value=" Merge ">
-                        </div>
-                    </div>
-                </div>
-            </form>
-        {% endif %}
     </div>
 
     {% if attachments_enabled %}
@@ -176,9 +155,6 @@
                 <div class="mb-3 card">
                     <div class="item-text" style="color: var(--theme-color); font-size: 16px;">
                         <div class="float-left" style="margin-left: 10px;">
-                            {% if comment.email_message_id %}
-                                <span class="badge badge-warning">email</span>
-                            {% endif %}
                             {{ comment.author_text }}
                         </div>
 

@@ -6,8 +6,7 @@ import textwrap
 
 from django.conf import settings
 from django.contrib.auth.models import Group
-from django.db import DEFAULT_DB_ALIAS, models
-from django.db.transaction import Atomic, get_connection
+from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 
@@ -15,36 +14,6 @@ from django.utils import timezone
 def get_attachment_upload_dir(instance, filename):
     """Determine upload dir for task attachment files."""
     return "/".join(["tasks", "attachments", str(instance.task.id), filename])
-
-
-class LockedAtomicTransaction(Atomic):
-    """
-    This is needed for safely merging
-
-    Does a atomic transaction, but also locks the entire table for any transactions, for the duration of this
-    transaction. Although this is the only way to avoid concurrency issues in certain situations, it should be used with
-    caution, since it has impacts on performance, for obvious reasons...
-    """
-
-    def __init__(self, *models, using=None, savepoint=None):
-        if using is None:
-            using = DEFAULT_DB_ALIAS
-        super().__init__(using, savepoint)
-        self.models = models
-
-    def __enter__(self):
-        super(LockedAtomicTransaction, self).__enter__()
-
-        # Make sure not to lock, when sqlite is used, or you'll run into problems while running tests!!!
-        if settings.DATABASES[self.using]["ENGINE"] != "django.db.backends.sqlite3":
-            cursor = None
-            try:
-                cursor = get_connection(self.using).cursor()
-                for model in self.models:
-                    cursor.execute("LOCK TABLE {table_name}".format(table_name=model._meta.db_table))
-            finally:
-                if cursor and not cursor.closed:
-                    cursor.close()
 
 
 class TaskList(models.Model):
@@ -77,7 +46,6 @@ class Task(models.Model):
     note = models.TextField(blank=True, null=True)
     priority = models.PositiveIntegerField(blank=True, null=True)
 
-    # Has due date for an instance of this object passed?
     def overdue_status(self):
         """Returns whether the Tasks's due date has passed or not."""
         if self.due_date and datetime.date.today() > self.due_date:
@@ -89,23 +57,11 @@ class Task(models.Model):
     def get_absolute_url(self):
         return reverse("todo:task_detail", kwargs={"task_id": self.id})
 
-    # Auto-set the Task creation / completed date
     def save(self, **kwargs):
         # If Task is being marked complete, set the completed_date
         if self.completed:
             self.completed_date = datetime.datetime.now()
         super(Task, self).save()
-
-    def merge_into(self, merge_target):
-        if merge_target.pk == self.pk:
-            raise ValueError("can't merge a task with self")
-
-        # lock the comments to avoid concurrent additions of comments after the
-        # update request. these comments would be irremediably lost because of
-        # the cascade clause
-        with LockedAtomicTransaction(Comments):
-            Comments.objects.filter(task=self).update(task=merge_target)
-            self.delete()
 
     class Meta:
         ordering = ["priority", "created_date"]
@@ -114,28 +70,19 @@ class Task(models.Model):
 class Comments(models.Model):
     """
     Not using Django's built-in comments because we want to be able to save
-    a comment and change task details at the same time. Rolling our own since it's easy.
+    a comment and change task details at the same time.
     """
 
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, blank=True, null=True)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     date = models.DateTimeField(default=datetime.datetime.now)
-    email_from = models.CharField(max_length=320, blank=True, null=True)
-    email_message_id = models.CharField(max_length=255, blank=True, null=True)
 
     body = models.TextField(blank=True)
-
-    class Meta:
-        # an email should only appear once per task
-        unique_together = ("task", "email_message_id")
 
     @property
     def author_text(self):
         if self.author is not None:
             return str(self.author)
-
-        assert self.email_message_id is not None
-        return str(self.email_from)
 
     @property
     def snippet(self):
@@ -148,10 +95,6 @@ class Comments(models.Model):
 
 
 class Attachment(models.Model):
-    """
-    Defines a generic file attachment for use in M2M relation with Task.
-    """
-
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     added_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(default=datetime.datetime.now)

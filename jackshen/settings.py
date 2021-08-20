@@ -33,8 +33,6 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 SITE_ID = 1
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 API_KEY = config('API_KEY')
 API_IP_KEY = config('API_IP_KEY')
 

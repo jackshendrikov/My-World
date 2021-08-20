@@ -1,7 +1,6 @@
 from django.urls import path
-
 from todo import views
-from todo.features import HAS_TASK_MERGE
+
 
 app_name = 'todo'
 
@@ -10,9 +9,6 @@ urlpatterns = [
 
     # View reorder_tasks is only called by JQuery for drag/drop task ordering.
     path('reorder_tasks/', views.reorder_tasks, name="reorder_tasks"),
-
-    # Allow users to post tasks from outside django-to-do
-    path('ticket/add/', views.external_add, name="external_add"),
 
     # Three paths into `list_detail` view
     path('mine/', views.list_detail, {'list_slug': 'mine'}, name="mine"),
@@ -26,11 +22,6 @@ urlpatterns = [
     path('task/<int:task_id>/', views.task_detail, name='task_detail'),
     path('attachment/remove/<int:attachment_id>/', views.remove_attachment, name='remove_attachment'),
 ]
-
-if HAS_TASK_MERGE:
-    # ensure mail tracker autocomplete is optional
-    from todo.views.task_autocomplete import TaskAutocomplete
-    urlpatterns.append(path('task/<int:task_id>/autocomplete/', TaskAutocomplete.as_view(), name='task_autocomplete'))
 
 urlpatterns.extend([
     path('toggle_done/<int:task_id>/', views.toggle_done, name='task_toggle_done'),

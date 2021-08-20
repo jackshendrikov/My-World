@@ -8,12 +8,6 @@
   }
 }
 
-@media screen and (max-width: 1110px) {
-  #support-link {
-    display: none;
-  }
-}
-
 @media screen and (max-width: 975px) {
   #my-task-link {
     display: none;

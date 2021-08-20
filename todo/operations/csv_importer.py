@@ -39,7 +39,6 @@ class CSVImporter:
             # fileobj comes from browser upload (in-memory)
             csv_reader = csv.DictReader(codecs.iterdecode(fileobj, "utf-8"))
 
-        # DI check: Do we have expected header row?
         header = csv_reader.fieldnames
         expected = [
             "Title",
@@ -64,8 +63,8 @@ class CSVImporter:
 
             newrow = self.validate_row(row)
             if newrow:
-                # newrow at this point is fully validated, and all FK relations exist,
-                # e.g. `newrow.get("Assigned To")`, is a Django User instance.
+                # newrow at this point is fully validated
+
                 assignee = newrow.get("Assigned To") if newrow.get("Assigned To") else None
                 created_date = newrow.get("Created Date") if newrow.get("Created Date") else datetime.datetime.today()
                 due_date = newrow.get("Due Date") if newrow.get("Due Date") else None
@@ -105,7 +104,6 @@ class CSVImporter:
 
         row_errors = []
 
-        # #######################
         # Task creator must exist
         if not row.get("Created By"):
             msg = f"Missing required task creator."
@@ -116,7 +114,6 @@ class CSVImporter:
             msg = f"Invalid task creator \"{row.get('Created By')}\""
             row_errors.append(msg)
 
-        # #######################
         # If specified, Assignee must exist
         assignee = None  # Perfectly valid
         if row.get("Assigned To"):
@@ -127,7 +124,6 @@ class CSVImporter:
                 msg = f"Missing or invalid task assignee \"{row.get('Assigned To')}\""
                 row_errors.append(msg)
 
-        # #######################
         # Group must exist
         try:
             target_group = Group.objects.get(name=row.get("Group"))
@@ -136,19 +132,16 @@ class CSVImporter:
             row_errors.append(msg)
             target_group = None
 
-        # #######################
         # Task creator must be in the target group
         if creator and target_group not in creator.groups.all():
             msg = f"{creator} is not in group \"{target_group}\""
             row_errors.append(msg)
 
-        # #######################
         # Assignee must be in the target group
         if assignee and target_group not in assignee.groups.all():
             msg = f"{assignee} is not in group \"{target_group}\""
             row_errors.append(msg)
 
-        # #######################
         # Task list must exist in the target group
         try:
             tasklist = TaskList.objects.get(name=row.get("Task List"), group=target_group)
@@ -157,7 +150,6 @@ class CSVImporter:
             msg = f"Task list \"{row.get('Task List')}\" in group \"{target_group}\" does not exist"
             row_errors.append(msg)
 
-        # #######################
         # Validate Dates
         datefields = ["Due Date", "Created Date"]
         for datefield in datefields:
@@ -170,7 +162,6 @@ class CSVImporter:
                     msg = f"Could not convert \"{datefield} {datestring}\" to valid date instance"
                     row_errors.append(msg)
 
-        # #######################
         # Group membership checks have passed
         row["Created By"] = creator
         row["Group"] = target_group
@@ -180,7 +171,6 @@ class CSVImporter:
         # Set Completed
         row["Completed"] = (row["Completed"] == "Yes")
 
-        # #######################
         if row_errors:
             self.errors.append({self.line_count: row_errors})
             return False

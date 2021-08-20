@@ -10,11 +10,6 @@ hash = {
     "TODO_STAFF_ONLY": True,
 }
 
-# These intentionally have no defaults (user MUST set a value if their features are used):
-# TODO_DEFAULT_LIST_SLUG
-# TODO_MAIL_BACKENDS
-# TODO_MAIL_TRACKERS
-
 
 def defaults(key: str):
     """Try to get a setting from project settings.

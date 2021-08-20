@@ -2,22 +2,16 @@ import datetime
 import os
 
 import bleach
-from django import forms
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, redirect, render
-from django.urls import reverse
 
 from todo.defaults import defaults
-from todo.features import HAS_TASK_MERGE
 from todo.forms import AddEditTaskForm
 from todo.models import Attachment, Comments, Task
-from todo.utils import (send_email_to_thread_participants, staff_check, toggle_task_completed, user_can_read_task, )
-
-if HAS_TASK_MERGE:
-    from dal import autocomplete
+from todo.utils import (staff_check, toggle_task_completed, user_can_read_task, )
 
 
 def handle_add_comment(request, task):
@@ -25,11 +19,7 @@ def handle_add_comment(request, task):
         return
 
     Comments.objects.create(author=request.user, task=task, body=bleach.clean(request.POST["comment-body"], strip=True))
-
-    send_email_to_thread_participants(task, request.POST["comment-body"], request.user,
-                                      subject='New comment posted on task "{}"'.format(task.title), )
-
-    messages.success(request, "Comment posted. Notification email sent to thread participants.")
+    messages.success(request, "Comment posted.")
 
 
 @login_required
@@ -44,28 +34,6 @@ def task_detail(request, task_id: int) -> HttpResponse:
     # Get the group this task belongs to, and check whether current user is a member of that group.
     if not user_can_read_task(task, request.user):
         raise PermissionDenied
-
-    # Handle task merging
-    if not HAS_TASK_MERGE:
-        merge_form = None
-    else:
-
-        class MergeForm(forms.Form):
-            merge_target = forms.ModelChoiceField(queryset=Task.objects.all(), widget=autocomplete.ModelSelect2(
-                url=reverse("todo:task_autocomplete", kwargs={"task_id": task_id})), )
-
-        # Handle task merging
-        if not request.POST.get("merge_task_into"):
-            merge_form = MergeForm()
-        else:
-            merge_form = MergeForm(request.POST)
-            if merge_form.is_valid():
-                merge_target = merge_form.cleaned_data["merge_target"]
-            if not user_can_read_task(merge_target, request.user):
-                raise PermissionDenied
-
-            task.merge_into(merge_target)
-            return redirect(reverse("todo:task_detail", kwargs={"task_id": merge_target.pk}))
 
     # Save submitted comments
     handle_add_comment(request, task)
@@ -119,7 +87,6 @@ def task_detail(request, task_id: int) -> HttpResponse:
         "task": task,
         "comment_list": comment_list,
         "form": form,
-        "merge_form": merge_form,
         "thedate": date,
         "comment_classes": defaults("TODO_COMMENT_CLASSES"),
         "attachments_enabled": defaults("TODO_ALLOW_FILE_ATTACHMENTS"),

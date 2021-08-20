@@ -84,7 +84,6 @@
                 <a class="menu-link" href="{% url 'todo:lists' %}"><i class="fas fa-clipboard-list" aria-hidden="true"></i>&nbsp;To Do Lists</a>
                 <a class="menu-link" id="my-task-link" href="{% url 'todo:mine' %}"><i class="fas fa-user-tie" aria-hidden="true"></i>&nbsp;My Tasks</a>
                 <a class="menu-link" id="import-link" href="{% url 'todo:import_csv' %}"><i class="fas fa-file-upload" aria-hidden="true"></i>&nbsp;Import</a>
-                <a class="menu-link" id="support-link" href="{% url 'todo:external_add' %}"><i class="fas fa-question-circle" aria-hidden="true"></i>&nbsp;Support</a>
                 <a class="menu-link" id="logout-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Log Out</a>
             {% else %}
                 <a class="menu-link" id="login-link" href="{% url 'login' %}"><i class="fas fa-sign-in-alt" aria-hidden="true"></i>&nbsp;Log In</a>
