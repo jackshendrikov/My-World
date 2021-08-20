@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block content %}
-    <div class="content-section-main-title" style="margin-bottom: 14px; font-size: 24px;">IP Address: <b>{{ data.ip }}</b></div>
+    <div class="content-section-main-title" style="margin-bottom: 14px; font-size: 24px;">IP Address: <b>{% if data.ip %}{{ data.ip }}{% else %}{{ data.query }}{% endif %}</b></div>
 
      <table id="id-table" class="table table-hover table-responsive-md text-center">
          <thead>
