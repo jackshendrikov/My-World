@@ -14,11 +14,7 @@ urlpatterns = [
     path('genre/', views.genre, name='genre'),
     path('popular/', views.popular, name='popular'),
 
-    path('series/', views.all_series, name='series'),
-    path('xmas-category/', views.xmas, name='xmas-category'),
-    path('halloween-category/', views.halloween, name='halloween-category'),
-    path('top/', views.top_movies, name='top100'),
-    path('netflix/', views.netflix, name='netflix'),
+    path('category/<str:category_name>/', views.category, name='special-category'),
 
     path('search/', views.movie_search, name='movie-search'),
     path('advsearch/', views.advanced_search, name='advanced-search'),

@@ -2,7 +2,10 @@
   background: var(--special-color);
   border-radius: 15px;
   box-shadow: 0 10px 20px 20px rgba(0, 0, 0, 0.17);
-  display: inline-block;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 2em;
   padding: 40px 65px 70px;
   perspective: 700px;
   margin: 30px auto;
@@ -27,17 +30,6 @@
   width: 175px;
   cursor: pointer;
   text-align: center;
-}
-
-@media (max-width: 1290px) {
-  .special-card {
-    margin-bottom: 15px;
-  }
-}
-
-
-.special-card:not(:last-child) {
-  margin-right: 30px;
 }
 
 .special-card-img {
@@ -86,6 +78,12 @@
   height: 70%;
 }
 
+#sp-card-6 .special-card-img {
+  top: 45px;
+  left: 0;
+  height: 55%;
+}
+
 .special-card-text {
   align-items: center;
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%);
@@ -112,7 +110,8 @@
 }
 
 .app-content-header {
-    display: none;
+  font-size: 26px;
+  margin: 0 auto;
 }
 
 @media (max-width: 992px) {
@@ -125,8 +124,8 @@
   }
 
   .app-content-header {
-    display: initial;
     font-size: 22px;
+    margin-bottom: 20px;
   }
 }
 

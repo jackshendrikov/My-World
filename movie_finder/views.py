@@ -89,29 +89,17 @@ def main_page(request):
     return render(request, 'movie_finder/movies-main.html')
 
 
-def halloween(request):
-    halloween_list = list(all_movies.filter(keywords__contains='halloween-category').order_by('-rating_id__rating'))
-    return get_category_movies(halloween_list, request)
-
-
-def xmas(request):
-    xmas_list = list(all_movies.filter(keywords__contains='xmas-category').order_by('-rating_id__rating'))
-    return get_category_movies(xmas_list, request)
-
-
-def all_series(request):
-    series_list = list(all_movies.filter(mtype_id__mtype='Series').order_by('-release'))
-    return get_category_movies(series_list, request)
-
-
-def netflix(request):
-    netflix_movies = list(all_movies.exclude(netflix_id__netflix='None').order_by('-rating_id__rating'))
-    return get_category_movies(netflix_movies, request)
-
-
-def top_movies(request):
-    top_list = list(all_movies.order_by('-rating_id__rating')[:100])
-    return get_category_movies(top_list, request)
+def category(request, category_name=None):
+    print(category_name)
+    if category_name == 'series':
+        category_list = list(all_movies.filter(mtype_id__mtype='Series').order_by('-release'))
+    elif category_name == 'netflix':
+        category_list = list(all_movies.exclude(netflix_id__netflix='None').order_by('-rating_id__rating'))
+    elif category_name == 'top':
+        category_list = list(all_movies.order_by('-rating_id__rating')[:100])
+    else:
+        category_list = list(all_movies.filter(keywords__contains=category_name).order_by('-rating_id__rating'))
+    return get_category_movies(category_list, request)
 
 
 def advanced_search(request):

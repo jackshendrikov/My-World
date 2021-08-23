@@ -26,6 +26,10 @@
             background: url("{% static 'img/back-halloween.jpg' %}") center/cover no-repeat;
         }
 
+        #sp-card-6 .special-card-bg {
+            background: url("{% static 'img/back-ukraine.jpg' %}") center/cover no-repeat;
+        }
+
         #mobBtn > .auth-button {
             display: none;
         }
@@ -33,9 +37,12 @@
 {% endblock %}
 
 {% block content %}
+    <div class="app-content-header" style="color: var(--special-title); text-align: center;">
+        Special Categories
+    </div>
+
     <div class="special-cards">
-        <h3 style="color: var(--special-title);">Special Categories</h3><br>
-        <a class="special-card" id="sp-card-1" href="{% url 'movie-finder:top100' %}">
+        <a class="special-card" id="sp-card-1" href="{% url 'movie-finder:special-category' 'top' %}">
             <div class="special-card-bg"></div>
             <img class="special-card-img" src="{% static 'img/top100.png' %}" />
             <div class="special-card-text">
@@ -43,7 +50,7 @@
             </div>
         </a>
         
-        <a class="special-card" id="sp-card-2" href="{% url 'movie-finder:netflix' %}">
+        <a class="special-card" id="sp-card-2" href="{% url 'movie-finder:special-category' 'netflix' %}">
             <div class="special-card-bg"></div>
             <img class="special-card-img" src="{% static 'img/netflix.png' %}" />
             <div class="special-card-text">
@@ -51,7 +58,7 @@
             </div>
         </a>
         
-        <a class="special-card" id="sp-card-3" href="{% url 'movie-finder:series' %}">
+        <a class="special-card" id="sp-card-3" href="{% url 'movie-finder:special-category' 'series' %}">
             <div class="special-card-bg"></div>
             <img class="special-card-img" src="{% static 'img/all_series.png' %}" />
             <div class="special-card-text">
@@ -59,7 +66,15 @@
             </div>
         </a>
 
-        <a class="special-card" id="sp-card-4" href="{% url 'movie-finder:xmas-category' %}">
+        <a class="special-card" id="sp-card-5" href="{% url 'movie-finder:special-category' 'halloween-category' %}">
+            <div class="special-card-bg"></div>
+            <img class="special-card-img" src="{% static 'img/halloween-category.png' %}" />
+            <div class="special-card-text">
+                <p class="special-card-title" style="color: #f59611; text-shadow: 1px 1px 2px black;">Halloween</p>
+            </div>
+        </a>
+
+        <a class="special-card" id="sp-card-4" href="{% url 'movie-finder:special-category' 'xmas-category' %}">
             <div class="special-card-bg"></div>
             <img class="special-card-img" src="{% static 'img/xmas-category.png' %}" />
             <div class="special-card-text">
@@ -67,22 +82,18 @@
             </div>
         </a>
 
-         <a class="special-card" id="sp-card-5" href="{% url 'movie-finder:halloween-category' %}">
+         <a class="special-card" id="sp-card-6" href="{% url 'movie-finder:special-category' 'ukraine-category' %}">
             <div class="special-card-bg"></div>
-            <img class="special-card-img" src="{% static 'img/halloween-category.png' %}" />
+            <img class="special-card-img" src="{% static 'img/ukraine-category.png' %}" />
             <div class="special-card-text">
-                <p class="special-card-title" style="color: #f59611; text-shadow: 1px 1px 2px black;">Halloween</p>
+                <p class="special-card-title" style="color: #eae010; text-shadow: 1px 1px 2px black;">Our New Cinema</p>
             </div>
         </a>
     </div>
 
-    <div class="app-content-header" style="text-align: center; margin: 0 auto 20px;">
-        Special Categories
-    </div>
-
     <div class="row" align="center">
         <div class="col-md-4">
-            <a class="card movie-card" href="{% url 'movie-finder:top100' %}">
+            <a class="card movie-card" href="{% url 'movie-finder:special-category' 'top' %}">
                 <img src="{% static 'img/back-top100.png' %}" alt="category-back" class="background"/>
                 <img src="{% static 'img/top100.png' %}" alt="category" class="category"/>
                 <div class="card-content">
@@ -92,7 +103,7 @@
         </div>
 
         <div class="col-md-4">
-            <a class="card movie-card" href="{% url 'movie-finder:netflix' %}">
+            <a class="card movie-card" href="{% url 'movie-finder:special-category' 'netflix' %}">
                 <img src="{% static 'img/back-netflix.jpg' %}" alt="category-back" class="background"/>
                 <img src="{% static 'img/netflix.png' %}" style="max-width: 160px; top: 3%;" alt="category" class="category"/>
                 <div class="card-content">
@@ -102,7 +113,7 @@
         </div>
 
         <div class="col-md-4">
-            <a class="card movie-card" href="{% url 'movie-finder:series' %}">
+            <a class="card movie-card" href="{% url 'movie-finder:special-category' 'series' %}">
                 <img src="{% static 'img/back-series.jpg' %}" style="transform: scale(1.2);" alt="category-back" class="background"/>
                 <img src="{% static 'img/all_series.png' %}" style="max-width: 120px;" alt="category" class="category"/>
                 <div class="card-content">
@@ -112,7 +123,7 @@
         </div>
 
         <div class="col-md-4">
-            <a class="card movie-card" href="{% url 'movie-finder:xmas-category' %}">
+            <a class="card movie-card" href="{% url 'movie-finder:special-category' 'xmas-category' %}">
                 <img src="{% static 'img/back-xmas.jpg' %}" style="transform: scale(1.2);" alt="category-back" class="background"/>
                 <img src="{% static 'img/xmas-category.png' %}" style="max-width: 165px;" alt="category" class="category"/>
                 <div class="card-content">
@@ -122,11 +133,21 @@
         </div>
 
         <div class="col-md-4">
-            <a class="card movie-card" href="{% url 'movie-finder:halloween-category' %}">
+            <a class="card movie-card" href="{% url 'movie-finder:special-category' 'halloween-category' %}">
                 <img src="{% static 'img/back-halloween.jpg' %}" style="transform: scale(1.2);" alt="category-back" class="background"/>
                 <img src="{% static 'img/halloween-category.png' %}" style="max-width: 180px;" alt="category" class="category"/>
                 <div class="card-content">
                     <h2 style="color: #f59611; text-shadow: 1px 1px 2px black;">Halloween</h2>
+                </div>
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <a class="card movie-card" href="{% url 'movie-finder:special-category' 'ukraine-category' %}">
+                <img src="{% static 'img/back-ukraine.jpg' %}" style="transform: scale(1.3);" alt="category-back" class="background"/>
+                <img src="{% static 'img/ukraine-category.png' %}" style="max-width: 185px; top: 30px;" alt="category" class="category"/>
+                <div class="card-content">
+                    <h2 style="color: #7ba3ff; text-shadow: 1px 1px 2px black;">Our New Cinema</h2>
                 </div>
             </a>
         </div>
