@@ -15,11 +15,11 @@
 </form>
 
 
-<div id="mute-button" class='volume' style="right: 110px; top:12px; display: none;" onclick="jQuery('#intro').YTPMute();  document.getElementById('unmute-button').style.display = 'block'; this.style.display = 'none';">
+<div id="mute-button" class='volume' style="display: none;" onclick="jQuery('#intro').YTPMute();  document.getElementById('unmute-button').style.display = 'block'; this.style.display = 'none';">
     <i class="fas fa-volume-up fa-sm" style="font-weight: bold; padding: 3px;"></i>
 </div>
 
-<div id="unmute-button" class='volume' style="right: 110px; top:12px;" onclick="jQuery('#intro').YTPUnmute(); document.getElementById('mute-button').style.display = 'block'; this.style.display = 'none';">
+<div id="unmute-button" class='volume' onclick="jQuery('#intro').YTPUnmute(); document.getElementById('mute-button').style.display = 'block'; this.style.display = 'none';">
     <i class="fas fa-volume-mute fa-sm" style="font-weight: bold; padding: 3px;"></i>
 </div>
 
@@ -40,7 +40,7 @@
         stopAt:0,
         vol:50,
         showControls:false,
-        printUrl:false,
+        printUrl:true,
         loop:false,
         addRaster:false,
         abundance:'0.1',
@@ -85,17 +85,6 @@
     jQuery('#intro').on("YTPEnd",function(){
         $("form").submit();
     });
-
-    if (mobileCheck() && window.screen.width < 400) {
-        $(".volume, #skip-button").css({
-            'font-size' : '40px',
-            'padding': '20px 30px'
-        });
-
-        $(".volume").css({
-            'right' : '220px',
-        });
-    }
 </script>
 </body>
 </html>

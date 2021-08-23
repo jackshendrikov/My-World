@@ -66,3 +66,32 @@ body {
     background-color: #e1e2e2;
     opacity: 1;
 }
+
+.volume {
+    right: 110px;
+    top:12px;
+}
+
+/* portrait */
+@media screen and (orientation:portrait) {
+   .volume, #skip-button {
+       font-size: 40px;
+       padding: 20px 30px;
+   }
+
+    .volume {
+        right: 220px;
+    }
+}
+
+/* landscape */
+@media screen and (orientation:landscape) {
+  .volume, #skip-button {
+       font-size: .875em;
+       padding: 10px 20px;
+   }
+
+    .volume {
+        right: 110px;
+    }
+}
