@@ -18,12 +18,12 @@ def run(*args):
         reader = csv.reader(decoded_content.splitlines(), delimiter=',')
         next(reader)
 
+        print('Started..')
+
         for row in list(reader):
             try:
                 Movie.objects.get(imdb_id=row[0])
             except Movie.DoesNotExist:
-                print(row)
-
                 r, created = Rate.objects.get_or_create(rating=row[2])
                 g, created = Genre.objects.get_or_create(genres=row[5])
                 rt, created = Runtime.objects.get_or_create(runtime=row[7])
