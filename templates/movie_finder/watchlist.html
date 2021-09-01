@@ -150,22 +150,34 @@
 
 {% if userWatchlist.has_other_pages %}
 <ul class="pagination">
-    {% if userWatchlist.has_previous %}
-    <li class="previous"><a href="?page={{ userWatchlist.previous_page_number }}"></a></li>
+    {% if userWatchlist.paginator.num_pages != 1 %}
+    <li class="first"><a href="?page=1"></a></li>
     {% else %}
-    <li class="previous" style="display: none;"></li>
+    <li class="first" style="display: none;"></li>
+    {% endif %}
+
+    {% if userWatchlist.has_previous %}
+    <li class="prev"><a style="display: inline-block;" href="?page={{ userWatchlist.previous_page_number }}"><i class="fas fa-angle-double-left"></i></a></li>
+    {% else %}
+    <li class="prev" style="display: none;"></li>
     {% endif %}
 
     {% for i in userWatchlist.paginator.page_range %}
       {% if userWatchlist.number == i %}
-    <li class="active"><a href="?page={{ i }}">{{ i }}</a></li>
-      {% else %}
-    <li><a href="?page={{ i }}">{{ i }}</a></li>
+    <li id="pacman"><a style="visibility: hidden;" href="?page={{ i }}">{{ i }}</a></li>
+      {% elif userWatchlist.number > i|add:"-4" and userWatchlist.number < i|add:"+4"%}
+    <li><a style="display: inline-block;" href="?page={{ i }}">{{ i }}</a></li>
       {% endif %}
     {% endfor %}
 
     {% if userWatchlist.has_next %}
-    <li class="last"><a href="?page={{ userWatchlist.next_page_number }}"></a></li>
+    <li class="next"><a style="display: inline-block;"  href="?page={{ userWatchlist.next_page_number }}"><i class="fas fa-angle-double-right"></i></a></li>
+    {% else %}
+    <li class="next" style="display: none;"></li>
+    {% endif %}
+
+    {% if userWatchlist.paginator.num_pages != userWatchlist.number %}
+    <li class="last"><a href="?page={{ userWatchlist.paginator.num_pages }}"></a></li>
     {% else %}
     <li class="last" style="display: none;"></li>
     {% endif %}

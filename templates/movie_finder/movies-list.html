@@ -190,9 +190,9 @@
     {% endif %}
 
     {% if movieItems.has_previous %}
-        <li class="prev"><a style="display: inline-block;" href="?page={% url_replace request 'page' movieItems.previous_page_number %}"><i class="fas fa-angle-double-left"></i></a></li>
+    <li class="prev"><a style="display: inline-block;" href="?page={% url_replace request 'page' movieItems.previous_page_number %}"><i class="fas fa-angle-double-left"></i></a></li>
     {% else %}
-        <li class="prev" style="display: none"></li>
+    <li class="prev" style="display: none"></li>
     {% endif %}
 
     {% for i in movieItems.paginator.page_range %}
@@ -205,9 +205,9 @@
     {% endfor %}
 
     {% if movieItems.has_next %}
-        <li class="next"><a style="display: inline-block;" href="?{% url_replace request 'page' movieItems.next_page_number %}"><i class="fas fa-angle-double-right"></i></a></li>
+    <li class="next"><a style="display: inline-block;" href="?{% url_replace request 'page' movieItems.next_page_number %}"><i class="fas fa-angle-double-right"></i></a></li>
     {% else %}
-        <li class="next" style="display: none;"></li>
+    <li class="next" style="display: none;"></li>
     {% endif %}
 
     {% if movieItems.paginator.num_pages != movieItems.number %}
