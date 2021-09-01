@@ -183,22 +183,35 @@
 
 {% if movieItems.has_other_pages %}
 <ul class="pagination">
-    {% if movieItems.has_previous %}
-    <li class="previous"><a href="?{% url_replace request 'page' movieItems.previous_page_number %}"></a></li>
+    {% if movieItems.paginator.num_pages != 1 %}
+    <li class="first"><a href="?{% url_replace request 'page' 1 %}"></a></li>
     {% else %}
-    <li class="previous" style="display: none;"></li>
+    <li class="first" style="display: none;"></li>
+    {% endif %}
+
+    {% if movieItems.has_previous %}
+        <li class="prev"><a style="display: inline-block;" href="?page={% url_replace request 'page' movieItems.previous_page_number %}"><i class="fas fa-angle-double-left"></i></a></li>
+    {% else %}
+        <li class="prev" style="display: none"></li>
     {% endif %}
 
     {% for i in movieItems.paginator.page_range %}
       {% if movieItems.number == i %}
-    <li class="active"><a href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
-      {% else %}
-    <li><a href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
+    <li id="pacman"><a style="visibility: hidden;" href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
+{#    <li class="active"><a href="?{% url_replace request 'page' i %}">{{ i }}</a></li>#}
+      {% elif movieItems.number > i|add:"-4" and movieItems.number < i|add:"+4"%}
+    <li><a style="display: inline-block;" href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
       {% endif %}
     {% endfor %}
 
     {% if movieItems.has_next %}
-    <li class="last"><a href="?{% url_replace request 'page' movieItems.next_page_number %}"></a></li>
+        <li class="next"><a style="display: inline-block;" href="?{% url_replace request 'page' movieItems.next_page_number %}"><i class="fas fa-angle-double-right"></i></a></li>
+    {% else %}
+        <li class="next" style="display: none;"></li>
+    {% endif %}
+
+    {% if movieItems.paginator.num_pages != movieItems.number %}
+    <li class="last"><a href="?{% url_replace request 'page' movieItems.paginator.num_pages  %}"></a></li>
     {% else %}
     <li class="last" style="display: none;"></li>
     {% endif %}

@@ -549,6 +549,62 @@
 }
 
 
+#pacman {
+	content: '';
+	position: relative;
+    display: inline-block;
+	height: 40px;
+	transition: transform 250ms linear;
+    padding: 0 1rem;
+    margin-right: 15px;
+}
+
+
+#pacman:before,
+#pacman:after {
+	content: '';
+	position: absolute;
+	height: 20px;
+	width: 40px;
+	left: 0;
+	background: #ffff03;
+	transition: inherit;
+}
+
+#pacman:before {
+	top: 0;
+	border-top-left-radius: 40px;
+	border-top-right-radius: 40px;
+	transform-origin: bottom center;
+	transform: rotate(-45deg);
+}
+
+#pacman:after {
+	bottom: 0;
+	border-bottom-left-radius: 40px;
+	border-bottom-right-radius: 40px;
+	transform-origin: top center;
+	transform: rotate(45deg);
+}
+
+@-webkit-keyframes waka {
+	0% {}
+	50% {transform: rotate(0);}
+	100% {}
+}
+
+@keyframes waka {
+	0% {}
+	50% {transform: rotate(0);}
+	100% {}
+}
+
+#pacman a {
+    border: none;
+    background: none;
+}
+
+
 .pagination {
     background: transparent;
     margin: 2rem auto;
@@ -591,7 +647,7 @@
 
 .pagination li a {
     border: solid 1px var(--inactive-color);
-    border-radius: 0.2rem;
+    border-radius: 1.5rem;
     color: var(--content-title-color);
     text-decoration: none;
     text-transform: uppercase;
@@ -605,40 +661,12 @@
     display: none;
 }
 
-.pagination li.previous:first-child a {
+.pagination li.first:first-child a {
     display: inline-block;
 }
 
-.pagination li.previous:first-child a:after {
-    content: "Previous";
-}
-
-.pagination li:nth-child(2) a {
-    display: inline-block;
-}
-
-.pagination li:nth-child(3) a {
-    display: inline-block;
-}
-
-.pagination li:nth-child(4) a {
-    display: inline-block;
-}
-
-.pagination li:nth-child(5) a {
-    display: inline-block;
-}
-
-.pagination li:nth-child(6) a {
-    display: inline-block;
-}
-
-.pagination li:nth-child(7) a {
-    display: inline-block;
-}
-
-.pagination li:nth-child(8) a {
-    display: inline-block;
+.pagination li.first:first-child a:after {
+    content: "First";
 }
 
 .pagination li.last:last-child a {
@@ -646,21 +674,11 @@
 }
 
 .pagination li.last:last-child a:after {
-    content: "Next";
+    content: "Last";
 }
 
 .pagination li:nth-last-child(2) a {
     display: inline-block;
-}
-
-.pagination li:nth-last-child(3) {
-    display: inline-block;
-}
-
-.pagination li:nth-last-child(3):after {
-    padding: 0 1rem;
-    content: "...";
-    margin-right: 5px;
 }
 
 
@@ -671,6 +689,9 @@
     .pagination li {
         display: none;
     }
+    #pacman {
+        display: none;
+    }
     .pagination li.active {
         display: inline;
     }
@@ -678,13 +699,19 @@
         display: inline;
     }
     .pagination li:first-child a:after {
-        content: "Prev";
+        content: "First";
     }
     .pagination li:last-child {
         display: inline;
     }
     .pagination li:last-child a:after {
-        content: "Next";
+        content: "Last";
+    }
+    .pagination .next {
+        display: inline;
+    }
+    .pagination .prev {
+        display: inline;
     }
 }
 
@@ -704,15 +731,19 @@
         margin-right: 5px;
     }
     .pagination li:first-child a:after {
-        content: "Previous";
+        content: "First";
     }
     .pagination li:last-child {
         display: inline;
     }
     .pagination li:last-child a:after {
-        content: "Next";
-    }
-    .pagination li:nth-last-child(3):after {
-        display: none;
+        content: "Last";
     }
 }
+
+.pagination > li:hover ~ #pacman:after,
+.pagination > li:hover ~ #pacman:before {
+	-webkit-animation: waka 500ms infinite;
+	        animation: waka 500ms infinite;
+}
+

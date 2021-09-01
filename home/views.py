@@ -22,6 +22,10 @@ def main_page(request):
     return render(request, 'home/home/start.html')
 
 
+def home_page(request):
+    return render(request, 'home/home/main.html')
+
+
 def secret(request):
     return HttpResponseRedirect('https://youtu.be/dQw4w9WgXcQ')
 
