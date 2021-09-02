@@ -190,7 +190,7 @@
     {% endif %}
 
     {% if movieItems.has_previous %}
-    <li class="prev"><a style="display: inline-block;" href="?page={% url_replace request 'page' movieItems.previous_page_number %}"><i class="fas fa-angle-double-left"></i></a></li>
+    <li class="prev"><a style="display: inline-block;" href="?{% url_replace request 'page' movieItems.previous_page_number %}"><i class="fas fa-angle-double-left"></i></a></li>
     {% else %}
     <li class="prev" style="display: none"></li>
     {% endif %}
