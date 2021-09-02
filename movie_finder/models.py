@@ -44,7 +44,7 @@ class Youtube(models.Model):
 
 
 class Movie(models.Model):
-    imdb_id = models.CharField(max_length=128, unique=True, default=uuid.uuid4, primary_key=True)
+    imdb_id = models.CharField(max_length=128, db_index=True, unique=True, default=uuid.uuid4, primary_key=True)
     title = models.CharField(max_length=256)
     link = models.TextField()
     votes = models.IntegerField(null=True, blank=True)
