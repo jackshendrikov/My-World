@@ -517,7 +517,8 @@ body.light-mode:before {
   }
 }
 
-.modal-bg {
+.modal-bg,
+.modal-rating-bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -529,7 +530,8 @@ body.light-mode:before {
   transition: background-color 250ms linear;
 }
 
-.modal-content {
+.modal-content,
+.modal-rating-content {
   position: absolute;
   width: 40%;
   height: auto;
@@ -543,7 +545,8 @@ body.light-mode:before {
   z-index: 20;
 }
 
-.modal-content .close {
+.modal-content .close,
+.modal-rating-content .close {
   display: flex;
   justify-content: flex-end;
   font-size: 20px;
@@ -643,7 +646,7 @@ label.header-profile {
       display: grid;
     }
 
-  .modal-content {
+  .modal-content, .modal-rating-content {
     width: fit-content;
     padding-right: 50px;
     padding-left: 50px;

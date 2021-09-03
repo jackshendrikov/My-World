@@ -1,13 +1,14 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 from django.shortcuts import render, redirect
 from django.views.generic import (ListView,  UpdateView, DeleteView)
 
+from movie_finder.models import Movie
 from .forms import ReviewForms
-from .models import Review
+from .models import Review, MyRating
 
 
 @login_required
@@ -35,6 +36,24 @@ def fill_form(request):
 
     params = {'form': form, 'movie': movie_selected, 'imdb': imdb}
     return render(request, 'movie_finder/review.html', params)
+
+
+@login_required
+def add_rating(request):
+    if request.method == 'POST':
+        imdb = request.POST.get('imdb')
+        rating = request.POST.get('rating')
+
+        movie = Movie.objects.get(imdb_id=imdb)
+
+        if MyRating.objects.filter(movie=movie, user=request.user).exists():
+            MyRating.objects.filter(movie=movie, user=request.user).update(rating=rating)
+            return HttpResponse(status=204)
+        else:
+            MyRating(movie=movie, user=request.user, rating=rating).save()
+            return HttpResponse(status=204)
+
+    return redirect(request.META['HTTP_REFERER'])
 
 
 class PostListView(LoginRequiredMixin, ListView):

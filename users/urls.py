@@ -3,6 +3,8 @@ from . import views
 from .views import (PostListView, PostListViewUser, PostUpdateView, PostDeleteView)
 
 urlpatterns = [
+    path('rating/', views.add_rating, name="add-rating"),
+
     path('review/', views.fill_form, name="review"),
     path('reviews/', PostListViewUser.as_view(), name="my-reviews"),
     path('reviews/allreviews/', PostListView.as_view(), name="all-reviews"),

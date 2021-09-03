@@ -79,6 +79,8 @@
 </div>
 {% endif %}
 
+{% block modal_rating %}{% endblock modal_rating %}
+
 <div class="app" id="App">
     <div class="header">
         <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "movie-finder:movies-main" %}'"/>

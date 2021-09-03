@@ -231,7 +231,8 @@
 .movie-card-netflix-button a,
 .movie-card-review-button span,
 .movie-card-back-button a,
-.movie-card-netflix-button-disable a {
+.movie-card-netflix-button-disable a,
+.movie-card-rating-button span {
     text-decoration: none;
     padding: 10px 15px 10px 15px;
     margin: auto;
@@ -246,6 +247,17 @@
 .movie-card-netflix-button a {
     color: #e50914;
     border: 2px solid #e50914;
+}
+
+.movie-card-rating-button {
+    display: inline-flex;
+    margin-left: 25px;
+}
+
+.movie-card-rating-button span {
+    color: #ffbc0b;
+    border: 2px solid #ffbc0b;
+    padding: 3px 10px;
 }
 
 .movie-card-back-button a {
@@ -302,4 +314,42 @@
 .movie-card-review-button:hover,
 .movie-card-back-button:hover {
     color: #ffffff;
+}
+
+.movie-card-rating-button span:hover {
+    color: #ffffff;
+    background-color: #ffbc0b;
+    background-size: 12px 12px;
+    background-repeat: no-repeat;
+    background-position: 10% 50%;
+    cursor: pointer;
+    transition-property: all;
+    transition-duration: 0.5s;
+}
+
+
+#modal-rating {
+  display: none;
+}
+
+#modal-rating:checked ~ .modal-rating-bg {
+  visibility: visible;
+  background-color: black;
+  opacity: 0.7;
+  transition: background-color 250ms linear;
+}
+
+#modal-rating:checked ~ .modal-rating-content {
+  visibility: visible;
+  transform: scale(1);
+  transition: transform 250ms ease;
+  z-index: 111;
+}
+
+.modal-rating-content header h2 {
+  margin: 0 0 10px;
+  padding: 15px 5px 5px;
+  color: white;
+  font-size: 24px;
+  text-align: center;
 }

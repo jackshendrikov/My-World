@@ -14,11 +14,32 @@
 
     <link rel="stylesheet" href="{% static 'movie-finder/css/movie-info.css' %}">
     <link rel="stylesheet" href="{% static 'movie-finder/css/movie-reviews.css' %}">
+    <link rel="stylesheet" href="{% static 'movie-finder/css/review.css' %}">
     <style>
     #mobBtn > .auth-button {
       display: none;
     }
     </style>
+{% endblock %}
+
+{% block modal_rating %}
+<input type="checkbox" id="modal-rating" />
+<label for="modal-rating" class="modal-rating-bg"></label>
+<div class="modal-rating-content">
+    <label for="modal-rating" class="close">
+        <i class="fas fa-times" aria-hidden="true"></i>
+	</label>
+
+    <header>
+		<h2>Your Rating</h2>
+	</header>
+
+    <form action="{% url 'movie-finder:add-rating' %}" id="ratingForm" method="POST">
+        {% csrf_token %}
+        <input type="hidden" value="{{ imdb_id }}" name="imdb">
+        {% include "movie_finder/include/rating.html" %}
+    </form>
+</div>
 {% endblock %}
 
 {% block content %}
@@ -43,8 +64,8 @@
                 <li>{{ genres }}</li>
             </ul>
 
-            <div class='movie-card-right-rating' title="{{ rating }}%">
-                <div class='back-stars'>
+            <div class='movie-card-right-rating'>
+                <div class='back-stars' title="{{ rating }}%">
                     <i class='fas fa-star fa-sm' aria-hidden="true"></i>
                     <i class='fas fa-star fa-sm' aria-hidden="true"></i>
                     <i class='fas fa-star fa-sm' aria-hidden="true"></i>
@@ -69,6 +90,13 @@
                         <i class='fas fa-star fa-sm' aria-hidden="true"></i>
                     </div>
                 </div>
+
+                <label for="modal-rating" class='movie-card-rating-button'>
+                    <span>
+                        <i class="far fa-star" aria-hidden="true"></i>
+                        &nbsp;Rate
+                    </span>
+                </label>
             </div>
 
             <div class='movie-card-right-review'>
@@ -176,6 +204,10 @@ if (intro !== "None" && intro !== "") {
 if (hisLen === 1 || hisLen === 0) {
     document.getElementById('backBtn').style.display = 'none';
 }
+
+$('.rating-star').click(function () {
+    $("#ratingForm").submit();
+});
 
 function readMore(reviewID, reviewDescription) {
     document.getElementById('review-' + reviewID).innerHTML = reviewDescription;
