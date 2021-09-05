@@ -1,4 +1,13 @@
-let fireflies = 100;
+let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
+let fireflies;
+
+if (isMobile) {
+	fireflies = 40;
+} else {
+	fireflies = 100;
+}
+
 let $container = $(".container");
 let $containerWidth = $container.width();
 let $containerHeight = $container.height();

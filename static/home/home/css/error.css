@@ -1,18 +1,34 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 body {
-  background: #000;
   overflow: hidden;
-  margin:0;
-  height:100%;
+  margin: 0;
+  height: 100%;
   font-family: 'Indie Flower', cursive;
   font-weight: bold;
   color: #fff;
 }
 
+.container {
+  background: url('https://wallpaper.dog/large/10813683.jpg');
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  text-align: center;
+}
+
+.wrapper {
+  position: absolute;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
 .firefly {
-  width:4px;
-  height:4px;
+  width: 4px;
+  height: 4px;
   position:absolute;
   background-color: #ecc45e;
   box-shadow: 0 0 17px 2px wheat;
@@ -21,17 +37,18 @@ body {
 }
 
 .main-text {
-  font-size: 7vh;
-  text-align: center;
   position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  font-size: 3.5em;
+  transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+  right: 0;
   text-shadow: 0 0 2px black;
+  z-index: 1;
 }
 
 .home-link {
-  font-size: 4vh;
+  font-size: 0.8em;
   font-weight: 400;
   color: inherit;
   text-shadow: 0 0 2px black;
@@ -43,16 +60,8 @@ body {
   opacity: 1;
 }
 
-.container {
-  margin: 0 auto;
-  height: 120vh;
-  background-image: url('https://wallpaper.dog/large/10813683.jpg');
-  background-size: cover;
-  display: block;
-}
-
 .neon {
-  font-size: 20vh;
+  font-size: 4em;
   color: #fff;
   text-shadow:
           0 0 5px #fff,
