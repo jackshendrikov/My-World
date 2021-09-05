@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import Movie
-from users.models import Watchlist
+from users.models import Watchlist, MyRating
 from users.models import Review
 
 from jackshen.settings import SHEET_ID
@@ -202,7 +202,13 @@ def result_page(request, movie_id: str):
     intro = request.POST.get('intro', False)
 
     if movie_id:
-        search = list(all_movies.get(imdb_id=movie_id))
+        movie = all_movies.get(imdb_id=movie_id)
+        search = list(movie)
+
+        if MyRating.objects.filter(movie=movie, user=request.user).exists():
+            my_rating = MyRating.objects.get(movie=movie, user=request.user).rating
+        else:
+            my_rating = False
 
         imdb_id = search[0].strip()
         title = search[1].strip()
@@ -233,7 +239,7 @@ def result_page(request, movie_id: str):
         full_result = {'imdb_id': imdb_id, 'title': title, 'rating': rating, 'link': link, 'genres': genres,
                        'runtime': runtime, 'mtype': mType, 'netflix': mNetflix, 'plot': plot, 'poster': poster,
                        'year': year, 'youtube': youtube, 'cast_list': cast_list, 'reviews': reviews,
-                       'reviews_rate': reviews_rate, 'intro': intro}
+                       'reviews_rate': reviews_rate, 'intro': intro, 'my_rate': my_rating }
 
         return render(request, "movie_finder/result.html", full_result)
     else:

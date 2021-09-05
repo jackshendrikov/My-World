@@ -91,12 +91,21 @@
                     </div>
                 </div>
 
+                {% if not my_rate %}
                 <label for="modal-rating" class='movie-card-rating-button'>
                     <span>
                         <i class="far fa-star" aria-hidden="true"></i>
                         &nbsp;Rate
                     </span>
                 </label>
+                {% else %}
+                <label for="modal-rating" class='movie-card-rating-button'>
+                    <span>
+                        <i class="fas fa-star" aria-hidden="true"></i>
+                        &nbsp;{{ my_rate }} / 10
+                    </span>
+                </label>
+                {% endif %}
             </div>
 
             <div class='movie-card-right-review'>
@@ -194,6 +203,10 @@
 
 {% block extra_js %}
 <script>
+{% if my_rate %}
+$("#rating-{{ my_rate }}").prop("checked", true);
+{% endif %}
+
 let intro = "{{ youtube }}";
 let hisLen = history.length;
 
