@@ -41,7 +41,11 @@
 
 @media (max-width: 600px) {
     .reviews-list .review-card {
-        width: 300px;
+        width: 250px;
+    }
+
+    .review-card {
+        margin: 10px 10px;
     }
 }
 
@@ -162,5 +166,11 @@
     .reviews-list .review-card .review-description,
     .reviews-list .review-card .review-details .review-date {
         font-size: 14px;
+    }
+}
+
+@media (max-width: 450px) {
+    .review-date {
+        display: none;
     }
 }
