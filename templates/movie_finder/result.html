@@ -92,14 +92,14 @@
                 </div>
 
                 {% if not my_rate %}
-                <label for="modal-rating" class='movie-card-rating-button'>
+                <label for="modal-rating" id='movie-card-rating-button'>
                     <span>
                         <i class="far fa-star" aria-hidden="true"></i>
                         &nbsp;Rate
                     </span>
                 </label>
                 {% else %}
-                <label for="modal-rating" class='movie-card-rating-active-button'>
+                <label for="modal-rating" id='movie-card-rating-active-button'>
                     <span>
                         <i class="fas fa-star" aria-hidden="true"></i>
                         &nbsp;<b>{{ my_rate }}</b> / 10
@@ -238,6 +238,14 @@ function goBack() {
     {% else %}
     window.history.back();
     {% endif %}
+}
+
+function updateRate(radioID) {
+    let myRate = $("#" + radioID + ":checked").val();
+    $('{% if not my_rate %}#movie-card-rating-button{% else %}#movie-card-rating-active-button{% endif %}').html('<span>\n' +
+        '                        <i class="fas fa-star" aria-hidden="true"></i>\n' +
+        '                        &nbsp;<b>' + myRate + '</b> / 10\n' +
+        '                    </span>');
 }
 </script>
 {% endblock extra_js %}
