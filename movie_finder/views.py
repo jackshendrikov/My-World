@@ -21,19 +21,22 @@ all_movies = Movie.objects.values_list(*values)
 
 url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=904865657'
 df_cast = pd.read_csv(url)['cast']
-all_cast = list(set([j for sub in list(df_cast.str[2:-2].str.replace("'", "").str.replace('"', '').str.split(', ')) for j in sub]))
+all_cast = list(
+    set([j for sub in list(df_cast.str[2:-2].str.replace("'", "").str.replace('"', '').str.split(', ')) for j in sub]))
 
 
 def get_watchlist(request):
     if request.user.is_authenticated:
         return list([x.imdb for x in Watchlist.objects.filter(author=request.user)])
-    else: return False
+    else:
+        return False
 
 
 def get_my_rating(request):
     if request.user.is_authenticated:
         return list([x.movie_id for x in MyRating.objects.filter(user=request.user)])
-    else: return False
+    else:
+        return False
 
 
 def get_category_movies(movie_list, request):
@@ -92,6 +95,20 @@ def watchlist(request):
 
 
 def main_page(request):
+    my_watchlist = get_watchlist(request)
+    my_rating = get_my_rating(request)
+
+    if request.method == 'GET':
+        movie_to_watch = list(all_movies.exclude(imdb_id__in=my_rating)
+                                     .filter(imdb_id__in=my_watchlist)
+                                     .order_by('-votes')
+                                     .order_by('-rating_id__rating')[:14])
+
+        if len(movie_to_watch) < 14:
+            movie_to_watch = False
+
+        return render(request, 'movie_finder/movies-main.html', {'movie2Watch': movie_to_watch})
+
     return render(request, 'movie_finder/movies-main.html')
 
 
@@ -129,8 +146,10 @@ def advanced_search(request):
             if get_cast:
                 get_cast = difflib.get_close_matches(get_cast, all_cast)
 
-                if len(get_cast) > 0: get_cast = get_cast[0]
-                else: get_cast = 'No matches'
+                if len(get_cast) > 0:
+                    get_cast = get_cast[0]
+                else:
+                    get_cast = 'No matches'
             else:
                 get_cast = ''
 
@@ -154,7 +173,8 @@ def advanced_search(request):
             elif sorting == 'byVotes':
                 movie_items = list(movie_items.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
             else:
-                movie_items = list(movie_items.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
+                movie_items = list(
+                    movie_items.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
 
         page = request.GET.get('page')
         paginator_advanced_search = Paginator(movie_items, 15)
@@ -247,7 +267,7 @@ def result_page(request, movie_id: str):
         full_result = {'imdb_id': imdb_id, 'title': title, 'rating': rating, 'link': link, 'genres': genres,
                        'runtime': runtime, 'mtype': mType, 'netflix': mNetflix, 'plot': plot, 'poster': poster,
                        'year': year, 'youtube': youtube, 'cast_list': cast_list, 'reviews': reviews,
-                       'reviews_rate': reviews_rate, 'intro': intro, 'my_rate': my_rating }
+                       'reviews_rate': reviews_rate, 'intro': intro, 'my_rate': my_rating}
 
         return render(request, "movie_finder/result.html", full_result)
     else:
@@ -291,4 +311,5 @@ def popular(request):
     #         pass
     popular_movies = list(all_movies.order_by('-release'))[:30]
 
-    return render(request, "movie_finder/special-item.html", {'movieItems': popular_movies, 'myWatchlist': my_watchlist})
+    return render(request, "movie_finder/special-item.html",
+                  {'movieItems': popular_movies, 'myWatchlist': my_watchlist})

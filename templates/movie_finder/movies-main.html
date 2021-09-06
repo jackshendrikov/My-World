@@ -5,7 +5,6 @@
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
     <link rel="stylesheet" href="{% static 'movie-finder/css/adv-search.css' %}">
-    <link rel="stylesheet" href="{% static 'movie-finder/css/movies-list.css' %}">
     {% if user.is_authenticated %}
     <style>
     .adv-search {
@@ -115,6 +114,21 @@
         </footer>
     </div>
 </form>
+
+{% if movie2Watch %}
+<h1 class="app-content-header-text">Top Movies from your Watchlist</h1>
+<section id="slideshow">
+    <div class="entire-content">
+        <div class="content-carrousel">
+            {% for movie in movie2Watch %}
+            <figure class="shadow" onclick="window.open('{% url 'movie-finder:result' movie.0 %}', '_self')">
+                <img alt="{{ movie.1 }}" src="{{ movie.14 }}"/>
+            </figure>
+            {% endfor %}
+        </div>
+	</div>
+</section>
+{% endif %}
 {% endblock %}
 
 {% block extra_js %}

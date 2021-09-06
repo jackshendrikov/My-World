@@ -5,7 +5,7 @@ $('select').each(function(){
     $this.wrap('<div class="select"></div>');
     $this.after('<div class="select-styled"></div>');
 
-    var $styledSelect = $this.next('div.select-styled');
+    let $styledSelect = $this.next('div.select-styled');
     $styledSelect.text($this.children('option').eq(0).text());
 
     let $list = $('<ul />', {
@@ -44,6 +44,5 @@ $('select').each(function(){
 });
 
 $(function() {
-   $('.adv-search').hide();
-   $('.adv-search').fadeIn(1000);
+   $('.adv-search').hide().fadeIn(1000);
 });
