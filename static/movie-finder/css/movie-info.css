@@ -233,6 +233,20 @@
     }
 }
 
+@media (max-width: 500px) {
+    .movie-card-netflix-button,
+    .movie-card-review-button,
+    .movie-card-back-button {
+        display: flex;
+        padding: 10px 0 0 0;
+        margin: 0;
+    }
+
+    .movie-card-back-button {
+        margin-bottom: 10px;
+    }
+}
+
 .movie-card-netflix-button a,
 .movie-card-review-button span,
 .movie-card-back-button a,

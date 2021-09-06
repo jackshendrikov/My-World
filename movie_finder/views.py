@@ -30,6 +30,12 @@ def get_watchlist(request):
     else: return False
 
 
+def get_my_rating(request):
+    if request.user.is_authenticated:
+        return list([x.movie_id for x in MyRating.objects.filter(user=request.user)])
+    else: return False
+
+
 def get_category_movies(movie_list, request):
     my_watchlist = get_watchlist(request)
 
@@ -104,6 +110,8 @@ def category(request, category_name=None):
 
 def advanced_search(request):
     my_watchlist = get_watchlist(request)
+    my_rating = get_my_rating(request)
+
     movie_items = None
     get_cast = ''
 
@@ -137,7 +145,7 @@ def advanced_search(request):
             keywords = all_movies.filter(keywords__icontains=get_keywords)
 
             if exclude == 'excludeTitles':
-                movie_items = all_movies.exclude(imdb_id__in=my_watchlist)
+                movie_items = all_movies.exclude(imdb_id__in=my_rating)
             else:
                 movie_items = all_movies
 

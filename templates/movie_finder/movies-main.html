@@ -5,6 +5,7 @@
 {% block extrahead %}
     <link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
     <link rel="stylesheet" href="{% static 'movie-finder/css/adv-search.css' %}">
+    <link rel="stylesheet" href="{% static 'movie-finder/css/movies-list.css' %}">
     {% if user.is_authenticated %}
     <style>
     .adv-search {
@@ -45,7 +46,7 @@
 
                     <div class="element year">
                         <label for="year">Year (After)</label>
-                        <input type="number" name="getYear" min="1970" max="2021" value="2000"  placeholder="Year" id="year">
+                        <input type="number" name="getYear" min="1900" max="2021" value="2000"  placeholder="Year" id="year">
                     </div>
                 </div>
 

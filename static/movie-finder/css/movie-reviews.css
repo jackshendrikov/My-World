@@ -173,4 +173,13 @@
     .review-date {
         display: none;
     }
+
+    .reviews-list .review-card .review-header .short-rating {
+        margin-right: 25px;
+    }
+
+    .reviews-list .review-card .review-header .name-group,
+    .reviews-list .review-card .review-description {
+        margin-left: 25px;
+    }
 }
