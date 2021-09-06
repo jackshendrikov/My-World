@@ -11,6 +11,9 @@ class MyRating(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     rating = models.IntegerField(default=5, validators=[MaxValueValidator(10), MinValueValidator(0)])
 
+    def __str__(self):
+        return '{0}: {1}({2})'.format(self.user.username, self.movie.title, self.rating)
+
 
 class Review(models.Model):
     movie = models.CharField(max_length=100, null=True)
