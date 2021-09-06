@@ -117,10 +117,25 @@
 
 {% if movie2Watch %}
 <h1 class="app-content-header-text">Top Movies from your Watchlist</h1>
-<section id="slideshow">
+<section id="myWatchlist">
     <div class="entire-content">
         <div class="content-carrousel">
             {% for movie in movie2Watch %}
+            <figure class="shadow">
+                <a href="{% url 'movie-finder:result' movie.0 %}"><img alt="{{ movie.1 }}" src="{{ movie.14 }}"/></a>
+            </figure>
+            {% endfor %}
+        </div>
+	</div>
+</section>
+{% endif %}
+
+{% if myRecommendation %}
+<h1 class="app-content-header-text" style="padding-top: 40px;">Your Recommendations</h1>
+<section id="myRecommendation">
+    <div class="entire-content">
+        <div class="content-carrousel">
+            {% for movie in myRecommendation %}
             <figure class="shadow">
                 <a href="{% url 'movie-finder:result' movie.0 %}"><img alt="{{ movie.1 }}" src="{{ movie.14 }}"/></a>
             </figure>

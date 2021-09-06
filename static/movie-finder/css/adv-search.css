@@ -450,14 +450,14 @@ input[type=submit]:active {
 }
 
 
-#slideshow {
+#myWatchlist, #myRecommendation {
 	margin: 0 auto;
 	height: 400px;
 	width: 100%;
 }
 
 @media only screen and (max-width: 800px) {
-    .app-content-header-text, #slideshow {
+    .app-content-header-text, #myWatchlist, #myRecommendation {
         display: none;
     }
 }

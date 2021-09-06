@@ -109,7 +109,7 @@
             {% csrf_token %}
             <div style="position: relative;">
                 <a href="{% url 'movie-finder:result' movie.0 %}">
-                    <img src="{{movie.14}}" alt="movie">
+                    <img src="{{ movie.14 }}" alt="movie">
                 </a>
                 <button type="button" class="watchlist-btn {% if movie.0 in myWatchlist %}added{% else %}add{% endif %}">
                     <div class="icn-btn">

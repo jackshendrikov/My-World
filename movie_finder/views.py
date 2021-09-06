@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Case, When
 
 from .models import Movie
 from users.models import Watchlist, MyRating
@@ -37,6 +38,14 @@ def get_my_rating(request):
         return list([x.movie_id for x in MyRating.objects.filter(user=request.user)])
     else:
         return False
+
+
+# To get similar movies based on user rating
+def get_similar(movie_name, rating, corrMatrix):
+    similar_ratings = corrMatrix[movie_name]*(rating-2.5)
+    similar_ratings = similar_ratings.sort_values(ascending=False)
+
+    return similar_ratings
 
 
 def get_category_movies(movie_list, request):
@@ -107,7 +116,35 @@ def main_page(request):
         if len(movie_to_watch) < 14:
             movie_to_watch = False
 
-        return render(request, 'movie_finder/movies-main.html', {'movie2Watch': movie_to_watch})
+        movie_list = False
+
+        if len(my_rating) > 10:
+            movie_rating = pd.DataFrame(list(MyRating.objects.all().values()))
+
+            userRatings = movie_rating.pivot_table(index=['user_id'], columns=['movie_id'], values='rating')
+            userRatings = userRatings.fillna(0, axis=1)
+            corrMatrix = userRatings.corr(method='pearson')
+
+            user = pd.DataFrame(list(MyRating.objects.filter(user=request.user).values())).drop(['user_id', 'id'], axis=1)
+            user_filtered = [tuple(x) for x in user.values]
+            movie_id_watched = [each[0] for each in user_filtered]
+
+            similar_movies = pd.DataFrame()
+            for movie, rating in user_filtered:
+                similar_movies = similar_movies.append(get_similar(movie, rating, corrMatrix), ignore_index=True)
+
+            movies_id = list(similar_movies.sum().sort_values(ascending=False).index)
+            movies_id_recommend = [each for each in movies_id if each not in movie_id_watched]
+            preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(movies_id_recommend)])
+            movie_list = list(all_movies.filter(imdb_id__in=movies_id_recommend)
+                              .order_by(preserved)
+                              .order_by('-votes')[:14])
+
+            if len(movie_list) < 14:
+                movie_list = False
+
+        return render(request, 'movie_finder/movies-main.html', {'movie2Watch': movie_to_watch,
+                                                                 'myRecommendation': movie_list})
 
     return render(request, 'movie_finder/movies-main.html')
 
