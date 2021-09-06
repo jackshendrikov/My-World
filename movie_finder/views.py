@@ -134,7 +134,7 @@ def main_page(request):
                 similar_movies = similar_movies.append(get_similar(movie, rating, corrMatrix), ignore_index=True)
 
             movies_id = list(similar_movies.sum().sort_values(ascending=False).index)
-            movies_id_recommend = [each for each in movies_id if each not in movie_id_watched]
+            movies_id_recommend = [each for each in movies_id if each not in movie_id_watched][:100]
             preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(movies_id_recommend)])
             movie_list = list(all_movies.filter(imdb_id__in=movies_id_recommend)
                               .order_by(preserved)
