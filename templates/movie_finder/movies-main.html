@@ -121,8 +121,8 @@
     <div class="entire-content">
         <div class="content-carrousel">
             {% for movie in movie2Watch %}
-            <figure class="shadow" onclick="window.open('{% url 'movie-finder:result' movie.0 %}', '_self')">
-                <img alt="{{ movie.1 }}" src="{{ movie.14 }}"/>
+            <figure class="shadow">
+                <a href="{% url 'movie-finder:result' movie.0 %}"><img alt="{{ movie.1 }}" src="{{ movie.14 }}"/></a>
             </figure>
             {% endfor %}
         </div>
