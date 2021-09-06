@@ -105,13 +105,13 @@ def watchlist(request):
 
 def main_page(request):
     my_watchlist = get_watchlist(request)
-    my_rating = get_my_rating(request)
 
-    if request.method == 'GET':
+    if request.method == 'GET' and request.user.is_authenticated:
+        my_rating = get_my_rating(request)
         movie_to_watch = list(all_movies.exclude(imdb_id__in=my_rating)
-                                        .filter(imdb_id__in=my_watchlist)
-                                        .order_by('-votes')
-                                        .order_by('-rating_id__rating')[:14])
+                              .filter(imdb_id__in=my_watchlist)
+                              .order_by('-votes')
+                              .order_by('-rating_id__rating')[:14])
 
         if len(movie_to_watch) < 14:
             movie_to_watch = False
