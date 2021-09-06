@@ -100,9 +100,9 @@ def main_page(request):
 
     if request.method == 'GET':
         movie_to_watch = list(all_movies.exclude(imdb_id__in=my_rating)
-                                     .filter(imdb_id__in=my_watchlist)
-                                     .order_by('-votes')
-                                     .order_by('-rating_id__rating')[:14])
+                                        .filter(imdb_id__in=my_watchlist)
+                                        .order_by('-votes')
+                                        .order_by('-rating_id__rating')[:14])
 
         if len(movie_to_watch) < 14:
             movie_to_watch = False
