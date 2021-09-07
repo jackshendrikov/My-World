@@ -22,6 +22,7 @@
     </style>
 {% endblock %}
 
+{% if user.is_authenticated %}
 {% block modal_rating %}
 <input type="checkbox" id="modal-rating" />
 <label for="modal-rating" class="modal-rating-bg"></label>
@@ -41,6 +42,7 @@
     </form>
 </div>
 {% endblock %}
+{% endif %}
 
 {% block content %}
 <form action="{% url 'movie-finder:show-intro' %}" method="POST" id="showIntro">
@@ -91,20 +93,22 @@
                     </div>
                 </div>
 
-                {% if not my_rate %}
+                {% if user.is_authenticated %}
+                    {% if not my_rate %}
                 <label for="modal-rating" id='movie-card-rating-button'>
                     <span>
                         <i class="far fa-star" aria-hidden="true"></i>
                         &nbsp;Rate
                     </span>
                 </label>
-                {% else %}
+                    {% else %}
                 <label for="modal-rating" id='movie-card-rating-active-button'>
                     <span>
                         <i class="fas fa-star" aria-hidden="true"></i>
                         &nbsp;<b>{{ my_rate }}</b> / 10
                     </span>
                 </label>
+                    {% endif %}
                 {% endif %}
             </div>
 
@@ -239,11 +243,15 @@ function goBack() {
 }
 
 function updateRate(radioID) {
+    {% if user.is_authenticated %}
     let myRate = $("#" + radioID + ":checked").val();
     $('{% if not my_rate %}#movie-card-rating-button{% else %}#movie-card-rating-active-button{% endif %}').html('<span>\n' +
         '                        <i class="fas fa-star" aria-hidden="true"></i>\n' +
         '                        &nbsp;<b>' + myRate + '</b> / 10\n' +
         '                    </span>');
+    {% else %}
+    return undefined;
+    {% endif %}
 }
 </script>
 {% endblock extra_js %}

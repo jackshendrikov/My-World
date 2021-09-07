@@ -154,10 +154,10 @@ def watchlist(request):
 
 
 def main_page(request):
-    my_watchlist = get_watchlist(request)
-
     if request.method == 'GET' and request.user.is_authenticated:
+        my_watchlist = get_watchlist(request)
         my_rating = get_my_rating(request)
+
         movie_to_watch = list(all_movies.exclude(imdb_id__in=my_rating)
                               .filter(imdb_id__in=my_watchlist)
                               .order_by('-votes')
@@ -285,7 +285,7 @@ def result_page(request, movie_id: str):
         movie = all_movies.get(imdb_id=movie_id)
         search = list(movie)
 
-        if MyRating.objects.filter(movie=movie, user=request.user).exists():
+        if request.user.is_authenticated and MyRating.objects.filter(movie=movie, user=request.user).exists():
             my_rating = MyRating.objects.get(movie=movie, user=request.user).rating
         else:
             my_rating = False
