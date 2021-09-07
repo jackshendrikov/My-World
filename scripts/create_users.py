@@ -3,7 +3,7 @@ from decouple import config
 
 user_len = User.objects.all().count()
 
-for i in range(user_len, user_len+100):
+for i in range(user_len, user_len+50):
     user_num = 'test' + str(i)
     User.objects.create_user(username=user_num,
                              email=user_num+'@gmail.com',

@@ -137,7 +137,6 @@
             </div>
             {% endif %}
             <form id="add-review" class='movie-card-review-button' action="{% url 'movie-finder:review' %}" method="GET">
-                 <input type="hidden" value="{{ title }}" name="movie">
                  <input type="hidden" value="{{ imdb_id }}" name="imdb">
                  <span onclick="$('#add-review').submit();">
                     <i class="fas fa-comment-dots" aria-hidden="true"></i>

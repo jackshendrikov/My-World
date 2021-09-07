@@ -16,11 +16,10 @@ class MyRating(models.Model):
 
 
 class Review(models.Model):
-    movie = models.CharField(max_length=100, null=True)
-    rating = models.DecimalField(max_digits=3, decimal_places=1, default=5.0)
-    review_description = models.TextField(default="")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    imdb = models.CharField(max_length=100, null=True)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    rating = models.IntegerField(default=5, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    review_description = models.TextField(default="")
     timestamp = models.DateTimeField()
 
     def __str__(self):
@@ -34,9 +33,15 @@ class Review(models.Model):
 
 
 class Watchlist(models.Model):
-    imdb = models.CharField(max_length=128, null=True)
-    movie = models.CharField(max_length=100, null=True)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    timestamp = models.DateTimeField()
 
     def __str__(self):
-        return self.movie + " - " + self.author.username
+        return self.movie.title + " - " + self.author.username
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.timestamp = timezone.now()
+        self.timestamp = timezone.now()
+        return super(Watchlist, self).save(*args, **kwargs)

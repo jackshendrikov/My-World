@@ -13,28 +13,28 @@ from .models import Review, MyRating
 
 @login_required
 def fill_form(request):
-    movie_selected = request.GET.get('movie', 'notSelected')
     imdb = request.GET.get('imdb', 'notSelected')
-    if movie_selected == 'notSelected' or imdb == 'notSelected':
+    if imdb == 'notSelected':
         messages.warning(request, f'URL Not Allowed. Select the movie first!')
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+
+    movie = Movie.objects.get(imdb_id=imdb)
 
     if request.method == 'POST':
         form = ReviewForms(request.POST or None)
         if form.is_valid():
             form.instance.author = request.user
-            form.instance.movie = movie_selected
-            form.instance.imdb = imdb
+            form.instance.movie = movie
             form.save()
 
-            messages.success(request, f'Added review for "{movie_selected}"')
+            messages.success(request, f'Added review for "{ movie.title }"')
             return redirect('movie-finder:result', imdb)
         else:
             print(form.errors)
     else:
         form = ReviewForms()
 
-    params = {'form': form, 'movie': movie_selected, 'imdb': imdb}
+    params = {'form': form, 'movie': movie.title, 'imdb': imdb}
     return render(request, 'movie_finder/review.html', params)
 
 

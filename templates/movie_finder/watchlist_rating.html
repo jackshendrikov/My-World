@@ -96,22 +96,20 @@
                     </div>
                 </button>
             </div>
-            <a style="cursor: pointer;" href="{% url 'movie-finder:result' movie.0 %}">{{movie.1}}</a>
+            <a style="cursor: pointer;" href="{% url 'movie-finder:result' movie.0 %}">{{ movie.1 }}</a>
         </form>
 
         <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="add-watchlist">
                 {% csrf_token %}
-                <input type="hidden" value="{{movie.0}}" name="imdb">
-                <input type="hidden" value="{{movie.1}}" name="movie">
+                <input type="hidden" value="{{ movie.0 }}" name="imdb">
          </form>
 
         <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="delete-watchlist">
                 {% csrf_token %}
-                <input type="hidden" value="{{movie.0}}" name="imdb">
-                <input type="hidden" value="delete{{movie.1}}" name="movie">
+                <input type="hidden" value="delete{{ movie.0 }}" name="imdb">
          </form>
 
-        <div class="movie-cell genre" style="display: none;"><span class="cell-label">Genre:</span>{{movie.5}}</div>
+        <div class="movie-cell genre" style="display: none;"><span class="cell-label">Genre:</span>{{ movie.5 }}</div>
 
         <div class="movie-cell netflix" style="display: none;">
             <span class="cell-label">Netflix Status:</span>
@@ -124,21 +122,20 @@
 
         <div class="movie-cell imdb-num" style="display: none;">
             <span class="cell-label">IMDb Votes:</span>
-            <a href="{{movie.3}}" style="text-decoration: none;">{{movie.4}}</a>
+            <a href="{{ movie.3 }}" style="text-decoration: none;">{{ movie.4 }}</a>
         </div>
 
         <div class="movie-cell rating">
 {#            <span class="cell-label">Rating:</span>#}
             <div class="movie-cell rating" style="text-align: center; margin: auto; color: var(--content-title-color);">
-                <i class="fas fa-star"></i>&#160;{{movie.2}}
+                <i class="fas fa-star"></i>&#160;{{ movie.2 }}
             </div>
         </div>
 
         <div class="movie-cell watchlist" style="display: none;"><span class="cell-label">Remove from Watchlist:</span>
             <form action="{% url 'movie-finder:watchlist' %}" method="POST">
                 {% csrf_token %}
-                <input type="hidden" value="{{movie.0}}" name="imdb">
-                <input type="hidden" value="delete{{movie.1}}" name="movie" id="my_title">
+                <input type="hidden" value="delete{{ movie.0 }}" name="imdb">
                 <button class="action-button" type="submit" style="background-color: #f44336;">
                     <i class="fas fa-times"></i>
                 </button>

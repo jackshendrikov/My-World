@@ -46,7 +46,7 @@ def create_paginator(request, movies_list):
 
 def get_watchlist(request):
     if request.user.is_authenticated:
-        return list([x.imdb for x in Watchlist.objects.filter(author=request.user)])
+        return list([x.movie_id for x in Watchlist.objects.filter(author=request.user)])
     else:
         return False
 
@@ -108,20 +108,21 @@ def watchlist(request):
     my_watchlist = get_watchlist(request)
 
     if request.method == 'POST':
-        movie = request.POST.get('movie')
         imdb = request.POST.get('imdb')
-        if movie[:6] != "delete":
+        if imdb[:6] != "delete":
+            movie = Movie.objects.get(imdb_id=imdb)
             if imdb not in my_watchlist:
-                add_movie = Watchlist(imdb=imdb, movie=movie, author=request.user)
-                messages.success(request, f'{movie} successfully added to your watchlist!')
+                add_movie = Watchlist(movie=movie, author=request.user)
+                messages.success(request, f'{movie.title} successfully added to your watchlist!')
                 add_movie.save()
                 return HttpResponse(status=204)
             else:
-                messages.info(request, f'{movie} was already in your watchlist!')
+                messages.info(request, f'{movie.title} was already in your watchlist!')
                 return redirect(request.META['HTTP_REFERER'])
         else:
-            delete_movie = Watchlist.objects.get(imdb=imdb, movie=movie[6:], author=request.user)
-            messages.error(request, f'{movie[6:]} has been deleted from your watchlist!')
+            movie = Movie.objects.get(imdb_id=imdb[6:])
+            delete_movie = Watchlist.objects.get(movie=movie, author=request.user)
+            messages.error(request, f'{movie.title} has been deleted from your watchlist!')
             delete_movie.delete()
             return redirect(request.META['HTTP_REFERER'])
 
@@ -293,7 +294,7 @@ def result_page(request, movie_id: str):
             youtube = search[15].strip()
             intro = 'None'
 
-        reviews = Review.objects.filter(movie=title)
+        reviews = Review.objects.filter(movie=imdb_id)
         reviews_rate = False
         if reviews:
             reviews_rate = [(range(int(review.rating)), range(int(10 - review.rating))) for review in reviews]
