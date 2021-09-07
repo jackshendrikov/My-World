@@ -20,10 +20,28 @@ values = ('imdb_id', 'title', 'rating_id__rating', 'link', 'votes', 'genres_id__
 
 all_movies = Movie.objects.values_list(*values)
 
+movie_rating = pd.DataFrame(list(MyRating.objects.all().values()))
+
 url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=904865657'
 df_cast = pd.read_csv(url)['cast']
 all_cast = list(
-    set([j for sub in list(df_cast.str[2:-2].str.replace("'", "").str.replace('"', '').str.split(', ')) for j in sub]))
+    set([j for sub in list(df_cast.str[2:-2].str.replace("'", "").str.replace('"', '').str.split(', ')) for j in sub])
+)
+
+
+# ========= UTILS ===========
+def create_paginator(request, movies_list):
+    page = request.GET.get('page', 1)
+    movie_paginator = Paginator(movies_list, 15)
+
+    try:
+        movie_items = movie_paginator.page(page)
+    except PageNotAnInteger:
+        movie_items = movie_paginator.page(1)
+    except EmptyPage:
+        movie_items = movie_paginator.page(movie_paginator.num_pages)
+
+    return movie_items
 
 
 def get_watchlist(request):
@@ -48,18 +66,39 @@ def get_similar(movie_name, rating, corrMatrix):
     return similar_ratings
 
 
+def get_corr_matrix():
+    userRatings = movie_rating.pivot_table(index=['user_id'], columns=['movie_id'], values='rating')
+    userRatings = userRatings.fillna(0, axis=1)
+    corrMatrix = userRatings.corr(method='pearson')
+
+    return corrMatrix
+
+
+def get_recommendations(request, rec_num):
+    corrMatrix = get_corr_matrix()
+
+    user = pd.DataFrame(list(MyRating.objects.filter(user=request.user).values())).drop(['user_id', 'id'], axis=1)
+    user_filtered = [tuple(x) for x in user.values]
+    movie_id_watched = [each[0] for each in user_filtered]
+
+    similar_movies = pd.DataFrame()
+    for movie, rating in user_filtered:
+        similar_movies = similar_movies.append(get_similar(movie, rating, corrMatrix), ignore_index=True)
+
+    movies_id = list(similar_movies.sum().sort_values(ascending=False).index)
+    movies_id_recommend = [each for each in movies_id if each not in movie_id_watched][:100]
+    preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(movies_id_recommend)])
+    movie_list = list(all_movies.filter(imdb_id__in=movies_id_recommend)
+                      .order_by(preserved)
+                      .order_by('-votes')[:rec_num])
+
+    return movie_list
+
+
+# ========= VIEWS ===========
 def get_category_movies(movie_list, request):
     my_watchlist = get_watchlist(request)
-
-    page = request.GET.get('page', 1)
-    paginator_category = Paginator(movie_list, 15)
-
-    try:
-        movie_items = paginator_category.page(page)
-    except PageNotAnInteger:
-        movie_items = paginator_category.page(1)
-    except EmptyPage:
-        movie_items = paginator_category.page(paginator_category.num_pages)
+    movie_items = create_paginator(request, movie_list)
 
     return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'myWatchlist': my_watchlist})
 
@@ -89,18 +128,11 @@ def watchlist(request):
     user_watchlist = [all_movies.get(imdb_id=val) for val in my_watchlist]
     count_watchlist = len(user_watchlist)
 
-    page = request.GET.get('page', 1)
-    paginator_watchlist = Paginator(user_watchlist, 15)
+    user_watchlist = create_paginator(request, user_watchlist)
 
-    try:
-        user_watchlist = paginator_watchlist.page(page)
-    except PageNotAnInteger:
-        user_watchlist = paginator_watchlist.page(1)
-    except EmptyPage:
-        user_watchlist = paginator_watchlist.page(paginator_watchlist.num_pages)
-
-    return render(request, 'movie_finder/watchlist.html', {'userWatchlist': user_watchlist, 'myWatchlist': my_watchlist,
-                                                           'countWatchlist': count_watchlist})
+    return render(request, 'movie_finder/watchlist_rating.html', {'userWatchlist': user_watchlist,
+                                                                  'myWatchlist': my_watchlist,
+                                                                  'countWatchlist': count_watchlist})
 
 
 def main_page(request):
@@ -119,26 +151,7 @@ def main_page(request):
         movie_list = False
 
         if len(my_rating) > 10:
-            movie_rating = pd.DataFrame(list(MyRating.objects.all().values()))
-
-            userRatings = movie_rating.pivot_table(index=['user_id'], columns=['movie_id'], values='rating')
-            userRatings = userRatings.fillna(0, axis=1)
-            corrMatrix = userRatings.corr(method='pearson')
-
-            user = pd.DataFrame(list(MyRating.objects.filter(user=request.user).values())).drop(['user_id', 'id'], axis=1)
-            user_filtered = [tuple(x) for x in user.values]
-            movie_id_watched = [each[0] for each in user_filtered]
-
-            similar_movies = pd.DataFrame()
-            for movie, rating in user_filtered:
-                similar_movies = similar_movies.append(get_similar(movie, rating, corrMatrix), ignore_index=True)
-
-            movies_id = list(similar_movies.sum().sort_values(ascending=False).index)
-            movies_id_recommend = [each for each in movies_id if each not in movie_id_watched][:100]
-            preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(movies_id_recommend)])
-            movie_list = list(all_movies.filter(imdb_id__in=movies_id_recommend)
-                              .order_by(preserved)
-                              .order_by('-votes')[:14])
+            movie_list = get_recommendations(request, 14)
 
             if len(movie_list) < 14:
                 movie_list = False
@@ -150,7 +163,6 @@ def main_page(request):
 
 
 def category(request, category_name=None):
-    print(category_name)
     if category_name == 'series':
         category_list = list(all_movies.filter(mtype_id__mtype='Series').order_by('-release'))
     elif category_name == 'netflix':
@@ -159,6 +171,7 @@ def category(request, category_name=None):
         category_list = list(all_movies.order_by('-rating_id__rating')[:100])
     else:
         category_list = list(all_movies.filter(keywords__contains=category_name).order_by('-rating_id__rating'))
+
     return get_category_movies(category_list, request)
 
 
@@ -213,15 +226,7 @@ def advanced_search(request):
                 movie_items = list(
                     movie_items.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
 
-        page = request.GET.get('page')
-        paginator_advanced_search = Paginator(movie_items, 15)
-
-        try:
-            movie_items = paginator_advanced_search.page(page)
-        except PageNotAnInteger:
-            movie_items = paginator_advanced_search.page(1)
-        except EmptyPage:
-            movie_items = paginator_advanced_search.page(paginator_advanced_search.num_pages)
+            movie_items = create_paginator(request, movie_items)
 
     return render(request, 'movie_finder/movies-list.html', {'getCast': get_cast, 'movieItems': movie_items,
                                                              'myWatchlist': my_watchlist})
@@ -237,15 +242,7 @@ def genre(request):
             genre_type = request.GET.get('typeGenre', 'False')
             movie_items = list(all_movies.filter(genres_id__genres__contains=genre_type).order_by('-rating_id__rating'))
 
-        page = request.GET.get('page')
-        paginator_genre = Paginator(movie_items, 15)
-
-        try:
-            movie_items = paginator_genre.page(page)
-        except PageNotAnInteger:
-            movie_items = paginator_genre.page(1)
-        except EmptyPage:
-            movie_items = paginator_genre.page(paginator_genre.num_pages)
+            movie_items = create_paginator(request, movie_items)
 
     return render(request, 'movie_finder/special-item.html', {'movieItems': movie_items, 'genreType': genre_type,
                                                               'myWatchlist': my_watchlist})
@@ -320,15 +317,7 @@ def movie_search(request):
             query_title = request.GET["q"]
             found_movies = list(all_movies.filter(title__icontains=query_title).order_by('-rating_id__rating'))
 
-            page = request.GET.get('page', 1)
-            paginator_search = Paginator(found_movies, 10)
-
-            try:
-                movie_items = paginator_search.page(page)
-            except PageNotAnInteger:
-                movie_items = paginator_search.page(1)
-            except EmptyPage:
-                movie_items = paginator_search.page(paginator_search.num_pages)
+            movie_items = create_paginator(request, found_movies)
     else:
         movie_items = False
 
