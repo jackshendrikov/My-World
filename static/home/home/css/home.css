@@ -184,30 +184,30 @@ circle {
 
 .modal-content footer .button.finderly {
   margin-right: 10px;
-  background-color: #ef476f;
+  background-color: #f07167;
   text-shadow: 1px 0 0 #565454;
   text-decoration: none;
 }
 
 .modal-content footer .button.todo-lists {
   margin-right: 10px;
-  background-color: #e9c46a;
+  background-color: #9b5de5;
 }
 
 .modal-content footer .button.cypher {
   margin-right: 10px;
-  background-color: #4caf50;
+  background-color: #00afb9;
 }
 
 .modal-content footer .button.sentimento {
   margin-right: 10px;
-  background-color: #06d6a0;
+  background-color: #f15bb5;
   display: none;
 }
 
 .modal-content footer .button.locator {
   margin-right: 10px;
-  background-color: #118ab2;
+  background-color: #0081a7;
   display: none;
 }
 

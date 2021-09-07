@@ -72,6 +72,7 @@
 	</header>
 	<footer>
 		<a href="{% url 'movie-finder:watchlist' %}" class="button my-watchlist"><i class="fas fa-list-ul" aria-hidden="true"></i>&nbsp;Watchlist</a>
+		<a href="{% url 'movie-finder:my-ratings' %}" class="button my-ratings"><i class="fas fa-star" aria-hidden="true"></i>&nbsp;My Ratings</a>
 		<a href="{% url 'movie-finder:my-reviews' %}" class="button my-reviews"><i class="fas fa-comment-dots" aria-hidden="true"></i>&nbsp;My Reviews</a>
 		{% if user.is_superuser %}<a href="{% url 'movie-finder:all-reviews' %}" class="button all-reviews"><i class="fas fa-comments" aria-hidden="true"></i>&nbsp;All Reviews</a>{% endif %}
 		<a href="{% url 'logout' %}" class="button sign-out"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;Log Out</a>

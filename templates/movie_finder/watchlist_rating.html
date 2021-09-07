@@ -13,10 +13,10 @@
 
 {% block content %}
 <div class="app-content-header" style="text-align: center; margin: auto;">
-    <h1 class="app-content-header-text">{{ user.username|capfirst }}'s Watchlist ({{ countWatchlist }} items) &#160;<i class="fas fa-film" aria-hidden="true" style="color: #FFBC0B"></i></h1>
+    <h1 class="app-content-header-text">{{ user.username|capfirst }}'s {{ keyword }} ({{ countList }} items) &#160;<i class="fas fa-film" aria-hidden="true" style="color: #FFBC0B"></i></h1>
 </div>
 
-{% if userWatchlist %}
+{% if userList %}
 <div class="app-content-list">
     <div class="app-content-list-wrapper">
         <button class="action-button list" title="List View">
@@ -81,7 +81,7 @@
         </div>
     </div>
 
-    {% for movie in userWatchlist %}
+    {% for movie in userList %}
     <div class="movies-row">
         <form action="{% url 'movie-finder:result' movie.0 %}" method="POST" class="movie-cell poster" style="text-align: center;">
             {% csrf_token %}
@@ -145,36 +145,36 @@
     {% endfor %}
 </div>
 
-{% if userWatchlist.has_other_pages %}
+{% if userList.has_other_pages %}
 <ul class="pagination">
-    {% if userWatchlist.paginator.num_pages != 1 %}
+    {% if userList.paginator.num_pages != 1 %}
     <li class="first"><a href="?page=1"></a></li>
     {% else %}
     <li class="first" style="display: none;"></li>
     {% endif %}
 
-    {% if userWatchlist.has_previous %}
-    <li class="prev"><a style="display: inline-block;" href="?page={{ userWatchlist.previous_page_number }}"><i class="fas fa-angle-double-left"></i></a></li>
+    {% if userList.has_previous %}
+    <li class="prev"><a style="display: inline-block;" href="?page={{ userList.previous_page_number }}"><i class="fas fa-angle-double-left"></i></a></li>
     {% else %}
     <li class="prev" style="display: none;"></li>
     {% endif %}
 
-    {% for i in userWatchlist.paginator.page_range %}
-      {% if userWatchlist.number == i %}
+    {% for i in userList.paginator.page_range %}
+      {% if userList.number == i %}
     <li id="pacman"><a style="visibility: hidden;" href="?page={{ i }}">{{ i }}</a></li>
-      {% elif userWatchlist.number > i|add:"-4" and userWatchlist.number < i|add:"+4"%}
+      {% elif userList.number > i|add:"-4" and userList.number < i|add:"+4"%}
     <li><a style="display: inline-block;" href="?page={{ i }}">{{ i }}</a></li>
       {% endif %}
     {% endfor %}
 
-    {% if userWatchlist.has_next %}
-    <li class="next"><a style="display: inline-block;"  href="?page={{ userWatchlist.next_page_number }}"><i class="fas fa-angle-double-right"></i></a></li>
+    {% if userList.has_next %}
+    <li class="next"><a style="display: inline-block;"  href="?page={{ userList.next_page_number }}"><i class="fas fa-angle-double-right"></i></a></li>
     {% else %}
     <li class="next" style="display: none;"></li>
     {% endif %}
 
-    {% if userWatchlist.paginator.num_pages != userWatchlist.number %}
-    <li class="last"><a href="?page={{ userWatchlist.paginator.num_pages }}"></a></li>
+    {% if userList.paginator.num_pages != userList.number %}
+    <li class="last"><a href="?page={{ userList.paginator.num_pages }}"></a></li>
     {% else %}
     <li class="last" style="display: none;"></li>
     {% endif %}
@@ -183,7 +183,7 @@
 
 {% else %}
 <h4 style="position: fixed; left: 50%; top: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
-    Your watchlist is empty :(
+    Your {{ keyword }} is empty :(
 </h4>
 {% endif %}
 {% endblock %}

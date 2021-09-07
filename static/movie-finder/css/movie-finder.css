@@ -256,7 +256,12 @@ h1 {
   }
 }
 
+.modal-content {
+  width: fit-content;
+}
+
 .modal-content footer .button.my-watchlist,
+.modal-content footer .button.my-ratings,
 .modal-content footer .button.my-reviews,
 .modal-content footer .button.all-reviews,
 .modal-content footer .button.sign-out {
@@ -266,28 +271,32 @@ h1 {
 
 .modal-content footer .button.my-watchlist {
   margin-right: 10px;
-  background-color: #673ab7;
-  text-shadow: 1px 0 0 #565454;
-  text-decoration: none;
+  background-color: #f07167;
+}
+
+.modal-content footer .button.my-ratings {
+  margin-right: 10px;
+  background-color: #9b5de5;
 }
 
 .modal-content footer .button.my-reviews {
   margin-right: 10px;
-  background-color: #cb4269;
+  background-color: #00afb9;
 }
 
 .modal-content footer .button.all-reviews {
   margin-right: 10px;
-  background-color: #9c27b0;
+  background-color: #f15bb5;
 }
 
 .modal-content footer .button.sign-out {
-  background-color: #2196f3;
+  background-color: #0081a7;
 }
 
 @media (max-width: 900px) {
   .modal-content footer .button.my-watchlist,
   .modal-content footer .button.my-reviews,
+  .modal-content footer .button.my-ratings,
   .modal-content footer .button.all-reviews,
   .modal-content footer .button.sign-out {
     margin-bottom: 10px;

@@ -104,6 +104,22 @@ def get_category_movies(movie_list, request):
 
 
 @login_required
+def my_ratings(request):
+    my_watchlist = get_watchlist(request)
+    my_rate = get_my_rating(request)
+
+    user_ratings = [all_movies.get(imdb_id=val) for val in my_rate]
+    count_rate = len(user_ratings)
+
+    user_ratings = create_paginator(request, user_ratings)
+
+    return render(request, 'movie_finder/watchlist_rating.html', {'userList': user_ratings,
+                                                                  'myWatchlist': my_watchlist,
+                                                                  'countList': count_rate,
+                                                                  'keyword': 'Ratings'})
+
+
+@login_required
 def watchlist(request):
     my_watchlist = get_watchlist(request)
 
@@ -131,9 +147,10 @@ def watchlist(request):
 
     user_watchlist = create_paginator(request, user_watchlist)
 
-    return render(request, 'movie_finder/watchlist_rating.html', {'userWatchlist': user_watchlist,
+    return render(request, 'movie_finder/watchlist_rating.html', {'userList': user_watchlist,
                                                                   'myWatchlist': my_watchlist,
-                                                                  'countWatchlist': count_watchlist})
+                                                                  'countList': count_watchlist,
+                                                                  'keyword': 'Watchlist'})
 
 
 def main_page(request):
