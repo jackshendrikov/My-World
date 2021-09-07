@@ -20,8 +20,6 @@ values = ('imdb_id', 'title', 'rating_id__rating', 'link', 'votes', 'genres_id__
 
 all_movies = Movie.objects.values_list(*values)
 
-movie_rating = pd.DataFrame(list(MyRating.objects.all().values()))
-
 url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=904865657'
 df_cast = pd.read_csv(url)['cast']
 all_cast = list(
@@ -59,14 +57,16 @@ def get_my_rating(request):
 
 
 # To get similar movies based on user rating
-def get_similar(movie_name, rating, corrMatrix):
-    similar_ratings = corrMatrix[movie_name]*(rating-2.5)
+def get_similar(movie_name, rating, corr_matrix):
+    similar_ratings = corr_matrix[movie_name]*(rating-2.5)
     similar_ratings = similar_ratings.sort_values(ascending=False)
 
     return similar_ratings
 
 
 def get_corr_matrix():
+    movie_rating = pd.DataFrame(list(MyRating.objects.all().values()))
+
     userRatings = movie_rating.pivot_table(index=['user_id'], columns=['movie_id'], values='rating')
     userRatings = userRatings.fillna(0, axis=1)
     corrMatrix = userRatings.corr(method='pearson')
@@ -169,10 +169,12 @@ def main_page(request):
         movie_list = False
 
         if len(my_rating) > 10:
-            movie_list = get_recommendations(request, 14)
-
-            if len(movie_list) < 14:
-                movie_list = False
+            try:
+                movie_list = get_recommendations(request, 14)
+                if len(movie_list) < 14:
+                    movie_list = False
+            except Exception as e:
+                print('Something went terribly wrong here!', e)
 
         return render(request, 'movie_finder/movies-main.html', {'movie2Watch': movie_to_watch,
                                                                  'myRecommendation': movie_list})
