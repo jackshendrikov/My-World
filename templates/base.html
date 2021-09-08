@@ -30,6 +30,14 @@
     <link rel="stylesheet" href="{% static 'home/home/css/home.css' %}">
     <link rel="stylesheet" href="{% static 'home/home/css/xmas-lights.css' %}">
 
+    <style>
+        @media screen and (max-width: 450px) {
+            .header-profile {
+                padding: 0 16px 0 20px;
+            }
+        }
+    </style>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6YW2L42J25"></script>
     <script>
@@ -82,7 +90,7 @@
 
 <div class="app">
     <div class="header">
-        <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
+        <a href="{% url "home_page" %}"><img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo"/></a>
         <div class="header-menu">
                 <a class="menu-link" href="{% url 'movie-finder:movies-main' %}"><i class="fas fa-film" aria-hidden="true"></i>&nbsp;Movie Finder</a>
                 <a class="menu-link" id="todo-link" href="{% url 'todo:lists' %}"><i class="fas fa-list-ul" aria-hidden="true"></i>&nbsp;To-Do</a>
@@ -108,7 +116,7 @@
         {% else %}
         <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
-        <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
+        <a href="https://github.com/JackShen1/My-World"><img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/></a>
         <i id="xmas-version" style="color: #2196f3; font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-snowflake" onclick="snowfall()"></i>
         <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 10px; cursor: pointer;" class="fas fa-undo fa-sm"></i>
     </div>
@@ -155,10 +163,6 @@ $('.dark-light').click(function() {
         github.src = "{% static 'img/github-dark.png' %}";
         theme_flag = 1;
     }
-});
-
-$(github).click(function() {
-    window.open('https://github.com/JackShen1/My-World');
 });
 
 $(".alert").delay(4000).slideUp(200, function() {

@@ -84,7 +84,10 @@
 
 <div class="app" id="App">
     <div class="header">
-        <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "movie-finder:movies-main" %}'"/>
+        <a href="{% url "movie-finder:movies-main" %}">
+            <i style="color: var(--theme-color); font-size: 1.75rem; margin-right:14px; cursor: pointer;" class="fas fa-home"></i>
+{#            <img class="llogo-img" src="{% static 'ico/logo.png' %}" alt="logo"/>#}
+        </a>
         <div class="header-menu">
             <a class="menu-link" href="{% url 'movie-finder:genres' %}"><i class="fas fa-theater-masks" aria-hidden="true"></i>&nbsp;Genres</a>
             <a class="menu-link" id="specials-link" href="{% url 'movie-finder:specials' %}"><i class="fas fa-certificate" aria-hidden="true"></i>&nbsp;Specials</a>
@@ -109,7 +112,7 @@
         <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
         <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
-        <i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-home" onclick="window.open('{% url "home_page" %}', '_self')"></i>
+        <a href="{% url "home_page" %}"><i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fab fa-fort-awesome"></i></a>
     </div>
 
     <div class="wrapper">

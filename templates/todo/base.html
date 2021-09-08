@@ -78,7 +78,10 @@
 
 <div class="app">
     <div class="header">
-        <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "todo:lists" %}'"/>
+        <a href="{% url "todo:lists" %}">
+            <i style="color: var(--theme-color); font-size: 1.75rem; margin-right:14px; cursor: pointer;" class="fas fa-home"></i>
+{#            <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo"/>#}
+        </a>
         <div class="header-menu">
             {% if user.is_authenticated %}
                 <a class="menu-link" href="{% url 'todo:lists' %}"><i class="fas fa-clipboard-list" aria-hidden="true"></i>&nbsp;To Do Lists</a>
@@ -103,7 +106,7 @@
         <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
         <img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/>
-        <i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-home" onclick="window.open('{% url "home_page" %}', '_self')"></i>
+        <a href="{% url "home_page" %}"><i id="HomePage" style="color: var(--theme-color); font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fab fa-fort-awesome"></i></a>
     </div>
 
     <div class="wrapper">

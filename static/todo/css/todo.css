@@ -661,3 +661,9 @@
       width: auto;
     }
 }
+
+@media (max-width: 450px) {
+    #github {
+      display: none;
+    }
+}

@@ -349,17 +349,17 @@ h1 {
   color: #ffffff;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 800px) {
     #mobBtn > .auth-button {
       display: inline-block;
     }
+
+   .header-menu a:not(.main-header-link) {
+    display: none;
+  }
 }
 
 @media (max-width: 900px) {
-    #HomePage {
-      display: none;
-    }
-
     .auth-button {
       font-size: 16px;
       padding: 15px 20px;

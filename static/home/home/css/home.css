@@ -26,6 +26,10 @@ h1 {
 }
 
 @media screen and (max-width: 1050px) {
+  #locator-link {
+    display: none;
+  }
+
   #sentimento-link {
     display: none;
   }
@@ -302,7 +306,7 @@ circle {
   color: #ffffff;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 950px) {
     #mobBtn > .auth-button {
       display: inline-block;
     }

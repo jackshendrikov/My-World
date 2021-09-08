@@ -71,7 +71,10 @@
 
 <div class="app">
     <div class="header">
-        <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo" onclick="window.location.href='{% url "home_page" %}'"/>
+        <a href="{% url "home_page" %}">
+            <i style="color: var(--theme-color); font-size: 1.75rem; margin-right:14px; cursor: pointer;" class="fab fa-fort-awesome"></i>
+{#            <img class="logo-img" src="{% static 'ico/logo.png' %}" alt="logo"/>#}
+        </a>
         <div class="header-menu">
             <a class="menu-link" href=""><i class="fas fa-map-marked-alt fa-lg" style="color: #edc81c;"></i>&nbsp; IP Locator</a>
             {% if user.is_authenticated %}
