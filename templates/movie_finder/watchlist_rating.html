@@ -1,6 +1,6 @@
 {% extends 'movie_finder/base.html' %}
 {% load static %}
-{% block title %}{{ user.username|capfirst }}'s Watchlist{% endblock %}
+{% block title %}{{ user.username|capfirst }}'s {{ keyword }}{% endblock %}
 
 {% block extrahead %}
 <link rel="stylesheet" href="{% static 'movie-finder/css/movies-list.css' %}">
