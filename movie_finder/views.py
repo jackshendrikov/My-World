@@ -158,6 +158,12 @@ def watchlist(request):
 @login_required
 def recommendations(request):
     my_watchlist = get_watchlist(request)
+    my_rating = get_my_rating(request)
+
+    if len(my_rating) < 10:
+        messages.error(request, 'To get recommendations rate at least 10 movies.')
+        return redirect(request.META['HTTP_REFERER'])
+
     movie_items = get_recommendations(request)
     movie_items = create_paginator(request, movie_items)
 
