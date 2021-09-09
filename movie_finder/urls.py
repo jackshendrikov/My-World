@@ -14,6 +14,7 @@ urlpatterns = [
     path('my-ratings/', views.my_ratings, name="my-ratings"),
     path('genre/', views.genre, name='genre'),
     path('popular/', views.popular, name='popular'),
+    path('recommendations/', views.recommendations, name='recommendations'),
 
     path('category/<str:category_name>/', views.category, name='special-category'),
 

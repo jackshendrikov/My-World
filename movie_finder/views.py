@@ -74,10 +74,12 @@ def get_corr_matrix():
     return corrMatrix
 
 
-def get_recommendations(request, rec_num):
+def get_recommendations(request, rec_num=100, order_by_votes=False):
     corrMatrix = get_corr_matrix()
 
-    user = pd.DataFrame(list(MyRating.objects.filter(user=request.user).values())).drop(['user_id', 'id'], axis=1)
+    user = list(MyRating.objects.filter(user=request.user).values('id', 'user_id', 'movie_id', 'rating'))
+    user = pd.DataFrame(user).drop(['user_id', 'id'], axis=1)
+
     user_filtered = [tuple(x) for x in user.values]
     movie_id_watched = [each[0] for each in user_filtered]
 
@@ -88,11 +90,11 @@ def get_recommendations(request, rec_num):
     movies_id = list(similar_movies.sum().sort_values(ascending=False).index)
     movies_id_recommend = [each for each in movies_id if each not in movie_id_watched][:100]
     preserved = Case(*[When(pk=pk, then=pos) for pos, pk in enumerate(movies_id_recommend)])
-    movie_list = list(all_movies.filter(imdb_id__in=movies_id_recommend)
-                      .order_by(preserved)
-                      .order_by('-votes')[:rec_num])
+    movie_list = all_movies.filter(imdb_id__in=movies_id_recommend).order_by(preserved)
+    if order_by_votes:
+        movie_list = movie_list.order_by('-votes')
 
-    return movie_list
+    return list(movie_list[:rec_num])
 
 
 # ========= VIEWS ===========
@@ -153,6 +155,15 @@ def watchlist(request):
                                                                   'keyword': 'Watchlist'})
 
 
+@login_required
+def recommendations(request):
+    my_watchlist = get_watchlist(request)
+    movie_items = get_recommendations(request)
+    movie_items = create_paginator(request, movie_items)
+
+    return render(request, "movie_finder/special-item.html", {'movieItems': movie_items, 'myWatchlist': my_watchlist})
+
+
 def main_page(request):
     if request.method == 'GET' and request.user.is_authenticated:
         my_watchlist = get_watchlist(request)
@@ -170,7 +181,7 @@ def main_page(request):
 
         if len(my_rating) > 10:
             try:
-                movie_list = get_recommendations(request, 14)
+                movie_list = get_recommendations(request, 14, True)
                 if len(movie_list) < 14:
                     movie_list = False
             except Exception as e:
@@ -284,6 +295,11 @@ def result_page(request, movie_id: str):
     intro = request.POST.get('intro', False)
 
     if movie_id:
+        my_watchlist = get_watchlist(request)
+        if movie_id in my_watchlist:
+            my_watchlist = True
+        else:
+            my_watchlist = False
         movie = all_movies.get(imdb_id=movie_id)
         search = list(movie)
 
@@ -321,7 +337,7 @@ def result_page(request, movie_id: str):
         full_result = {'imdb_id': imdb_id, 'title': title, 'rating': rating, 'link': link, 'genres': genres,
                        'runtime': runtime, 'mtype': mType, 'netflix': mNetflix, 'plot': plot, 'poster': poster,
                        'year': year, 'youtube': youtube, 'cast_list': cast_list, 'reviews': reviews,
-                       'reviews_rate': reviews_rate, 'intro': intro, 'my_rate': my_rating}
+                       'reviews_rate': reviews_rate, 'intro': intro, 'my_rate': my_rating, 'inWatchlist': my_watchlist}
 
         return render(request, "movie_finder/result.html", full_result)
     else:
