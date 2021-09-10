@@ -8,7 +8,7 @@
     <meta name="description" content="Portfolio with my Web Development projects">
     <meta name="author" content="JackShen">
 
-    <meta property="og:image" content="{% static 'img/main-img.png' %}" />
+    <meta property="og:image" content="{% static 'img/main-img.webp' %}" />
     <meta property="og:image:alt" content="Portfolio with my Web Development projects" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="600" />
@@ -116,7 +116,7 @@
         {% else %}
         <div class="header-profile" style="visibility: hidden;"></div>
         {% endif %}
-        <a href="https://github.com/JackShen1/My-World"><img class="profile-img" id="github" src="{% static 'img/github-dark.png' %}" alt="avatar"/></a>
+        <a href="https://github.com/JackShen1/My-World"><img class="profile-img" id="github" src="{% static 'img/github-dark.webp' %}" alt="avatar"/></a>
         <i id="xmas-version" style="color: #2196f3; font-size: 1.75rem; margin-left: 10px; cursor: pointer;" class="fas fa-snowflake" onclick="snowfall()"></i>
         <i id="default-version" style="color: var(--theme-color); font-size: 1.5rem; display: none; margin-left: 10px; cursor: pointer;" class="fas fa-undo fa-sm"></i>
     </div>
@@ -156,11 +156,11 @@ let github = document.getElementById('github');
 
 $('.dark-light').click(function() {
     if (theme_flag) {
-        github.src = "{% static 'img/github-light.png' %}";
+        github.src = "{% static 'img/github-light.webp' %}";
         theme_flag = 0;
     }
     else {
-        github.src = "{% static 'img/github-dark.png' %}";
+        github.src = "{% static 'img/github-dark.webp' %}";
         theme_flag = 1;
     }
 });

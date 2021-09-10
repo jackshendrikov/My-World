@@ -1,7 +1,7 @@
 <h1 align="center"> JackShen World</h1>
 
 <p align="center">
-  <img src="img/home/intro.png" alt="Welcome Logo" width="800">
+  <img src="img/home/intro.webp" alt="Welcome Logo" width="800">
 </p>
 
 <div align="center"> 
@@ -36,11 +36,11 @@ The site is also fully optimized for use on mobile phones.
 
 Intro (My Logo SVG)         |  Login Page | Sign Up Page     |  User Page
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/home/intro.png" title="Intro (My Logo SVG)" width="100%"> |<img src="img/home/login.png" title="Login Page" width="100%">|<img src="img/home/sign-up.png" title="Sign Up Page" width="100%"> |<img src="img/home/user-page.png" title="User Page" width="100%">
+<img src="img/home/intro.webp" title="Intro (My Logo SVG)" width="100%"> |<img src="img/home/login.webp" title="Login Page" width="100%">|<img src="img/home/sign-up.webp" title="Sign Up Page" width="100%"> |<img src="img/home/user-page.webp" title="User Page" width="100%">
 
 Home Page (Dark Theme)         |  Home Page (Light Theme)   |  Project Example (Heartverse)     |  404 Page 
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/home/main-dark.png" title="Home Page (Dark Theme) " width="100%"> |<img src="img/home/main-light.png" title="Home Page (Light Theme)" width="100%">|<img src="img/home/heartverse.png" title="Project Example (Heartverse)" width="100%"> |<img src="img/home/404.png" title="404 Page" width="100%">
+<img src="img/home/main-dark.webp" title="Home Page (Dark Theme) " width="100%"> |<img src="img/home/main-light.webp" title="Home Page (Light Theme)" width="100%">|<img src="img/home/heartverse.webp" title="Project Example (Heartverse)" width="100%"> |<img src="img/home/404.webp" title="404 Page" width="100%">
 
 
 ## 🎞️ &nbsp;Movie Finder App
@@ -88,17 +88,17 @@ A registered user can add reviews to movies, rate them and add movies to the wat
 
 Advanced Search         |  User Profile | Movies List (Grid View)       |  Movies List (List View)
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/finderly/movie-adv-search.png" title="Advanced Search" width="100%"> |<img src="img/finderly/movie-user.png" title="User Profile" width="100%">|<img src="img/finderly/movie-grid.png" title="Movies List (Grid View) " width="100%"> |<img src="img/finderly/movie-list.png" title="Movies List (List View)" width="100%">
+<img src="img/finderly/movie-adv-search.webp" title="Advanced Search" width="100%"> |<img src="img/finderly/movie-user.webp" title="User Profile" width="100%">|<img src="img/finderly/movie-grid.webp" title="Movies List (Grid View) " width="100%"> |<img src="img/finderly/movie-list.webp" title="Movies List (List View)" width="100%">
 
 
 Movie Page         |  Movie Intro  | Genres Page      |  Special Categories
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/finderly/movie-page.png" title="Movie Page " width="100%"> |<img src="img/finderly/movie-intro.png" title="Movie Intro" width="100%">|<img src="img/finderly/movie-genres.png" title="Genres Page" width="100%"> |<img src="img/finderly/movie-specials.png" title="Special Categories" width="100%">
+<img src="img/finderly/movie-page.webp" title="Movie Page " width="100%"> |<img src="img/finderly/movie-intro.webp" title="Movie Intro" width="100%">|<img src="img/finderly/movie-genres.webp" title="Genres Page" width="100%"> |<img src="img/finderly/movie-specials.webp" title="Special Categories" width="100%">
 
 
 Review Form         |  Movie Reviews  | My Reviews       |  My Watchlist
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/finderly/movie-review.png" title="Review Form " width="100%"> |<img src="img/finderly/movie-reviews.png" title="Movie Reviews" width="100%">|<img src="img/finderly/movie-my-reviews.png" title="My Reviews" width="100%"> |<img src="img/finderly/movie-watchlist.png" title="My Watchlist" width="100%">
+<img src="img/finderly/movie-review.webp" title="Review Form " width="100%"> |<img src="img/finderly/movie-reviews.webp" title="Movie Reviews" width="100%">|<img src="img/finderly/movie-my-reviews.webp" title="My Reviews" width="100%"> |<img src="img/finderly/movie-watchlist.webp" title="My Watchlist" width="100%">
 
 
 ### 💡 &nbsp;Additional Info
@@ -157,12 +157,12 @@ In this application only admins (or staff users) can add or delete lists. Tasks 
 
 To-Do Main Page         |  To-Do Tasks | Completed Tasks       |  To-Do Search
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/todo/todo-main.png" title="To-Do Main Page" width="100%"> |<img src="img/todo/todo-tasks.png" title="To-Do Tasks" width="100%">|<img src="img/todo/todo-completed-tasks.png" title="Completed Tasks" width="100%"> |<img src="img/todo/todo-search.png" title="To-Do Search" width="100%">
+<img src="img/todo/todo-main.webp" title="To-Do Main Page" width="100%"> |<img src="img/todo/todo-tasks.webp" title="To-Do Tasks" width="100%">|<img src="img/todo/todo-completed-tasks.webp" title="Completed Tasks" width="100%"> |<img src="img/todo/todo-search.webp" title="To-Do Search" width="100%">
 
 
 Add To-Do List         |  Add To-Do  | Import CSV       |  Help Center
 :-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
-<img src="img/todo/todo-add-list.png" title="Add To-Do List" width="100%"> |<img src="img/todo/todo-add.png" title="Add To-Do" width="100%">|<img src="img/todo/todo-import.png" title="Import CSV" width="100%"> |<img src="img/todo/todo-help.png" title="Help Center" width="100%">
+<img src="img/todo/todo-add-list.webp" title="Add To-Do List" width="100%"> |<img src="img/todo/todo-add.webp" title="Add To-Do" width="100%">|<img src="img/todo/todo-import.webp" title="Import CSV" width="100%"> |<img src="img/todo/todo-help.webp" title="Help Center" width="100%">
 
 
 ### 💡 &nbsp;Additional Info
