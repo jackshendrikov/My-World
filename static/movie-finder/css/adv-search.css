@@ -253,7 +253,7 @@ input[type=submit]:active {
     border-radius: 10px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1200px) {
     .adv-search {
         width: 100%;
         margin: 1rem 0;
@@ -266,7 +266,7 @@ input[type=submit]:active {
     padding: 0 3.2rem;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1200px) {
     .adv-search .container {
         display: block;
     }
@@ -299,7 +299,7 @@ input[type=submit]:active {
     padding: 1.2rem 1.5rem 1.8rem 0;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1200px) {
     .adv-search .container .adv-search-form .form-content {
         padding-right: 0;
     }
@@ -456,8 +456,8 @@ input[type=submit]:active {
 	width: 100%;
 }
 
-@media only screen and (max-width: 800px) {
-    .app-content-header-text, #myWatchlist, #myRecommendation {
+@media only screen and (max-width: 992px) {
+    #myWatchlist, #myRecommendation {
         display: none;
     }
 }
@@ -531,4 +531,102 @@ input[type=submit]:active {
 	} to {
 		transform: rotateY(360deg);
 	}
+}
+
+#addWatchlistSlider, #addRecommendationSlider {
+    display: none;
+}
+
+@media (max-width: 992px) {
+    #addWatchlistSlider, #addRecommendationSlider {
+        display: block;
+    }
+}
+
+.watch-wrapper {
+    width: 950px;
+    margin: 0 auto;
+}
+
+.slick-slide {
+    margin: 10px;
+}
+
+.slick-list.draggable {
+    cursor: move;
+    cursor: -webkit-grab;
+    cursor: grab;
+}
+
+.slick-list.draggable:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+.slick-prev:before, .slick-next:before, .slick-dots li button:before {
+  color: var(--theme-color);
+}
+
+.slick-dots li.slick-active button:before {
+    color: var(--select-color) !important;
+}
+
+.slick-slide img {
+    height: 200px;
+    border: 2px solid var(--theme-color);
+    transition: transform .5s ease;
+}
+
+.slick-slide img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1150px) {
+    .watch-wrapper {
+        width: 850px;
+    }
+}
+
+@media (max-width: 992px) {
+    .watch-wrapper {
+        width: 750px;
+    }
+}
+
+@media (max-width: 900px) {
+    .watch-wrapper {
+        width: 600px;
+    }
+
+    .slick-slide img {
+        height: 150px;
+    }
+}
+
+@media (max-width: 750px) {
+    .watch-wrapper {
+        width: 500px;
+    }
+}
+
+@media (max-width: 650px) {
+    .watch-wrapper {
+        width: 400px;
+    }
+}
+
+@media (max-width: 550px) {
+    .watch-wrapper {
+        width: 300px;
+    }
+}
+
+@media (max-width: 400px) {
+    .watch-wrapper {
+        width: 150px;
+    }
+
+    .slick-slide img {
+        height: 200px;
+    }
 }

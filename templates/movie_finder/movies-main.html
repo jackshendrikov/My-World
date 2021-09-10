@@ -3,6 +3,8 @@
 {% block title %}Movie Finder Home{% endblock %}
 
 {% block extrahead %}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <link rel="stylesheet" href="{% static 'libs/css/icons.css' %}">
     <link rel="stylesheet" href="{% static 'movie-finder/css/adv-search.css' %}">
     {% if user.is_authenticated %}
@@ -117,6 +119,14 @@
 
 {% if movie2Watch %}
 <h1 class="app-content-header-text">Top Movies from your Watchlist</h1>
+<section id="addWatchlistSlider" class="watch-wrapper">
+    <div class="movies-carousel">
+        {% for movie in movie2Watch %}
+         <a href="{% url 'movie-finder:result' movie.0 %}"><img alt="{{ movie.1 }}" data-lazy="{{ movie.14 }}"/></a>
+        {% endfor %}
+    </div>
+</section>
+    {% if movie2Watch|length == 14 %}
 <section id="myWatchlist">
     <div class="entire-content">
         <div class="content-carrousel">
@@ -128,10 +138,19 @@
         </div>
 	</div>
 </section>
+    {% endif %}
 {% endif %}
 
 {% if myRecommendation %}
 <h1 class="app-content-header-text" style="padding-top: 40px;">Your Recommendations</h1>
+<section id="addRecommendationSlider" class="watch-wrapper">
+    <div class="movies-carousel">
+        {% for movie in myRecommendation %}
+         <a href="{% url 'movie-finder:result' movie.0 %}"><img alt="{{ movie.1 }}" data-lazy="{{ movie.14 }}"/></a>
+        {% endfor %}
+    </div>
+</section>
+    {% if myRecommendation|length == 14 %}
 <section id="myRecommendation">
     <div class="entire-content">
         <div class="content-carrousel">
@@ -143,9 +162,63 @@
         </div>
 	</div>
 </section>
+    {% endif %}
 {% endif %}
 {% endblock %}
 
 {% block extra_js %}
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script>
+$('.movies-carousel').slick({
+    dots: true,
+    lazyLoad: 'ondemand',
+    focusOnSelect: true,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 6,
+    slidesToScroll: 6,
+    responsive: [
+        {
+            breakpoint: 1150,
+            settings: {
+                slidesToShow: 5,
+                slidesToScroll: 5,
+                infinite: true,
+                dots: true,
+            }
+        },
+        {
+            breakpoint: 750,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 4,
+            }
+        },
+        {
+            breakpoint: 650,
+            settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3
+            }
+        },
+        {
+            breakpoint: 500,
+            settings: {
+                dots: false,
+                slidesToShow: 2,
+                slidesToScroll: 2
+            }
+        },
+        {
+            breakpoint: 400,
+            settings: {
+                dots: false,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            }
+        }
+    ]
+});
+</script>
 <script src="{% static 'movie-finder/js/adv-search.js' %}"></script>
 {% endblock extra_js %}
