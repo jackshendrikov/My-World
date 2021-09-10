@@ -460,6 +460,11 @@ input[type=submit]:active {
     #myWatchlist, #myRecommendation {
         display: none;
     }
+
+    .app-content-header-text {
+        padding-top: 10px;
+        font-size: 20px;
+    }
 }
 
 
