@@ -1,4 +1,5 @@
 {% extends "todo/base.html" %}
+{% load static %}
 {% block title %}{{ list_title }} To-Do Lists{% endblock %}
 
 {% block extrahead %}
@@ -42,7 +43,7 @@
             </h3>
             <div class="content-text">You can drag and drop task prioritization, search, comment, import tasks via CSV and much more. Explore it!<br>Start by creating your first To-Do Task.</div>
         </div>
-             <img class="content-wrapper-img" src="https://i.imgur.com/myo4VOB.png" alt="">
+             <img class="content-wrapper-img" src="{% static 'img/todo/todo_vector.webp' %}" alt="">
     </div>
 
     <p></p>

@@ -79,7 +79,7 @@ def analyze_api(data_apis):
         data = data_apis[1]
         data['latitude'] = data.pop('lat')
         data['longitude'] = data.pop('lon')
-        data['country_flag'] = 'https://imgur.com/a/SClnaQB'
+        data['country_flag'] = 'https://i.imgur.com/iKdW6Iv.jpg'
 
         return data
 
