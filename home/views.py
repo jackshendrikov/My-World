@@ -19,7 +19,7 @@ def error_500(request, exception=None):
 
 
 def main_page(request):
-    return render(request, 'home/home/start.html')
+    return render(request, 'home/home/intro.html')
 
 
 def home_page(request):

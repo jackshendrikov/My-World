@@ -72,8 +72,8 @@ body {
   animation-fill-mode: forwards;
   animation-iteration: 1;
   animation-name: DrawLine, FadeStroke, FillIn;
-  animation-duration: 17s, 5s, 5s;
-  animation-delay: 0s, 14s, 14s;
+  animation-duration: 14s, 4s, 4s;
+  animation-delay: 0s, 12s, 12s;
 }
 
 #Draw-Mark {
@@ -82,15 +82,15 @@ body {
 }
 
 #Draw-Frame {
-  animation-delay: 3s, 11s, 11s;
-  animation-duration: 11s, 3s, 3s;
+  animation-delay: 2s, 9s, 9s;
+  animation-duration: 9s, 2s, 2s;
   stroke-dashArray: 1500;
   stroke-dashoffset: 1500;
 }
 
 #Draw-Text {
-  animation-delay: 6s, 11s, 11s;
-  animation-duration: 6s, 3s, 3s;
+  animation-delay: 5s, 9s, 9s;
+  animation-duration: 5s, 2s, 2s;
   stroke-dashArray: 300;
   stroke-dashoffset: 300;
 }
@@ -135,7 +135,7 @@ body {
    text-align: center;
 }
 
-#logo-text h2 span{
+#logo-text h2 span {
    font-size: 2.7em;
    text-transform: uppercase;
    margin: 0;

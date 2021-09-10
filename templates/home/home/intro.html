@@ -20,8 +20,6 @@
     <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'libs/css/reset.min.css' %}">
     <link rel="stylesheet" href="{% static 'home/home/css/intro.css' %}">
-
-    <style type="text/css"> audio { display:none;} </style>
 </head>
 
 <body>
@@ -31,11 +29,6 @@
   <div class="inner two"></div>
   <div class="inner three"></div>
 </div>
-
-<audio class="song" controls loop autoplay>
-    <source src="{% static 'audio/takeonme.mp3' %}"/>
-    Your browser isn't invited for super fun audio time.
-</audio>
 
 <div class="container">
     <div class="canvas-container">
@@ -94,11 +87,9 @@
         window.open('{% url "home_page" %}', '_self')
 
     setTimeout(() => {
-            let audio = $('.song')[0];
-            audio.play();
             setTimeout(() => {
                 document.location = '{% url "home_page" %}'
-            }, 207 * 100)
+            }, 160 * 100)
         }, 0);
 </script>
 
