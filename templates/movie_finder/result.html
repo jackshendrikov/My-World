@@ -55,6 +55,7 @@
 <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="add-watchlist">
     {% csrf_token %}
     <input type="hidden" value="{{ imdb_id }}" name="imdb">
+    <input type="hidden" value="True" name="reload">
 </form>
 
 <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="delete-watchlist">
@@ -126,6 +127,22 @@
                     <span>
                         <i class="fas fa-star" aria-hidden="true"></i>
                         &nbsp;<b>{{ my_rate }}</b> / 10
+                    </span>
+                </label>
+                    {% endif %}
+
+                    {% if inWatchlist %}
+                <label id='movie-card-remove-watchlist-button'>
+                    <span>
+                        <i class="fas fa-trash" aria-hidden="true"></i>
+                        &nbsp;Exclude (Watchlist)
+                    </span>
+                </label>
+                    {% else %}
+                <label id='movie-card-watchlist-button'>
+                    <span>
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                        &nbsp;Add to Watchlist
                     </span>
                 </label>
                     {% endif %}
@@ -238,6 +255,7 @@ if (intro !== "None" && intro !== "") {
 
 if (hisLen === 1 || hisLen === 0) {
     document.getElementById('backBtn').style.display = 'none';
+    document.getElementById('add-review').style.marginBottom = '10px';
 }
 
 {% if user.is_authenticated %}
@@ -255,6 +273,14 @@ $(".watchlist-btn").click(function(){
         $(this).addClass('added');
         $('.add-watchlist').submit();
     }
+});
+
+$("#movie-card-remove-watchlist-button").click(function() {
+    $('.delete-watchlist').submit();
+});
+
+$("#movie-card-watchlist-button").click(function() {
+    $('.add-watchlist').submit();
 });
 {% endif %}
 

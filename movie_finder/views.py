@@ -127,13 +127,14 @@ def watchlist(request):
 
     if request.method == 'POST':
         imdb = request.POST.get('imdb')
+        need_reload = request.POST.get('reload', False)
         if imdb[:6] != "delete":
             movie = Movie.objects.get(imdb_id=imdb)
             if imdb not in my_watchlist:
                 add_movie = Watchlist(movie=movie, author=request.user)
                 messages.success(request, f'{movie.title} successfully added to your watchlist!')
                 add_movie.save()
-                return HttpResponse(status=204)
+                return HttpResponse(status=204) if not need_reload else redirect(request.META['HTTP_REFERER'])
             else:
                 messages.info(request, f'{movie.title} was already in your watchlist!')
                 return redirect(request.META['HTTP_REFERER'])

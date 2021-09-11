@@ -252,6 +252,9 @@
 .movie-card-review-button span,
 .movie-card-back-button a,
 .movie-card-netflix-button-disable a,
+
+#movie-card-remove-watchlist-button span,
+#movie-card-watchlist-button span,
 #movie-card-rating-active-button span,
 #movie-card-rating-button span {
     text-decoration: none;
@@ -276,6 +279,12 @@
     margin-left: 25px;
 }
 
+#movie-card-remove-watchlist-button,
+#movie-card-watchlist-button {
+    display: none;
+    margin: 0 10px;
+}
+
 @media (max-width: 600px) {
     .movie-card-right-rating {
         flex-wrap: wrap;
@@ -288,18 +297,39 @@
         display: flex;
         margin: 10px 30px 0 30px;
     }
+
+    #movie-card-watchlist-button,
+    #movie-card-remove-watchlist-button {
+        display: flex;
+        margin: 5px 30px 0 30px;
+    }
+}
+
+#movie-card-watchlist-button span,
+#movie-card-remove-watchlist-button span,
+#movie-card-rating-active-button span,
+#movie-card-rating-button span {
+    padding: 3px 10px;
+}
+
+#movie-card-watchlist-button span {
+    color: #28a745;
+    border: 2px solid #28a745;
+}
+
+#movie-card-remove-watchlist-button span {
+    color: #bf360c;
+    border: 2px solid #bf360c;
 }
 
 #movie-card-rating-button span {
-    color: #ffbc0b;
     border: 2px solid #ffbc0b;
-    padding: 3px 10px;
+    color: #ffbc0b;
 }
 
 #movie-card-rating-active-button span {
-    color: #396df0;
     border: 2px solid #396df0;
-    padding: 3px 10px;
+    color: #396df0;
 }
 
 .movie-card-back-button a {
@@ -358,6 +388,9 @@
     color: #ffffff;
 }
 
+#movie-card-watchlist-button span:hover,
+#movie-card-remove-watchlist-button span:hover,
+
 #movie-card-rating-button span:hover,
 #movie-card-rating-active-button span:hover {
     color: #ffffff;
@@ -375,6 +408,14 @@
 
 #movie-card-rating-active-button span:hover {
     background-color: #396df0;
+}
+
+#movie-card-watchlist-button span:hover {
+    background-color: #28a745;
+}
+
+#movie-card-remove-watchlist-button span:hover {
+    background-color: #bf360c;
 }
 
 #modal-rating {
@@ -416,7 +457,12 @@
 }
 
 @media (max-width: 992px) {
-  .watchlist-btn {
-    display: none;
-  }
+    .watchlist-btn {
+        display: none;
+    }
+
+    #movie-card-remove-watchlist-button,
+    #movie-card-watchlist-button {
+        display: inline-flex;
+    }
 }
