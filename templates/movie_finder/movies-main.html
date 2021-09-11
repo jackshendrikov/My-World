@@ -18,6 +18,13 @@
             margin-top: 0;
         }
     }
+
+    {% if movie2Watch|length != 14 %}
+    #addWatchlistSlider { display: block; }
+    {% endif %}
+    {% if myRecommendation|length != 14 %}
+    addRecommendationSlider { display: block; }
+    {% endif %}
     </style>
     {% endif %}
 {% endblock %}
