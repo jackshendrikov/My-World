@@ -297,10 +297,8 @@ def result_page(request, movie_id: str):
 
     if movie_id:
         my_watchlist = get_watchlist(request)
-        if movie_id in my_watchlist:
-            my_watchlist = True
-        else:
-            my_watchlist = False
+        my_watchlist = True if my_watchlist and movie_id in my_watchlist else False
+
         movie = all_movies.get(imdb_id=movie_id)
         search = list(movie)
 

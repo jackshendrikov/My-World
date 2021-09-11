@@ -51,9 +51,29 @@
     <input type="hidden" value="{{ title }}" name="title">
 </form>
 
+{% if user.is_authenticated %}
+<form action="{% url 'movie-finder:watchlist' %}" method="POST" class="add-watchlist">
+    {% csrf_token %}
+    <input type="hidden" value="{{ imdb_id }}" name="imdb">
+</form>
+
+<form action="{% url 'movie-finder:watchlist' %}" method="POST" class="delete-watchlist">
+    {% csrf_token %}
+    <input type="hidden" value="delete{{ imdb_id }}" name="imdb">
+</form>
+{% endif %}
+
 <div class='movie-card'>
     <div class='movie-card-left'>
         <img src='{{ poster }}' alt="poster">
+        {% if user.is_authenticated %}
+        <button type="button" class="watchlist-btn {% if inWatchlist %}added{% else %}add{% endif %}">
+            <div class="icn-btn">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+            </div>
+        </button>
+        {% endif %}
     </div>
 
     <div class='movie-card-right'>
@@ -220,9 +240,24 @@ if (hisLen === 1 || hisLen === 0) {
     document.getElementById('backBtn').style.display = 'none';
 }
 
+{% if user.is_authenticated %}
 $('.rating-star').click(function () {
     $("#ratingForm").submit();
 });
+
+$(".watchlist-btn").click(function(){
+    if ($(this).hasClass('added')) {
+        $(this).removeClass('added');
+        $(this).addClass('add');
+        $('.delete-watchlist').submit();
+    } else {
+        $(this).removeClass('add');
+        $(this).addClass('added');
+        $('.add-watchlist').submit();
+    }
+});
+{% endif %}
+
 
 function readMore(reviewID, reviewDescription) {
     document.getElementById('review-' + reviewID).innerHTML = reviewDescription;
