@@ -83,12 +83,9 @@
 <script src="{% static 'home/home/js/intro.js' %}"></script>
 
 <script>
-    if (IS_MOBILE)
-        window.open('{% url "home_page" %}', '_self')
-
     setTimeout(() => {
             setTimeout(() => {
-                document.location = '{% url "home_page" %}'
+                window.open('{% url "home_page" %}', '_self');
             }, 160 * 100)
         }, 0);
 </script>

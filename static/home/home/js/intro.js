@@ -1,7 +1,3 @@
-const IS_MOBILE = window.innerWidth <= 640;
-const IS_DESKTOP = window.innerWidth > 800;
-const IS_HEADER = IS_DESKTOP && window.innerHeight < 300;
-
 $(window).on("load",function(){
      $('.spinner').hide();
      $('.container').css("display", "flex").css("visibility", "visible");
