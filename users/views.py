@@ -42,16 +42,27 @@ def fill_form(request):
 def add_rating(request):
     if request.method == 'POST':
         imdb = request.POST.get('imdb')
-        rating = request.POST.get('rating')
+        if imdb[:6] != "delete":
+            rating = request.POST.get('rating')
 
-        movie = Movie.objects.get(imdb_id=imdb)
+            movie = Movie.objects.get(imdb_id=imdb)
 
-        if MyRating.objects.filter(movie=movie, user=request.user).exists():
-            MyRating.objects.filter(movie=movie, user=request.user).update(rating=rating)
-            return HttpResponse(status=204)
+            if MyRating.objects.filter(movie=movie, user=request.user).exists():
+                MyRating.objects.filter(movie=movie, user=request.user).update(rating=rating)
+                return HttpResponse(status=204)
+            else:
+                MyRating(movie=movie, user=request.user, rating=rating).save()
+                return HttpResponse(status=204)
         else:
-            MyRating(movie=movie, user=request.user, rating=rating).save()
-            return HttpResponse(status=204)
+            movie = Movie.objects.get(imdb_id=imdb[6:])
+            try:
+                delete_movie = MyRating.objects.get(movie=movie, user=request.user)
+                messages.error(request, f'{movie.title} has been deleted from your rating!')
+                delete_movie.delete()
+            except MyRating.DoesNotExist:
+                messages.error(request, f'Rating for {movie.title} does not exist!')
+
+            return redirect(request.META['HTTP_REFERER'])
 
     return redirect(request.META['HTTP_REFERER'])
 

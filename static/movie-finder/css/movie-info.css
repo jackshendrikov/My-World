@@ -236,6 +236,7 @@
 
 @media (max-width: 500px) {
     .movie-card-netflix-button,
+    .movie-card-netflix-button-disable,
     .movie-card-review-button,
     .movie-card-back-button {
         display: flex;
@@ -253,6 +254,7 @@
 .movie-card-back-button a,
 .movie-card-netflix-button-disable a,
 
+#exclude-rating span,
 #movie-card-remove-watchlist-button span,
 #movie-card-watchlist-button span,
 #movie-card-rating-active-button span,
@@ -277,6 +279,10 @@
 #movie-card-rating-active-button {
     display: inline-flex;
     margin-left: 25px;
+}
+
+#exclude-rating {
+    display: none;
 }
 
 #movie-card-remove-watchlist-button,
@@ -305,6 +311,7 @@
     }
 }
 
+#exclude-rating span,
 #movie-card-watchlist-button span,
 #movie-card-remove-watchlist-button span,
 #movie-card-rating-active-button span,
@@ -317,6 +324,7 @@
     border: 2px solid #28a745;
 }
 
+#exclude-rating span,
 #movie-card-remove-watchlist-button span {
     color: #bf360c;
     border: 2px solid #bf360c;
@@ -390,7 +398,7 @@
 
 #movie-card-watchlist-button span:hover,
 #movie-card-remove-watchlist-button span:hover,
-
+#exclude-rating span:hover,
 #movie-card-rating-button span:hover,
 #movie-card-rating-active-button span:hover {
     color: #ffffff;
@@ -414,6 +422,7 @@
     background-color: #28a745;
 }
 
+#exclude-rating span:hover,
 #movie-card-remove-watchlist-button span:hover {
     background-color: #bf360c;
 }
@@ -465,4 +474,8 @@
     #movie-card-watchlist-button {
         display: inline-flex;
     }
+}
+
+.rating {
+    margin-bottom: 5px;
 }

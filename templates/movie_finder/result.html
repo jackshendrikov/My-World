@@ -39,6 +39,12 @@
         {% csrf_token %}
         <input type="hidden" value="{{ imdb_id }}" name="imdb">
         {% include "movie_finder/include/rating.html" %}
+        <label id='exclude-rating' style="{% if my_rate %}display: flex;{% else %}display: none;{% endif %}">
+            <span>
+                <i class="fas fa-times" aria-hidden="true"></i>
+                &nbsp;Remove Rating
+            </span>
+        </label>
     </form>
 </div>
 {% endblock %}
@@ -59,6 +65,11 @@
 </form>
 
 <form action="{% url 'movie-finder:watchlist' %}" method="POST" class="delete-watchlist">
+    {% csrf_token %}
+    <input type="hidden" value="delete{{ imdb_id }}" name="imdb">
+</form>
+
+<form action="{% url 'movie-finder:add-rating' %}" method="POST" class="delete-rating">
     {% csrf_token %}
     <input type="hidden" value="delete{{ imdb_id }}" name="imdb">
 </form>
@@ -275,6 +286,10 @@ $(".watchlist-btn").click(function(){
     }
 });
 
+$("#exclude-rating").click(function() {
+    $('.delete-rating').submit();
+});
+
 $("#movie-card-remove-watchlist-button").click(function() {
     $('.delete-watchlist').submit();
 });
@@ -306,6 +321,8 @@ function goBack() {
 function updateRate(radioID) {
     {% if user.is_authenticated %}
     let myRate = $("#" + radioID + ":checked").val();
+    $('#exclude-rating').css('display', 'flex');
+
     $('{% if not my_rate %}#movie-card-rating-button{% else %}#movie-card-rating-active-button{% endif %}').html('<span>\n' +
         '                        <i class="fas fa-star" aria-hidden="true"></i>\n' +
         '                        &nbsp;<b>' + myRate + '</b> / 10\n' +
