@@ -56,16 +56,16 @@ def analyze_api(data_apis):
         # check equality of lng, lat from API1 and API3
         if int(float(data_apis[0]['latitude'])) == int(data_apis[2]['latitude']) \
                 and int(float(data_apis[0]['longitude'])) == int(data_apis[2]['longitude']):
-            data_apis[0]['latitude'] = data_apis[2]['latitude']
-            data_apis[0]['longitude'] = data_apis[2]['longitude']
+            data_apis[0]['latitude'] = round(data_apis[2]['latitude'], 3)
+            data_apis[0]['longitude'] = round(data_apis[2]['longitude'], 3)
             return data_apis[0]
         else:
             return data_apis[0]
         # return data_apis[0]
     elif int(float(data_apis[0]['latitude'])) == int(data_apis[2]['latitude']) \
                 and int(float(data_apis[0]['longitude'])) == int(data_apis[2]['longitude']):
-        data_apis[0]['latitude'] = data_apis[2]['latitude']
-        data_apis[0]['longitude'] = data_apis[2]['longitude']
+        data_apis[0]['latitude'] = round(data_apis[2]['latitude'], 3)
+        data_apis[0]['longitude'] = round(data_apis[2]['longitude'], 3)
         return data_apis[0]
     elif data_apis[0]['country'] == data_apis[1]['country']:
         data = data_apis[1]

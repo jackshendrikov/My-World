@@ -34,12 +34,20 @@
     {% endblock extrahead %}
 
     <style>
+        .table td, .table th {
+            vertical-align: middle;
+        }
+
         #map {
             height: 400px;
             width: 100%;
             margin: 20px 0;
             border: 5px solid var(--border-color);
             border-radius: 2%;
+        }
+
+        #id-table {
+            border-radius: 10px;
         }
 
         #id-table table {
@@ -52,6 +60,20 @@
 
         #id-table td:hover{
             color: var(--content-title-color);
+        }
+
+        @media (max-width: 800px) {
+            #countryFlag {
+                width: 25%;
+            }
+
+            #id-table {
+                margin-right: -10px;
+            }
+
+            ::-webkit-scrollbar:horizontal{
+                height: 8px;
+            }
         }
     </style>
 </head>
