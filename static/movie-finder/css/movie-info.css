@@ -189,7 +189,7 @@
     letter-spacing: 1px;
     margin: 10px 0 10px 0;
     line-height: 20px;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .movie-card-right-review a {
