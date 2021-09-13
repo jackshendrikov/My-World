@@ -83,7 +83,7 @@
     margin: 30px 0 0 0;
     padding: 0 40px 0 40px;
     letter-spacing: 1px;
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .movie-card-right .large-title{
@@ -102,6 +102,12 @@
     .movie-card-right h1,
     .movie-card-right .large-title {
         font-size: 20px;
+        text-align: center;
+    }
+
+    #actorsList {
+        display: grid;
+        gap: 4px;
     }
 }
 
