@@ -42,7 +42,7 @@
             <tbody>
             {% for task in tasks %}
                 <tr id="{{ task.id }}" style="color: var(--content-title-color);">
-                    <td data-label="Task">
+                    <td data-label="Task" style="word-break: break-word;">
                         <a href="{% url 'todo:task_detail' task.id %}">{{ task.title|truncatewords:10 }}</a>
                     </td>
 

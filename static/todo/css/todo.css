@@ -1,5 +1,6 @@
 .content-section-main-title, .content-section-title {
   font-size: 20px;
+  overflow-wrap: break-word;
 }
 
 @media screen and (max-width: 1225px) {
@@ -183,6 +184,10 @@
   align-items: center;
   width: 150px;
   color: var(--theme-color);
+}
+
+.todos a {
+  word-break: break-word;
 }
 @media screen and (max-width: 480px) {
   .todos {
@@ -491,6 +496,10 @@
   font-size: 16px;
 }
 
+.card-body {
+  word-break: break-word;
+}
+
 @media screen and (max-width: 992px) {
   .input-attach {
     padding: 0 100px;
@@ -500,6 +509,18 @@
 @media screen and (max-width: 760px) {
   .input-attach {
     padding: 0 50px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-body p {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  #commentDate {
+    display: none!important;
   }
 }
 

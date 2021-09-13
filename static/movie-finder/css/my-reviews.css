@@ -15,6 +15,12 @@
     margin: 20px auto 0;
 }
 
+@media (max-width: 992px) {
+    .col:nth-child(-n+2) {
+        margin: 0 auto 0;
+    }
+}
+
 .card-header {
     font-size: 16px;
  }
@@ -31,6 +37,7 @@
     padding-bottom: 0;
     margin-bottom: 0;
     color: var(--theme-color);
+    word-break: break-all;
 }
 
 .card-footer {

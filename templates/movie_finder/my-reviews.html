@@ -23,9 +23,9 @@
         <div class="col">
             <div class="card mb-3">
                 <div class="card-header theme-bg-fade">
-                    <a href="{% url 'movie-finder:result' review.imdb %}" class="movie-review">
+                    <a href="{% url 'movie-finder:result' review.movie.imdb_id %}" class="movie-review">
                         <span class="float-left mr-2 mt-1 h4-responsive robotoBold" style="color: var(--select-color);">
-                            {{ review.movie }}
+                            {{ review.movie.title }}
                         </span>
                     </a>
 
@@ -48,7 +48,7 @@
 
                 <div class="card-footer secondary-bg-fade robotoBold">
                     <span class="float-left"><i class="fas fa-star" style="color: #f3d779;"></i>&nbsp;{{ review.rating }}</span>
-                    <span class="float-right">{{review.timestamp|date:"F j, Y, g:i a"}}</span>
+                    <span class="float-right">{{review.timestamp|date:"F j, Y"}}</span>
                 </div>
             </div>
         </div>
