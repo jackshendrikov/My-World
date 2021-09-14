@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Rate(models.Model):
-    rating = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True)
+    rating = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True, db_index=True)
 
 
 class Genre(models.Model):
@@ -33,7 +33,7 @@ class Netflix(models.Model):
 
 
 class Year(models.Model):
-    year = models.IntegerField(null=True)
+    year = models.IntegerField(null=True, db_index=True)
 
 
 class Youtube(models.Model):
@@ -47,7 +47,7 @@ class Movie(models.Model):
     imdb_id = models.CharField(max_length=128, db_index=True, unique=True, default=uuid.uuid4, primary_key=True)
     title = models.CharField(max_length=256)
     link = models.TextField()
-    votes = models.IntegerField(null=True, blank=True)
+    votes = models.IntegerField(null=True, blank=True, db_index=True)
     cast = models.TextField()
     plot = models.TextField()
     keywords = models.TextField()

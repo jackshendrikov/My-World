@@ -9,7 +9,7 @@ from movie_finder.models import Movie
 class MyRating(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    rating = models.IntegerField(default=5, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    rating = models.IntegerField(default=5, db_index=True, validators=[MaxValueValidator(10), MinValueValidator(0)])
     timestamp = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
