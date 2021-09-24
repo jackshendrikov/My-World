@@ -48,8 +48,11 @@ class Task(models.Model):
 
     def overdue_status(self):
         """Returns whether the Tasks's due date has passed or not."""
-        if self.due_date and datetime.date.today() > self.due_date:
-            return True
+        if self.due_date:
+            if self.completed_date and self.completed_date > self.due_date:
+                return True
+            elif datetime.date.today() > self.due_date > self.due_date:
+                return True
 
     def __str__(self):
         return self.title
