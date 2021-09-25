@@ -8,4 +8,8 @@ admin.site.register(Type)
 admin.site.register(Netflix)
 admin.site.register(Year)
 admin.site.register(Youtube)
-admin.site.register(Movie)
+
+
+@admin.register(Movie)
+class MovieAdmin(admin.ModelAdmin,):
+    search_fields = ("title", "imdb_id")
