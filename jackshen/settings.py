@@ -49,6 +49,10 @@ TODO_STAFF_ONLY = config('TODO_STAFF_ONLY', default=False, cast=bool)
 
 SHEET_ID = config('SHEET_ID')
 
+OMDB_API = config('OMDB_API')
+OMDB_LINK = config('OMDB_LINK')
+POPULAR_MOVIES_LINK = config('POPULAR_MOVIES_LINK')
+
 
 # Without this, uploaded files > 4MB end up with perm 0600, unreadable by web server process
 FILE_UPLOAD_PERMISSIONS = 0o644
