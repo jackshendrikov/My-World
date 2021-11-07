@@ -337,20 +337,36 @@ input[type=submit]:active {
     margin-right: 1rem;
 }
 
-.adv-search .container .adv-search-form .form-content .row-wrapper .element input, .adv-search .container .adv-search-form .form-content .row-wrapper .element select {
+.adv-search .container .adv-search-form .form-content .row-wrapper .element input,
+.adv-search .container .adv-search-form .form-content .row-wrapper .element select {
     width: 100%;
 }
 
-.adv-search .container .adv-search-form .form-content .row-wrapper .rate-type, .adv-search .container .adv-search-form .form-content .row-wrapper .imdb-rate,
-.adv-search .container .adv-search-form .form-content .row-wrapper .year, .adv-search .container .adv-search-form .form-content .row-wrapper .cast,
+.adv-search .container .adv-search-form .form-content .row-wrapper .rate-type,
+.adv-search .container .adv-search-form .form-content .row-wrapper .cast,
 .adv-search .container .adv-search-form .form-content .row-wrapper .keywords {
     flex: 0;
     flex-basis: 450px;
 }
 
-.adv-search .container .adv-search-form .form-content .row-wrapper .rate-type input, .adv-search .container .adv-search-form .form-content .row-wrapper .rate-type select, .adv-search .container .adv-search-form .form-content .row-wrapper .imdb-rate input, .adv-search .container .adv-search-form .form-content .row-wrapper .imdb-rate select,
+.adv-search .container .adv-search-form .form-content .row-wrapper .type .select .select-styled {
+    padding: 0.5rem 0.8rem;
+}
+
+.adv-search .container .adv-search-form .form-content .row-wrapper .imdb-rate,
+.adv-search .container .adv-search-form .form-content .row-wrapper .year {
+    flex: 0;
+    flex-basis: 250px;
+}
+
+.adv-search .container .adv-search-form .form-content .row-wrapper .rate-type input,
+.adv-search .container .adv-search-form .form-content .row-wrapper .rate-type select,
+.adv-search .container .adv-search-form .form-content .row-wrapper .imdb-rate input,
+.adv-search .container .adv-search-form .form-content .row-wrapper .imdb-rate select,
 .adv-search .container .adv-search-form .form-content .row-wrapper .year input,
-.adv-search .container .adv-search-form .form-content .row-wrapper .year select, .adv-search .container .adv-search-form .form-content .row-wrapper .cast input, .adv-search .container .adv-search-form .form-content .row-wrapper .cast select,
+.adv-search .container .adv-search-form .form-content .row-wrapper .year select,
+.adv-search .container .adv-search-form .form-content .row-wrapper .cast input,
+.adv-search .container .adv-search-form .form-content .row-wrapper .cast select,
 .adv-search .container .adv-search-form .form-content .row-wrapper .keywords input,
 .adv-search .container .adv-search-form .form-content .row-wrapper .keywords select {
     width: 100%;

@@ -199,11 +199,11 @@ def category(request, category_name=None):
     if category_name == 'series':
         category_list = list(all_movies.filter(mtype_id__mtype='Series').order_by('-release'))
     elif category_name == 'netflix':
-        category_list = list(all_movies.exclude(netflix_id__netflix='None').order_by('-rating_id__rating'))
+        category_list = list(all_movies.exclude(netflix_id__netflix='None').order_by('-votes'))
     elif category_name == 'top':
         category_list = list(all_movies.order_by('-rating_id__rating')[:100])
     else:
-        category_list = list(all_movies.filter(keywords__contains=category_name).order_by('-rating_id__rating'))
+        category_list = list(all_movies.filter(keywords__contains=category_name).order_by('-votes'))
 
     return get_category_movies(category_list, request)
 
@@ -222,6 +222,7 @@ def advanced_search(request):
             get_cast = request.GET.get('getCast')
             get_keywords = request.GET.get('getKeywords')
             get_genre = request.GET.get('getGenre')
+            get_type = request.GET.get('getType')
 
             sorting = request.GET.get('sorting')
             exclude = request.GET.get('exclude')
@@ -237,6 +238,7 @@ def advanced_search(request):
                 get_cast = ''
 
             if get_genre == 'All': get_genre = ''
+            if get_type == 'Any': get_type = None
             if not get_year: get_year = 0
             if not get_rating: get_rating = 0.0
 
@@ -245,19 +247,21 @@ def advanced_search(request):
             genres = all_movies.filter(genres_id__genres__icontains=get_genre)
             cast = all_movies.filter(cast__icontains=get_cast)
             keywords = all_movies.filter(keywords__icontains=get_keywords)
+            mtype = all_movies.filter(mtype_id__mtype=get_type) if get_type else all_movies
 
             if exclude == 'excludeTitles':
                 movie_items = all_movies.exclude(imdb_id__in=my_rating)
             else:
                 movie_items = all_movies
 
+            movie_items = movie_items.intersection(rating, year, genres, cast, keywords, mtype)
+
             if sorting == 'byYear':
-                movie_items = list(movie_items.intersection(rating, year, genres, cast, keywords).order_by('-release'))
+                movie_items = list(movie_items.order_by('-release'))
             elif sorting == 'byVotes':
-                movie_items = list(movie_items.intersection(rating, year, genres, cast, keywords).order_by('-votes'))
+                movie_items = list(movie_items.order_by('-votes'))
             else:
-                movie_items = list(
-                    movie_items.intersection(rating, year, genres, cast, keywords).order_by('-rating_id__rating'))
+                movie_items = list(movie_items.order_by('-rating_id__rating'))
 
             movie_items = create_paginator(request, movie_items)
 
