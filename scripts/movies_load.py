@@ -72,7 +72,7 @@ def create_movie_record(movie_id: str) -> Optional[MovieInfo]:
 
     data = json.loads(json_data)
 
-    if "Error" not in data.keys() and data["imdbRating"] != "N/A":
+    if "Error" not in data.keys() and "N/A" not in data.values():
         return MovieInfo(
             imdb_id=data["imdbID"],
             title=data["Title"],
@@ -95,51 +95,57 @@ def create_movie_record(movie_id: str) -> Optional[MovieInfo]:
     return None
 
 
-movies_to_add = retrieve_popular_movies_id_to_add(all_movies_ids)
-movies_len = len(movies_to_add)
-print(f"{movies_len} movies will be added!")
+def run(*script_args):
+    movies_to_add = retrieve_popular_movies_id_to_add(all_movies_ids)
 
-print("Started..")
-print_progress(0, movies_len, prefix="Progress:", suffix="Complete", length=50)
-for i, movie_id in enumerate(movies_to_add):
-    movie_info = create_movie_record(movie_id)
-    if movie_info:
-        rating, created = Rate.objects.get_or_create(rating=movie_info.rating)
-        genres, created = Genre.objects.get_or_create(genres=movie_info.genres)
-        runtime, created = Runtime.objects.get_or_create(runtime=movie_info.runtime)
-        mtype, created = Type.objects.get_or_create(mtype=movie_info.mtype)
-        netflix_link, created = Netflix.objects.get_or_create(
-            netflix=movie_info.netflix
-        )
-        year, created = Year.objects.get_or_create(year=movie_info.year)
-        youtube_link, created = Youtube.objects.get_or_create(
-            youtube=movie_info.youtube
-        )
+    if "load_file" in script_args:
+        data_url = script_args[1]
+        with urllib.request.urlopen(data_url) as url:
+            movies_to_add += [item["imdb_id"] for item in json.loads(url.read().decode())]
 
-        movie_date = datetime.strptime(movie_info.release, "%d %b %Y").strftime(
-            "%Y-%m-%d"
-        )
+    movies_len = len(movies_to_add)
+    print(f"{movies_len} movies will be added!")
 
-        Movie(
-            imdb_id=movie_info.imdb_id,
-            title=movie_info.title,
-            rating=rating,
-            link=movie_info.link,
-            votes=movie_info.votes,
-            genres=genres,
-            cast=movie_info.cast,
-            runtime=runtime,
-            mtype=mtype,
-            netflix=netflix_link,
-            plot=movie_info.plot,
-            keywords=movie_info.keywords,
-            release=movie_date,
-            year=year,
-            poster=movie_info.poster,
-            youtube=youtube_link,
-        ).save()
+    print("Started..")
+    print_progress(0, movies_len, prefix="Progress:", suffix="Complete", length=50)
+    for i, movie_id in enumerate(movies_to_add):
+        movie_info = create_movie_record(movie_id)
+        if movie_info:
+            rating, created = Rate.objects.get_or_create(rating=movie_info.rating)
+            genres, created = Genre.objects.get_or_create(genres=movie_info.genres)
+            runtime, created = Runtime.objects.get_or_create(runtime=movie_info.runtime)
+            mtype, created = Type.objects.get_or_create(mtype=movie_info.mtype)
+            netflix_link, created = Netflix.objects.get_or_create(
+                netflix=movie_info.netflix
+            )
+            year, created = Year.objects.get_or_create(year=movie_info.year)
+            youtube_link, created = Youtube.objects.get_or_create(
+                youtube=movie_info.youtube
+            )
 
-    print_progress(i + 1, movies_len, prefix='Progress:', suffix='Complete', length=50)
+            movie_date = datetime.strptime(movie_info.release, "%d %b %Y").strftime(
+                "%Y-%m-%d"
+            )
 
-print('Done!')
-exit()
+            Movie(
+                imdb_id=movie_info.imdb_id,
+                title=movie_info.title,
+                rating=rating,
+                link=movie_info.link,
+                votes=movie_info.votes,
+                genres=genres,
+                cast=movie_info.cast,
+                runtime=runtime,
+                mtype=mtype,
+                netflix=netflix_link,
+                plot=movie_info.plot,
+                keywords=movie_info.keywords,
+                release=movie_date,
+                year=year,
+                poster=movie_info.poster,
+                youtube=youtube_link,
+            ).save()
+
+        print_progress(i + 1, movies_len, prefix='Progress:', suffix='Complete', length=50)
+
+    print('Done!')
