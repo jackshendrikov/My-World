@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <title>Christmas Calendar</title>
+    <meta name="description" content="HO HO HO">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <meta property="og:site_name" content="Christmas Calendar">
+    <meta property="og:image" content="https://image.freepik.com/free-vector/set-advent-calendar-icons-flat-design_23-2148353851.jpg" />
+    <meta property="og:image:alt" content="Christmas Calendar" />
+    <meta property="og:image:width" content="620" />
+    <meta property="og:image:height" content="620" />
+    <meta property="og:title" content="Christmas Calendar" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jackshen.herokuapp.com/xmas-tree/xmas-calendar" />
+    <meta property="og:description" content="Find Xmas movie for every day!" />
+
+    <link rel="icon" href="{% static 'ico/logo.ico' %}" type="image/x-icon">
+
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/styles/agate.min.css'>
+    <link rel="stylesheet" media="screen" href="{% static 'home/xmas-tree/calendar/calendar.css' %}">
+</head>
+
+<body>
+<div id="root"></div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react/17.0.1/umd/react.production.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.1/umd/react-dom.production.min.js'></script>
+<script src="{% static 'home/xmas-tree/calendar/calendar.js' %}"></script>
+
+</body>
+</html>

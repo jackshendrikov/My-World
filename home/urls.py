@@ -31,5 +31,6 @@ urlpatterns = [
     path('home/xmas-tree/xmas-scene', TemplateView.as_view(template_name='home/xmas-tree/xmas-scene/index.html'), name='xmas-scene'),
     path('home/xmas-tree/xmas-special', TemplateView.as_view(template_name='home/xmas-tree/xmas-special/index.html'), name='xmas-special'),
     path('home/xmas-tree/xmas-game', TemplateView.as_view(template_name='home/xmas-tree/xmas-game/index.html'), name='xmas-game'),
+    path('home/xmas-tree/xmas-calendar', TemplateView.as_view(template_name='home/xmas-tree/xmas-calendar/index.html'), name='xmas-calendar'),
 ]
 

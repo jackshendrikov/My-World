@@ -6,6 +6,9 @@ from django.db import models
 class Rate(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=1, null=True, blank=True, db_index=True)
 
+    def __str__(self):
+        return str(self.rating)
+
 
 class Genre(models.Model):
     genres = models.TextField()
@@ -16,6 +19,9 @@ class Genre(models.Model):
 
 class Runtime(models.Model):
     runtime = models.IntegerField(null=True)
+
+    def __str__(self):
+        return str(self.runtime)
 
 
 class Type(models.Model):
@@ -34,6 +40,9 @@ class Netflix(models.Model):
 
 class Year(models.Model):
     year = models.IntegerField(null=True, db_index=True)
+
+    def __str__(self):
+        return str(self.year)
 
 
 class Youtube(models.Model):
