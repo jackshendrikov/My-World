@@ -72,7 +72,7 @@ def create_movie_record(movie_id: str) -> Optional[MovieInfo]:
 
     data = json.loads(json_data)
 
-    if "Error" not in data.keys() and "N/A" not in data.values():
+    if "Error" not in data.keys() and data["imdbRating"] != "N/A" and data["imdbVotes"] != "N/A":
         return MovieInfo(
             imdb_id=data["imdbID"],
             title=data["Title"],
