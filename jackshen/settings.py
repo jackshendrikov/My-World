@@ -50,6 +50,7 @@ TODO_STAFF_ONLY = config('TODO_STAFF_ONLY', default=False, cast=bool)
 SHEET_ID = config('SHEET_ID')
 
 OMDB_API = config('OMDB_API')
+OMDB_API_2 = config('OMDB_API_2')
 OMDB_LINK = config('OMDB_LINK')
 POPULAR_MOVIES_LINK = config('POPULAR_MOVIES_LINK')
 
