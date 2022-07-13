@@ -20,12 +20,6 @@ values = ('imdb_id', 'title', 'rating_id__rating', 'link', 'votes', 'genres_id__
 
 all_movies = Movie.objects.values_list(*values)
 
-url = f'https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv&gid=904865657'
-df_cast = pd.read_csv(url)['cast']
-all_cast = list(
-    set([j for sub in list(df_cast.str[2:-2].str.replace("'", "").str.replace('"', '').str.split(', ')) for j in sub])
-)
-
 
 # ========= UTILS ===========
 def create_paginator(request, movies_list):
@@ -228,12 +222,7 @@ def advanced_search(request):
             exclude = request.GET.get('exclude')
 
             if get_cast:
-                get_cast = difflib.get_close_matches(get_cast, all_cast)
-
-                if len(get_cast) > 0:
-                    get_cast = get_cast[0]
-                else:
-                    get_cast = 'No matches'
+                get_cast = 'No matches'
             else:
                 get_cast = ''
 
